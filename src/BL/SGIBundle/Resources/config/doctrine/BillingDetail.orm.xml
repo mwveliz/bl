@@ -2,22 +2,22 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="BL\SGIBundle\Entity\BillingDetail" table="billing_detail">
     <indexes>
-      <index name="IDX_6BDC5CC332BFE5DA" columns="id_billing"/>
       <index name="IDX_6BDC5CC3E173B1B8" columns="id_client"/>
+      <index name="IDX_6BDC5CC332BFE5DA" columns="id_billing"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
     <field name="value" type="float" column="value" precision="10" scale="0" nullable="true"/>
-    <many-to-one field="idClient" target-entity="Client">
-      <join-columns>
-        <join-column name="id_client" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idBilling" target-entity="Billing">
       <join-columns>
         <join-column name="id_billing" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idClient" target-entity="Client">
+      <join-columns>
+        <join-column name="id_client" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

@@ -10,7 +10,7 @@
     <field name="message" type="text" column="message" nullable="true"/>
     <field name="dest" type="string" column="dest" nullable="true"/>
     <field name="instant" type="boolean" column="instant" nullable="true"/>
-    <many-to-one field="userid" target-entity="FosUser">
+    <many-to-one field="userid" target-entity="Usuario">
       <join-columns>
         <join-column name="userid" referenced-column-name="id"/>
       </join-columns>

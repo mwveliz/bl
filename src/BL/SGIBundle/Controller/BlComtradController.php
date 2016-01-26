@@ -50,7 +50,7 @@ class BlComtradController extends Controller
             $em->persist($blComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('blcomtrad_show', array('id' => $blcomtrad->getId()));
+            return $this->redirectToRoute('blcomtrad_show', array('id' => $blComtrad->getId()));
         }
 
         return $this->render('blcomtrad/new.html.twig', array(

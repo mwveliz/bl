@@ -50,7 +50,7 @@ class FieldsComtradController extends Controller
             $em->persist($fieldsComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('fieldscomtrad_show', array('id' => $fieldscomtrad->getId()));
+            return $this->redirectToRoute('fieldscomtrad_show', array('id' => $fieldsComtrad->getId()));
         }
 
         return $this->render('fieldscomtrad/new.html.twig', array(
@@ -69,6 +69,7 @@ class FieldsComtradController extends Controller
     {
         $deleteForm = $this->createDeleteForm($fieldsComtrad);
 
+	
         return $this->render('fieldscomtrad/show.html.twig', array(
             'fieldsComtrad' => $fieldsComtrad,
             'delete_form' => $deleteForm->createView(),
