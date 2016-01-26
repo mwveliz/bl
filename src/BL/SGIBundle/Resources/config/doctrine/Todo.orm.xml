@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\SGIBundle\Entity\Todo" table="todo">
+    <indexes>
+      <index name="IDX_5A0EB6A0926BCFAE" columns="id_bl"/>
+      <index name="IDX_5A0EB6A0327D30B2" columns="id_priority"/>
+      <index name="IDX_5A0EB6A0F132696E" columns="userid"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="description" type="string" column="description" nullable="true"/>
+    <field name="completed" type="boolean" column="completed" nullable="true"/>
+    <many-to-one field="userid" target-entity="FosUser">
+      <join-columns>
+        <join-column name="userid" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idPriority" target-entity="TodoPriority">
+      <join-columns>
+        <join-column name="id_priority" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idBl" target-entity="Bl">
+      <join-columns>
+        <join-column name="id_bl" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

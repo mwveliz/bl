@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TypeComtrad list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeComtrad in typeComtrads %}
+            <tr>
+                <td><a href="{{ path('typecomtrad_show', { 'id': typeComtrad.id }) }}">{{ typeComtrad.description }}</a></td>
+                <td>{{ typeComtrad.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typecomtrad_show', { 'id': typeComtrad.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typecomtrad_edit', { 'id': typeComtrad.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typecomtrad_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

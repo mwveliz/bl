@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td><a href="{{ path('todo_show', { 'id': todo.id }) }}">{{ todo.description }}</a></td>
+                <td>{% if todo.completed %}Yes{% else %}No{% endif %}</td>
+                <td>{{ todo.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('todo_show', { 'id': todo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('todo_edit', { 'id': todo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('todo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BlConstru list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blConstru in blConstrus %}
+            <tr>
+                <td><a href="{{ path('blconstru_show', { 'id': blConstru.id }) }}">{{ blConstru.value }}</a></td>
+                <td>{{ blConstru.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blconstru_show', { 'id': blConstru.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blconstru_edit', { 'id': blConstru.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blconstru_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

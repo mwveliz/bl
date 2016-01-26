@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PipelineWorkflow list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idparentnode</th>
+                <th>Idchildnode</th>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pipelineWorkflow in pipelineWorkflows %}
+            <tr>
+                <td><a href="{{ path('pipelineworkflow_show', { 'id': pipelineWorkflow.id }) }}">{{ pipelineWorkflow.idParentNode }}</a></td>
+                <td>{{ pipelineWorkflow.idChildNode }}</td>
+                <td>{{ pipelineWorkflow.description }}</td>
+                <td>{{ pipelineWorkflow.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pipelineworkflow_show', { 'id': pipelineWorkflow.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pipelineworkflow_edit', { 'id': pipelineWorkflow.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pipelineworkflow_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

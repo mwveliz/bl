@@ -1,0 +1,3 @@
+sgi_homepage:
+    path:     /
+    defaults: { _controller: SGIBundle:Default:index }

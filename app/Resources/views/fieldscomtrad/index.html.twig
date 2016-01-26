@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FieldsComtrad list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fieldsComtrad in fieldsComtrads %}
+            <tr>
+                <td><a href="{{ path('fieldscomtrad_show', { 'id': fieldsComtrad.id }) }}">{{ fieldsComtrad.description }}</a></td>
+                <td>{{ fieldsComtrad.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fieldscomtrad_show', { 'id': fieldsComtrad.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fieldscomtrad_edit', { 'id': fieldsComtrad.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldscomtrad_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
