@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\AppBundle\Entity\TrackRental" table="track_rental">
+    <indexes>
+      <index name="IDX_5EDB0394E1AB4EDF" columns="id_bl_rental"/>
+      <index name="IDX_5EDB039439EA605A" columns="id_fields_track_rental"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="value" type="string" column="value" nullable="true"/>
+    <field name="datetime" type="datetime" column="datetime" nullable="true"/>
+    <many-to-one field="idFieldsTrackRental" target-entity="FieldsTrackRental">
+      <join-columns>
+        <join-column name="id_fields_track_rental" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idBlRental" target-entity="BlRental">
+      <join-columns>
+        <join-column name="id_bl_rental" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

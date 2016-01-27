@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FosUser list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Dni</th>
+                <th>Nacionalidad</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Telefono</th>
+                <th>Telefonosecundario</th>
+                <th>Idfosuserinfo</th>
+                <th>Fosusername</th>
+                <th>Fosusernamecanonical</th>
+                <th>Email</th>
+                <th>Emailcanonical</th>
+                <th>Enabled</th>
+                <th>Salt</th>
+                <th>Password</th>
+                <th>Lastlogin</th>
+                <th>Locked</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
+                <th>Confirmationtoken</th>
+                <th>Passwordrequestedat</th>
+                <th>Roles</th>
+                <th>Credentialsexpired</th>
+                <th>Credentialsexpireat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fosUser in fosUsers %}
+            <tr>
+                <td><a href="{{ path('fosuser_show', { 'id': fosUser.id }) }}">{{ fosUser.dni }}</a></td>
+                <td>{{ fosUser.nacionalidad }}</td>
+                <td>{{ fosUser.nombre }}</td>
+                <td>{{ fosUser.apellido }}</td>
+                <td>{{ fosUser.telefono }}</td>
+                <td>{{ fosUser.telefonoSecundario }}</td>
+                <td>{{ fosUser.idFosUserinfo }}</td>
+                <td>{{ fosUser.fosUsername }}</td>
+                <td>{{ fosUser.fosUsernameCanonical }}</td>
+                <td>{{ fosUser.email }}</td>
+                <td>{{ fosUser.emailCanonical }}</td>
+                <td>{% if fosUser.enabled %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fosUser.salt }}</td>
+                <td>{{ fosUser.password }}</td>
+                <td>{% if fosUser.lastLogin %}{{ fosUser.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if fosUser.locked %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fosUser.expired %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fosUser.expiresAt %}{{ fosUser.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ fosUser.confirmationToken }}</td>
+                <td>{% if fosUser.passwordRequestedAt %}{{ fosUser.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if fosUser.roles %}{{ fosUser.roles|join(', ') }}{% endif %}</td>
+                <td>{% if fosUser.credentialsExpired %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fosUser.credentialsExpireAt %}{{ fosUser.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ fosUser.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fosuser_show', { 'id': fosUser.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fosuser_edit', { 'id': fosUser.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fosuser_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

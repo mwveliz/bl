@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FieldsTrackAltinv list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fieldsTrackAltinv in fieldsTrackAltinvs %}
+            <tr>
+                <td><a href="{{ path('fieldstrackaltinv_show', { 'id': fieldsTrackAltinv.id }) }}">{{ fieldsTrackAltinv.description }}</a></td>
+                <td>{{ fieldsTrackAltinv.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fieldstrackaltinv_show', { 'id': fieldsTrackAltinv.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fieldstrackaltinv_edit', { 'id': fieldsTrackAltinv.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldstrackaltinv_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

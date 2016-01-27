@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Constru list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for constru in construs %}
+            <tr>
+                <td><a href="{{ path('constru_show', { 'id': constru.id }) }}">{{ constru.description }}</a></td>
+                <td>{{ constru.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('constru_show', { 'id': constru.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('constru_edit', { 'id': constru.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('constru_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

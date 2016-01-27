@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Constru</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Description</th>
+                <td>{{ constru.description }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ constru.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('constru_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('constru_edit', { 'id': constru.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

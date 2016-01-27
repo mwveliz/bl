@@ -1,0 +1,57 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * LogMessage
+ *
+ * @ORM\Table(name="log_message", indexes={@ORM\Index(name="IDX_8E7008E8F132696E", columns={"userid"})})
+ * @ORM\Entity
+ */
+class LogMessage
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dest", type="string", nullable=true)
+     */
+    private $dest;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="instant", type="boolean", nullable=true)
+     */
+    private $instant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="log_message_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * })
+     */
+    private $userid;
+
+
+}

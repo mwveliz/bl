@@ -1,0 +1,192 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Todo
+ *
+ * @ORM\Table(name="todo", indexes={@ORM\Index(name="IDX_5A0EB6A0327D30B2", columns={"id_priority"}), @ORM\Index(name="IDX_5A0EB6A0F132696E", columns={"userid"})})
+ * @ORM\Entity
+ */
+class Todo
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bl", type="bigint", nullable=true)
+     */
+    private $bl;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="completed", type="boolean", nullable=true)
+     */
+    private $completed;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="todo_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * })
+     */
+    private $userid;
+
+    /**
+     * @var \BL\AppBundle\Entity\TodoPriority
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\TodoPriority")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_priority", referencedColumnName="id")
+     * })
+     */
+    private $idPriority;
+
+
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Todo
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set bl
+     *
+     * @param integer $bl
+     * @return Todo
+     */
+    public function setBl($bl)
+    {
+        $this->bl = $bl;
+
+        return $this;
+    }
+
+    /**
+     * Get bl
+     *
+     * @return integer 
+     */
+    public function getBl()
+    {
+        return $this->bl;
+    }
+
+    /**
+     * Set completed
+     *
+     * @param boolean $completed
+     * @return Todo
+     */
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
+
+    /**
+     * Get completed
+     *
+     * @return boolean 
+     */
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userid
+     *
+     * @param \BL\AppBundle\Entity\FosUser $userid
+     * @return Todo
+     */
+    public function setUserid(\BL\AppBundle\Entity\FosUser $userid = null)
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
+
+    /**
+     * Get userid
+     *
+     * @return \BL\AppBundle\Entity\FosUser 
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+
+    /**
+     * Set idPriority
+     *
+     * @param \BL\AppBundle\Entity\TodoPriority $idPriority
+     * @return Todo
+     */
+    public function setIdPriority(\BL\AppBundle\Entity\TodoPriority $idPriority = null)
+    {
+        $this->idPriority = $idPriority;
+
+        return $this;
+    }
+
+    /**
+     * Get idPriority
+     *
+     * @return \BL\AppBundle\Entity\TodoPriority 
+     */
+    public function getIdPriority()
+    {
+        return $this->idPriority;
+    }
+}

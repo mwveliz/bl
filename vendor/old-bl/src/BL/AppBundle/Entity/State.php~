@@ -1,0 +1,43 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * State
+ *
+ * @ORM\Table(name="state", indexes={@ORM\Index(name="IDX_A393D2FB8DEE6016", columns={"id_country"})})
+ * @ORM\Entity
+ */
+class State
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="state_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\Country
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\Country")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_country", referencedColumnName="id")
+     * })
+     */
+    private $idCountry;
+
+
+}

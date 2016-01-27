@@ -1,0 +1,13 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix: /
+
+homepage:
+    pattern:   /
+    defaults:  { _controller: AppBundle:Default:index}
+
+metronic:
+    resource: "@RuudyMetronicBundle/Controller/"
+    type:     annotation
+    prefix: /

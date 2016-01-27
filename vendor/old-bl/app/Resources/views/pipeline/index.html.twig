@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pipeline list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pipeline in pipelines %}
+            <tr>
+                <td><a href="{{ path('pipeline_show', { 'id': pipeline.id }) }}">{{ pipeline.description }}</a></td>
+                <td>{{ pipeline.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pipeline_show', { 'id': pipeline.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pipeline_edit', { 'id': pipeline.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pipeline_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

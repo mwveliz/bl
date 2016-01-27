@@ -1,0 +1,74 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event", indexes={@ORM\Index(name="IDX_3BAE0AA7926BCFAE", columns={"id_bl"}), @ORM\Index(name="IDX_3BAE0AA7F132696E", columns={"userid"})})
+ * @ORM\Entity
+ */
+class Event
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_start", type="datetime", nullable=true)
+     */
+    private $datetimeStart;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_end", type="datetime", nullable=true)
+     */
+    private $datetimeEnd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="place", type="string", nullable=true)
+     */
+    private $place;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="event_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * })
+     */
+    private $userid;
+
+    /**
+     * @var \BL\AppBundle\Entity\Bl
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\Bl")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_bl", referencedColumnName="id")
+     * })
+     */
+    private $idBl;
+
+
+}

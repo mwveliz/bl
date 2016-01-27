@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>LogMessage list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>Dest</th>
+                <th>Instant</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for logMessage in logMessages %}
+            <tr>
+                <td><a href="{{ path('logmessage_show', { 'id': logMessage.id }) }}">{{ logMessage.message }}</a></td>
+                <td>{{ logMessage.dest }}</td>
+                <td>{% if logMessage.instant %}Yes{% else %}No{% endif %}</td>
+                <td>{{ logMessage.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('logmessage_show', { 'id': logMessage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('logmessage_edit', { 'id': logMessage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('logmessage_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

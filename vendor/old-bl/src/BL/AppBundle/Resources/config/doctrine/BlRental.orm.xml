@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\AppBundle\Entity\BlRental" table="bl_rental">
+    <indexes>
+      <index name="IDX_619EF2F8B5700468" columns="id_field"/>
+      <index name="IDX_619EF2F8302E7790" columns="id_rental"/>
+      <index name="IDX_619EF2F84D1693CB" columns="id_state"/>
+      <index name="IDX_619EF2F8686E718F" columns="id_tenant"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="value" type="string" column="value" nullable="true"/>
+    <many-to-one field="idTenant" target-entity="Tenant">
+      <join-columns>
+        <join-column name="id_tenant" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idState" target-entity="State">
+      <join-columns>
+        <join-column name="id_state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idRental" target-entity="Rental">
+      <join-columns>
+        <join-column name="id_rental" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idField" target-entity="FieldsRental">
+      <join-columns>
+        <join-column name="id_field" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

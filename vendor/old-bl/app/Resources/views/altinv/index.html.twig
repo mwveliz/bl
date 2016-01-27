@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Altinv list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for altinv in altinvs %}
+            <tr>
+                <td><a href="{{ path('altinv_show', { 'id': altinv.id }) }}">{{ altinv.description }}</a></td>
+                <td>{{ altinv.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('altinv_show', { 'id': altinv.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('altinv_edit', { 'id': altinv.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('altinv_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

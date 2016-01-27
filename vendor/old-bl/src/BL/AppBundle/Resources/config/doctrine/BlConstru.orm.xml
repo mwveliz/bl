@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\AppBundle\Entity\BlConstru" table="bl_constru">
+    <indexes>
+      <index name="IDX_72235C03311B05EC" columns="id_constru"/>
+      <index name="IDX_72235C03B5700468" columns="id_field"/>
+      <index name="IDX_72235C034D1693CB" columns="id_state"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="value" type="string" column="value" nullable="true"/>
+    <many-to-one field="idState" target-entity="State">
+      <join-columns>
+        <join-column name="id_state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idField" target-entity="FieldsConstru">
+      <join-columns>
+        <join-column name="id_field" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idConstru" target-entity="Constru">
+      <join-columns>
+        <join-column name="id_constru" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

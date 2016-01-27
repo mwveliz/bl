@@ -1,0 +1,60 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TrackRental
+ *
+ * @ORM\Table(name="track_rental", indexes={@ORM\Index(name="IDX_5EDB0394E1AB4EDF", columns={"id_bl_rental"}), @ORM\Index(name="IDX_5EDB039439EA605A", columns={"id_fields_track_rental"})})
+ * @ORM\Entity
+ */
+class TrackRental
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime", type="datetime", nullable=true)
+     */
+    private $datetime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="track_rental_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\FieldsTrackRental
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\FieldsTrackRental")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_fields_track_rental", referencedColumnName="id")
+     * })
+     */
+    private $idFieldsTrackRental;
+
+    /**
+     * @var \BL\AppBundle\Entity\BlRental
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\BlRental")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_bl_rental", referencedColumnName="id")
+     * })
+     */
+    private $idBlRental;
+
+
+}

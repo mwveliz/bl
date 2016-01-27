@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TrackComtrad list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Datetime</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trackComtrad in trackComtrads %}
+            <tr>
+                <td><a href="{{ path('trackcomtrad_show', { 'id': trackComtrad.id }) }}">{{ trackComtrad.value }}</a></td>
+                <td>{% if trackComtrad.datetime %}{{ trackComtrad.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ trackComtrad.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trackcomtrad_show', { 'id': trackComtrad.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trackcomtrad_edit', { 'id': trackComtrad.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trackcomtrad_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

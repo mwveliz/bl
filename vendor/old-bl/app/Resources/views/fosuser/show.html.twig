@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FosUser</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Dni</th>
+                <td>{{ fosUser.dni }}</td>
+            </tr>
+            <tr>
+                <th>Nacionalidad</th>
+                <td>{{ fosUser.nacionalidad }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ fosUser.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ fosUser.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ fosUser.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Telefonosecundario</th>
+                <td>{{ fosUser.telefonoSecundario }}</td>
+            </tr>
+            <tr>
+                <th>Idfosuserinfo</th>
+                <td>{{ fosUser.idFosUserinfo }}</td>
+            </tr>
+            <tr>
+                <th>Fosusername</th>
+                <td>{{ fosUser.fosUsername }}</td>
+            </tr>
+            <tr>
+                <th>Fosusernamecanonical</th>
+                <td>{{ fosUser.fosUsernameCanonical }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ fosUser.email }}</td>
+            </tr>
+            <tr>
+                <th>Emailcanonical</th>
+                <td>{{ fosUser.emailCanonical }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{% if fosUser.enabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Salt</th>
+                <td>{{ fosUser.salt }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ fosUser.password }}</td>
+            </tr>
+            <tr>
+                <th>Lastlogin</th>
+                <td>{% if fosUser.lastLogin %}{{ fosUser.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Locked</th>
+                <td>{% if fosUser.locked %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Expired</th>
+                <td>{% if fosUser.expired %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Expiresat</th>
+                <td>{% if fosUser.expiresAt %}{{ fosUser.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Confirmationtoken</th>
+                <td>{{ fosUser.confirmationToken }}</td>
+            </tr>
+            <tr>
+                <th>Passwordrequestedat</th>
+                <td>{% if fosUser.passwordRequestedAt %}{{ fosUser.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{% if fosUser.roles %}{{ fosUser.roles|join(', ') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Credentialsexpired</th>
+                <td>{% if fosUser.credentialsExpired %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Credentialsexpireat</th>
+                <td>{% if fosUser.credentialsExpireAt %}{{ fosUser.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ fosUser.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fosuser_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fosuser_edit', { 'id': fosUser.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

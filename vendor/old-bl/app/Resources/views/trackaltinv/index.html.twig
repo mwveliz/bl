@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TrackAltinv list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Datime</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trackAltinv in trackAltinvs %}
+            <tr>
+                <td><a href="{{ path('trackaltinv_show', { 'id': trackAltinv.id }) }}">{{ trackAltinv.value }}</a></td>
+                <td>{% if trackAltinv.datime %}{{ trackAltinv.datime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ trackAltinv.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trackaltinv_show', { 'id': trackAltinv.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trackaltinv_edit', { 'id': trackAltinv.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trackaltinv_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

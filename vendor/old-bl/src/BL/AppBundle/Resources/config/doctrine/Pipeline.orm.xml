@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\AppBundle\Entity\Pipeline" table="pipeline">
+    <indexes>
+      <index name="IDX_7DFCD9D9351E7483" columns="id_workflow"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="description" type="string" column="description" nullable="true"/>
+    <many-to-one field="idWorkflow" target-entity="PipelineWorkflow">
+      <join-columns>
+        <join-column name="id_workflow" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

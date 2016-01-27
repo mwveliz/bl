@@ -1,0 +1,63 @@
+<?php
+
+namespace BL\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BlComtrad
+ *
+ * @ORM\Table(name="bl_comtrad", indexes={@ORM\Index(name="IDX_A78603B8E4BE5A57", columns={"id_comtrad"}), @ORM\Index(name="IDX_A78603B8B5700468", columns={"id_field"}), @ORM\Index(name="IDX_A78603B84D1693CB", columns={"id_state"})})
+ * @ORM\Entity
+ */
+class BlComtrad
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="bl_comtrad_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\AppBundle\Entity\State
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\State")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_state", referencedColumnName="id")
+     * })
+     */
+    private $idState;
+
+    /**
+     * @var \BL\AppBundle\Entity\FieldsComtrad
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\FieldsComtrad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_field", referencedColumnName="id")
+     * })
+     */
+    private $idField;
+
+    /**
+     * @var \BL\AppBundle\Entity\Comtrad
+     *
+     * @ORM\ManyToOne(targetEntity="BL\AppBundle\Entity\Comtrad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_comtrad", referencedColumnName="id")
+     * })
+     */
+    private $idComtrad;
+
+
+}
