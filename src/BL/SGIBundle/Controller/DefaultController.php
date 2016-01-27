@@ -10,4 +10,10 @@ class DefaultController extends Controller
     {
         return $this->render('SGIBundle:Default:index.html.twig');
     }
+    
+    public function gridAction()
+    {
+        return $this->render('SGIBundle:Default:grid.html.twig');
+    }
+    
 }

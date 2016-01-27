@@ -1,3 +1,7 @@
 sgi_homepage:
     path:     /
     defaults: { _controller: SGIBundle:Default:index }
+
+grid:
+    path:     /grid
+    defaults: { _controller: SGIBundle:Default:grid }

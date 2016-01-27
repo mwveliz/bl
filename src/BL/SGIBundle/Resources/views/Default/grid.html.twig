@@ -1,0 +1,102 @@
+
+
+
+
+{% block stylesheetsdos %}
+<link rel="stylesheet" type="text/css" href="/DataTables/media/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="/DataTables/examples/resources/syntax/shCore.css">
+<link rel="stylesheet" type="text/css" href="/DataTables/examples/resources/demo.css">
+
+ {% endblock %}
+ 
+{% block body %}
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>DataTables example <span>Zero configuration</span></h1>
+			<div class="info">
+				<p>DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function:
+				<code>$().DataTable();</code>.</p>
+				<p>Searching, ordering and paging goodness will be immediately added to the table, as shown in this example.</p>
+			</div> 
+			
+			<table id="example class="display" cellspacing="0" width="100%">
+			<thead>
+					<tr>
+						<th>Name</th>
+						<th>Position</th>
+						<th>Office</th>
+						<th>Age</th>
+						<th>Start date</th>
+						<th>Salary</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>Name</th>
+						<th>Position</th>
+						<th>Office</th>
+						<th>Age</th>
+						<th>Start date</th>
+						<th>Salary</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>Tiger Nixon</td>
+						<td>System Architect</td>
+						<td>Edinburgh</td>
+						<td>61</td>
+						<td>2011/04/25</td>
+						<td>$320,800</td>
+					</tr>
+					<tr>
+						<td>Garrett Winters</td>
+						<td>Accountant</td>
+						<td>Tokyo</td>
+						<td>63</td>
+						<td>2011/07/25</td>
+						<td>$170,750</td>
+					</tr>
+					<tr>
+						<td>Ashton Cox</td>
+						<td>Junior Technical Author</td>
+						<td>San Francisco</td>
+						<td>66</td>
+						<td>2009/01/12</td>
+						<td>$86,000</td>
+					</tr>
+					<tr>
+						<td>Cedric Kelly</td>
+						<td>Senior Javascript Developer</td>
+						<td>Edinburgh</td>
+						<td>22</td>
+						<td>2012/03/29</td>
+						<td>$433,060</td>
+					</tr>
+					<tr>
+						<td>Airi Satou</td>
+						<td>Accountant</td>
+						<td>Tokyo</td>
+						<td>33</td>
+						<td>2008/11/28</td>
+						<td>$162,700</td>
+					</tr>
+			</table>
+			
+{% endblock %}
+
+
+{% block javascriptsdos %}
+<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.3.min.js">
+<script src="/DataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
+	<script type="text/javascript" language="javascript" src="/DataTables/examples/resources/syntax/shCore.js">
+	<script type="text/javascript" language="javascript" class="init">
+<script>
+$(document).ready(function() {
+	$('#example').DataTable();
+} );
+		</script>
+
+{% endblock %}
+		
