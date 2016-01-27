@@ -50,7 +50,7 @@ class TypeComtradController extends Controller
             $em->persist($typeComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('typecomtrad_show', array('id' => $typecomtrad->getId()));
+            return $this->redirectToRoute('typecomtrad_show', array('id' => $typeComtrad->getId()));
         }
 
         return $this->render('typecomtrad/new.html.twig', array(
