@@ -38,3 +38,4 @@
 
 # Composer PHAR
 /composer.phar
+/nbproject/private/
