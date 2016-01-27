@@ -11,7 +11,7 @@
     <field name="loggedAt" type="datetime" column="logged_at" nullable="true"/>
     <field name="objectId" type="integer" column="object_id" nullable="true"/>
     <field name="objectClass" type="string" column="object_class" nullable="true"/>
-    <many-to-one field="userid" target-entity="FosUser">
+    <many-to-one field="userid" target-entity="Usuario">
       <join-columns>
         <join-column name="userid" referenced-column-name="id"/>
       </join-columns>

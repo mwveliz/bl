@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\SGIBundle\Entity\Usuario" table="usuario">
+    <indexes>
+      <index name="fos_user_dni_idx" columns="dni"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="fos_user_dni_key" columns="dni"/>
+    </unique-constraints>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="dni" type="integer" column="dni" nullable="true"/>
+    <field name="nacionalidad" type="string" column="nacionalidad" nullable="true"/>
+    <field name="nombre" type="string" column="nombre" nullable="true"/>
+    <field name="apellido" type="string" column="apellido" nullable="true"/>
+    <field name="telefono" type="string" column="telefono" nullable="true"/>
+    <field name="telefonoSecundario" type="string" column="telefono_secundario" nullable="true"/>
+    <many-to-many field="groups" target-entity="Group" inversed-by="user" fetch="LAZY">
+      <join-table name="fos_user_user_group">
+        <join-columns>
+          <join-column name="user_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="group_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>    
+  </entity>
+</doctrine-mapping>

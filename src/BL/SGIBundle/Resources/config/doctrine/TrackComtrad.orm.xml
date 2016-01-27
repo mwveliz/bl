@@ -2,22 +2,22 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="BL\SGIBundle\Entity\TrackComtrad" table="track_comtrad">
     <indexes>
-      <index name="IDX_E3BD6B3AE4BE5A57" columns="id_comtrad"/>
       <index name="IDX_E3BD6B3A9F06B5EE" columns="id_fields_track_comtrad"/>
+      <index name="IDX_E3BD6B3AE4BE5A57" columns="id_comtrad"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="value" type="string" column="value" nullable="true"/>
     <field name="datetime" type="datetime" column="datetime" nullable="true"/>
-    <many-to-one field="idFieldsTrackComtrad" target-entity="FieldsTrackComtrad">
-      <join-columns>
-        <join-column name="id_fields_track_comtrad" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idComtrad" target-entity="Comtrad">
       <join-columns>
         <join-column name="id_comtrad" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idFieldsTrackComtrad" target-entity="FieldsTrackComtrad">
+      <join-columns>
+        <join-column name="id_fields_track_comtrad" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

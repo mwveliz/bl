@@ -51,9 +51,9 @@ class Event
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FosUser
+     * @var \BL\SGIBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FosUser")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
      * })
@@ -177,10 +177,10 @@ class Event
     /**
      * Set userid
      *
-     * @param \BL\SGIBundle\Entity\FosUser $userid
+     * @param \BL\SGIBundle\Entity\Usuario $userid
      * @return Event
      */
-    public function setUserid(\BL\SGIBundle\Entity\FosUser $userid = null)
+    public function setUserid(\BL\SGIBundle\Entity\Usuario $userid = null)
     {
         $this->userid = $userid;
 
@@ -190,7 +190,7 @@ class Event
     /**
      * Get userid
      *
-     * @return \BL\SGIBundle\Entity\FosUser 
+     * @return \BL\SGIBundle\Entity\Usuario 
      */
     public function getUserid()
     {
