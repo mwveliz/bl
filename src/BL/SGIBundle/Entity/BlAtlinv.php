@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BlAtlinv
  *
- * @ORM\Table(name="bl_atlinv", indexes={@ORM\Index(name="IDX_7D5121E2E9DC07B9", columns={"id_altinv"}), @ORM\Index(name="IDX_7D5121E2B5700468", columns={"id_field"})})
+ * @ORM\Table(name="bl_atlinv", indexes={@ORM\Index(name="IDX_7D5121E2B5700468", columns={"id_field"}), @ORM\Index(name="IDX_7D5121E2E9DC07B9", columns={"id_altinv"})})
  * @ORM\Entity
  */
 class BlAtlinv
@@ -30,16 +30,6 @@ class BlAtlinv
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsAltinv
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsAltinv")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_field", referencedColumnName="id")
-     * })
-     */
-    private $idField;
-
-    /**
      * @var \BL\SGIBundle\Entity\Altinv
      *
      * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Altinv")
@@ -48,6 +38,16 @@ class BlAtlinv
      * })
      */
     private $idAltinv;
+
+    /**
+     * @var \BL\SGIBundle\Entity\FieldsAltinv
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsAltinv")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_field", referencedColumnName="id")
+     * })
+     */
+    private $idField;
 
 
 
@@ -85,29 +85,6 @@ class BlAtlinv
     }
 
     /**
-     * Set idField
-     *
-     * @param \BL\SGIBundle\Entity\FieldsAltinv $idField
-     * @return BlAtlinv
-     */
-    public function setIdField(\BL\SGIBundle\Entity\FieldsAltinv $idField = null)
-    {
-        $this->idField = $idField;
-
-        return $this;
-    }
-
-    /**
-     * Get idField
-     *
-     * @return \BL\SGIBundle\Entity\FieldsAltinv 
-     */
-    public function getIdField()
-    {
-        return $this->idField;
-    }
-
-    /**
      * Set idAltinv
      *
      * @param \BL\SGIBundle\Entity\Altinv $idAltinv
@@ -128,5 +105,28 @@ class BlAtlinv
     public function getIdAltinv()
     {
         return $this->idAltinv;
+    }
+
+    /**
+     * Set idField
+     *
+     * @param \BL\SGIBundle\Entity\FieldsAltinv $idField
+     * @return BlAtlinv
+     */
+    public function setIdField(\BL\SGIBundle\Entity\FieldsAltinv $idField = null)
+    {
+        $this->idField = $idField;
+
+        return $this;
+    }
+
+    /**
+     * Get idField
+     *
+     * @return \BL\SGIBundle\Entity\FieldsAltinv 
+     */
+    public function getIdField()
+    {
+        return $this->idField;
     }
 }

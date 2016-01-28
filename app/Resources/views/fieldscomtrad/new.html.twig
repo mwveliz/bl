@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    
+    {% block page_title %}
+       Commodities Trading
+    {% endblock %}    
     <h1>FieldsComtrad creation</h1>
 
     {{ form_start(form) }}
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ form_label(form.description) }}</label>
-                                                {{ form_errors(form.description) }}
-                                                <div class="input-icon">
-                                                    <i class="fa fa-bell-o font-green"></i>
-                                                    {{ form_widget(form.description) }}
-                                            </div>    
+        {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -19,8 +16,10 @@
         <li>
             <a href="{{ path('fieldscomtrad_index') }}">Back to the list</a>
         </li>
-    </ul>       
-            
+    </ul>
+    
+                     <div class="row">
+                        <div class="col-md-6 ">
                             <!-- BEGIN SAMPLE FORM PORTLET-->
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
@@ -36,11 +35,11 @@
                                             <ul class="dropdown-menu pull-right">
                                                 <li>
                                                     <a href="javascript:;">
-                                                        <i class="fa fa-pencil"></i> Editar </a>
+                                                        <i class="fa fa-pencil"></i> Edit </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:;">
-                                                        <i class="fa fa-trash-o"></i> Eliminar </a>
+                                                        <i class="fa fa-trash-o"></i> Delete </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:;">
@@ -227,6 +226,10 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- END SAMPLE FORM PORTLET-->            
-{% endblock %}
+                            <!-- END SAMPLE FORM PORTLET-->
+                        </div>
+                        <div class="col-md-6 ">
 
+                        </div>
+                    </div>   
+ {% endblock %}           

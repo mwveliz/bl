@@ -20,6 +20,20 @@ class FieldsConstru
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="widget", type="string", nullable=true)
+     */
+    private $widget;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trackable", type="boolean", nullable=true)
+     */
+    private $trackable;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -52,6 +66,52 @@ class FieldsConstru
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set widget
+     *
+     * @param string $widget
+     * @return FieldsConstru
+     */
+    public function setWidget($widget)
+    {
+        $this->widget = $widget;
+
+        return $this;
+    }
+
+    /**
+     * Get widget
+     *
+     * @return string 
+     */
+    public function getWidget()
+    {
+        return $this->widget;
+    }
+
+    /**
+     * Set trackable
+     *
+     * @param boolean $trackable
+     * @return FieldsConstru
+     */
+    public function setTrackable($trackable)
+    {
+        $this->trackable = $trackable;
+
+        return $this;
+    }
+
+    /**
+     * Get trackable
+     *
+     * @return boolean 
+     */
+    public function getTrackable()
+    {
+        return $this->trackable;
     }
 
     /**

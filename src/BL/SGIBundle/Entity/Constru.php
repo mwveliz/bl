@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Constru
  *
- * @ORM\Table(name="constru", indexes={@ORM\Index(name="IDX_EF86AC9CE173B1B8", columns={"id_client"}), @ORM\Index(name="IDX_EF86AC9C4D1693CB", columns={"id_state"})})
+ * @ORM\Table(name="constru", indexes={@ORM\Index(name="IDX_EF86AC9C4D1693CB", columns={"id_state"}), @ORM\Index(name="IDX_EF86AC9CE173B1B8", columns={"id_client"})})
  * @ORM\Entity
  */
 class Constru
@@ -30,16 +30,6 @@ class Constru
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\State
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\State")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_state", referencedColumnName="id")
-     * })
-     */
-    private $idState;
-
-    /**
      * @var \BL\SGIBundle\Entity\Client
      *
      * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Client")
@@ -48,6 +38,16 @@ class Constru
      * })
      */
     private $idClient;
+
+    /**
+     * @var \BL\SGIBundle\Entity\State
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\State")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_state", referencedColumnName="id")
+     * })
+     */
+    private $idState;
 
 
 
@@ -85,29 +85,6 @@ class Constru
     }
 
     /**
-     * Set idState
-     *
-     * @param \BL\SGIBundle\Entity\State $idState
-     * @return Constru
-     */
-    public function setIdState(\BL\SGIBundle\Entity\State $idState = null)
-    {
-        $this->idState = $idState;
-
-        return $this;
-    }
-
-    /**
-     * Get idState
-     *
-     * @return \BL\SGIBundle\Entity\State 
-     */
-    public function getIdState()
-    {
-        return $this->idState;
-    }
-
-    /**
      * Set idClient
      *
      * @param \BL\SGIBundle\Entity\Client $idClient
@@ -128,5 +105,28 @@ class Constru
     public function getIdClient()
     {
         return $this->idClient;
+    }
+
+    /**
+     * Set idState
+     *
+     * @param \BL\SGIBundle\Entity\State $idState
+     * @return Constru
+     */
+    public function setIdState(\BL\SGIBundle\Entity\State $idState = null)
+    {
+        $this->idState = $idState;
+
+        return $this;
+    }
+
+    /**
+     * Get idState
+     *
+     * @return \BL\SGIBundle\Entity\State 
+     */
+    public function getIdState()
+    {
+        return $this->idState;
     }
 }

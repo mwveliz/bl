@@ -17,8 +17,8 @@ class AltinvType extends AbstractType
         $builder
             ->add('description')
             ->add('idTypeAltinv')
-            ->add('idState')
             ->add('idClient')
+            ->add('idState')
         ;
     }
     

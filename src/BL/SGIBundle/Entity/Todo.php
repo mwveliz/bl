@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Todo
  *
- * @ORM\Table(name="todo", indexes={@ORM\Index(name="IDX_5A0EB6A0926BCFAE", columns={"id_bl"}), @ORM\Index(name="IDX_5A0EB6A0327D30B2", columns={"id_priority"}), @ORM\Index(name="IDX_5A0EB6A0F132696E", columns={"userid"})})
+ * @ORM\Table(name="todo", indexes={@ORM\Index(name="IDX_5A0EB6A0327D30B2", columns={"id_priority"}), @ORM\Index(name="IDX_5A0EB6A0926BCFAE", columns={"id_bl"}), @ORM\Index(name="IDX_5A0EB6A0F132696E", columns={"userid"})})
  * @ORM\Entity
  */
 class Todo
@@ -47,16 +47,6 @@ class Todo
     private $userid;
 
     /**
-     * @var \BL\SGIBundle\Entity\TodoPriority
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\TodoPriority")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_priority", referencedColumnName="id")
-     * })
-     */
-    private $idPriority;
-
-    /**
      * @var \BL\SGIBundle\Entity\Bl
      *
      * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Bl")
@@ -65,6 +55,16 @@ class Todo
      * })
      */
     private $idBl;
+
+    /**
+     * @var \BL\SGIBundle\Entity\TodoPriority
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\TodoPriority")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_priority", referencedColumnName="id")
+     * })
+     */
+    private $idPriority;
 
 
 
@@ -148,29 +148,6 @@ class Todo
     }
 
     /**
-     * Set idPriority
-     *
-     * @param \BL\SGIBundle\Entity\TodoPriority $idPriority
-     * @return Todo
-     */
-    public function setIdPriority(\BL\SGIBundle\Entity\TodoPriority $idPriority = null)
-    {
-        $this->idPriority = $idPriority;
-
-        return $this;
-    }
-
-    /**
-     * Get idPriority
-     *
-     * @return \BL\SGIBundle\Entity\TodoPriority 
-     */
-    public function getIdPriority()
-    {
-        return $this->idPriority;
-    }
-
-    /**
      * Set idBl
      *
      * @param \BL\SGIBundle\Entity\Bl $idBl
@@ -191,5 +168,28 @@ class Todo
     public function getIdBl()
     {
         return $this->idBl;
+    }
+
+    /**
+     * Set idPriority
+     *
+     * @param \BL\SGIBundle\Entity\TodoPriority $idPriority
+     * @return Todo
+     */
+    public function setIdPriority(\BL\SGIBundle\Entity\TodoPriority $idPriority = null)
+    {
+        $this->idPriority = $idPriority;
+
+        return $this;
+    }
+
+    /**
+     * Get idPriority
+     *
+     * @return \BL\SGIBundle\Entity\TodoPriority 
+     */
+    public function getIdPriority()
+    {
+        return $this->idPriority;
     }
 }

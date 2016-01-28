@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comtrad
  *
- * @ORM\Table(name="comtrad", indexes={@ORM\Index(name="IDX_3A23F327E173B1B8", columns={"id_client"}), @ORM\Index(name="IDX_3A23F3274D1693CB", columns={"id_state"}), @ORM\Index(name="IDX_3A23F32731C3E9A0", columns={"id_type_comtrad"})})
+ * @ORM\Table(name="comtrad", indexes={@ORM\Index(name="IDX_3A23F32731C3E9A0", columns={"id_type_comtrad"}), @ORM\Index(name="IDX_3A23F3274D1693CB", columns={"id_state"}), @ORM\Index(name="IDX_3A23F327E173B1B8", columns={"id_client"})})
  * @ORM\Entity
  */
 class Comtrad
@@ -30,14 +30,14 @@ class Comtrad
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\TypeComtrad
+     * @var \BL\SGIBundle\Entity\Client
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\TypeComtrad")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Client")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_type_comtrad", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_client", referencedColumnName="id")
      * })
      */
-    private $idTypeComtrad;
+    private $idClient;
 
     /**
      * @var \BL\SGIBundle\Entity\State
@@ -50,14 +50,14 @@ class Comtrad
     private $idState;
 
     /**
-     * @var \BL\SGIBundle\Entity\Client
+     * @var \BL\SGIBundle\Entity\TypeComtrad
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\TypeComtrad")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_client", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_type_comtrad", referencedColumnName="id")
      * })
      */
-    private $idClient;
+    private $idTypeComtrad;
 
 
 
@@ -95,26 +95,26 @@ class Comtrad
     }
 
     /**
-     * Set idTypeComtrad
+     * Set idClient
      *
-     * @param \BL\SGIBundle\Entity\TypeComtrad $idTypeComtrad
+     * @param \BL\SGIBundle\Entity\Client $idClient
      * @return Comtrad
      */
-    public function setIdTypeComtrad(\BL\SGIBundle\Entity\TypeComtrad $idTypeComtrad = null)
+    public function setIdClient(\BL\SGIBundle\Entity\Client $idClient = null)
     {
-        $this->idTypeComtrad = $idTypeComtrad;
+        $this->idClient = $idClient;
 
         return $this;
     }
 
     /**
-     * Get idTypeComtrad
+     * Get idClient
      *
-     * @return \BL\SGIBundle\Entity\TypeComtrad 
+     * @return \BL\SGIBundle\Entity\Client 
      */
-    public function getIdTypeComtrad()
+    public function getIdClient()
     {
-        return $this->idTypeComtrad;
+        return $this->idClient;
     }
 
     /**
@@ -141,29 +141,25 @@ class Comtrad
     }
 
     /**
-     * Set idClient
+     * Set idTypeComtrad
      *
-     * @param \BL\SGIBundle\Entity\Client $idClient
+     * @param \BL\SGIBundle\Entity\TypeComtrad $idTypeComtrad
      * @return Comtrad
      */
-    public function setIdClient(\BL\SGIBundle\Entity\Client $idClient = null)
+    public function setIdTypeComtrad(\BL\SGIBundle\Entity\TypeComtrad $idTypeComtrad = null)
     {
-        $this->idClient = $idClient;
+        $this->idTypeComtrad = $idTypeComtrad;
 
         return $this;
     }
 
     /**
-     * Get idClient
+     * Get idTypeComtrad
      *
-     * @return \BL\SGIBundle\Entity\Client 
+     * @return \BL\SGIBundle\Entity\TypeComtrad 
      */
-    public function getIdClient()
+    public function getIdTypeComtrad()
     {
-        return $this->idClient;
+        return $this->idTypeComtrad;
     }
-    
-    public function __toString() {
-        return $this->description;
-    }    
 }

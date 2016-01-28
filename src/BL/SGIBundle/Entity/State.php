@@ -96,9 +96,4 @@ class State
     {
         return $this->idCountry;
     }
-    
-    
-     public function __toString() {
-        return $this->description;
-    }     
 }

@@ -20,6 +20,20 @@ class FieldsRental
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="widget", type="string", nullable=true)
+     */
+    private $widget;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trackable", type="boolean", nullable=true)
+     */
+    private $trackable;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -30,37 +44,4 @@ class FieldsRental
     private $id;
 
 
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return FieldsRental
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }

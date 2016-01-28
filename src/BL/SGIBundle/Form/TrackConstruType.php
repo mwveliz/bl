@@ -17,6 +17,7 @@ class TrackConstruType extends AbstractType
         $builder
             ->add('value')
             ->add('datetime', 'datetime')
+            ->add('idFieldsTrackConstru')
             ->add('idConstru')
         ;
     }

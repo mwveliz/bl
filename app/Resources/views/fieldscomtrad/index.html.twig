@@ -7,6 +7,8 @@
         <thead>
             <tr>
                 <th>Description</th>
+                <th>Wiget</th>
+                <th>Trackable</th>
                 <th>Id</th>
                 <th>Actions</th>
             </tr>
@@ -15,6 +17,8 @@
         {% for fieldsComtrad in fieldsComtrads %}
             <tr>
                 <td><a href="{{ path('fieldscomtrad_show', { 'id': fieldsComtrad.id }) }}">{{ fieldsComtrad.description }}</a></td>
+                <td>{{ fieldsComtrad.wiget }}</td>
+                <td>{% if fieldsComtrad.trackable %}Yes{% else %}No{% endif %}</td>
                 <td>{{ fieldsComtrad.id }}</td>
                 <td>
                     <ul>

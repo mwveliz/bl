@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TypeConstru list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeConstru in typeConstrus %}
+            <tr>
+                <td><a href="{{ path('typeconstru_show', { 'id': typeConstru.id }) }}">{{ typeConstru.description }}</a></td>
+                <td>{{ typeConstru.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typeconstru_show', { 'id': typeConstru.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typeconstru_edit', { 'id': typeConstru.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typeconstru_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

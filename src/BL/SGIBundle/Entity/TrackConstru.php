@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TrackConstru
  *
- * @ORM\Table(name="track_constru", indexes={@ORM\Index(name="IDX_36183481311B05EC", columns={"id_constru"})})
+ * @ORM\Table(name="track_constru", indexes={@ORM\Index(name="IDX_36183481311B05EC", columns={"id_constru"}), @ORM\Index(name="IDX_361834814AA3EA55", columns={"id_fields_track_constru"})})
  * @ORM\Entity
  */
 class TrackConstru
@@ -35,6 +35,16 @@ class TrackConstru
      * @ORM\SequenceGenerator(sequenceName="track_constru_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
+
+    /**
+     * @var \BL\SGIBundle\Entity\FieldsConstru
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsConstru")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_fields_track_constru", referencedColumnName="id")
+     * })
+     */
+    private $idFieldsTrackConstru;
 
     /**
      * @var \BL\SGIBundle\Entity\Constru
@@ -102,6 +112,29 @@ class TrackConstru
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set idFieldsTrackConstru
+     *
+     * @param \BL\SGIBundle\Entity\FieldsConstru $idFieldsTrackConstru
+     * @return TrackConstru
+     */
+    public function setIdFieldsTrackConstru(\BL\SGIBundle\Entity\FieldsConstru $idFieldsTrackConstru = null)
+    {
+        $this->idFieldsTrackConstru = $idFieldsTrackConstru;
+
+        return $this;
+    }
+
+    /**
+     * Get idFieldsTrackConstru
+     *
+     * @return \BL\SGIBundle\Entity\FieldsConstru 
+     */
+    public function getIdFieldsTrackConstru()
+    {
+        return $this->idFieldsTrackConstru;
     }
 
     /**

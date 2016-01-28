@@ -37,9 +37,9 @@ class TrackAltinv
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsTrackAltinv
+     * @var \BL\SGIBundle\Entity\FieldsAltinv
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsTrackAltinv")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsAltinv")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_fields_track_altinv", referencedColumnName="id")
      * })
@@ -117,10 +117,10 @@ class TrackAltinv
     /**
      * Set idFieldsTrackAltinv
      *
-     * @param \BL\SGIBundle\Entity\FieldsTrackAltinv $idFieldsTrackAltinv
+     * @param \BL\SGIBundle\Entity\FieldsAltinv $idFieldsTrackAltinv
      * @return TrackAltinv
      */
-    public function setIdFieldsTrackAltinv(\BL\SGIBundle\Entity\FieldsTrackAltinv $idFieldsTrackAltinv = null)
+    public function setIdFieldsTrackAltinv(\BL\SGIBundle\Entity\FieldsAltinv $idFieldsTrackAltinv = null)
     {
         $this->idFieldsTrackAltinv = $idFieldsTrackAltinv;
 
@@ -130,7 +130,7 @@ class TrackAltinv
     /**
      * Get idFieldsTrackAltinv
      *
-     * @return \BL\SGIBundle\Entity\FieldsTrackAltinv 
+     * @return \BL\SGIBundle\Entity\FieldsAltinv 
      */
     public function getIdFieldsTrackAltinv()
     {

@@ -17,6 +17,7 @@ class TrackRentalType extends AbstractType
         $builder
             ->add('value')
             ->add('datetime', 'datetime')
+            ->add('idRental')
             ->add('idFieldsTrackRental')
         ;
     }

@@ -16,6 +16,8 @@ class FieldsConstruType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('widget')
+            ->add('trackable')
         ;
     }
     

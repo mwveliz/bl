@@ -20,6 +20,20 @@ class FieldsComtrad
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="wiget", type="string", nullable=true)
+     */
+    private $wiget;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trackable", type="boolean", nullable=true)
+     */
+    private $trackable;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -55,6 +69,52 @@ class FieldsComtrad
     }
 
     /**
+     * Set wiget
+     *
+     * @param string $wiget
+     * @return FieldsComtrad
+     */
+    public function setWiget($wiget)
+    {
+        $this->wiget = $wiget;
+
+        return $this;
+    }
+
+    /**
+     * Get wiget
+     *
+     * @return string 
+     */
+    public function getWiget()
+    {
+        return $this->wiget;
+    }
+
+    /**
+     * Set trackable
+     *
+     * @param boolean $trackable
+     * @return FieldsComtrad
+     */
+    public function setTrackable($trackable)
+    {
+        $this->trackable = $trackable;
+
+        return $this;
+    }
+
+    /**
+     * Get trackable
+     *
+     * @return boolean 
+     */
+    public function getTrackable()
+    {
+        return $this->trackable;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -63,8 +123,4 @@ class FieldsComtrad
     {
         return $this->id;
     }
-    
-    public function __toString() {
-        return $this->description;
-    }     
 }

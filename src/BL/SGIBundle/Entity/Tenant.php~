@@ -33,37 +33,4 @@ class Tenant
     private $idClient;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idClient
-     *
-     * @param \BL\SGIBundle\Entity\Client $idClient
-     * @return Tenant
-     */
-    public function setIdClient(\BL\SGIBundle\Entity\Client $idClient = null)
-    {
-        $this->idClient = $idClient;
-
-        return $this;
-    }
-
-    /**
-     * Get idClient
-     *
-     * @return \BL\SGIBundle\Entity\Client 
-     */
-    public function getIdClient()
-    {
-        return $this->idClient;
-    }
 }

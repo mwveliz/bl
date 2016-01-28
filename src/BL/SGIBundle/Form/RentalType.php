@@ -16,8 +16,8 @@ class RentalType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('idState')
             ->add('idClient')
+            ->add('idState')
         ;
     }
     

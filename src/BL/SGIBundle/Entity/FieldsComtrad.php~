@@ -20,6 +20,20 @@ class FieldsComtrad
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="wiget", type="string", nullable=true)
+     */
+    private $wiget;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trackable", type="boolean", nullable=true)
+     */
+    private $trackable;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -30,41 +44,4 @@ class FieldsComtrad
     private $id;
 
 
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return FieldsComtrad
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    public function __toString() {
-        return $this->description;
-    }     
 }

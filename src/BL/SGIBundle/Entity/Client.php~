@@ -33,41 +33,4 @@ class Client
     private $userid;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set userid
-     *
-     * @param \BL\SGIBundle\Entity\Usuario $userid
-     * @return Client
-     */
-    public function setUserid(\BL\SGIBundle\Entity\Usuario $userid = null)
-    {
-        $this->userid = $userid;
-
-        return $this;
-    }
-
-    /**
-     * Get userid
-     *
-     * @return \BL\SGIBundle\Entity\Usuario 
-     */
-    public function getUserid()
-    {
-        return $this->userid;
-    }
-    
-     public function __toString() {
-        return (string) $this->userid;
-    }     
 }

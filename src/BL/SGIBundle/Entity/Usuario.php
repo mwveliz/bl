@@ -2,13 +2,14 @@
 
 namespace BL\SGIBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="fos_user_dni_key", columns={"dni"})}, indexes={@ORM\Index(name="fos_user_dni_idx", columns={"dni"})})
+ * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_2265b05da0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="fos_user_dni_key", columns={"dni"}), @ORM\UniqueConstraint(name="uniq_2265b05d92fc23a8", columns={"username_canonical"})}, indexes={@ORM\Index(name="fos_user_dni_idx", columns={"dni"})})
  * @ORM\Entity
  */
 class Usuario extends BaseUser
@@ -56,24 +57,38 @@ class Usuario extends BaseUser
     private $telefonoSecundario;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="usuario_id_seq", allocationSize=1, initialValue=1)
      */
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MyProject\MyBundle\Entity\Group")
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="BL\SGIBundle\Entity\FosGroup", inversedBy="user")
      * @ORM\JoinTable(name="fos_user_user_group",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     *   }
      * )
      */
-    protected $groups;
+    protected $group;
 
-    public function __toString() {
-        return $this->nombre.' '.$this->apellido;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->group = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Set dni
@@ -213,76 +228,16 @@ class Usuario extends BaseUser
         return $this->telefonoSecundario;
     }
 
+  
     /**
-     * Get enabled
+     * Get id
      *
-     * @return boolean 
+     * @return integer 
      */
-    public function getEnabled()
+    public function getId()
     {
-        return $this->enabled;
+        return $this->id;
     }
 
-    /**
-     * Set salt
-     *
-     * @param string $salt
-     * @return Usuario
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
 
-        return $this;
-    }
-
-    /**
-     * Get locked
-     *
-     * @return boolean 
-     */
-    public function getLocked()
-    {
-        return $this->locked;
-    }
-
-    /**
-     * Get expired
-     *
-     * @return boolean 
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
-     * Get expiresAt
-     *
-     * @return \DateTime 
-     */
-    public function getExpiresAt()
-    {
-        return $this->expiresAt;
-    }
-
-    /**
-     * Get credentialsExpired
-     *
-     * @return boolean 
-     */
-    public function getCredentialsExpired()
-    {
-        return $this->credentialsExpired;
-    }
-
-    /**
-     * Get credentialsExpireAt
-     *
-     * @return \DateTime 
-     */
-    public function getCredentialsExpireAt()
-    {
-        return $this->credentialsExpireAt;
-    }
 }

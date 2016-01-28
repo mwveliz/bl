@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TrackRental
  *
- * @ORM\Table(name="track_rental", indexes={@ORM\Index(name="IDX_5EDB039439EA605A", columns={"id_fields_track_rental"})})
+ * @ORM\Table(name="track_rental", indexes={@ORM\Index(name="IDX_5EDB039439EA605A", columns={"id_fields_track_rental"}), @ORM\Index(name="IDX_5EDB0394302E7790", columns={"id_rental"})})
  * @ORM\Entity
  */
 class TrackRental
@@ -37,9 +37,19 @@ class TrackRental
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsTrackRental
+     * @var \BL\SGIBundle\Entity\Rental
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsTrackRental")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Rental")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_rental", referencedColumnName="id")
+     * })
+     */
+    private $idRental;
+
+    /**
+     * @var \BL\SGIBundle\Entity\FieldsRental
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsRental")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_fields_track_rental", referencedColumnName="id")
      * })
@@ -105,12 +115,35 @@ class TrackRental
     }
 
     /**
-     * Set idFieldsTrackRental
+     * Set idRental
      *
-     * @param \BL\SGIBundle\Entity\FieldsTrackRental $idFieldsTrackRental
+     * @param \BL\SGIBundle\Entity\Rental $idRental
      * @return TrackRental
      */
-    public function setIdFieldsTrackRental(\BL\SGIBundle\Entity\FieldsTrackRental $idFieldsTrackRental = null)
+    public function setIdRental(\BL\SGIBundle\Entity\Rental $idRental = null)
+    {
+        $this->idRental = $idRental;
+
+        return $this;
+    }
+
+    /**
+     * Get idRental
+     *
+     * @return \BL\SGIBundle\Entity\Rental 
+     */
+    public function getIdRental()
+    {
+        return $this->idRental;
+    }
+
+    /**
+     * Set idFieldsTrackRental
+     *
+     * @param \BL\SGIBundle\Entity\FieldsRental $idFieldsTrackRental
+     * @return TrackRental
+     */
+    public function setIdFieldsTrackRental(\BL\SGIBundle\Entity\FieldsRental $idFieldsTrackRental = null)
     {
         $this->idFieldsTrackRental = $idFieldsTrackRental;
 
@@ -120,7 +153,7 @@ class TrackRental
     /**
      * Get idFieldsTrackRental
      *
-     * @return \BL\SGIBundle\Entity\FieldsTrackRental 
+     * @return \BL\SGIBundle\Entity\FieldsRental 
      */
     public function getIdFieldsTrackRental()
     {

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Dashboard
  *
- * @ORM\Table(name="dashboard", indexes={@ORM\Index(name="IDX_5C94FFF8943B391C", columns={"id_item"}), @ORM\Index(name="IDX_5C94FFF8F6252691", columns={"id_menu"}), @ORM\Index(name="IDX_5C94FFF816F70860", columns={"id_position"})})
+ * @ORM\Table(name="dashboard", indexes={@ORM\Index(name="IDX_5C94FFF816F70860", columns={"id_position"}), @ORM\Index(name="IDX_5C94FFF8943B391C", columns={"id_item"}), @ORM\Index(name="IDX_5C94FFF8F6252691", columns={"id_menu"})})
  * @ORM\Entity
  */
 class Dashboard
@@ -21,16 +21,6 @@ class Dashboard
      * @ORM\SequenceGenerator(sequenceName="dashboard_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
-
-    /**
-     * @var \BL\SGIBundle\Entity\DashboardPosition
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\DashboardPosition")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_position", referencedColumnName="id")
-     * })
-     */
-    private $idPosition;
 
     /**
      * @var \BL\SGIBundle\Entity\Menu
@@ -52,6 +42,16 @@ class Dashboard
      */
     private $idItem;
 
+    /**
+     * @var \BL\SGIBundle\Entity\DashboardPosition
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\DashboardPosition")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_position", referencedColumnName="id")
+     * })
+     */
+    private $idPosition;
+
 
 
     /**
@@ -62,29 +62,6 @@ class Dashboard
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idPosition
-     *
-     * @param \BL\SGIBundle\Entity\DashboardPosition $idPosition
-     * @return Dashboard
-     */
-    public function setIdPosition(\BL\SGIBundle\Entity\DashboardPosition $idPosition = null)
-    {
-        $this->idPosition = $idPosition;
-
-        return $this;
-    }
-
-    /**
-     * Get idPosition
-     *
-     * @return \BL\SGIBundle\Entity\DashboardPosition 
-     */
-    public function getIdPosition()
-    {
-        return $this->idPosition;
     }
 
     /**
@@ -131,5 +108,28 @@ class Dashboard
     public function getIdItem()
     {
         return $this->idItem;
+    }
+
+    /**
+     * Set idPosition
+     *
+     * @param \BL\SGIBundle\Entity\DashboardPosition $idPosition
+     * @return Dashboard
+     */
+    public function setIdPosition(\BL\SGIBundle\Entity\DashboardPosition $idPosition = null)
+    {
+        $this->idPosition = $idPosition;
+
+        return $this;
+    }
+
+    /**
+     * Get idPosition
+     *
+     * @return \BL\SGIBundle\Entity\DashboardPosition 
+     */
+    public function getIdPosition()
+    {
+        return $this->idPosition;
     }
 }

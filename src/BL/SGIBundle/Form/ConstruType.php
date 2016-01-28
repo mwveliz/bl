@@ -16,8 +16,8 @@ class ConstruType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('idState')
             ->add('idClient')
+            ->add('idState')
         ;
     }
     

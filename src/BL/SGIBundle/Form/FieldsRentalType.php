@@ -16,6 +16,8 @@ class FieldsRentalType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('widget')
+            ->add('trackable')
         ;
     }
     

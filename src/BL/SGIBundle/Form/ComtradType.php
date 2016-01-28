@@ -16,9 +16,9 @@ class ComtradType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('idTypeComtrad')
-            ->add('idState')
             ->add('idClient')
+            ->add('idState')
+            ->add('idTypeComtrad')
         ;
     }
     

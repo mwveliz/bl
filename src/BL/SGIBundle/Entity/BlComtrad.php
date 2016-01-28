@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BlComtrad
  *
- * @ORM\Table(name="bl_comtrad", indexes={@ORM\Index(name="IDX_A78603B8E4BE5A57", columns={"id_comtrad"}), @ORM\Index(name="IDX_A78603B8B5700468", columns={"id_field"})})
+ * @ORM\Table(name="bl_comtrad", indexes={@ORM\Index(name="IDX_A78603B8B5700468", columns={"id_field"}), @ORM\Index(name="IDX_A78603B8E4BE5A57", columns={"id_comtrad"})})
  * @ORM\Entity
  */
 class BlComtrad
@@ -30,16 +30,6 @@ class BlComtrad
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsComtrad
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsComtrad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_field", referencedColumnName="id")
-     * })
-     */
-    private $idField;
-
-    /**
      * @var \BL\SGIBundle\Entity\Comtrad
      *
      * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Comtrad")
@@ -48,6 +38,16 @@ class BlComtrad
      * })
      */
     private $idComtrad;
+
+    /**
+     * @var \BL\SGIBundle\Entity\FieldsComtrad
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsComtrad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_field", referencedColumnName="id")
+     * })
+     */
+    private $idField;
 
 
 
@@ -85,29 +85,6 @@ class BlComtrad
     }
 
     /**
-     * Set idField
-     *
-     * @param \BL\SGIBundle\Entity\FieldsComtrad $idField
-     * @return BlComtrad
-     */
-    public function setIdField(\BL\SGIBundle\Entity\FieldsComtrad $idField = null)
-    {
-        $this->idField = $idField;
-
-        return $this;
-    }
-
-    /**
-     * Get idField
-     *
-     * @return \BL\SGIBundle\Entity\FieldsComtrad 
-     */
-    public function getIdField()
-    {
-        return $this->idField;
-    }
-
-    /**
      * Set idComtrad
      *
      * @param \BL\SGIBundle\Entity\Comtrad $idComtrad
@@ -128,5 +105,28 @@ class BlComtrad
     public function getIdComtrad()
     {
         return $this->idComtrad;
+    }
+
+    /**
+     * Set idField
+     *
+     * @param \BL\SGIBundle\Entity\FieldsComtrad $idField
+     * @return BlComtrad
+     */
+    public function setIdField(\BL\SGIBundle\Entity\FieldsComtrad $idField = null)
+    {
+        $this->idField = $idField;
+
+        return $this;
+    }
+
+    /**
+     * Get idField
+     *
+     * @return \BL\SGIBundle\Entity\FieldsComtrad 
+     */
+    public function getIdField()
+    {
+        return $this->idField;
     }
 }

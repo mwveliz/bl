@@ -1,21 +1,36 @@
 <?php
-// src/MyProject/MyBundle/Entity/Group.php
 
 namespace BL\SGIBundle\Entity;
 
-use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Group
+ *
+ * @ORM\Table(name="fos_group", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_4b019ddb5e237e16", columns={"name"})})
  * @ORM\Entity
- * @ORM\Table(name="fos_group")
  */
-class Group extends BaseGroup
+class Group
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="fos_group_id_seq", allocationSize=1, initialValue=1)
      */
-     protected $id;
+    private $id;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

@@ -7,6 +7,8 @@
         <thead>
             <tr>
                 <th>Description</th>
+                <th>Widget</th>
+                <th>Trackable</th>
                 <th>Id</th>
                 <th>Actions</th>
             </tr>
@@ -15,6 +17,8 @@
         {% for fieldsRental in fieldsRentals %}
             <tr>
                 <td><a href="{{ path('fieldsrental_show', { 'id': fieldsRental.id }) }}">{{ fieldsRental.description }}</a></td>
+                <td>{{ fieldsRental.widget }}</td>
+                <td>{% if fieldsRental.trackable %}Yes{% else %}No{% endif %}</td>
                 <td>{{ fieldsRental.id }}</td>
                 <td>
                     <ul>

@@ -1,3 +1,55 @@
+sgi_type_constru:
+    resource: "@SGIBundle/Controller/TypeConstruController.php"
+    type:     annotation
+
+sgi_track_rental:
+    resource: "@SGIBundle/Controller/TrackRentalController.php"
+    type:     annotation
+
+sgi_track_comtrad:
+    resource: "@SGIBundle/Controller/TrackComtradController.php"
+    type:     annotation
+
+sgi_track_constru:
+    resource: "@SGIBundle/Controller/TrackConstruController.php"
+    type:     annotation
+
+sgi_track_altinv:
+    resource: "@SGIBundle/Controller/TrackAltinvController.php"
+    type:     annotation
+
+sgi_rental:
+    resource: "@SGIBundle/Controller/RentalController.php"
+    type:     annotation
+
+sgi_fields_rental:
+    resource: "@SGIBundle/Controller/FieldsRentalController.php"
+    type:     annotation
+
+sgi_fields_constru:
+    resource: "@SGIBundle/Controller/FieldsConstruController.php"
+    type:     annotation
+
+sgi_fields_comtrad:
+    resource: "@SGIBundle/Controller/FieldsComtradController.php"
+    type:     annotation
+
+sgi_fields_altinv:
+    resource: "@SGIBundle/Controller/FieldsAltinvController.php"
+    type:     annotation
+
+sgi_constru:
+    resource: "@SGIBundle/Controller/ConstruController.php"
+    type:     annotation
+
+sgi_comtrad:
+    resource: "@SGIBundle/Controller/ComtradController.php"
+    type:     annotation
+
+sgi_altinv:
+    resource: "@SGIBundle/Controller/AltinvController.php"
+    type:     annotation
+
 sgi_type_altinv:
     resource: "@SGIBundle/Controller/TypeAltinvController.php"
     type:     annotation
@@ -28,10 +80,6 @@ sgi_dashboard_position:
 
 sgi_altinv:
     resource: "@SGIBundle/Controller/AltinvController.php"
-    type:     annotation
-
-sgi_fields_track_altinv:
-    resource: "@SGIBundle/Controller/FieldsTrackAltinvController.php"
     type:     annotation
 
 sgi_billing_detail:
@@ -102,10 +150,6 @@ sgi_client:
     resource: "@SGIBundle/Controller/ClientController.php"
     type:     annotation
 
-sgi_fields_track_comtrad:
-    resource: "@SGIBundle/Controller/FieldsTrackComtradController.php"
-    type:     annotation
-
 sgi_comtrad:
     resource: "@SGIBundle/Controller/ComtradController.php"
     type:     annotation
@@ -124,10 +168,6 @@ sgi_pipeline_workflow:
 
 sgi_bl:
     resource: "@SGIBundle/Controller/BlController.php"
-    type:     annotation
-
-sgi_fields_track_constru:
-    resource: "@SGIBundle/Controller/FieldsTrackConstruController.php"
     type:     annotation
 
 sgi_country:
@@ -164,10 +204,6 @@ sgi_dashboard_item:
 
 sgi_alert:
     resource: "@SGIBundle/Controller/AlertController.php"
-    type:     annotation
-
-sgi_fields_track_rental:
-    resource: "@SGIBundle/Controller/FieldsTrackRentalController.php"
     type:     annotation
 
 sgi:

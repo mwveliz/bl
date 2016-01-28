@@ -37,9 +37,9 @@ class TrackComtrad
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsTrackComtrad
+     * @var \BL\SGIBundle\Entity\FieldsComtrad
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsTrackComtrad")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsComtrad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_fields_track_comtrad", referencedColumnName="id")
      * })
@@ -117,10 +117,10 @@ class TrackComtrad
     /**
      * Set idFieldsTrackComtrad
      *
-     * @param \BL\SGIBundle\Entity\FieldsTrackComtrad $idFieldsTrackComtrad
+     * @param \BL\SGIBundle\Entity\FieldsComtrad $idFieldsTrackComtrad
      * @return TrackComtrad
      */
-    public function setIdFieldsTrackComtrad(\BL\SGIBundle\Entity\FieldsTrackComtrad $idFieldsTrackComtrad = null)
+    public function setIdFieldsTrackComtrad(\BL\SGIBundle\Entity\FieldsComtrad $idFieldsTrackComtrad = null)
     {
         $this->idFieldsTrackComtrad = $idFieldsTrackComtrad;
 
@@ -130,7 +130,7 @@ class TrackComtrad
     /**
      * Get idFieldsTrackComtrad
      *
-     * @return \BL\SGIBundle\Entity\FieldsTrackComtrad 
+     * @return \BL\SGIBundle\Entity\FieldsComtrad 
      */
     public function getIdFieldsTrackComtrad()
     {

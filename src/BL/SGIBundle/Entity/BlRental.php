@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BlRental
  *
- * @ORM\Table(name="bl_rental", indexes={@ORM\Index(name="IDX_619EF2F8B5700468", columns={"id_field"}), @ORM\Index(name="IDX_619EF2F8302E7790", columns={"id_rental"})})
+ * @ORM\Table(name="bl_rental", indexes={@ORM\Index(name="IDX_619EF2F8302E7790", columns={"id_rental"}), @ORM\Index(name="IDX_619EF2F8B5700468", columns={"id_field"})})
  * @ORM\Entity
  */
 class BlRental
@@ -30,16 +30,6 @@ class BlRental
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\Rental
-     *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Rental")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_rental", referencedColumnName="id")
-     * })
-     */
-    private $idRental;
-
-    /**
      * @var \BL\SGIBundle\Entity\FieldsRental
      *
      * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsRental")
@@ -48,6 +38,16 @@ class BlRental
      * })
      */
     private $idField;
+
+    /**
+     * @var \BL\SGIBundle\Entity\Rental
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Rental")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_rental", referencedColumnName="id")
+     * })
+     */
+    private $idRental;
 
 
 
@@ -85,29 +85,6 @@ class BlRental
     }
 
     /**
-     * Set idRental
-     *
-     * @param \BL\SGIBundle\Entity\Rental $idRental
-     * @return BlRental
-     */
-    public function setIdRental(\BL\SGIBundle\Entity\Rental $idRental = null)
-    {
-        $this->idRental = $idRental;
-
-        return $this;
-    }
-
-    /**
-     * Get idRental
-     *
-     * @return \BL\SGIBundle\Entity\Rental 
-     */
-    public function getIdRental()
-    {
-        return $this->idRental;
-    }
-
-    /**
      * Set idField
      *
      * @param \BL\SGIBundle\Entity\FieldsRental $idField
@@ -128,5 +105,28 @@ class BlRental
     public function getIdField()
     {
         return $this->idField;
+    }
+
+    /**
+     * Set idRental
+     *
+     * @param \BL\SGIBundle\Entity\Rental $idRental
+     * @return BlRental
+     */
+    public function setIdRental(\BL\SGIBundle\Entity\Rental $idRental = null)
+    {
+        $this->idRental = $idRental;
+
+        return $this;
+    }
+
+    /**
+     * Get idRental
+     *
+     * @return \BL\SGIBundle\Entity\Rental 
+     */
+    public function getIdRental()
+    {
+        return $this->idRental;
     }
 }

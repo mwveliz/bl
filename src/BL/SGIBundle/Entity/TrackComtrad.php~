@@ -37,9 +37,9 @@ class TrackComtrad
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\FieldsTrackComtrad
+     * @var \BL\SGIBundle\Entity\FieldsComtrad
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsTrackComtrad")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsComtrad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_fields_track_comtrad", referencedColumnName="id")
      * })
@@ -57,106 +57,4 @@ class TrackComtrad
     private $idComtrad;
 
 
-
-    /**
-     * Set value
-     *
-     * @param string $value
-     * @return TrackComtrad
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return string 
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * Set datetime
-     *
-     * @param \DateTime $datetime
-     * @return TrackComtrad
-     */
-    public function setDatetime($datetime)
-    {
-        $this->datetime = $datetime;
-
-        return $this;
-    }
-
-    /**
-     * Get datetime
-     *
-     * @return \DateTime 
-     */
-    public function getDatetime()
-    {
-        return $this->datetime;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idFieldsTrackComtrad
-     *
-     * @param \BL\SGIBundle\Entity\FieldsTrackComtrad $idFieldsTrackComtrad
-     * @return TrackComtrad
-     */
-    public function setIdFieldsTrackComtrad(\BL\SGIBundle\Entity\FieldsTrackComtrad $idFieldsTrackComtrad = null)
-    {
-        $this->idFieldsTrackComtrad = $idFieldsTrackComtrad;
-
-        return $this;
-    }
-
-    /**
-     * Get idFieldsTrackComtrad
-     *
-     * @return \BL\SGIBundle\Entity\FieldsTrackComtrad 
-     */
-    public function getIdFieldsTrackComtrad()
-    {
-        return $this->idFieldsTrackComtrad;
-    }
-
-    /**
-     * Set idComtrad
-     *
-     * @param \BL\SGIBundle\Entity\Comtrad $idComtrad
-     * @return TrackComtrad
-     */
-    public function setIdComtrad(\BL\SGIBundle\Entity\Comtrad $idComtrad = null)
-    {
-        $this->idComtrad = $idComtrad;
-
-        return $this;
-    }
-
-    /**
-     * Get idComtrad
-     *
-     * @return \BL\SGIBundle\Entity\Comtrad 
-     */
-    public function getIdComtrad()
-    {
-        return $this->idComtrad;
-    }
 }

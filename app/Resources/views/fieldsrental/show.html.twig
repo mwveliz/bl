@@ -10,6 +10,14 @@
                 <td>{{ fieldsRental.description }}</td>
             </tr>
             <tr>
+                <th>Widget</th>
+                <td>{{ fieldsRental.widget }}</td>
+            </tr>
+            <tr>
+                <th>Trackable</th>
+                <td>{% if fieldsRental.trackable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
                 <th>Id</th>
                 <td>{{ fieldsRental.id }}</td>
             </tr>
