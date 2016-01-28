@@ -3,20 +3,20 @@
   <entity name="BL\SGIBundle\Entity\Dashboard" table="dashboard">
     <indexes>
       <index name="IDX_5C94FFF816F70860" columns="id_position"/>
-      <index name="IDX_5C94FFF8F6252691" columns="id_menu"/>
       <index name="IDX_5C94FFF8943B391C" columns="id_item"/>
+      <index name="IDX_5C94FFF8F6252691" columns="id_menu"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
-    <many-to-one field="idItem" target-entity="DashboardItem">
-      <join-columns>
-        <join-column name="id_item" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idMenu" target-entity="Menu">
       <join-columns>
         <join-column name="id_menu" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idItem" target-entity="DashboardItem">
+      <join-columns>
+        <join-column name="id_item" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="idPosition" target-entity="DashboardPosition">
