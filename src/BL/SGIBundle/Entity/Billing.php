@@ -156,4 +156,8 @@ class Billing
     {
         return $this->idBl;
     }
+     public function __toString()
+	{
+    return $this->description;
+	}
 }

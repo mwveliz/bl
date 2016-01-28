@@ -66,4 +66,10 @@ class Tenant
     {
         return $this->idClient;
     }
+    
+    
+    public function __toString()
+	{
+    return $this->description;
+	}
 }

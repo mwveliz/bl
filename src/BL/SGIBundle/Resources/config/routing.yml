@@ -1,7 +1,11 @@
 sgi_homepage:
     path:     /
-    defaults: { _controller: SGIBundle:Default:index }
+    defaults: { _controller: SGIBundle:Bl:index }
 
 grid:
     path:     /grid
     defaults: { _controller: SGIBundle:Default:grid }
+
+calendar:
+    path:     /calendar
+    defaults: { _controller: SGIBundle:Default:calendar }

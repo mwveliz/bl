@@ -162,4 +162,8 @@ class Altinv
     {
         return $this->idState;
     }
+     public function __toString()
+	{
+    return $this->description;
+	}
 }

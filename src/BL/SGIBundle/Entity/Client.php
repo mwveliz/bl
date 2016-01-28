@@ -66,4 +66,10 @@ class Client
     {
         return $this->userid;
     }
+    
+    public function __toString()
+	{
+    return (string)$this->userid;
+	}
+    
 }

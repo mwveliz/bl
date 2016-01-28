@@ -162,4 +162,8 @@ class Comtrad
     {
         return $this->idTypeComtrad;
     }
+     public function __toString()
+	{
+    return $this->description;
+	}
 }

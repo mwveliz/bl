@@ -219,4 +219,9 @@ class Event
     {
         return $this->idBl;
     }
+    
+     public function __toString()
+	{
+    return $this->description;
+	}
 }

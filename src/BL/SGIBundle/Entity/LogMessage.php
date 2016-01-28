@@ -156,4 +156,9 @@ class LogMessage
     {
         return $this->userid;
     }
+
+ public function __toString()
+	{
+    return $this->description;
+	}
 }
