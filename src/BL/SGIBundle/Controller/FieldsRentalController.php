@@ -50,7 +50,7 @@ class FieldsRentalController extends Controller
             $em->persist($fieldsRental);
             $em->flush();
 
-            return $this->redirectToRoute('fieldsrental_show', array('id' => $fieldsrental->getId()));
+            return $this->redirectToRoute('fieldsrental_show', array('id' => $fieldsRental->getId()));
         }
 
         return $this->render('fieldsrental/new.html.twig', array(

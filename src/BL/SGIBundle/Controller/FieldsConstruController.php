@@ -50,7 +50,7 @@ class FieldsConstruController extends Controller
             $em->persist($fieldsConstru);
             $em->flush();
 
-            return $this->redirectToRoute('fieldsconstru_show', array('id' => $fieldsconstru->getId()));
+            return $this->redirectToRoute('fieldsconstru_show', array('id' => $fieldsConstru->getId()));
         }
 
         return $this->render('fieldsconstru/new.html.twig', array(

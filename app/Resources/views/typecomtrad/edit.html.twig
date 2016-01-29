@@ -1,21 +1,54 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}
+   Commodities Trading
+{% endblock %} 
+
+{% block page_description %}
+   Types of Commodities Trading
+{% endblock %} 
+
 {% block body %}
-    <h1>TypeComtrad edit</h1>
+                     <div class="row">
+                        <div class="col-md-6 ">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-red-sunglo">
+                                        <i class="fa fa-pencil" style="color:#E26A6A;"></i>
+                                        <span class="caption-subject bold uppercase"> Edit Register</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                        {{ form_start(edit_form) }}
+                                            {{ form_widget(edit_form) }}
+                                            <br>
+                                            <button type="button" class="btn default"  id="cancel">Cancel</button>
+                                            <button type="submit" class="btn blue">Submit</button>
+                                        {{ form_end(edit_form) }}    
+                                        <div class="form-actions">                                          
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE FORM PORTLET-->
+                        </div>
+                        <div class="col-md-6 ">
+                            
+                        </div>
+                    </div>   
+ {% endblock %}           
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('typecomtrad_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+ {% block stylesheets_extra %} 
+         <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
+ 
+ {% block javascripts_extra %} 
+ <script>    
+    $( document ).ready(function() {
+        $('#cancel').click(function() {
+          $('form[name="{{ edit_form.vars.name }}"]').trigger("reset");
+          $('span').removeClass("checked"); 
+        });
+    });
+ </script>
+ {% endblock %}

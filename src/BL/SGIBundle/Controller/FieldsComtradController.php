@@ -50,7 +50,7 @@ class FieldsComtradController extends Controller
             $em->persist($fieldsComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('fieldscomtrad_show', array('id' => $fieldscomtrad->getId()));
+            return $this->redirectToRoute('fieldscomtrad_show', array('id' => $fieldsComtrad->getId()));
         }
 
         return $this->render('fieldscomtrad/new.html.twig', array(

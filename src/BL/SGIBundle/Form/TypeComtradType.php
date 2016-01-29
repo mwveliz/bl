@@ -15,7 +15,9 @@ class TypeComtradType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
+            ->add('description', 'text', array(
+                 'attr' => array('class' => 'form-control input-sm')
+             ))
         ;
     }
     

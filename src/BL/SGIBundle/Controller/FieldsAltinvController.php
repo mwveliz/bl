@@ -50,7 +50,7 @@ class FieldsAltinvController extends Controller
             $em->persist($fieldsAltinv);
             $em->flush();
 
-            return $this->redirectToRoute('fieldsaltinv_show', array('id' => $fieldsaltinv->getId()));
+            return $this->redirectToRoute('fieldsaltinv_show', array('id' => $fieldsAltinv->getId()));
         }
 
         return $this->render('fieldsaltinv/new.html.twig', array(

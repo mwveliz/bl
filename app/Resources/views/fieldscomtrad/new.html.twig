@@ -1,23 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}
+   Commodities Trading
+{% endblock %} 
+
+{% block page_description %}
+   Field for Commodities Trading
+{% endblock %} 
+
 {% block body %}
-    
-    {% block page_title %}
-       Commodities Trading
-    {% endblock %}    
-    <h1>FieldsComtrad creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('fieldscomtrad_index') }}">Back to the list</a>
-        </li>
-    </ul>
-    
                      <div class="row">
                         <div class="col-md-6 ">
                             <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -25,211 +16,39 @@
                                 <div class="portlet-title">
                                     <div class="caption font-red-sunglo">
                                         <i class="icon-settings font-red-sunglo"></i>
-                                        <span class="caption-subject bold uppercase"> Default Form</span>
-                                    </div>
-                                    <div class="actions">
-                                        <div class="btn-group">
-                                            <a class="btn btn-sm green dropdown-toggle" href="javascript:;" data-toggle="dropdown"> Actions
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-trash-o"></i> Delete </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-ban"></i> Ban </a>
-                                                </li>
-                                                <li class="divider"> </li>
-                                                <li>
-                                                    <a href="javascript:;"> Make admin </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <span class="caption-subject bold uppercase"> New Register</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
-                                    <form role="form">
-                                        <div class="form-body">
-                                            <div class="form-group">
-                                                <label>Email Address</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </span>
-                                                    <input type="text" class="form-control" placeholder="Email Address"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Circle Input</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon input-circle-left">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </span>
-                                                    <input type="text" class="form-control input-circle-right" placeholder="Email Address"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <div class="input-group">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-user font-red"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Left Icon</label>
-                                                <div class="input-icon">
-                                                    <i class="fa fa-bell-o font-green"></i>
-                                                    <input type="text" class="form-control" placeholder="Left icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Left Icon(.input-sm)</label>
-                                                <div class="input-icon input-icon-sm">
-                                                    <i class="fa fa-bell-o"></i>
-                                                    <input type="text" class="form-control input-sm" placeholder="Left icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Left Icon(.input-lg)</label>
-                                                <div class="input-icon input-icon-lg">
-                                                    <i class="fa fa-bell-o"></i>
-                                                    <input type="text" class="form-control input-lg" placeholder="Left icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Right Icon</label>
-                                                <div class="input-icon right">
-                                                    <i class="fa fa-microphone fa-spin font-blue"></i>
-                                                    <input type="text" class="form-control" placeholder="Right icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Right Icon(.input-sm)</label>
-                                                <div class="input-icon input-icon-sm right">
-                                                    <i class="fa fa-bell-o"></i>
-                                                    <input type="text" class="form-control input-sm" placeholder="Left icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Right Icon(.input-lg)</label>
-                                                <div class="input-icon input-icon-lg right">
-                                                    <i class="fa fa-bell-o font-green"></i>
-                                                    <input type="text" class="form-control input-lg" placeholder="Left icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Circle Input</label>
-                                                <div class="input-icon right">
-                                                    <i class="fa fa-microphone"></i>
-                                                    <input type="text" class="form-control input-circle" placeholder="Right icon"> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Input with Icon</label>
-                                                <div class="input-group input-icon right">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-envelope font-purple"></i>
-                                                    </span>
-                                                    <i class="fa fa-exclamation tooltips" data-original-title="Invalid email." data-container="body"></i>
-                                                    <input id="email" class="input-error form-control" type="text" value=""> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Input With Spinner</label>
-                                                <input class="form-control spinner" type="text" placeholder="Process something" /> </div>
-                                            <div class="form-group">
-                                                <label>Static Control</label>
-                                                <p class="form-control-static"> email@example.com </p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Disabled</label>
-                                                <input type="text" class="form-control" placeholder="Disabled" disabled> </div>
-                                            <div class="form-group">
-                                                <label>Readonly</label>
-                                                <input type="text" class="form-control" placeholder="Readonly" readonly> </div>
-                                            <div class="form-group">
-                                                <label>Dropdown</label>
-                                                <select class="form-control">
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                    <option>Option 4</option>
-                                                    <option>Option 5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Multiple Select</label>
-                                                <select multiple class="form-control">
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                    <option>Option 4</option>
-                                                    <option>Option 5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Textarea</label>
-                                                <textarea class="form-control" rows="3"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputFile1">File input</label>
-                                                <input type="file" id="exampleInputFile1">
-                                                <p class="help-block"> some help text here. </p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Checkboxes</label>
-                                                <div class="checkbox-list">
-                                                    <label>
-                                                        <input type="checkbox"> Checkbox 1 </label>
-                                                    <label>
-                                                        <input type="checkbox"> Checkbox 2 </label>
-                                                    <label>
-                                                        <input type="checkbox" disabled> Disabled </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Checkboxes</label>
-                                                <div class="checkbox-list">
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Checkbox 1 </label>
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox" id="inlineCheckbox2" value="option2"> Checkbox 2 </label>
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox" id="inlineCheckbox3" value="option3" disabled> Disabled </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Radio</label>
-                                                <div class="radio-list">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Option 1</label>
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Option 2 </label>
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled> Disabled </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Radio</label>
-                                                <div class="radio-list">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios4" value="option1" checked> Option 1 </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios5" value="option2"> Option 2 </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios6" value="option3" disabled> Disabled </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-actions">
+                                        {{ form_start(form) }}
+                                            {{ form_widget(form) }}
+                                            <br>
+                                            <button type="button" class="btn default"  id="cancel">Cancel</button>
                                             <button type="submit" class="btn blue">Submit</button>
-                                            <button type="button" class="btn default">Cancel</button>
+                                        {{ form_end(form) }}    
+                                        <div class="form-actions">                                          
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                             <!-- END SAMPLE FORM PORTLET-->
                         </div>
                         <div class="col-md-6 ">
-
+                            
                         </div>
                     </div>   
  {% endblock %}           
+
+ {% block stylesheets_extra %} 
+         <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
+ 
+ {% block javascripts_extra %} 
+ <script>    
+    $( document ).ready(function() {
+        $('#cancel').click(function() {
+          $('form[name="{{ form.vars.name }}"]').trigger("reset");
+          $('span').removeClass("checked"); 
+        });
+    });
+ </script>
+ {% endblock %}

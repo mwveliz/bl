@@ -15,9 +15,20 @@ class FieldsComtradType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('wiget')
-            ->add('trackable')
+            ->add('description', 'text', array(
+                 'attr' => array('class' => 'form-control input-sm')
+             ))   
+                
+            ->add('wiget', 'choice', array(
+             'attr' => array('class' => 'form-control form-group'),   
+             'label' => 'Widget',   
+             'choices' => array('1' => 'Calendar', '2' => 'Characters', 
+                 '3' => 'Currency', '4' => 'File', '5' => 'Numeric'),
+             ))             
+            ->add('trackable', 'checkbox', array(
+                   'attr' => array('class' => 'checkbox-list'),
+                   'required' => false,
+             )) 
         ;
     }
     
