@@ -50,7 +50,12 @@ class TypeComtradController extends Controller
             $em->persist($typeComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('typecomtrad_show', array('id' => $typeComtrad->getId()));
+            $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findAll();
+
+            return $this->render('typecomtrad/index.html.twig', array(
+                'typeComtrads' => $typeComtrads,
+            ));            
+            
         }
 
         return $this->render('typecomtrad/new.html.twig', array(
@@ -91,8 +96,13 @@ class TypeComtradController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($typeComtrad);
             $em->flush();
+            
+            $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findAll();
 
-            return $this->redirectToRoute('typecomtrad_edit', array('id' => $typeComtrad->getId()));
+            return $this->render('typecomtrad/index.html.twig', array(
+                'typeComtrads' => $typeComtrads,
+            ));            
+
         }
 
         return $this->render('typecomtrad/edit.html.twig', array(

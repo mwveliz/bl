@@ -1,0 +1,14 @@
+language: php
+
+php:
+    - 5.3
+    - 5.4
+
+services: mongodb
+
+before_script:
+    - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+    - composer update --dev
+
+notifications:
+  email: travis-ci@generation-multiple.com

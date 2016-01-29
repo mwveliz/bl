@@ -50,7 +50,12 @@ class FieldsComtradController extends Controller
             $em->persist($fieldsComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('fieldscomtrad_show', array('id' => $fieldsComtrad->getId()));
+            $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findAll();
+
+            return $this->render('fieldscomtrad/index.html.twig', array(
+                'fieldsComtrads' => $fieldsComtrads,
+            ));        
+            
         }
 
         return $this->render('fieldscomtrad/new.html.twig', array(
@@ -92,7 +97,12 @@ class FieldsComtradController extends Controller
             $em->persist($fieldsComtrad);
             $em->flush();
 
-            return $this->redirectToRoute('fieldscomtrad_edit', array('id' => $fieldsComtrad->getId()));
+            $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findAll();
+
+            return $this->render('fieldscomtrad/index.html.twig', array(
+                'fieldsComtrads' => $fieldsComtrads,
+            ));
+        
         }
 
         return $this->render('fieldscomtrad/edit.html.twig', array(

@@ -1,0 +1,33 @@
+{
+    "name": "egeloen/ordered-form-bundle",
+    "type": "symfony-bundle",
+    "description": "Provides a form ordering support for your Symfony2 project.",
+    "keywords": [ "form", "order" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eric GELOEN",
+            "email": "geloen.eric@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3",
+        "egeloen/ordered-form": "~1.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "~0.6"
+    },
+    "autoload": {
+        "psr-4": { "Ivory\\OrderedFormBundle\\": "" }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    }
+}

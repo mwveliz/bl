@@ -72,3 +72,6 @@ fos_user:
     user_class: BL\SGIBundle\Entity\Usuario
     group:
         group_class: BL\SGIBundle\Entity\Group
+
+genemu_form:
+    autocomplete: ~

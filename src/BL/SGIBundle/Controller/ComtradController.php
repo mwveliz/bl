@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Comtrad;
 use BL\SGIBundle\Form\ComtradType;
+use Doctrine\ORM\Query;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Comtrad controller.
@@ -41,16 +44,36 @@ class ComtradController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        
         $comtrad = new Comtrad();
         $form = $this->createForm('BL\SGIBundle\Form\ComtradType', $comtrad);
+        
+        $clients = $em->getRepository('SGIBundle:Client')->findAll();
+
+        $clientes = array();
+        foreach ($clients as $client) {
+            $clientes = $client->getUserid();
+        }
+        
+      //  die(var_dump($clientes));
+
+
+               
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($comtrad);
             $em->flush();
+            
+            $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
-            return $this->redirectToRoute('comtrad_show', array('id' => $comtrad->getId()));
+            return $this->render('comtrad/index.html.twig', array(
+                'comtrads' => $comtrads,
+            ));
+        
         }
 
         return $this->render('comtrad/new.html.twig', array(
@@ -91,8 +114,12 @@ class ComtradController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($comtrad);
             $em->flush();
+            
+            $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
-            return $this->redirectToRoute('comtrad_edit', array('id' => $comtrad->getId()));
+            return $this->render('comtrad/index.html.twig', array(
+                'comtrads' => $comtrads,
+            ));
         }
 
         return $this->render('comtrad/edit.html.twig', array(

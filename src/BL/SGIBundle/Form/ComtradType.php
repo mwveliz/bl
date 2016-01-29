@@ -5,6 +5,8 @@ namespace BL\SGIBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+
 
 class ComtradType extends AbstractType
 {
@@ -15,11 +17,25 @@ class ComtradType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('idClient')
+            ->add('IdTypeComtrad', 'entity', array(
+                    'label' => 'Type of Commodity Trading',
+                    'class' => 'SGIBundle:TypeComtrad',
+                    'attr' => array(
+                        'class' => 'form-control form-group'
+                     ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('x')
+                               ->orderBy('x.description', 'ASC');
+                    },
+            ))     
+                            
+                            
             ->add('idState')
-            ->add('idTypeComtrad')
-        ;
+                    
+            ->add('description', 'text', array(
+                 'attr' => array('class' => 'form-control input-sm')
+             )) 
+        ;       
     }
     
     /**
