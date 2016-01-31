@@ -20,4 +20,6 @@ class DefaultController extends Controller
     {
         return $this->render('SGIBundle:Default:calendar.html.twig');
     }
+    
+    
 }

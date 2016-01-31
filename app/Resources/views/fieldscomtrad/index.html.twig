@@ -52,7 +52,7 @@
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" id="a_show" param="{{ fieldsComtrad.id }}">
+                                                        <a href="#" class="a_show" param="{{ fieldsComtrad.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
@@ -67,12 +67,15 @@
                             <!-- END EXAMPLE TABLE PORTLET-->
                         </div>
                         <div class="col-md-6" id="show">
-                            
+                           
                         </div>     
                     </div>
             <!-- END CONTENT BODY -->
-        </div>
+        </div>                                       
         <!-- END CONTAINER -->
+                                                       
+     
+
 {% endblock %}
 
 {% block javascripts_extra %} 
@@ -88,13 +91,38 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{ asset('/metronic/pages/scripts/table-datatables-responsive.min.js') }}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{ asset('/metronic/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js') }}" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{ asset('/metronic/pages/scripts/ui-confirmations.min.js') }}" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
 
 <script>    
     $( document ).ready(function() {
-        $('#a_show').click(function() {
-          
-          alert('fff');
-        });
+        $('.a_show').click(function() {
+            id = $(this).attr('param');
+            form_name = $(this).attr('param2');
+            temp = form_name.split("\Controller");
+            temp = temp[1].replace(/\\/g, '');
+            $.ajax({
+                url: "{{ path('show_ajax') }}",
+                data: "form_name=" + temp +
+                "&id=" + id,
+                success: function(data){
+                    $('#show').empty();
+                    $('#show').html(data);
+                    $('#agregar').html('<button class="btn green-sharp btn-large" data-toggle="confirmation" data-original-title="Are you sure ?" title="">Default configuration</button>');
+                }
+            });
+        });   
+
     });
+    
+    
+    
+            $('#myDropdown').on('show.bs.dropdown', function () {
+  $('#alert').html('It works!');
+})
  </script>
 {% endblock %}

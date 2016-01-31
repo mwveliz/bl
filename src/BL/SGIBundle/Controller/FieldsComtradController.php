@@ -115,8 +115,8 @@ class FieldsComtradController extends Controller
     /**
      * Deletes a FieldsComtrad entity.
      *
-     * @Route("/{id}", name="fieldscomtrad_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="fieldscomtrad_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, FieldsComtrad $fieldsComtrad)
     {

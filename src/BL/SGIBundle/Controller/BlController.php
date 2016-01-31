@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Bl;
 use BL\SGIBundle\Form\BlType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Bl controller.
@@ -137,4 +138,76 @@ class BlController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * @Route("/ajax/mostrar", name="show_ajax")
+     * @Method("GET")
+     */   
+    public function showajaxAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $form_name = $request->get('form_name');
+        $id = $request->get('id');        
+        
+        $arreglo = $this->showEntidad($form_name, $id);
+        
+        $form_name_lowcase = strtolower($form_name);
+        $edit = $this->generateUrl($form_name_lowcase.'_edit', array('id' => $id));
+        $delete = $this->generateUrl('fieldscomtrad_delete', array('id' => $id));        
+        
+        $objeto = '<div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-green">
+                                        <i class="icon-settings font-green"></i>
+                                        <span class="caption-subject bold uppercase">Show</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="btn-group" id="myDropdown">
+                                            <a class="btn btn-sm green dropdown-toggle" href="javascript:;" data-toggle="dropdown"> Actions
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="'.$edit.'">
+                                                        <i class="fa fa-pencil"></i> Edit </a>
+                                                </li>
+                                                <li>
+                                                    <a href="'.$delete.'"><i class="fa fa-trash-o"></i> Delete </a> 
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>                                    
+                                </div>   
+                                <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">';
+        
+        foreach ($arreglo as $key => $val) {
+            $objeto .= '<tr><td width="40%"><strong>'.$key.': </strong></td><td>'.$val.'</td></tr>';
+        }
+                                        
+        $objeto .= '</tbody></table></div></div>';
+        
+        return new JsonResponse($objeto);
+    }    
+    
+    public function showEntidad($form_name, $id){  
+        $em = $this->getDoctrine()->getManager();
+
+        $modelo = 'SGIBundle:'.$form_name;
+        
+        $form = $em->getRepository($modelo)
+                ->findOneBy(array('id' => $id));
+        
+        $arreglo = array();
+        
+        switch ($form_name) {
+            case 'FieldsComtrad':
+                $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
+                break;
+        }
+        
+        
+        return $arreglo; 
+    }    
 }
