@@ -22,8 +22,8 @@ class FieldsComtradType extends AbstractType
             ->add('wiget', 'choice', array(
              'attr' => array('class' => 'form-control form-group'),   
              'label' => 'Widget',   
-             'choices' => array('1' => 'Calendar', '2' => 'Characters', 
-                 '3' => 'Currency', '4' => 'File', '5' => 'Numeric'),
+             'choices' => array('Calendar' => 'Calendar', 'Characters' => 'Characters', 
+                 'Currency' => 'Currency', 'File' => 'File', 'Numeric' => 'Numeric'),
              ))             
             ->add('trackable', 'checkbox', array(
                    'attr' => array('class' => 'checkbox-list'),

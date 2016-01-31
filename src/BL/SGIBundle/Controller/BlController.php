@@ -154,7 +154,7 @@ class BlController extends Controller
         
         $form_name_lowcase = strtolower($form_name);
         $edit = $this->generateUrl($form_name_lowcase.'_edit', array('id' => $id));
-        $delete = $this->generateUrl('fieldscomtrad_delete', array('id' => $id));        
+        $delete = $this->generateUrl($form_name_lowcase.'_delete', array('id' => $id));        
         
         $objeto = '<div class="portlet light bordered">
                                 <div class="portlet-title">
@@ -203,8 +203,13 @@ class BlController extends Controller
         
         switch ($form_name) {
             case 'FieldsComtrad':
-                $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
+                $trackable = $form->getTrackable() ? "True":"False";
+                $arreglo =  array('Id' => $id,'Description' => $form->getDescription(),
+                    'Widget' => $form->getWiget(), 'Trackable' => $trackable);
                 break;
+            case 'TypeComtrad':
+                $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
+                break;            
         }
         
         
