@@ -209,7 +209,26 @@ class BlController extends Controller
                 break;
             case 'TypeComtrad':
                 $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
-                break;            
+                break;   
+            case 'Comtrad':
+                $nombre_apellido = $form->getIdClient()->getUserid()->getNombre().' ';
+                $nombre_apellido .= $form->getIdClient()->getUserid()->getApellido();
+                
+                $arreglo =  array('Id' => $id,
+                    'Description' => $form->getDescription(),
+                    'Country' => $form->getIdState()->getIdCountry()->getDescription(),
+                    'State' => $form->getIdState()->getDescription(),
+                    'Client' => $nombre_apellido,
+                    );
+                
+                // List of Fields 
+                $Fields = $em->getRepository('SGIBundle:BlComtrad')
+                ->findBy(array('idComtrad' => $id));
+                
+                foreach ($Fields as $Field) {
+                    $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
+                }                
+                break;               
         }
         
         
