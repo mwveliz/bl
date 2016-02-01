@@ -5,13 +5,10 @@
       <index name="fos_user_dni_idx" columns="dni"/>
     </indexes>
     <unique-constraints>
-      <unique-constraint name="usuario_cedula_key" columns="cedula"/>
-      <unique-constraint name="uniq_2265b05d92fc23a8" columns="username_canonical"/>
-      <unique-constraint name="uniq_2265b05da0d96fbf" columns="email_canonical"/>
+      <unique-constraint name="fos_user_dni_key" columns="dni"/>
     </unique-constraints>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
-      <sequence-generator sequence-name="usuario_id_seq" allocation-size="1" initial-value="1"/>
     </id>
     <field name="dni" type="integer" column="dni" nullable="true"/>
     <field name="nacionalidad" type="string" column="nacionalidad" nullable="true"/>
@@ -19,7 +16,7 @@
     <field name="apellido" type="string" column="apellido" nullable="true"/>
     <field name="telefono" type="string" column="telefono" nullable="true"/>
     <field name="telefonoSecundario" type="string" column="telefono_secundario" nullable="true"/>
-    <many-to-many field="groups" target-entity="Group" inversed-by="user" fetch="LAZY">
+    <many-to-many field="group" target-entity="FosGroup" inversed-by="user">
       <join-table name="fos_user_user_group">
         <join-columns>
           <join-column name="user_id" referenced-column-name="id"/>

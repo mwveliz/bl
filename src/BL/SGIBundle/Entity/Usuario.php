@@ -5,11 +5,10 @@ namespace BL\SGIBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_2265b05da0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="fos_user_dni_key", columns={"dni"}), @ORM\UniqueConstraint(name="uniq_2265b05d92fc23a8", columns={"username_canonical"})}, indexes={@ORM\Index(name="fos_user_dni_idx", columns={"dni"})})
+ * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="fos_user_dni_key", columns={"dni"})}, indexes={@ORM\Index(name="fos_user_dni_idx", columns={"dni"})})
  * @ORM\Entity
  */
 class Usuario extends BaseUser
@@ -67,28 +66,20 @@ class Usuario extends BaseUser
     protected $id;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="BL\SGIBundle\Entity\FosGroup", inversedBy="user")
+     * @ORM\ManyToMany(targetEntity="BL\SGIBundle\Entity\Group")
      * @ORM\JoinTable(name="fos_user_user_group",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-     *   }
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
-     */
+     */ 
     protected $group;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
-        $this->group = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
+        // your own logic
     }
-
+    
 
     /**
      * Set dni
@@ -238,6 +229,5 @@ class Usuario extends BaseUser
     {
         return $this->id;
     }
-
-
+    
 }
