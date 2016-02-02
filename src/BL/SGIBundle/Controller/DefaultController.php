@@ -17,9 +17,23 @@ class DefaultController extends Controller
     }
 
 
+
+
     public function griddosAction()
     {
-        return $this->render('SGIBundle:Default:griddos.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+
+
+        $serializer = $this->container->get('serializer');
+        $reports = $serializer->serialize($fieldsComtrads , 'json');
+
+
+
+        return $this->render('SGIBundle:Default:griddos.html.twig', array(
+            'reports' => $reports,
+        ));
     }
 
     public function calendarAction()

@@ -51,6 +51,16 @@ tr:first-child td, td:first-child {
 
 {% block javascripts_extra %} 
     <script>
+
+        var jsonrows='{{ reports}}';
+        jsonStr = jsonrows.replace(/&quot;/g, '"');
+        var obj = JSON.parse(jsonStr);
+
+        for (var i = 0; i < obj.length; i++) {
+            alert( obj[i].description);
+        }
+
+
         for (var i = 0; i < 14; i++) {
             var row = document.querySelector("table").insertRow(-1);
             for (var j = 0; j < 14; j++) {

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ivory\OrderedFormBundle\IvoryOrderedFormBundle(),
             new Lifo\TypeaheadBundle\LifoTypeaheadBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
 
         );
