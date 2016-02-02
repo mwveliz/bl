@@ -28,13 +28,24 @@ class ComtradType extends AbstractType
                                ->orderBy('x.description', 'ASC');
                     },
             ))     
-                            
-                            
-            ->add('idState')
+
+            ->add('idState','entity_typeahead', array(
+                'label' => 'State',
+                'class' => 'SGIBundle:State',
+                'render' => 'id_state',
+                'route' => 'state_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                 ),                
+            ))                            
             ->add('idClient','entity_typeahead', array(
-                'class' => 'SGIBundle:User',
+                'label' => 'Client',
+                'class' => 'SGIBundle:Client',
                 'render' => 'id_client',
                 'route' => 'client_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                 ),                
             ))
                     
             ->add('description', 'text', array(

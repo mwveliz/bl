@@ -53,18 +53,19 @@
           $('span').removeClass("checked"); 
         });
 
-        $('#comtrad_idClient_text').attr('placeholder','Buscar usuario');
+        $('#comtrad_idClient_text').attr('placeholder','Find Client');
         $('#comtrad_idClient_text').attr('widget_addon', 'type:"append"');
+        $('#comtrad_idState_text').attr('placeholder','Find State');
+        $('#comtrad_idState_text').attr('widget_addon', 'type:"append"');
 
     });
-
-
-
-
-
-
  </script>
-
+<script type='text/javascript'>  
+$( document ).ready(function() { 
+    $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+    $(".currency").maskMoney();
+});
+</script>
 
 
  {% endblock %}

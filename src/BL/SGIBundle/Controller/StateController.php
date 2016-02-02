@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\State;
 use BL\SGIBundle\Form\StateType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * State controller.
@@ -33,6 +34,30 @@ class StateController extends Controller
         ));
     }
 
+    /**
+     * Lists all States entities.
+     *
+     * @Route("/", name="state_index_ajax")
+     * @Method("POST")
+     */
+    public function ajaxindexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $states = $em->getRepository('SGIBundle:State')->findAll();
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($states  as $state){
+            $indice=(string) $state->getId();
+            $objeto['id']=(string) $state->getId();
+            $objeto['value']= $state->getDescription();
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }    
+    
     /**
      * Creates a new State entity.
      *

@@ -81,7 +81,7 @@ class ComtradController extends Controller
                             'widget' => 'single_text',
                             'format' => 'dd-MM-yyyy',
                             'attr' => [
-                                'class' => 'form-control input-inline datepicker',
+                                'class' => 'form-control datepicker',
                                 'data-provide' => 'datepicker',
                                 'data-date-format' => 'dd-mm-yyyy'
                             ],
@@ -97,7 +97,7 @@ class ComtradController extends Controller
                     case 'Currency':
                         $form->add($entity->getDescription(),'number', array(
                             'mapped' => false,
-                            'attr' => array('class' => 'form-control input-sm')
+                            'attr' => array('class' => 'form-control input-sm currency')
                         ));
                         break;
                     case 'File':
@@ -108,7 +108,7 @@ class ComtradController extends Controller
                     case 'Numeric':
                         $form->add($entity->getDescription(),'number', array(
                             'mapped' => false,
-                            'attr' => array('class' => 'form-control input-sm')
+                            'attr' => array('class' => 'form-control input-sm numeric'),
                         ));
                         break;
                     case 'TextArea':
