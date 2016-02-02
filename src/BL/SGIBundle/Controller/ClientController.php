@@ -51,7 +51,7 @@ class ClientController extends Controller
         foreach($clients  as $client){
             $indice=(string) $client->getId();
             $objeto['id']=(string) $client->getId();
-            $objeto['value']=$client->getUserid()->getNombre().' '. $client->getUserid()->getApellido();
+            $objeto['value']= $client->getUserid()->getNombre().' '. $client->getUserid()->getApellido();
             array_push($arreglo, $objeto);
         }
 
