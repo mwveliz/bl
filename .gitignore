@@ -39,3 +39,7 @@
 # Composer PHAR
 /composer.phar
 /nbproject/private/
+
+# PhpStorm
+.idea/*
+

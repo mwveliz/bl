@@ -6,6 +6,10 @@ grid:
     path:     /grid
     defaults: { _controller: SGIBundle:Default:grid }
 
+griddos:
+    path:     /griddos
+    defaults: { _controller: SGIBundle:Default:griddos }
+
 calendar:
     path:     /calendar
     defaults: { _controller: SGIBundle:Default:calendar }
