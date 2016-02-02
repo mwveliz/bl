@@ -39,7 +39,7 @@
             -%}
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
             {% endstylesheets %}
-
+        <link href="{{ asset ('/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet/css" type="text/css" />       
         {% endblock %}
         
         {% block stylesheets_extra %} {% endblock %}
@@ -892,12 +892,13 @@
         <script src="{{ asset('/metronic/global/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/metronic/apps/scripts/calendar.js') }}" type="text/javascript"></script>
         <!-- END CALENDARIO -->
-            {% javascripts filter='?yui_js' output='js/compiled/site.js'
+        {% javascripts filter='?yui_js' output='js/compiled/site.js'
 
             '@lifo_typeahead_js'
-            %}
-            <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+        %}
+        <script src="{{ asset_url }}"></script>
+        <script src="{{ asset('/bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+        {% endjavascripts %}                
         {% endblock %}
         
         {% block javascripts_extra %} {% endblock %}

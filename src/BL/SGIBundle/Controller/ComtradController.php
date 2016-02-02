@@ -69,11 +69,24 @@ class ComtradController extends Controller
             
                 switch ($entity->getWiget()) {
                     case 'Calendar':
+                        /*
                         $form->add($entity->getDescription(),'date', array(
                             'input'  => 'timestamp',
                             'widget' => 'choice',
                             'mapped' => false,
                         ));
+                         * 
+                         */
+                        $form->add($entity->getDescription(), 'date', [
+                            'widget' => 'single_text',
+                            'format' => 'dd-MM-yyyy',
+                            'attr' => [
+                                'class' => 'form-control input-inline datepicker',
+                                'data-provide' => 'datepicker',
+                                'data-date-format' => 'dd-mm-yyyy'
+                            ],
+                            'mapped' => false,
+                        ]);                        
                         break;
                     case 'Characters':
                         $form->add($entity->getDescription(),'text', array(
