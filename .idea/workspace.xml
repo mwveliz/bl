@@ -2,380 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec59bdce-fd8b-4b0d-a443-5523b8e26952" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/err.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/header_bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/header_bg_left.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/header_bg_right.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/install_button.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/save_button.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/imgs/update_button.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhtmlxmenu_chrd.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhtmlxmenu_loader.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhtmlxmenu_subar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhtmlxmenu_upar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhxmenu_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhxmenu_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhxmenu_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhxmenu_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_skyblue/dhxmenu_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_chrd.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_loader.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_subar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxmenu_dhx_web/dhxmenu_upar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_imgs.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/dhxtoolbar_dhx_web/dhxtoolbar_imgs.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/align_center.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/align_justify.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/align_left.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/align_right.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/bold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_000000.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_0070c0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_00b050.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_00b0f0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_92d050.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_ff0000.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_ffc000.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_ffff00.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/colors/color_ffffff.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/export_excel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/export_pdf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/iconedit.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/italic.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/lock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/redo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/redo_dis.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/settings.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/undo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/undo_dis.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/icons/validate.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/invalid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/key.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/key_invalid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/settings.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sky_blue_grid.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sort_asc.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/imgs/sort_desc.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_btnarrow_dis.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_acccell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_layoutcell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_bg_pressed.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_sep_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_over2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/dhxtoolbar_dhx_skyblue/dhxtoolbar_subbg_sel2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/grid/sky_blue_grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/grid/sky_blue_grid_hor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/grid/sky_blue_sel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/grid/sky_blue_sel18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/imgs/grid/sky_blue_sel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxgrid_dhx_web/separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_btnarrow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_sliderpen.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_subsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topselbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/imgs/dhxtoolbar_dhx_web/dhxtoolbar_topsepbg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/griddos.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/install.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/installer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/spreadsheet.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlx_core.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlx_core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxgrid_borderselection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxgrid_reset.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxgrid_shcell.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_buffer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_context.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_css.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_export.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_headedit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_keys.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_mathhint.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_modal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_selection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxsh_undo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxspreadsheet.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxspreadsheet.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/dhtmlxspreadsheet_dhx_web.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/admin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/admin_connector.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/api.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/api_usage.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/auth.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/colors_generator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/data.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_common.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_mssql.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_mysqli.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_oracle.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_pdo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_postgre.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/db_sasql.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/grid_cell_connector.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/math.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/migrate.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/mysql.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/request.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/php/tools.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/skins/dhtmlxgrid_dhx_web.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/skins/dhtmlxtoolbar_dhx_web.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/codebase/spreadsheet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/01_simple_init.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/02_init_in_cont.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/03_loading.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/04_usage_key_full_access.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/05_usage_key_read_only.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/06_skin_usage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/07_math.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/08_two_sheets.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/samples/api_description.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/autumn/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/clouds/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/rose/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/salad/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sea/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/sky/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_skyblue/yellowsand/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/blue/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/brown/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/deepblue/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/grass/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/oak/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/ocean/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/rose/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/summer/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/installer/src/skins/dhx_web/violet/dhtmlx_custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/license.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/dhtmlxSS/readme.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/css/datetimepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/bootstrap-datetimepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/bootstrap-datetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.bg.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ca.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.cs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.da.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.de.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.el.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.es.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.fi.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.fr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.he.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.hr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.hu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.id.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.is.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.it.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ja.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.kr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.lt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.lv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ms.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.nb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.nl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.no.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.pl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.pt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.pt_BR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.rs-latin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.rs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ru.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.sk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.sl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.sv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.sw.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.th.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.tr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.ua.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.uk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/bundles/scdatetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BL/SGIBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/BL/SGIBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BL/SGIBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/BL/SGIBundle/Resources/config/routing.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig" afterPath="$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig" />
     </list>
     <ignored path="bl.iws" />
@@ -398,11 +26,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="grid.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="grid.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.980769">
-              <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.6752368">
+              <caret line="194" column="22" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="24.958334">
+              <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -428,21 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18963337">
+            <state vertical-scroll-proportion="0.0">
               <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="griddos.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/griddos.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.75">
-              <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -466,9 +94,9 @@
         <option value="$PROJECT_DIR$/app/Resources/views/comtrad/new.html.twig" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/ClientController.php" />
-        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig" />
       </list>
     </option>
   </component>
@@ -703,6 +331,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -995,26 +645,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.019556714">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43024772">
           <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.980769">
-          <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1037,7 +671,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/griddos.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.75">
+        <state vertical-scroll-proportion="0.58670145">
           <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
           <folding />
         </state>
@@ -1045,8 +679,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18963337">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="24.958334">
+          <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/grid.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6752368">
+          <caret line="194" column="22" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="22" />
           <folding />
         </state>
       </provider>
