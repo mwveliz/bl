@@ -61,7 +61,52 @@ class ComtradController extends Controller
         
       //  die(var_dump($clientes));
 
-
+        $entities = $em->getRepository('SGIBundle:FieldsComtrad')
+                ->findByTrackable(false);
+             
+        
+        foreach ($entities as $entity) {
+            
+                switch ($entity->getWiget()) {
+                    case 'Calendar':
+                        $form->add($entity->getDescription(),'date', array(
+                            'input'  => 'timestamp',
+                            'widget' => 'choice',
+                            'mapped' => false,
+                        ));
+                        break;
+                    case 'Characters':
+                        $form->add($entity->getDescription(),'text', array(
+                            'mapped' => false,
+                            'attr' => array('class' => 'form-control input-sm')
+                        ));
+                        break;
+                    case 'Currency':
+                        $form->add($entity->getDescription(),'number', array(
+                            'mapped' => false,
+                            'attr' => array('class' => 'form-control input-sm')
+                        ));
+                        break;
+                    case 'File':
+                        $form->add($entity->getDescription(),'file', array(
+                            'mapped' => false,
+                        ));
+                        break; 
+                    case 'Numeric':
+                        $form->add($entity->getDescription(),'number', array(
+                            'mapped' => false,
+                            'attr' => array('class' => 'form-control input-sm')
+                        ));
+                        break;
+                    case 'TextArea':
+                        $form->add($entity->getDescription(),'textarea', array(
+                            'mapped' => false,
+                            'attr' => array('class' => 'form-control input-sm')
+                        ));
+                        break;                    
+                }
+                  
+        }
                
         
         $form->handleRequest($request);
