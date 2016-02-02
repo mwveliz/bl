@@ -33,7 +33,13 @@
         <link href="{{ asset('/metronic/layouts/layout/css/themes/darkblue.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
         <link href="{{ asset('/metronic/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset ('/metronic/global/plugins/select2/css/select2.css') }}" rel="stylesheet/css" type="text/css" />
-        <!-- END THEME LAYOUT STYLES --> 
+        <!-- END THEME LAYOUT STYLES -->
+            {% stylesheets filter='cssrewrite,?yui_css' output='css/site.css'
+            '@lifo_typeahead_css'
+            -%}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+            {% endstylesheets %}
+
         {% endblock %}
         
         {% block stylesheets_extra %} {% endblock %}
@@ -886,9 +892,21 @@
         <script src="{{ asset('/metronic/global/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/metronic/apps/scripts/calendar.js') }}" type="text/javascript"></script>
         <!-- END CALENDARIO -->
+            {% javascripts filter='?yui_js' output='js/compiled/site.js'
 
+            '@lifo_typeahead_js'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
         
         {% block javascripts_extra %} {% endblock %}
+
+
+
+
+
+
+
     </body>
 </html>

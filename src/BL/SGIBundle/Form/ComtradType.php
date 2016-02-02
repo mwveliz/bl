@@ -31,6 +31,11 @@ class ComtradType extends AbstractType
                             
                             
             ->add('idState')
+            ->add('idClient','entity_typeahead', array(
+                'class' => 'SGIBundle:User',
+                'render' => 'id_client',
+                'route' => 'client_index_ajax',
+            ))
                     
             ->add('description', 'text', array(
                  'attr' => array('class' => 'form-control input-sm')

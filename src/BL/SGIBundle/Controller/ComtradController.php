@@ -36,6 +36,9 @@ class ComtradController extends Controller
         ));
     }
 
+
+
+
     /**
      * Creates a new Comtrad entity.
      *

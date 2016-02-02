@@ -44,13 +44,32 @@
          <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
  {% endblock %}
  
- {% block javascripts_extra %} 
+ {% block javascripts_extra %}
+
  <script>    
     $( document ).ready(function() {
         $('#clear').click(function() {
           $('form[name="{{ form.vars.name }}"]').trigger("reset");
           $('span').removeClass("checked"); 
         });
+
+        $('#comtrad_idClient_text').attr('placeholder','Buscar usuario');
+        $('#comtrad_idClient_text').attr('widget_addon', 'type:"append"');
+
     });
+
+
+
+
+
+
  </script>
+
+
+
  {% endblock %}
+
+
+
+
+

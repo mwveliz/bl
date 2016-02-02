@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Client;
 use BL\SGIBundle\Form\ClientType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Client controller.
@@ -32,6 +33,31 @@ class ClientController extends Controller
             'clients' => $clients,
         ));
     }
+
+    /**
+     * Lists all Client entities.
+     *
+     * @Route("/", name="client_index_ajax")
+     * @Method("POST")
+     */
+    public function ajaxindexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $clients = $em->getRepository('SGIBundle:Client')->findAll();
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($clients  as $client){
+            $indice=(string) $client->getId();
+            $objeto['id']=(string) $client->getId();
+            $objeto['value']=$client->getUserid()->getNombre().' '. $client->getUserid()->getApellido();
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }
+
 
     /**
      * Creates a new Client entity.

@@ -20,7 +20,9 @@
 	 "ruudy/metronic-bundle": "@dev",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "genemu/form-bundle": "2.2.*",
-        "egeloen/ordered-form-bundle": "~1.0"
+        "egeloen/ordered-form-bundle": "~1.0",
+        "lifo/typeahead-bundle": "^2.0",
+	"symfony/assetic-bundle": "~2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

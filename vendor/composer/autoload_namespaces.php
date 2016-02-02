@@ -11,6 +11,7 @@ return array(
     'SensioLabs\\Security' => array($vendorDir . '/sensiolabs/security-checker'),
     'Ruudy\\MetronicBundle' => array($vendorDir . '/ruudy/metronic-bundle'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
+    'Lifo\\TypeaheadBundle' => array($vendorDir . '/lifo/typeahead-bundle'),
     'Genemu\\Bundle\\FormBundle' => array($vendorDir . '/genemu/form-bundle'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
@@ -19,4 +20,5 @@ return array(
     'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
+    'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
 );
