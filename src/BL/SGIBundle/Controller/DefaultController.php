@@ -19,7 +19,7 @@ class DefaultController extends Controller
 
     public function griddosAction()
     {
-        return $this->render('SGIBundle:Default:grid.html.twig');
+        return $this->render('SGIBundle:Default:griddos.html.twig');
     }
 
     public function calendarAction()
