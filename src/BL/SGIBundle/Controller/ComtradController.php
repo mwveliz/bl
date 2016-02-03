@@ -11,6 +11,7 @@ use BL\SGIBundle\Form\ComtradType;
 use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use BL\SGIBundle\Entity\BlComtrad;
 
 /**
  * Comtrad controller.
@@ -62,22 +63,21 @@ class ComtradController extends Controller
       //  die(var_dump($clientes));
 
         $entities = $em->getRepository('SGIBundle:FieldsComtrad')
-                ->findByTrackable(false);
+                    ->findBy(
+                        array('trackable'=> false), 
+                        array('id' => 'ASC')
+                      );
              
         
         foreach ($entities as $entity) {
             
+            // Reemplazar los espacios en blanco
+            $desc = str_replace(" ","_",$entity->getDescription());            
+            
+                       
                 switch ($entity->getWiget()) {
                     case 'Calendar':
-                        /*
-                        $form->add($entity->getDescription(),'date', array(
-                            'input'  => 'timestamp',
-                            'widget' => 'choice',
-                            'mapped' => false,
-                        ));
-                         * 
-                         */
-                        $form->add($entity->getDescription(), 'date', [
+                        $form->add('EF-'.$desc, 'date', [
                             'widget' => 'single_text',
                             'format' => 'dd-MM-yyyy',
                             'attr' => [
@@ -86,35 +86,41 @@ class ComtradController extends Controller
                                 'data-date-format' => 'dd-mm-yyyy'
                             ],
                             'mapped' => false,
+                            'label' => $desc, 
                         ]);                        
                         break;
                     case 'Characters':
-                        $form->add($entity->getDescription(),'text', array(
+                        $form->add('EF-'.$desc,'text', array(
                             'mapped' => false,
-                            'attr' => array('class' => 'form-control input-sm')
+                            'attr' => array('class' => 'form-control input-sm'),
+                            'label' => $desc, 
                         ));
                         break;
                     case 'Currency':
-                        $form->add($entity->getDescription(),'number', array(
+                        $form->add('EF-'.$desc,'number', array(
                             'mapped' => false,
-                            'attr' => array('class' => 'form-control input-sm currency')
+                            'attr' => array('class' => 'form-control input-sm currency'),
+                            'label' => $desc, 
                         ));
                         break;
                     case 'File':
-                        $form->add($entity->getDescription(),'file', array(
+                        $form->add('EF-'.$desc,'file', array(
                             'mapped' => false,
+                            'label' => $desc, 
                         ));
                         break; 
                     case 'Numeric':
-                        $form->add($entity->getDescription(),'number', array(
+                        $form->add('EF-'.$desc,'number', array(
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm numeric'),
+                            'label' => $desc, 
                         ));
                         break;
                     case 'TextArea':
-                        $form->add($entity->getDescription(),'textarea', array(
+                        $form->add('EF-'.$desc,'textarea', array(
                             'mapped' => false,
-                            'attr' => array('class' => 'form-control input-sm')
+                            'attr' => array('class' => 'form-control input-sm'),
+                            'label' => $desc, 
                         ));
                         break;                    
                 }
@@ -124,16 +130,61 @@ class ComtradController extends Controller
         
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($comtrad);
             $em->flush();
+            
+            // Obtengo mi id y procedo a realizar los inserts en la tabla
+            // bl_comtrad
+            $id = $comtrad->getId();
+            
+            $arreglo = $_POST['comtrad'];
+
+            // Obtengo unicamente los elementos extra 
+            foreach ($arreglo as $key => $value) {
+                if (strpos($key, 'EF-') !== 0) {
+                    unset($arreglo[$key]);
+                } 
+            }             
+            
+            // Procedo a buscar mi campo dentro de la tabla fields
+            foreach ($arreglo as $key => $value) {
+                $key2 = str_replace("_"," ",$key);
+                $key2 = str_replace("EF-","",$key2);
+                               
+                $field = $em->getRepository('SGIBundle:FieldsComtrad')
+                        ->findBy(array('description' => $key2));
+                                
+                $getid_field = $field[0]->getId();
+                
+                
+                $bl_comtrad = new BlComtrad();
+                
+                $id_comtrad = $em->getReference
+                        ('BL\SGIBundle\Entity\Comtrad', $id); 
+                
+
+                $id_field = $em->getReference
+                        ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
+                
+                    
+                $bl_comtrad->setIdComtrad($id_comtrad);
+                $bl_comtrad->setIdField($id_field);
+                $bl_comtrad->setValue($value);
+                $em->persist($bl_comtrad);
+                $em->flush();                
+            }            
+            
             
             $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
             return $this->render('comtrad/index.html.twig', array(
                 'comtrads' => $comtrads,
             ));
+            
+            
         
         }
 

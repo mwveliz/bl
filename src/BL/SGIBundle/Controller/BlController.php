@@ -151,7 +151,7 @@ class BlController extends Controller
         $id = $request->get('id');        
         
         $arreglo = $this->showEntidad($form_name, $id);
-        
+                
         $form_name_lowcase = strtolower($form_name);
         $edit = $this->generateUrl($form_name_lowcase.'_edit', array('id' => $id));
         $delete = $this->generateUrl($form_name_lowcase.'_delete', array('id' => $id));        
@@ -224,7 +224,7 @@ class BlController extends Controller
                 // List of Fields 
                 $Fields = $em->getRepository('SGIBundle:BlComtrad')
                 ->findBy(array('idComtrad' => $id));
-                
+                                
                 foreach ($Fields as $Field) {
                     $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
                 }                
