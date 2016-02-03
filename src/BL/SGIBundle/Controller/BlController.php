@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Bl;
 use BL\SGIBundle\Form\BlType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Bl controller.
@@ -183,6 +184,12 @@ class BlController extends Controller
                                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">';
         
         foreach ($arreglo as $key => $val) {
+            if (strpos($val, 'photos/') !== false) {
+                list($photos,$controller,$archivo) = explode("/", $val);
+                $link = $this->generateUrl('download_image', array('filename' => $archivo,'controller' => $controller));
+                $download = '&nbsp;&nbsp;&nbsp;<a href = "' . $link . '" class = "btn btn-info btn-sm">Download</a>';
+                $val = '<a class="colorbox cboxElement"  href="/bl/web/'.$val.'"><img src="/bl/web/'.$val.'" height="100" width="100" /></a>'.$download;
+            }
             $objeto .= '<tr><td width="40%"><strong>'.$key.': </strong></td><td>'.$val.'</td></tr>';
         }
                                         
@@ -233,5 +240,27 @@ class BlController extends Controller
         
         
         return $arreglo; 
-    }    
+    } 
+    
+    
+    /**
+     *
+     * @Route("/download/{filename}/controller/{controller}", name="download_image")
+     * @Method("GET")
+     */    
+    public function downloadAction($filename,$controller)
+    {
+        $request = $this->get('request');
+        $path = $this->get('kernel')->getRootDir(). "/../web/photos/".$controller.'/';
+        $content = file_get_contents($path.$filename);
+
+        $response = new Response();
+
+        //set headers
+        $response->headers->set('Content-Type', 'mime/type');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename);
+
+        $response->setContent($content);
+        return $response;
+    }     
 }

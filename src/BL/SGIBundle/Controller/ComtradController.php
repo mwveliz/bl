@@ -60,8 +60,6 @@ class ComtradController extends Controller
             $clientes = $client->getUserid();
         }
         
-      //  die(var_dump($clientes));
-
         $entities = $em->getRepository('SGIBundle:FieldsComtrad')
                     ->findBy(
                         array('trackable'=> false), 
@@ -130,7 +128,6 @@ class ComtradController extends Controller
         
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($comtrad);
@@ -176,15 +173,74 @@ class ComtradController extends Controller
                 $em->persist($bl_comtrad);
                 $em->flush();                
             }            
+
             
-            
+            // Procedo a insertar cada uno de mis tipo Archivo
+            $arreglo_archivos = $_FILES;
+          
+            if (count($arreglo_archivos) > 0) {
+                $n = count($arreglo_archivos['comtrad']['name']);
+                
+                // Crear un directorio dentro de Web
+                if (!file_exists('photos')) {
+                    mkdir('photos', 0777, true);
+                }
+        
+                // Creo un directorio dentro que identifica a mi Controlador
+                $ruta_foto = 'photos/comtrad/';
+                if (!file_exists($ruta_foto)) {
+                    mkdir($ruta_foto, 0777, true);
+                }        
+                
+                $arreglo_archivos_name = $arreglo_archivos['comtrad']['name'];
+                
+                foreach ($arreglo_archivos_name as $key => $value) {
+                
+                    $file_name = $arreglo_archivos['comtrad']['name'][$key];
+                    $time=  time();
+                    
+                    // Obtengo la extensión de la imagen y la concateno
+                    list($img,$type) = explode('/', $arreglo_archivos['comtrad']['type'][$key]);
+                    $new_image_name =  $time.'.'.$type;        
+                    $destination = $ruta_foto.$new_image_name;
+                    
+                    // Realiza el movimiento de la foto
+                    move_uploaded_file($arreglo_archivos['comtrad']['tmp_name'][$key], $destination);
+                    
+                    // Creo mi registro
+                    $key2 = str_replace("_"," ",$key);
+                    $key2 = str_replace("EF-","",$key2); 
+                 
+                    $field = $em->getRepository('SGIBundle:FieldsComtrad')
+                            ->findBy(array('description' => $key2));
+
+                    $getid_field = $field[0]->getId();
+
+                    $bl_comtrad = new BlComtrad();
+
+                    $id_comtrad = $em->getReference
+                            ('BL\SGIBundle\Entity\Comtrad', $id); 
+
+
+                    $id_field = $em->getReference
+                            ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
+
+
+                    $bl_comtrad->setIdComtrad($id_comtrad);
+                    $bl_comtrad->setIdField($id_field);
+                    $bl_comtrad->setValue($destination);
+                    $em->persist($bl_comtrad);
+                    $em->flush();  
+    
+                }
+            }
+           
             $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
             return $this->render('comtrad/index.html.twig', array(
                 'comtrads' => $comtrads,
             ));
-            
-            
+              
         
         }
 
@@ -276,4 +332,5 @@ class ComtradController extends Controller
             ->getForm()
         ;
     }
+   
 }
