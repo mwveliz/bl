@@ -73,8 +73,6 @@ fos_user:
     group:
         group_class: BL\SGIBundle\Entity\Group    
 
-genemu_form:
-    autocomplete: ~
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'

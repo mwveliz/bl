@@ -55,22 +55,43 @@ tr:first-child td, td:first-child {
         var jsonrows='{{ reports}}'; //reports viene del controlador
         jsonStr = jsonrows.replace(/&quot;/g, '"'); //arreglar comillas dobles
         var obj = JSON.parse(jsonStr); //convertir a jsonArray
+        var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
+
+
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+             if (j==0)row.insertCell(-1).outerHTML = '&nbsp; ';
+             row.insertCell(-1).innerHTML =  letter;
 
 
 
-        for (var i = 0; i < obj.length; i++) { //rows
-            var row = document.querySelector("table").insertRow(-1);
-                if(i>0){
-                    row.insertCell(-1).outerHTML = obj[i].description;
-                } else{
-                    row.insertCell(-1).outerHTML = 'Track';
-                }
-            for (var j = 0; j < 14; j++) { //cols
-                if (i==0) row.insertCell(-1).outerHTML = 'Ene';
-                var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
-                row.insertCell(-1).innerHTML = i && j ? "<input id='" + letter + i + "'/>" : i || letter;
-            }
         }
+
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            if(j==0) row.insertCell(-1).outerHTML = '&nbsp; ';
+          //  row.insertCell(j).innerHTML =  j>0 ? "<input  value='" + months[j - 1] + "'/>":"1" ;
+            row.insertCell(j).innerHTML =  j>0 ? months[j - 1] :"1" ;
+        }
+
+        for (var i = 0; i <= obj.length+1; i++) { //rows
+            var row = document.querySelector("table").insertRow(-1);
+            if(i>1) row.insertCell(-1).outerHTML = obj[i-2].description+' ';
+
+            for (var j = 0; j <= 13; j++) { //cols
+                var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+                if (i>1) row.insertCell(-1).innerHTML = i && j? "<input id='" + letter + i + "'/>" : i || letter;
+
+
+            }
+
+
+        }
+
+
+
+
 
         var DATA = {}, INPUTS = [].slice.call(document.querySelectorAll("input"));
         INPUTS.forEach(function (elm) {
