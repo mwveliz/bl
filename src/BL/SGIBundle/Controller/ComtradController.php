@@ -12,6 +12,7 @@ use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use BL\SGIBundle\Entity\BlComtrad;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Comtrad controller.
@@ -52,14 +53,7 @@ class ComtradController extends Controller
         
         $comtrad = new Comtrad();
         $form = $this->createForm('BL\SGIBundle\Form\ComtradType', $comtrad);
-        
-        $clients = $em->getRepository('SGIBundle:Client')->findAll();
-
-        $clientes = array();
-        foreach ($clients as $client) {
-            $clientes = $client->getUserid();
-        }
-        
+              
         $entities = $em->getRepository('SGIBundle:FieldsComtrad')
                     ->findBy(
                         array('trackable'=> false), 
@@ -84,6 +78,7 @@ class ComtradController extends Controller
                                 'data-date-format' => 'dd-mm-yyyy'
                             ],
                             'mapped' => false,
+                            'required' => false,
                             'label' => $desc, 
                         ]);                        
                         break;
@@ -92,6 +87,7 @@ class ComtradController extends Controller
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm'),
                             'label' => $desc, 
+                            'required' => false,
                         ));
                         break;
                     case 'Currency':
@@ -99,12 +95,14 @@ class ComtradController extends Controller
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm currency'),
                             'label' => $desc, 
+                            'required' => false,
                         ));
                         break;
                     case 'File':
                         $form->add('EF-'.$desc,'file', array(
                             'mapped' => false,
                             'label' => $desc, 
+                            'required' => false,
                         ));
                         break; 
                     case 'Numeric':
@@ -112,6 +110,7 @@ class ComtradController extends Controller
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm numeric'),
                             'label' => $desc, 
+                            'required' => false,
                         ));
                         break;
                     case 'TextArea':
@@ -119,6 +118,7 @@ class ComtradController extends Controller
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm'),
                             'label' => $desc, 
+                            'required' => false,
                         ));
                         break;                    
                 }
@@ -166,18 +166,18 @@ class ComtradController extends Controller
                 $id_field = $em->getReference
                         ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
                 
-                    
-                $bl_comtrad->setIdComtrad($id_comtrad);
-                $bl_comtrad->setIdField($id_field);
-                $bl_comtrad->setValue($value);
-                $em->persist($bl_comtrad);
-                $em->flush();                
+                if (trim($value) != '') {    
+                    $bl_comtrad->setIdComtrad($id_comtrad);
+                    $bl_comtrad->setIdField($id_field);
+                    $bl_comtrad->setValue($value);
+                    $em->persist($bl_comtrad);
+                    $em->flush();       
+                }
             }            
 
             
             // Procedo a insertar cada uno de mis tipo Archivo
             $arreglo_archivos = $_FILES;
-          
             if (count($arreglo_archivos) > 0) {
                 $n = count($arreglo_archivos['comtrad']['name']);
                 
@@ -194,44 +194,50 @@ class ComtradController extends Controller
                 
                 $arreglo_archivos_name = $arreglo_archivos['comtrad']['name'];
                 
+
+                $i = 0;
                 foreach ($arreglo_archivos_name as $key => $value) {
                 
-                    $file_name = $arreglo_archivos['comtrad']['name'][$key];
-                    $time=  time();
+                    $file_name = $arreglo_archivos['comtrad']['name'][$key].' ';
+                    $time=  time().''.$i;
+                    if (trim($file_name) != '') {
                     
-                    // Obtengo la extensión de la imagen y la concateno
-                    list($img,$type) = explode('/', $arreglo_archivos['comtrad']['type'][$key]);
-                    $new_image_name =  $time.'.'.$type;        
-                    $destination = $ruta_foto.$new_image_name;
+                        // Obtengo la extensión de la imagen y la concateno
+                        list($img,$type) = explode('/', $arreglo_archivos['comtrad']['type'][$key]);
+                        $new_image_name =  $time.'.'.$type;        
+                        $destination = $ruta_foto.$new_image_name;
+
+                        // Realiza el movimiento de la foto
+                        move_uploaded_file($arreglo_archivos['comtrad']['tmp_name'][$key], $destination);
+
+                        // Creo mi registro
+                        $key2 = str_replace("_"," ",$key);
+                        $key2 = str_replace("EF-","",$key2); 
+
+                        $field = $em->getRepository('SGIBundle:FieldsComtrad')
+                                ->findBy(array('description' => $key2));
+
+                        $getid_field = $field[0]->getId();
+
+                        $bl_comtrad = new BlComtrad();
+
+                        $id_comtrad = $em->getReference
+                                ('BL\SGIBundle\Entity\Comtrad', $id); 
+
+
+                        $id_field = $em->getReference
+                                ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
+
+
+                        $bl_comtrad->setIdComtrad($id_comtrad);
+                        $bl_comtrad->setIdField($id_field);
+                        $bl_comtrad->setValue($destination);
+                        $em->persist($bl_comtrad);
+                        $em->flush();  
+
+                        $i++;
                     
-                    // Realiza el movimiento de la foto
-                    move_uploaded_file($arreglo_archivos['comtrad']['tmp_name'][$key], $destination);
-                    
-                    // Creo mi registro
-                    $key2 = str_replace("_"," ",$key);
-                    $key2 = str_replace("EF-","",$key2); 
-                 
-                    $field = $em->getRepository('SGIBundle:FieldsComtrad')
-                            ->findBy(array('description' => $key2));
-
-                    $getid_field = $field[0]->getId();
-
-                    $bl_comtrad = new BlComtrad();
-
-                    $id_comtrad = $em->getReference
-                            ('BL\SGIBundle\Entity\Comtrad', $id); 
-
-
-                    $id_field = $em->getReference
-                            ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
-
-
-                    $bl_comtrad->setIdComtrad($id_comtrad);
-                    $bl_comtrad->setIdField($id_field);
-                    $bl_comtrad->setValue($destination);
-                    $em->persist($bl_comtrad);
-                    $em->flush();  
-    
+                    }
                 }
             }
            
@@ -276,18 +282,312 @@ class ComtradController extends Controller
     {
         $deleteForm = $this->createDeleteForm($comtrad);
         $editForm = $this->createForm('BL\SGIBundle\Form\ComtradType', $comtrad);
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SGIBundle:FieldsComtrad')
+                    ->findBy(
+                        array('trackable'=> false), 
+                        array('id' => 'ASC')    
+                     );
+        if (count($entities) > 0) {
+            foreach ($entities as $entity) {
+            
+                // Reemplazar los espacios en blanco
+                $desc = str_replace(" ","_",$entity->getDescription());            
+
+                $bl_comtrad = $em->getRepository('SGIBundle:BlComtrad')
+                                ->findOneBy(
+                                    array('idField'=> $entity->getId(),'idComtrad' => $comtrad->getId()) 
+                                 );       
+                        
+                
+                    switch ($entity->getWiget()) {
+
+                        case 'Calendar':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue();
+                                $date = new \DateTime($value);
+
+                                $editForm->add('EF-'.$desc, 'date', [
+                                    'widget' => 'single_text',
+                                    'format' => 'dd-MM-yyyy',
+                                    'attr' => [
+                                        'class' => 'form-control datepicker',
+                                        'data-provide' => 'datepicker',
+                                        'data-date-format' => 'dd-mm-yyyy'
+                                    ],
+                                    'mapped' => false,
+                                    'label' => $desc, 
+                                    'required' => false,
+                                    'data' => $date, 
+                                ]);                                 
+                            } else {
+                                $editForm->add('EF-'.$desc, 'date', [
+                                    'widget' => 'single_text',
+                                    'format' => 'dd-MM-yyyy',
+                                    'attr' => [
+                                        'class' => 'form-control datepicker',
+                                        'data-provide' => 'datepicker',
+                                        'data-date-format' => 'dd-mm-yyyy'
+                                    ],
+                                    'mapped' => false,
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ]);
+                            }                      
+                            break;
+                        case 'Characters':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue();
+                                $editForm->add('EF-'.$desc,'text', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                 $editForm->add('EF-'.$desc,'text', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+
+                            break;
+                        case 'Currency':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue();
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm currency'),
+                                    'label' => $desc,
+                                    'data' => $value,
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm currency'),
+                                    'label' => $desc,
+                                    'required' => false,
+                                ));                                
+                            }
+                            break;
+                        case 'File':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue(); 
+                                $editForm->add('EF-'.$desc,'file', array(
+                                    'mapped' => false,
+                                    'label' => $desc,
+                                    'data_class' => 'Symfony\Component\HttpFoundation\File\File',
+                                    'required' => false,
+                                ));                               
+                            } else {
+                                $editForm->add('EF-'.$desc,'file', array(
+                                    'mapped' => false,
+                                    'label' => $desc,
+                                    'required' => false,
+                                ));                                
+                            }
+                            break; 
+                        case 'Numeric':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue();
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm numeric'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm numeric'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+                            break;
+                        case 'TextArea':
+                            if (count($bl_comtrad) > 0) {
+                                $value = $bl_comtrad->getValue();
+                                $editForm->add('EF-'.$desc,'textarea', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'textarea', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+
+                            break;                    
+                    }
+
+            }        
+        }
+        
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($comtrad);
             $em->flush();
-            
-            $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
-            return $this->render('comtrad/index.html.twig', array(
-                'comtrads' => $comtrads,
-            ));
+            // Obtengo mi id y procedo a realizar los inserts en la tabla
+            // bl_comtrad
+            $id = $comtrad->getId();
+            
+            $arreglo = $_POST['comtrad'];
+
+            // Obtengo unicamente los elementos extra 
+            foreach ($arreglo as $key => $value) {
+                if (strpos($key, 'EF-') !== 0) {
+                    unset($arreglo[$key]);
+                } 
+            }             
+            
+            // Procedo a buscar mi campo dentro de la tabla fields
+            foreach ($arreglo as $key => $value) {
+                $key2 = str_replace("_"," ",$key);
+                $key2 = str_replace("EF-","",$key2);
+                               
+                $field = $em->getRepository('SGIBundle:FieldsComtrad')
+                        ->findBy(array('description' => $key2));
+                                
+                $getid_field = $field[0]->getId();
+                
+                $bl_comtrad = $em->getRepository('SGIBundle:BlComtrad')
+                           ->findOneBy(array('idComtrad'=> $id,'idField' => $getid_field));     
+                
+                // El objeto ya existe
+                if (count($bl_comtrad) > 0) {     
+                    $em->remove($bl_comtrad);
+                    $em->flush();                   
+                }           
+                
+                $bl_comtrad = new BlComtrad();
+                
+                $id_comtrad = $em->getReference
+                        ('BL\SGIBundle\Entity\Comtrad', $id); 
+                
+
+                $id_field = $em->getReference
+                        ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
+                
+                if (trim($value) != '') {    
+                    $bl_comtrad->setIdComtrad($id_comtrad);
+                    $bl_comtrad->setIdField($id_field);
+                    $bl_comtrad->setValue($value);
+                    $em->persist($bl_comtrad);
+                    $em->flush();       
+                }
+                
+            }            
+
+            
+            // Procedo a insertar cada uno de mis tipo Archivo
+            $arreglo_archivos = $_FILES;
+            if (count($arreglo_archivos) > 0) {
+                $n = count($arreglo_archivos['comtrad']['name']);
+                
+                // Crear un directorio dentro de Web
+                if (!file_exists('photos')) {
+                    mkdir('photos', 0777, true);
+                }
+        
+                // Creo un directorio dentro que identifica a mi Controlador
+                $ruta_foto = 'photos/comtrad/';
+                if (!file_exists($ruta_foto)) {
+                    mkdir($ruta_foto, 0777, true);
+                }        
+                
+                $arreglo_archivos_name = $arreglo_archivos['comtrad']['name'];
+                
+
+                $i = 0;
+                foreach ($arreglo_archivos_name as $key => $value) {
+                
+                    $file_name = $arreglo_archivos['comtrad']['name'][$key].' ';
+                    $time=  time().''.$i;
+                    if (trim($file_name) != '') {
+                    
+                        // Obtengo la extensión de la imagen y la concateno
+                        list($img,$type) = explode('/', $arreglo_archivos['comtrad']['type'][$key]);
+                        $new_image_name =  $time.'.'.$type;        
+                        $destination = $ruta_foto.$new_image_name;
+
+                        // Realiza el movimiento de la foto
+                        move_uploaded_file($arreglo_archivos['comtrad']['tmp_name'][$key], $destination);
+
+                        // Creo mi registro
+                        $key2 = str_replace("_"," ",$key);
+                        $key2 = str_replace("EF-","",$key2); 
+
+                        $field = $em->getRepository('SGIBundle:FieldsComtrad')
+                                ->findBy(array('description' => $key2));
+
+                        $getid_field = $field[0]->getId();
+
+                        
+                        $bl_comtrad = $em->getRepository('SGIBundle:BlComtrad')
+                           ->findOneBy(array('idComtrad'=> $id,'idField' => $getid_field));                         
+                        $insert = false;
+                        // El objeto ya existe
+                        if (count($bl_comtrad) > 0) {
+                            // Si no me llega data no borro el que tengo
+                            if (trim($value) != '') {
+                                // Si hay un registro nuevo con valor
+                                // se borra
+                                $ruta_foto_eliminar = $bl_comtrad->getValue();
+                                $em->remove($bl_comtrad);
+                                $em->flush();
+                                // Borro el archivo fisico
+                                unlink($ruta_foto_eliminar);
+                                // Creo mi objeto nuevo
+                                $bl_comtrad = new BlComtrad();
+                                $insert = true;
+                            }
+                        } else {
+                            $insert = true;
+                        }
+                        
+                        // Procedo a insertar el archivo en caso de que 
+                        // las condiciones sean las deseadas
+                        if ($insert) {
+                            $bl_comtrad = new BlComtrad();
+
+                            $id_comtrad = $em->getReference
+                                    ('BL\SGIBundle\Entity\Comtrad', $id);
+
+                            $id_field = $em->getReference
+                                ('BL\SGIBundle\Entity\FieldsComtrad', $getid_field); 
+
+                            if (trim($value) != '') {         
+		                $bl_comtrad->setIdComtrad($id_comtrad);
+		                $bl_comtrad->setIdField($id_field);
+		                $bl_comtrad->setValue($destination);
+		                $em->persist($bl_comtrad);
+		                $em->flush();   
+                            }                            
+                        }
+
+                        $i++;
+                    
+                    }
+                }
+            }            
+            
+            return $this->redirectToRoute('comtrad_index');
         }
 
         return $this->render('comtrad/edit.html.twig', array(
@@ -300,20 +600,30 @@ class ComtradController extends Controller
     /**
      * Deletes a Comtrad entity.
      *
-     * @Route("/{id}", name="comtrad_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="comtrad_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, Comtrad $comtrad)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($comtrad);
-        $form->handleRequest($request);
+        $id = $request->get('id');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($comtrad);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $bl_comtrads = $em->getRepository('SGIBundle:BlComtrad')
+                    ->findBy(array('idComtrad'=> $id));
+        
+        if (count($bl_comtrads) > 0) {
+            foreach($bl_comtrads as $bl_comtrad) {
+                $em->remove($bl_comtrad);
+                $em->flush();           
+            }
         }
-
+        
+        $comtrad = $em->getRepository('SGIBundle:Comtrad')
+                    ->findOneBy(array('id'=> $id)); 
+        
+        $em->remove($comtrad);
+        $em->flush();
+        
         return $this->redirectToRoute('comtrad_index');
     }
 

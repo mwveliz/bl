@@ -23,6 +23,8 @@
                                         {{ form_start(form) }}
                                             {{ form_widget(form) }}
                                             <br>
+                                            <a class="btn btn-success pull-right" href="{{ path('comtrad_new') }}" ><span>Add Field</span></a>
+                                            <br><br>
                                             <button type="button" class="btn default"  id="clear">Clear</button>
                                             <a href="{{ path('comtrad_index') }}" class="btn red" role="button">Cancel</a>
                                             <button type="submit" class="btn blue">Submit</button>

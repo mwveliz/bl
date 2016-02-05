@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="state", indexes={@ORM\Index(name="IDX_A393D2FB8DEE6016", columns={"id_country"})})
  * @ORM\Entity
  */
-class State
-{
+class State {
+
     /**
      * @var string
      *
@@ -39,16 +39,13 @@ class State
      */
     private $idCountry;
 
-
-
     /**
      * Set description
      *
      * @param string $description
      * @return State
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -59,8 +56,7 @@ class State
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -69,8 +65,7 @@ class State
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -80,8 +75,7 @@ class State
      * @param \BL\SGIBundle\Entity\Country $idCountry
      * @return State
      */
-    public function setIdCountry(\BL\SGIBundle\Entity\Country $idCountry = null)
-    {
+    public function setIdCountry(\BL\SGIBundle\Entity\Country $idCountry = null) {
         $this->idCountry = $idCountry;
 
         return $this;
@@ -92,13 +86,12 @@ class State
      *
      * @return \BL\SGIBundle\Entity\Country 
      */
-    public function getIdCountry()
-    {
+    public function getIdCountry() {
         return $this->idCountry;
     }
-    
-    public function __toString()
-	{
-    return $this->description;
-	}
+
+    public function __toString() {
+        return $this->idCountry->description . ' ' . $this->description;
+    }
+
 }

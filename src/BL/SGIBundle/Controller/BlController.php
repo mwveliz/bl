@@ -149,14 +149,14 @@ class BlController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $form_name = $request->get('form_name');
-        $id = $request->get('id');        
+        $id = $request->get('id');  
         
         $arreglo = $this->showEntidad($form_name, $id);
                 
         $form_name_lowcase = strtolower($form_name);
         $edit = $this->generateUrl($form_name_lowcase.'_edit', array('id' => $id));
-        $delete = $this->generateUrl($form_name_lowcase.'_delete', array('id' => $id));        
-        
+        $delete = $this->generateUrl($form_name_lowcase.'_delete', array('id' => $id));   
+               
         $objeto = '<div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption font-green">
@@ -174,7 +174,7 @@ class BlController extends Controller
                                                         <i class="fa fa-pencil"></i> Edit </a>
                                                 </li>
                                                 <li>
-                                                    <a href="'.$delete.'"><i class="fa fa-trash-o"></i> Delete </a> 
+                                                    <a data-href="'.$delete.'" data-toggle="confirmation" data-original-title="" title="" ><i class="fa fa-trash-o"></i> Delete </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -231,10 +231,13 @@ class BlController extends Controller
                 // List of Fields 
                 $Fields = $em->getRepository('SGIBundle:BlComtrad')
                 ->findBy(array('idComtrad' => $id));
-                                
-                foreach ($Fields as $Field) {
-                    $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
-                }                
+                
+                if (count($Fields) > 0) {
+                    foreach ($Fields as $Field) {
+                        $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
+                    }    
+                }
+
                 break;               
         }
         
@@ -262,5 +265,32 @@ class BlController extends Controller
 
         $response->setContent($content);
         return $response;
-    }     
+    } 
+    
+    /**
+     * @Route("/ajax/cliente_estado", name="client_state_ajax")
+     * @Method("GET")
+     */   
+    public function clientstateajaxAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $idclient = $request->get('idclient');
+        $idstate = $request->get('idstate');
+                
+        $Client = $em->getRepository('SGIBundle:Client')
+                ->findOneBy(array('id' => $idclient));  
+        
+        $State = $em->getRepository('SGIBundle:State')
+                ->findOneBy(array('id' => $idstate));  
+        
+        $client = $Client->getUserid()->getNombre().' '.$Client->getUserid()->getApellido();
+        $state = $State->getIdCountry()->getDescription().' - '.$State->getDescription();
+        
+        $arreglo = array();
+        $arreglo['client'] = $client;
+        $arreglo['state'] = $state;
+        
+        return new JsonResponse($arreglo);
+    }    
 }

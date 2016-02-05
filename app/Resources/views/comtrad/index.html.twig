@@ -75,6 +75,7 @@
                         </div>     
                     </div>
             <!-- END CONTENT BODY -->
+            
         </div>                                       
         <!-- END CONTAINER -->
      
@@ -109,6 +110,7 @@
             form_name = $(this).attr('param2');
             temp = form_name.split("\Controller");
             temp = temp[1].replace(/\\/g, '');
+            
             $.ajax({
                 url: "{{ path('show_ajax') }}",
                 data: "form_name=" + temp +
@@ -118,6 +120,8 @@
                     $('#show').html(data);
                     $('#agregar').html('<button class="btn green-sharp btn-large" data-toggle="confirmation" data-original-title="Are you sure ?" title="">Default configuration</button>');
                     $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});
+                    
+                    $(document).find('[data-toggle="confirmation"]').confirmation();
                 }
             });
         });

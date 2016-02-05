@@ -51,7 +51,7 @@ class StateController extends Controller
         foreach($states  as $state){
             $indice=(string) $state->getId();
             $objeto['id']=(string) $state->getId();
-            $objeto['value']= $state->getDescription();
+            $objeto['value']= $state->getIdCountry()->getDescription() . ' - ' .$state->getDescription();
             array_push($arreglo, $objeto);
         }
 
