@@ -1,7 +1,7 @@
 {%extends '::base.html.twig'%}
 
 {% block stylesheets_extra %} 
-<style>    
+<style>
 
 input {
     border: none;
@@ -10,74 +10,56 @@ input {
     padding: 2px;
 }
 
-input:hover {
-    background-color: #eee;
+#table1 tr:first-child td {
+    background-color: #DDD;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
 }
-
-input:focus {
-    background-color: #ccf;
-}
-
-input:not(:focus) {
-    text-align: right;
-}
-
-table {
-    border-collapse: collapse;  
-}
-
-td {
-    border: 1px solid #999;
-    padding: 0;
-}
-
-tr:first-child td, td:first-child {
-    background-color: #ccc;
-    padding: 1px 3px;
-    font-weight: bold;
-    text-align: center;
-}
-
 
 </style>
 {% endblock %}
 
 
 {% block body %}
-    
-<table></table>
-    
+    <div id="table1" class="table-responsive">
+        <table class="table table-striped table-bordered table-hover"></table>
+    </div>
+
+    <div class="row col-md-4">
+        <table id="table2" class="table table-advance table-striped table-bordered table-hover"></table>
+    </div>
+
 {%endblock%}
 
 {% block javascripts_extra %} 
     <script>
+        var fctracks='{{ fctracks}}'; // viene del controlador
+        var fcnotracks='{{ fcnotracks}}'; // viene del controlador
 
-        var jsonrows='{{ reports}}'; //reports viene del controlador
-        jsonStr = jsonrows.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        jsonStr = fctracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        jsonStr2 = fcnotracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
         var obj = JSON.parse(jsonStr); //convertir a jsonArray
-        var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
+        var obj2 = JSON.parse(jsonStr2); //convertir a jsonArray
 
+        var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
 
         var row = document.querySelector("table").insertRow(-1);
         for (var j = 0; j <= 13; j++) { //cols
             var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
              if (j==0)row.insertCell(-1).outerHTML = '&nbsp; ';
              row.insertCell(-1).innerHTML =  letter;
-
-
-
         }
 
         var row = document.querySelector("table").insertRow(-1);
         for (var j = 0; j <= 13; j++) { //cols
             if(j==0) row.insertCell(-1).outerHTML = '&nbsp; ';
-          //  row.insertCell(j).innerHTML =  j>0 ? "<input  value='" + months[j - 1] + "'/>":"1" ;
             row.insertCell(j).innerHTML =  j>0 ? months[j - 1] :"1" ;
         }
 
         for (var i = 0; i <= obj.length+1; i++) { //rows
             var row = document.querySelector("table").insertRow(-1);
-            if(i>1) row.insertCell(-1).outerHTML = obj[i-2].description+' ';
+            if(i>1) row.insertCell(-1).outerHTML = '<strong>'+obj[i-2].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
 
             for (var j = 0; j <= 13; j++) { //cols
                 var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
@@ -85,10 +67,18 @@ tr:first-child td, td:first-child {
 
 
             }
-
-
         }
+/*segunda tabla*/
 
+//        /var row = document.querySelector("#table2").insertRow(-1);
+
+        for (var i = 0; i < obj2.length; i++) { //rows
+            var row = document.querySelector("#table2").insertRow(-1);
+            row.insertCell(-1).innerHTML = '<strong>'+obj2[i].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+
+            row.insertCell(-1).innerHTML = "<textarea id='table2" + obj2[i] + "'/>" ;
+        }
+        var ele=document.querySelector("#table2 td").style.width="20%";
 
 
 
@@ -122,6 +112,10 @@ tr:first-child td, td:first-child {
                 }
             });
         })();
+
+
+
+
     </script>
 {% endblock %}
 

@@ -15,16 +15,16 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
-
-
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');
-        $reports = $serializer->serialize($fieldsComtrads , 'json');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
 
-
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
 
         return $this->render('SGIBundle:Default:griddos.html.twig', array(
-            'reports' => $reports,
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
         ));
     }
 
@@ -35,16 +35,16 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
-
-
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');
-        $reports = $serializer->serialize($fieldsComtrads , 'json');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
 
-
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
 
         return $this->render('SGIBundle:Default:griddos.html.twig', array(
-            'reports' => $reports,
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
         ));
     }
 
