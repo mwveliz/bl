@@ -308,19 +308,19 @@ class ComtradController extends Controller
                                 $value = $bl_comtrad->getValue();
                                 $date = new \DateTime($value);
 
-                                $editForm->add('EF-'.$desc, 'date', [
+                                $editForm->add('EF-'.$desc, 'date', array(
                                     'widget' => 'single_text',
                                     'format' => 'dd-MM-yyyy',
-                                    'attr' => [
+                                    'attr' => array(
                                         'class' => 'form-control datepicker',
                                         'data-provide' => 'datepicker',
                                         'data-date-format' => 'dd-mm-yyyy'
-                                    ],
+                                    ),
                                     'mapped' => false,
                                     'label' => $desc, 
                                     'required' => false,
                                     'data' => $date, 
-                                ]);                                 
+                                ));                                 
                             } else {
                                 $editForm->add('EF-'.$desc, 'date', [
                                     'widget' => 'single_text',

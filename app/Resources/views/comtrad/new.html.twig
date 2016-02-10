@@ -66,6 +66,8 @@
 $( document ).ready(function() { 
     $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
     $(".currency").maskMoney();
+    
+    $('<a class="btn btn-success pull-right" href="{{ path('comtrad_index') }}"><span>Add Type</span></a><br>').insertAfter( $('#comtrad_IdTypeComtrad').closest("div") );
 });
 </script>
 
