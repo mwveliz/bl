@@ -69,18 +69,18 @@ class ComtradController extends Controller
                        
                 switch ($entity->getWiget()) {
                     case 'Calendar':
-                        $form->add('EF-'.$desc, 'date', [
+                        $form->add('EF-'.$desc, 'date', array(
                             'widget' => 'single_text',
                             'format' => 'dd-MM-yyyy',
-                            'attr' => [
+                            'attr' => array(
                                 'class' => 'form-control datepicker',
                                 'data-provide' => 'datepicker',
                                 'data-date-format' => 'dd-mm-yyyy'
-                            ],
+                            ),
                             'mapped' => false,
                             'required' => false,
                             'label' => $desc, 
-                        ]);                        
+                        ));                        
                         break;
                     case 'Characters':
                         $form->add('EF-'.$desc,'text', array(
