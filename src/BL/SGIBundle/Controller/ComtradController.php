@@ -322,7 +322,7 @@ class ComtradController extends Controller
                                     'data' => $date, 
                                 ));                                 
                             } else {
-                                $editForm->add('EF-'.$desc, 'date', [
+                                $editForm->add('EF-'.$desc, 'date', array(
                                     'widget' => 'single_text',
                                     'format' => 'dd-MM-yyyy',
                                     'attr' => [
@@ -333,7 +333,7 @@ class ComtradController extends Controller
                                     'mapped' => false,
                                     'label' => $desc, 
                                     'required' => false,
-                                ]);
+                                ));
                             }                      
                             break;
                         case 'Characters':
