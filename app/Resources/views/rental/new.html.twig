@@ -1,16 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Rental creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('rental_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block page_title %}
+    Rental
 {% endblock %}
+
+{% block page_description %}
+    Rental Business Line
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 ">
+            <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> New Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <a class="btn btn-success pull-right" href="{{ path('rental_new') }}" ><span>Add Field</span></a>
+                    <br><br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+                    <a href="{{ path('rental_index') }}" class="btn red" role="button">Cancel</a>
+                    <button type="submit" class="btn blue">Submit</button>
+                    {{ form_end(form) }}
+                    <br>
+                    <div class="form-actions">
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+        <div class="col-md-6 ">
+
+        </div>
+    </div>
+{% endblock %}
+
+ {% block stylesheets_extra %}
+     <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
+
+ {% block javascripts_extra %}
+
+     <script>
+         $( document ).ready(function() {
+             $('#clear').click(function() {
+                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
+                 $('span').removeClass("checked");
+             });
+
+             $('#rental_idClient_text').attr('placeholder','Find Client');
+             $('#rental_idClient_text').attr('widget_addon', 'type:"append"');
+             $('#rental_idState_text').attr('placeholder','Find State');
+             $('#rental_idState_text').attr('widget_addon', 'type:"append"');
+
+         });
+     </script>
+     <script type='text/javascript'>
+         $( document ).ready(function() {
+             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+             $(".currency").maskMoney();
+
+             $('<a class="btn btn-success pull-right" href="{{ path('rental_index') }}"><span>Add Type</span></a><br>').insertAfter( $('#rental_IdTypeRental').closest("div") );
+         });
+     </script>
+
+
+ {% endblock %}
+
+
+
+
+

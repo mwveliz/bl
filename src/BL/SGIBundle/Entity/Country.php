@@ -17,7 +17,7 @@ class Country
      *
      * @ORM\Column(name="description", type="string", nullable=true)
      */
-    private $description;
+    public $description;
 
     /**
      * @var integer

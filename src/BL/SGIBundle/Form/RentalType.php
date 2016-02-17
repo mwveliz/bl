@@ -5,6 +5,7 @@ namespace BL\SGIBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 
 class RentalType extends AbstractType
 {
@@ -15,9 +16,29 @@ class RentalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('idClient')
-            ->add('idState')
+
+            ->add('idState','entity_typeahead', array(
+                'label' => 'State',
+                'class' => 'SGIBundle:State',
+                'render' => 'id_state',
+                'route' => 'state_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                ),
+            ))
+            ->add('idClient','entity_typeahead', array(
+                'label' => 'Client',
+                'class' => 'SGIBundle:Client',
+                'render' => 'id_client',
+                'route' => 'client_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                ),
+            ))
+
+            ->add('description', 'text', array(
+                'attr' => array('class' => 'form-control input-sm')
+            ))
         ;
     }
     
