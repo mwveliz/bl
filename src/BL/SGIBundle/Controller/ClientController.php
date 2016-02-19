@@ -163,4 +163,28 @@ class ClientController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Lists all User entities.
+     *
+     * @Route("/", name="user_index_ajax")
+     * @Method("POST")
+     */
+    public function ajaxuserindexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('SGIBundle:Client')->findBy(array('enabled' => true));
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($users  as $user){
+            $indice=(string) $user->getId();
+            $objeto['id']=(string) $user->getId();
+            $objeto['value']= $user->getNombre().' '. $user->getApellido();
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }    
 }

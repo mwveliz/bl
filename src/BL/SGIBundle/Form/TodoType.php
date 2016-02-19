@@ -5,6 +5,8 @@ namespace BL\SGIBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+
 
 class TodoType extends AbstractType
 {
@@ -15,11 +17,34 @@ class TodoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('completed')
-            ->add('userid')
-            ->add('idPriority')
-            ->add('idBl')
+            ->add('userid','entity_typeahead', array(
+                'label' => 'Assigned to',
+                'class' => 'SGIBundle:Usuario',
+                'render' => 'userid',
+                'route' => 'user_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                 ),                
+            ))    
+            ->add('idBl')                
+            ->add('description', 'text', array(
+                 'attr' => array('class' => 'form-control input-sm')
+             ))
+            ->add('IdPriority', 'entity', array(
+                    'label' => 'Priority',
+                    'class' => 'SGIBundle:TodoPriority',
+                    'attr' => array(
+                        'class' => 'form-control form-group'
+                     ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('x')
+                               ->orderBy('x.description', 'ASC');
+                    },
+            ))   
+            ->add('completed', 'checkbox', array(
+                   'attr' => array('class' => 'checkbox-list'),
+                   'required' => false,
+             ))                             
         ;
     }
     

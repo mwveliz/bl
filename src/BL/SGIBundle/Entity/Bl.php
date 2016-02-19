@@ -95,6 +95,6 @@ class Bl
     }
      public function __toString()
 	{
-    return $this->description;
+    return $this->codeBl;
 	}
 }

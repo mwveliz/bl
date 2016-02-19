@@ -50,7 +50,9 @@ class TodoController extends Controller
             $em->persist($todo);
             $em->flush();
 
-            return $this->redirectToRoute('todo_show', array('id' => $todo->getId()));
+            // Redirecciono dependiendo de mi accion
+            $action = $todo->getIdBl()->getType(); 
+            return $this->redirectToRoute($action.'_index');
         }
 
         return $this->render('todo/new.html.twig', array(

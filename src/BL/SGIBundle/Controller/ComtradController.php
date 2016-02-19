@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use BL\SGIBundle\Entity\BlComtrad;
 use Symfony\Component\Validator\Constraints\DateTime;
+use BL\SGIBundle\Entity\Bl;
 
 /**
  * Comtrad controller.
@@ -216,6 +217,12 @@ class ComtradController extends Controller
                 }
             }            
 
+            // Inserto la Bl
+            $bl= new Bl();
+            $bl->setCodeBl($id);
+            $bl->setType('comtrad');
+            $em->persist($bl); 
+            $em->flush();             
             
             // Procedo a insertar cada uno de mis tipo Archivo
             $arreglo_archivos = $_FILES;
