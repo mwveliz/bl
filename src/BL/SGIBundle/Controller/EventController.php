@@ -34,6 +34,64 @@ class EventController extends Controller
     }
 
     /**
+     *
+     * @Route("/calendar", name="comtrad_list")
+     * @Method("GET")
+     */
+    public function calendarAction()
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                    ->getToken()
+                    ->getUser());
+
+        $usuario = $user->getUsername();
+        
+        // Obtengo el grupo de mi usuario
+        $grupo_usuario = $user->getGroupNames();
+        $grupo_usuario = $grupo_usuario[0]; 
+        
+        $em = $this->getDoctrine()->getManager();
+        $event = '';
+        
+        if ($grupo_usuario == 'Administrator') {
+                   
+            $date = date('Y-m-d H:i:s');
+            
+            $results = $em
+               ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
+                       . 'ORDER BY e.datetimeStart ASC')
+               ->setParameter('now', new \DateTime('now'))
+               ->getResult();            
+
+        }  else {
+                        
+            $parameters = array(
+                'now' => new \DateTime('now'), 
+                'userid' => $user->getId()
+            );
+            $results = $em
+               ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
+                       . 'and e.userid = :userid ORDER BY e.datetimeStart ASC')
+               ->setParameters($parameters)
+               ->getResult();            
+            
+        }          
+             
+        if (count($results) > 0) {
+            foreach($results as $result) {
+                $event .= $result->getDescription().' ';
+            }      
+        }
+            
+        die(var_dump($event));        
+        
+        return $usuario;
+        
+    }    
+    
+    /**
      * Creates a new Event entity.
      *
      * @Route("/new", name="event_new")
@@ -137,4 +195,5 @@ class EventController extends Controller
             ->getForm()
         ;
     }
+    
 }
