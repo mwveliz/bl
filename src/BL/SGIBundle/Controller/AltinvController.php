@@ -34,6 +34,46 @@ class AltinvController extends Controller
     }
 
     /**
+     * Lists all Altinv entities.
+     *
+     * @Route("/list", name="altinv_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $altinvs = $em->getRepository('SGIBundle:Altinv')->findAll();
+
+        return $this->render('altinv/list.html.twig', array(
+            'altinvs' => $altinvs,
+        ));
+    }
+
+    /**
+     * Tracks all Altinv entities.
+     *
+     * @Route("/track", name="altinv_track")
+     * @Method("GET")
+     */
+    public function trackAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $serializer = $this->container->get('serializer');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+
+        return $this->render('altinv/track.html.twig', array(
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
+        ));
+    }
+
+    /**
      * Creates a new Altinv entity.
      *
      * @Route("/new", name="altinv_new")

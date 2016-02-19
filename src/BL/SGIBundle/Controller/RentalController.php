@@ -34,6 +34,47 @@ class RentalController extends Controller
     }
 
     /**
+     * Lists all Rental entities.
+     *
+     * @Route("/list", name="rental_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $rentals = $em->getRepository('SGIBundle:Rental')->findAll();
+
+        return $this->render('rental/list.html.twig', array(
+            'rentals' => $rentals,
+        ));
+    }
+
+
+    /**
+     * Lists all Rental entities.
+     *
+     * @Route("/track", name="rental_track")
+     * @Method("GET")
+     */
+    public function trackAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $serializer = $this->container->get('serializer');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+
+        return $this->render('rental/track.html.twig', array(
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
+        ));
+    }
+
+    /**
      * Creates a new Rental entity.
      *
      * @Route("/new", name="rental_new")

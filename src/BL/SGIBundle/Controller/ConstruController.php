@@ -32,6 +32,45 @@ class ConstruController extends Controller
             'construs' => $construs,
         ));
     }
+    /**
+     * Lists all Constru entities.
+     *
+     * @Route("/list", name="constru_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $construs = $em->getRepository('SGIBundle:Constru')->findAll();
+
+        return $this->render('constru/list.html.twig', array(
+            'construs' => $construs,
+        ));
+    }
+
+    /**
+     * track all Constru entities.
+     *
+     * @Route("/track", name="constru_track")
+     * @Method("GET")
+     */
+    public function trackAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $serializer = $this->container->get('serializer');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+
+        return $this->render('constru/track.html.twig', array(
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
+        ));
+    }
 
     /**
      * Creates a new Constru entity.

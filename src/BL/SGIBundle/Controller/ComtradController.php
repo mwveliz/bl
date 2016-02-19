@@ -38,6 +38,47 @@ class ComtradController extends Controller
         ));
     }
 
+    /**
+     * Lists all Comtrad entities.
+     *
+     * @Route("/list", name="comtrad_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
+
+        return $this->render('comtrad/list.html.twig', array(
+            'comtrads' => $comtrads,
+        ));
+    }
+
+    /**
+     * Track all Comtrad entities.
+     *
+     * @Route("/track", name="comtrad_track")
+     * @Method("GET")
+     */
+    public function trackAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+
+        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $serializer = $this->container->get('serializer');
+        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+
+        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $serializer = $this->container->get('serializer');
+        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+
+        return $this->render('comtrad/track.html.twig', array(
+            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
+        ));
+    }
+
 
 
 

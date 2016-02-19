@@ -1,9 +1,4 @@
 
-
-{% block page_title %}
-    Alternative Investments
-{% endblock %}
-
 {% block page_description %}
     Type of Alternative Investments
 {% endblock %}
@@ -25,7 +20,7 @@
                     <br>
                     <button type="button" class="btn default"  id="clear">Clear</button>
 
-                    <button type="submit" class="btn blue">Submit</button>
+                    <button type="submit" id="btn_addtype" class="btn blue">Submit</button>
                     {{ form_end(form) }}
                     <br>
                     <div class="form-actions">
@@ -47,7 +42,17 @@
  {% block javascripts_extra %}
      <script>
          $( document ).ready(function() {
-             $('#clear').click(function() {
+             $('#btn_addtype').click(function(e) {
+                 e.preventDefault();
+                 alert();
+                 $.post( "{{ path('typealtinv_new') }}", function( data ) {
+                     $( ".result" ).html( data );
+                 });
+
+             });
+
+
+                 $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
                  $('span').removeClass("checked");
              });
