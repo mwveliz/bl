@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+
 
 {% block page_title %}
     Alternative Investments
 {% endblock %}
 
 {% block page_description %}
-    Alternative Investments Business Line
+    Type of Alternative Investments
 {% endblock %}
 
 {% block body %}
@@ -23,10 +23,8 @@
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <br>
-                    <a id= "a_addfield" class="btn btn-success pull-right" href="#" ><span>Add Field</span></a>
-                    <br><br>
                     <button type="button" class="btn default"  id="clear">Clear</button>
-                    <a href="{{ path('altinv_index') }}" class="btn red" role="button">Cancel</a>
+
                     <button type="submit" class="btn blue">Submit</button>
                     {{ form_end(form) }}
                     <br>
@@ -36,9 +34,7 @@
             </div>
             <!-- END SAMPLE FORM PORTLET-->
         </div>
-        <div class="col-md-6"  id="addtype">
-
-
+        <div class="col-md-6 ">
 
         </div>
     </div>
@@ -49,40 +45,12 @@
  {% endblock %}
 
  {% block javascripts_extra %}
-
      <script>
          $( document ).ready(function() {
              $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
                  $('span').removeClass("checked");
              });
-
-             $('#altinv_idClient_text').attr('placeholder','Find Client');
-             $('#altinv_idClient_text').attr('widget_addon', 'type:"append"');
-             $('#altinv_idState_text').attr('placeholder','Find State');
-             $('#altinv_idState_text').attr('widget_addon', 'type:"append"');
-
          });
      </script>
-     <script type='text/javascript'>
-         $( document ).ready(function() {
-             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
-             $(".currency").maskMoney();
-
-             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Type</span></a><br>').insertAfter( $('#altinv_IdTypeAltinv').closest("div") );
-
-             $('#a_addtype').on('click',function(e) {
-                 e.preventDefault();
-                 $('#addtype').load("{{ path('typealtinv_new') }}");
-
-             });
-         });
-     </script>
-
-
  {% endblock %}
-
-
-
-
-

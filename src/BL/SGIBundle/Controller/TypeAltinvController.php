@@ -41,6 +41,7 @@ class TypeAltinvController extends Controller
      */
     public function newAction(Request $request)
     {
+        $ruta='typealtinv/new.html.twig';
         $typeAltinv = new TypeAltinv();
         $form = $this->createForm('BL\SGIBundle\Form\TypeAltinvType', $typeAltinv);
         $form->handleRequest($request);
@@ -53,10 +54,16 @@ class TypeAltinvController extends Controller
             return $this->redirectToRoute('typealtinv_show', array('id' => $typealtinv->getId()));
         }
 
-        return $this->render('typealtinv/new.html.twig', array(
+
+        if ($request->isXmlHttpRequest()) $ruta='typealtinv/ajax_new.html.twig'; //si es por ajhax cargo el twig
+
+        return $this->render($ruta, array(
             'typeAltinv' => $typeAltinv,
             'form' => $form->createView(),
         ));
+
+
+
     }
 
     /**
