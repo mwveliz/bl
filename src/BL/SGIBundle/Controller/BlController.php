@@ -34,6 +34,28 @@ class BlController extends Controller
             'bls' => $bls,
         ));
     }
+    
+    /**
+     * Lists all Bl entities.
+     *
+     * @Route("/showala", name="ajax_showlogactivity")
+     * @Method("GET")
+     */
+    public function showalaAction(Request $request)
+    {
+        $id = $request->get('id');  
+        $form = $request->get('form');  
+        $em = $this->getDoctrine()->getManager();
+
+        $object = $em->getRepository('SGIBundle:Todo')->findBy(array('id' => 2));
+        
+        
+        $ruta='todo/ajax_show.html.twig';
+
+        return $this->render($ruta, array(
+            'todo' => $object,
+        ));
+    }     
 
     /**
      * Creates a new Bl entity.
@@ -139,6 +161,7 @@ class BlController extends Controller
             ->getForm()
         ;
     }
+       
     
     /**
      * @Route("/ajax/mostrar", name="show_ajax")
@@ -229,10 +252,7 @@ class BlController extends Controller
                 $trackable = $form->getTrackable() ? "True":"False";
                 $arreglo =  array('Id' => $id,'Description' => $form->getDescription(),
                     'Widget' => $form->getWiget(), 'Trackable' => $trackable);
-                break;
-            case 'TypeComtrad':
-                $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
-                break;   
+                break;  
             case 'Comtrad':
                 $nombre_apellido = $form->getIdClient()->getUserid()->getNombre().' ';
                 $nombre_apellido .= $form->getIdClient()->getUserid()->getApellido();
@@ -253,7 +273,7 @@ class BlController extends Controller
                         $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
                     }    
                 }
-                break;  
+                break;                   
             case 'Todo':
                 $completed = $form->getCompleted() ? "True":"False";
                 $nombre_apellido = $form->getUserid()->getNombre().' ';
@@ -265,7 +285,10 @@ class BlController extends Controller
                                   'Priority' =>  $form->getIdPriority()->getDescription(),
                                   'Completed' =>  $completed  
                                   );
-                break;                 
+                break; 
+            case 'TypeComtrad':
+                $arreglo =  array('Id' => $id,'Description' => $form->getDescription());
+                break;             
         }
         
         
@@ -319,5 +342,7 @@ class BlController extends Controller
         $arreglo['state'] = $state;
         
         return new JsonResponse($arreglo);
-    }    
+    }
+    
+    
 }

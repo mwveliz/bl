@@ -29,6 +29,62 @@ class LogActivityController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $logActivities = $em->getRepository('SGIBundle:LogActivity')->findAll();
+        
+        foreach ($logActivities as $logActivity) {
+            $class = $logActivity->getObjectClass();
+            $action = $logActivity->getAction();
+            switch ($class) {
+                case 'Altinv':
+                    $action .= ' on Alternatives Investments';
+                break;
+                 case 'Client':
+                    $action .= ' on Clients';
+                break;
+                case 'Comtrad':
+                    $action .= ' on Commodities Trading';
+                break;
+                case 'Constru':
+                    $action .= ' on Constructions';
+                break;
+                case 'Event':
+                    $action .= ' on Events';
+                break;
+                case 'Rental':
+                    $action .= ' on Rentals';
+                break;
+                case 'Todo':
+                    $action .= ' on Tasks';
+                break;
+                case 'TrackAltinv':
+                    $action .= ' on Track Alternatives Investments';
+                break;
+                case 'TrackComtrad':
+                    $action .= ' on Track Commodities Trading';
+                break;
+                case 'TrackConstru':
+                    $action .= ' on Track Constructions';
+                break; 
+                case 'TrackRental':
+                    $action .= ' on Track Rentals';
+                break; 
+                case 'TypeAltinv':
+                    $action .= ' on Type Alternatives Investments';
+                break; 
+                case 'TypeComtrad':
+                    $action .= ' on Type Commodities Trading';
+                break;
+                case 'TypeConstru':
+                    $action .= ' on Type Constructions';
+                break;
+                case 'TypeRental':
+                    $action .= ' on Type Rentals';
+                break;            
+                case 'Usuario':
+                    $action .= ' on Users';
+                break;            
+            }
+            $logActivity->setAction($action);
+        }
 
         return $this->render('logactivity/index.html.twig', array(
             'logActivities' => $logActivities,
@@ -117,10 +173,8 @@ class LogActivityController extends Controller
                 if (count($results) > 0) {
                    foreach($results as $result) {
 
-                        $link_show = $this->generateUrl('logactivity_show', array('id' => $result->getObjectId()));               
-                        // Listado de eventos
-
-                        // Definir color de la prioridad
+                        // Listado de log
+                        // Definir acción
                         $action = $result->getAction();
                         $table = strtolower($result->getObjectClass());
                         
@@ -130,7 +184,7 @@ class LogActivityController extends Controller
                             case 'Insert':
                                 $label = 'label-success';
                                 $icon = 'icon-plus';
-                                $link = $this->generateUrl($table.'_show', array('id' => $result->getId()));
+                                $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
                                 $cierre = '</a href="'.$link.'">';
                                 $desc = 'Insert into '.$result->getObjectClass().' by '.$usuario;
@@ -138,7 +192,7 @@ class LogActivityController extends Controller
                             case 'Update':
                                 $label = 'label-info';
                                 $icon = 'icon-pencil';
-                                $link = $this->generateUrl($table.'_show', array('id' => $result->getId()));
+                                $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
                                 $desc = 'Update into '.$result->getObjectClass().' by '.$usuario;
                                 break;
