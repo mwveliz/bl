@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Event;
 use BL\SGIBundle\Form\EventType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Event controller.
@@ -61,8 +62,9 @@ class EventController extends Controller
             
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
-                       . 'ORDER BY e.datetimeStart ASC')
+                       . 'or e.datetimeEnd >= :now ORDER BY e.datetimeStart ASC')
                ->setParameter('now', new \DateTime('now'))
+                ->setMaxResults(5)     
                ->getResult();            
 
         }  else {
@@ -73,21 +75,68 @@ class EventController extends Controller
             );
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
-                       . 'and e.userid = :userid ORDER BY e.datetimeStart ASC')
+                       . 'or e.datetimeEnd >= :now and e.userid = :userid '
+                       . 'ORDER BY e.datetimeStart ASC')
                ->setParameters($parameters)
+                ->setMaxResults(5)     
                ->getResult();            
             
-        }          
-             
+        }      
+        
+        // Numero de eventos (badge)
+        $calendar_events = '<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-calendar"></i>
+                                <span class="badge badge-default">'.count($results).'</span>
+                            </a>';        
+        
+        $event = 'events';
+        if (count($results) == 1) {
+            $event = 'event';
+        }
+        
+        // Enlace al listado de Eventos
+        $link_all = $this->generateUrl('event_index', array());        
+ 
+        // Listado de eventos
+        $calendar_events .= '
+            <ul class="dropdown-menu extended tasks">
+                <li class="external">
+                    <h3>You have
+                        <span class="bold">'.count($results).' '.$event.'</span></h3>
+                    <a href="'.$link_all.'">view all</a>
+                </li>
+                <li>
+                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                ';    
+
         if (count($results) > 0) {
             foreach($results as $result) {
-                $event .= $result->getDescription().' ';
+                
+                $link_all = $this->generateUrl('event_index', array());
+                
+                // Listado de eventos
+                $calendar_events .= '
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="task">
+                                        <span class="desc"><i class="icon-clock"></i> <strong>'.$result->getDatetimeStart()->format('Y-m-d h:m:s').' (Start)</strong></span><br>
+                                        <span class="desc"><i class="icon-clock"></i> <strong>'.$result->getDatetimeEnd()->format('Y-m-d h:m:s').' (End)</strong></span><br>    
+                                        <span class="desc" sytle="text-align: justify;">'.$result->getDescription().'</span>    
+                                    </span>
+                                </a>
+                            </li>';
+                               
             }      
+        } else {
+            $dd = '';
         }
             
-        die(var_dump($event));        
+        // Cierre de Estructuras
+        $calendar_events .= '</ul>
+                        </li>
+                    </ul>';   
         
-        return $usuario;
+        return new JsonResponse($calendar_events);
         
     }    
     
