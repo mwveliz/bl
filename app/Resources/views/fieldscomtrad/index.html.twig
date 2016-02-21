@@ -100,13 +100,14 @@
         <script src="{{ asset('/metronic/pages/scripts/ui-confirmations.min.js') }}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
 
-<script>    
+ <script>    
     $( document ).ready(function() {
         $('.a_show').click(function() {
             id = $(this).attr('param');
             form_name = $(this).attr('param2');
             temp = form_name.split("\Controller");
             temp = temp[1].replace(/\\/g, '');
+            
             $.ajax({
                 url: "{{ path('show_ajax') }}",
                 data: "form_name=" + temp +
@@ -115,10 +116,11 @@
                     $('#show').empty();
                     $('#show').html(data);
                     $('#agregar').html('<button class="btn green-sharp btn-large" data-toggle="confirmation" data-original-title="Are you sure ?" title="">Default configuration</button>');
+                    
+                    $(document).find('[data-toggle="confirmation"]').confirmation();
                 }
             });
-        });   
-    
+        });
 })
  </script>
 {% endblock %}

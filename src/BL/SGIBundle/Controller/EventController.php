@@ -36,7 +36,7 @@ class EventController extends Controller
 
     /**
      *
-     * @Route("/calendar", name="comtrad_list")
+     * @Route("/calendar", name="event_list")
      * @Method("GET")
      */
     public function calendarAction()
@@ -57,9 +57,6 @@ class EventController extends Controller
         $event = '';
         
         if ($grupo_usuario == 'Administrator') {
-                   
-            $date = date('Y-m-d H:i:s');
-            
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
                        . 'or e.datetimeEnd >= :now ORDER BY e.datetimeStart ASC')
@@ -68,14 +65,13 @@ class EventController extends Controller
                ->getResult();            
 
         }  else {
-                        
             $parameters = array(
                 'now' => new \DateTime('now'), 
                 'userid' => $user->getId()
             );
             $results = $em
-               ->createQuery('SELECT e FROM SGIBundle:Event e WHERE e.datetimeStart >= :now '
-                       . 'or e.datetimeEnd >= :now and e.userid = :userid '
+               ->createQuery('SELECT e FROM SGIBundle:Event e WHERE (e.datetimeStart >= :now '
+                       . 'or e.datetimeEnd >= :now) and e.userid = :userid '
                        . 'ORDER BY e.datetimeStart ASC')
                ->setParameters($parameters)
                 ->setMaxResults(5)     
@@ -84,10 +80,7 @@ class EventController extends Controller
         }      
         
         // Numero de eventos (badge)
-        $calendar_events = '<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icon-calendar"></i>
-                                <span class="badge badge-default">'.count($results).'</span>
-                            </a>';        
+        $number_events = count($results);        
         
         $event = 'events';
         if (count($results) == 1) {
@@ -98,37 +91,40 @@ class EventController extends Controller
         $link_all = $this->generateUrl('event_index', array());        
  
         // Listado de eventos
-        $calendar_events .= '
-            <ul class="dropdown-menu extended tasks">
-                <li class="external">
+        $all_events = '
                     <h3>You have
                         <span class="bold">'.count($results).' '.$event.'</span></h3>
                     <a href="'.$link_all.'">view all</a>
-                </li>
-                <li>
-                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                ';    
+                    </li>';        
+        
+        $calendar_events = '';
 
         if (count($results) > 0) {
-            foreach($results as $result) {
+           foreach($results as $result) {
                 
-                $link_all = $this->generateUrl('event_index', array());
-                
+                $link_show = $this->generateUrl('event_show', array('id' => $result->getId()));               
                 // Listado de eventos
                 $calendar_events .= '
                             <li>
-                                <a href="javascript:;">
+                                <a href="'.$link_show.'">
                                     <span class="task">
-                                        <span class="desc"><i class="icon-clock"></i> <strong>'.$result->getDatetimeStart()->format('Y-m-d h:m:s').' (Start)</strong></span><br>
-                                        <span class="desc"><i class="icon-clock"></i> <strong>'.$result->getDatetimeEnd()->format('Y-m-d h:m:s').' (End)</strong></span><br>    
+                                        <span class="desc"><span class="label label-sm label-icon label-success">
+                                                        <i class="icon-clock"></i>
+                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeStart()->format('Y-m-d h:m:s').' (Start)</strong></span><br><br>
+                                        <span class="desc"><span class="label label-sm label-icon label-danger">
+                                                        <i class="icon-clock"></i>
+                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeEnd()->format('Y-m-d h:m:s').' (End)</strong></span><br><br>    
                                         <span class="desc" sytle="text-align: justify;">'.$result->getDescription().'</span>    
                                     </span>
+                                    </hr>
                                 </a>
                             </li>';
-                               
-            }      
+           }
         } else {
-            $dd = '';
+            $calendar_events = '<span class="desc">'
+                    . '<center><br><br>'
+                    . 'There are no events to display at this moment</center>'
+                    . '</span>';
         }
             
         // Cierre de Estructuras
@@ -136,7 +132,15 @@ class EventController extends Controller
                         </li>
                     </ul>';   
         
-        return new JsonResponse($calendar_events);
+        $arreglo = array();
+            $arreglo[] = array(                   
+                "number" => $number_events,
+                "all" => $all_events,
+                "calendar" => $calendar_events,
+            );         
+        
+        
+        return new JsonResponse($arreglo);
         
     }    
     

@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Todo;
 use BL\SGIBundle\Form\TodoType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 /**
  * Todo controller.
@@ -62,6 +64,147 @@ class TodoController extends Controller
     }
 
     /**
+     *
+     * @Route("/task", name="todo_list")
+     * @Method("GET")
+     */
+    public function taskAction()
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                    ->getToken()
+                    ->getUser());
+
+        $usuario = $user->getUsername();
+        
+        // Obtengo el grupo de mi usuario
+        $grupo_usuario = $user->getGroupNames();
+        $grupo_usuario = $grupo_usuario[0]; 
+        
+        $em = $this->getDoctrine()->getManager();
+        $event = '';
+        
+        if ($grupo_usuario == 'Administrator') {
+            $results = $em
+               ->createQuery('SELECT e FROM SGIBundle:Todo e WHERE e.completed = :completed '
+                       . 'ORDER BY e.idPriority ASC')
+               ->setParameter('completed', false)
+                ->setMaxResults(5)     
+               ->getResult();            
+
+        }  else {
+            $parameters = array(
+                'completed' => false, 
+                'userid' => $user->getId()
+            );
+            $results = $em
+               ->createQuery('SELECT e FROM SGIBundle:Todo e WHERE e.completed = :completed '
+                       . 'and e.userid = :userid '
+                       . 'ORDER BY e.idPriority ASC')
+               ->setParameters($parameters)
+                ->setMaxResults(5)     
+               ->getResult();            
+            
+        }      
+        
+        // Numero de tareas (badge)
+        $number_todo = count($results);        
+        
+        $task = 'tasks';
+        if (count($results) == 1) {
+            $task = 'task';
+        }
+        
+        // Enlace al listado de Eventos
+        $link_all = $this->generateUrl('todo_index', array());        
+ 
+        // Listado de eventos
+        $all_todo = '
+                    <h3>You have
+                        <span class="bold">'.count($results).' '.$task.'</span></h3>
+                    <a href="'.$link_all.'">view all</a>
+                    </li>';        
+        
+        $calendar_todo = '';
+
+        if (count($results) > 0) {
+           foreach($results as $result) {
+                
+                $link_show = $this->generateUrl('todo_show', array('id' => $result->getId()));               
+                // Listado de eventos
+                
+                // Definir color de la prioridad
+                $priority = $result->getIdPriority()->getDescription();
+
+                switch ($priority) {
+                    case 'High':
+                        $label = 'label-danger';
+                        break;
+                    case 'Medium':
+                        $label = 'label-warning';
+                        break;
+                    case 'Low':
+                        $label = 'label-primary';
+                        break;
+                }    
+                
+                if ($grupo_usuario == 'Administrator') {
+                    
+                        $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
+                        
+                        $calendar_todo .= '
+                                    <li>
+                                        <a href="'.$link_show.'">
+                                            <span class="task">
+                                                <span class="desc"><span class="label label-sm label-icon '.$label.'">
+                                                <i class="icon-pin"></i>
+                                                </span>&nbsp;&nbsp;<strong> Assigned to: '.$usuario.'</strong></span><br><br>
+                                                <span class="desc" sytle="text-align: justify;">'.$result->getDescription().'</span>    
+                                            </span>
+                                            </hr>
+                                        </a>
+                                    </li>';
+                } else {
+                        $calendar_todo .= '
+                                    <li>
+                                        <a href="'.$link_show.'">
+                                            <span class="task">
+                                                <span class="desc"><span class="label label-sm label-icon '.$label.'">
+                                                <i class="icon-pin">&nbsp;</i>&nbsp;</span>
+                                                <span class="desc" sytle="text-align: justify;">'.$result->getDescription().'</span>    
+                                            </span>
+                                            </hr>
+                                        </a>
+                                    </li>';                   
+                }
+           }
+        } else {
+            $calendar_todo = '<span class="desc">'
+                    . '<center><br><br>'
+                    . 'There are no events to display at this moment</center>'
+                    . '</span>';
+        }
+            
+        // Cierre de Estructuras
+        $calendar_todo .= '</ul>
+                        </li>
+                    </ul>';   
+        
+        $arreglo = array();
+            $arreglo[] = array(                   
+                "number" => $number_todo,
+                "all" => $all_todo,
+                "calendar" => $calendar_todo,
+            );         
+        
+        
+        return new JsonResponse($arreglo);
+        
+    }            
+    
+    
+    /**
      * Finds and displays a Todo entity.
      *
      * @Route("/{id}", name="todo_show")
@@ -105,22 +248,26 @@ class TodoController extends Controller
     }
 
     /**
-     * Deletes a Todo entity.
+     * Deletes a Comtrad entity.
      *
-     * @Route("/{id}", name="todo_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="todo_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, Todo $todo)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($todo);
-        $form->handleRequest($request);
+        $id = $request->get('id');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($todo);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $todos = $em->getRepository('SGIBundle:Todo')
+                    ->findBy(array('id'=> $id));
+        
+        if (count($todos) > 0) {
+            foreach($todos as $todo) {
+                $em->remove($todo);
+                $em->flush();           
+            }
         }
-
+             
         return $this->redirectToRoute('todo_index');
     }
 
@@ -139,4 +286,6 @@ class TodoController extends Controller
             ->getForm()
         ;
     }
+    
+
 }
