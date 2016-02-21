@@ -60,16 +60,16 @@ class AltinvController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $fieldsAltinvstrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');
-        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+        $aitracks= $serializer->serialize($fieldsAltinvstrackable, 'json');
 
-        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $fieldsAltinvsnotrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => false));
         $serializer = $this->container->get('serializer');
-        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+        $ainotracks= $serializer->serialize($fieldsAltinvsnotrackable, 'json');
 
         return $this->render('altinv/track.html.twig', array(
-            'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
+            'aitracks' => $aitracks,'ainotracks' => $ainotracks
         ));
     }
 
