@@ -196,9 +196,14 @@ class BlController extends Controller
         $objeto .= '</tbody></table></div></div>';
         
         return new JsonResponse($objeto);
-    }    
-    
-    public function showEntidad($form_name, $id){  
+    }
+
+    /**
+     * @param $form_name
+     * @param $id
+     * @return array
+     */
+    public function showEntidad($form_name, $id){
         $em = $this->getDoctrine()->getManager();
 
         $modelo = 'SGIBundle:'.$form_name;
@@ -209,6 +214,17 @@ class BlController extends Controller
         $arreglo = array();
         
         switch ($form_name) {
+            case 'Altinv':
+                $nombre_apellido = $form->getIdClient()->getUserid()->getNombre().' ';
+                $nombre_apellido .= $form->getIdClient()->getUserid()->getApellido();
+
+                $arreglo =  array('Id' => $id,
+                    'Description' => $form->getDescription(),
+                    'Country' => $form->getIdState()->getIdCountry()->getDescription(),
+                    'State' => $form->getIdState()->getDescription(),
+                    'Client' => $nombre_apellido,
+                );
+            break;
             case 'FieldsComtrad':
                 $trackable = $form->getTrackable() ? "True":"False";
                 $arreglo =  array('Id' => $id,'Description' => $form->getDescription(),
