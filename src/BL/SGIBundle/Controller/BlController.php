@@ -237,8 +237,19 @@ class BlController extends Controller
                         $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
                     }    
                 }
-
-                break;               
+                break;  
+            case 'Todo':
+                $completed = $form->getCompleted() ? "True":"False";
+                $nombre_apellido = $form->getUserid()->getNombre().' ';
+                $nombre_apellido .= $form->getUserid()->getApellido();
+                $arreglo =  array('Id' => $id,
+                                  'Assigned To' => $nombre_apellido,
+                                  'Business Line' => $form->getIdBl(),
+                                  'Description' => $form->getDescription(),
+                                  'Priority' =>  $form->getIdPriority()->getDescription(),
+                                  'Completed' =>  $completed  
+                                  );
+                break;                 
         }
         
         

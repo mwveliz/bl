@@ -24,7 +24,7 @@ class FieldsComtradType extends AbstractType
              'label' => 'Widget',   
              'choices' => array('Calendar' => 'Calendar', 'Characters' => 'Characters', 
                  'Currency' => 'Currency', 'File' => 'File', 
-                 'TextArea' => 'TextArea', 'Numeric' => 'Numeric'),
+                 'Numeric' => 'Numeric', 'TextArea' => 'TextArea'),
              ))             
             ->add('trackable', 'checkbox', array(
                    'attr' => array('class' => 'checkbox-list'),

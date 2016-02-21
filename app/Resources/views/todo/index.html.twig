@@ -1,12 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block page_title %}
-   Commodities Trading
+   Task List
 {% endblock %} 
-
-{% block page_description %}
-   List of Fields for Commodities Trading
-{% endblock %} 
+ 
 
 {% block stylesheets_extra %} 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -30,7 +27,7 @@
             <!-- BEGIN CONTENT -->
                     <div class="row">
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="{{ path('fieldscomtrad_new') }}" ><span>Add</span></a>
+                            <a class="btn btn-success" href="{{ path('todo_new') }}" ><span>Add</span></a>
                             <br><br>
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                             <div class="portlet light bordered">
@@ -46,20 +43,24 @@
                                         <thead>
                                             <tr>
                                                 <th class="all" width="10%">Detail</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all">Description</th> 
+                                                <th class="all">Priority</th>
+                                                <th class="all">Bl</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for fieldsComtrad in fieldsComtrads %}
+                                        {% for todo in todos %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ fieldsComtrad.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ todo.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ fieldsComtrad.description }}</td>                                                
+                                                <td>{{ todo.description }}</td>  
+                                                <td>{{ todo.idPriority }}</td>
+                                                <td>{{ todo.idBl }}</td>
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

@@ -110,10 +110,10 @@ class EventController extends Controller
                                     <span class="task">
                                         <span class="desc"><span class="label label-sm label-icon label-success">
                                                         <i class="icon-clock"></i>
-                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeStart()->format('Y-m-d h:m:s').' (Start)</strong></span><br><br>
+                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeStart()->format('Y-m-d h:i:s').' (Start)</strong></span><br><br>
                                         <span class="desc"><span class="label label-sm label-icon label-danger">
                                                         <i class="icon-clock"></i>
-                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeEnd()->format('Y-m-d h:m:s').' (End)</strong></span><br><br>    
+                                                    </span>&nbsp;&nbsp;<strong>'.$result->getDatetimeEnd()->format('Y-m-d h:i:s').' (End)</strong></span><br><br>    
                                         <span class="desc" sytle="text-align: justify;">'.$result->getDescription().'</span>    
                                     </span>
                                     </hr>

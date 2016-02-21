@@ -28,8 +28,24 @@ class TodoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $todos = $em->getRepository('SGIBundle:Todo')->findAll();
+        $userManager = $this->container->get('fos_user.user_manager');
 
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                    ->getToken()
+                    ->getUser());
+
+        $usuario = $user->getUsername();
+        
+        // Obtengo el grupo de mi usuario
+        $grupo_usuario = $user->getGroupNames();
+        $grupo_usuario = $grupo_usuario[0]; 
+        
+        if ($grupo_usuario == 'Administrator') {        
+            $todos = $em->getRepository('SGIBundle:Todo')->findAll();
+        } else {
+            $todos = $em->getRepository('SGIBundle:Todo')->findBy(array('userid' => $user->getId()));
+        }
+        
         return $this->render('todo/index.html.twig', array(
             'todos' => $todos,
         ));

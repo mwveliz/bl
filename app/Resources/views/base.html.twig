@@ -67,100 +67,18 @@
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar" style="display: none">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-default"> 7 </span>
+                                <span class="badge badge-default" id="number_log"> </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        <span class="bold">12 pending</span> notifications</h3>
-                                    <a href="page_user_profile_1.html">view all</a>
+                                <li class="external" id="total_log">
+
                                 </li>
                                 <li>
-                                    <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">just now</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-success">
-                                                        <i class="fa fa-plus"></i>
-                                                    </span> New user registered. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Server #12 overloaded. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">10 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Server #2 not responding. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">14 hrs</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> Application error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">2 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Database overloaded 68%. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> A user IP blocked. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">4 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Storage Server #4 not responding dfdfdfd. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">5 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> System Error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">9 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Storage server failed. </span>
-                                            </a>
-                                        </li>
+                                    <ul class="dropdown-menu-list scroller" id="list_log" style="height: 250px;" data-handle-color="#637283">
+
                                     </ul>
                                 </li>
                             </ul>
@@ -190,7 +108,7 @@
                         <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-list"></i>
-                                <span class="badge badge-default" id="number_todo"> 4 </span>
+                                <span class="badge badge-default" id="number_todo">  </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external" id="total_todo">
@@ -873,6 +791,7 @@
         
         <script>    
         $( document ).ready(function() {
+            
                     $.ajax({
                         url: "{{ path('event_list') }}",
                         success: function(data){
@@ -903,6 +822,28 @@
                             
                             $('#list_todo').empty();
                             $('#list_todo').html(json[0]['calendar']);
+                            
+                        }
+                    });
+                    
+                    $.ajax({
+                        url: "{{ path('log_list') }}",
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+                            
+                            if (show) {
+                                $('#header_notification_bar').css('display','inline');
+                                $('#number_log').empty();
+                                $('#number_log').html(json[0]['number']);
+
+                                $('#total_log').empty();
+                                $('#total_log').html(json[0]['all']);
+
+                                $('#list_log').empty();
+                                $('#list_log').html(json[0]['calendar']);
+                            } 
                             
                         }
                     });                    
