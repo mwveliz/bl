@@ -18,14 +18,22 @@
                                         <tr>
                                             <th>Id</th>
                                             <td>{{ object.id }}</td>
-                                        </tr>            
-                                        <tr>
-                                            <th>Description</th>
-                                            <td>{{ object.description }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Completed</th>
-                                            <td>{% if object.completed %}Yes{% else %}No{% endif %}</td>
+                                            <th>Commodities Trading</th>
+                                            <td>{{ object.idComtrad }}</td>
+                                        </tr>                                        
+                                        <tr>
+                                            <th>Field</th>
+                                            <td>{{ object.idFieldsTrackComtrad }}</td>
+                                        </tr>                                        
+                                        <tr>
+                                            <th>Value</th>
+                                            <td>{{ object.value }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Datetime</th>
+                                            <td>{% if object.datetime %}{{ object.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
                                         </tr>
                                     {% else %}
                                         <center>Deleted Element</center>

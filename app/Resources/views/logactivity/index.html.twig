@@ -53,7 +53,7 @@
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ logActivitiy.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ logActivitiy.objectId }}" param2="{{ logActivitiy.objectClass }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
@@ -106,10 +106,8 @@
         $('.a_show').click(function() {
             id = $(this).attr('param');
             form_name = $(this).attr('param2');
-            temp = form_name.split("\Controller");
-            temp = temp[1].replace(/\\/g, '');
             
-            $('div#show').load("{{ path('ajax_showlogactivity', { 'form': 'Todo', 'id': 2}) }}");
+            $('div#show').load("{{ path('ajax_showlogactivity') }}",{form: form_name, id : id });
         });
 })
  </script>

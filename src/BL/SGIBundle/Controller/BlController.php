@@ -39,21 +39,52 @@ class BlController extends Controller
      * Lists all Bl entities.
      *
      * @Route("/showala", name="ajax_showlogactivity")
-     * @Method("GET")
+     * @Method("POST")
      */
     public function showalaAction(Request $request)
     {
         $id = $request->get('id');  
         $form = $request->get('form');  
+        $table = 'SGIBundle:'.$form;
+                
         $em = $this->getDoctrine()->getManager();
+        
+        $object = $em->getRepository($table)->findOneBy(array('id' => $id));
+                
+        $form_lowcase = strtolower($form);
+        
+        $ruta = $form_lowcase.'/ajax_show.html.twig';
+        
+        switch ($form) {
+            case 'Comtrad':
+                $nombre_apellido = $object->getIdClient()->getUserid()->getNombre().' ';
+                $nombre_apellido .= $object->getIdClient()->getUserid()->getApellido();
+                
+                $arreglo =  array('Id' => $object->getId(),
+                    'Description' => $object->getDescription(),
+                    'Country' => $object->getIdState()->getIdCountry()->getDescription(),
+                    'State' => $object->getIdState()->getDescription(),
+                    'Client' => $nombre_apellido,
+                    );
+                
+                // List of Fields 
+                $Fields = $em->getRepository('SGIBundle:BlComtrad')
+                ->findBy(array('idComtrad' => $id));
+                
+                if (count($Fields) > 0) {
+                    foreach ($Fields as $Field) {
+                        $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
+                    }    
+                }
+                
+                $object = $arreglo;
+            default:
+                break;
+        }
 
-        $object = $em->getRepository('SGIBundle:Todo')->findBy(array('id' => 2));
-        
-        
-        $ruta='todo/ajax_show.html.twig';
 
         return $this->render($ruta, array(
-            'todo' => $object,
+            'object' => $object,
         ));
     }     
 
