@@ -50,7 +50,7 @@ class BlController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $object = $em->getRepository($table)->findOneBy(array('id' => $id));
-                
+                       
         $form_lowcase = strtolower($form);
         
         $ruta = $form_lowcase.'/ajax_show.html.twig';

@@ -103,12 +103,27 @@
 
  <script>    
     $( document ).ready(function() {
-        $('.a_show').click(function() {
-            id = $(this).attr('param');
-            form_name = $(this).attr('param2');
-            
-            $('div#show').load("{{ path('ajax_showlogactivity') }}",{form: form_name, id : id });
+        
+        // Click al cambiar la página
+        $('.btn-sm').on('click', function() {
+            show();
         });
+        
+        $('.pagination-panel-input').on('keyup', function() {
+            show();
+        }); 
+        
+        // Carga inicial
+        show();
+        
+        function show() {
+            $('.a_show').click(function() {
+                id = $(this).attr('param');
+                form_name = $(this).attr('param2');
+
+                $('div#show').load("{{ path('ajax_showlogactivity') }}",{form: form_name, id : id });
+            });
+        }
 })
  </script>
 {% endblock %}

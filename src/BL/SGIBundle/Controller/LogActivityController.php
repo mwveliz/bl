@@ -28,8 +28,9 @@ class LogActivityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $logActivities = $em->getRepository('SGIBundle:LogActivity')->findAll();
-        
+        $logActivities = $em->getRepository('SGIBundle:LogActivity')
+                ->findBy(array(),array('loggedAt' => 'DESC'));
+                
         foreach ($logActivities as $logActivity) {
             $class = $logActivity->getObjectClass();
             $action = $logActivity->getAction();
@@ -46,6 +47,9 @@ class LogActivityController extends Controller
                 case 'Constru':
                     $action .= ' on Constructions';
                 break;
+                case 'FieldsComtrad':
+                    $action .= ' on Fields Comtrad';
+                break;            
                 case 'Event':
                     $action .= ' on Events';
                 break;

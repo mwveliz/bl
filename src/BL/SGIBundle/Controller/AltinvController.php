@@ -99,7 +99,7 @@ class AltinvController extends Controller
             $desc = str_replace(" ","_",$entity->getDescription());
 
 
-            switch ($entity->getWiget()) {
+            switch ($entity->getWidget()) {
                 case 'Calendar':
                     $form->add('EF-'.$desc, 'date', array(
                         'widget' => 'single_text',

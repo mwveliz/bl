@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * LogActivity
  *
  * @ORM\Table(name="log_activity", indexes={@ORM\Index(name="IDX_C227C285F132696E", columns={"userid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BL\SGIBundle\Entity\ExtLogEntriesRepository") 
  */
 class LogActivity
 {

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\FieldsComtrad;
 use BL\SGIBundle\Form\FieldsComtradType;
+use Doctrine\ORM\Query;
 
 /**
  * FieldsComtrad controller.
@@ -52,6 +53,23 @@ class FieldsComtradController extends Controller
 
             $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findAll();
 
+            // Procedo log
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:FieldsComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $fieldsComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'FieldsComtrad', 
+                            $fieldsComtrad->getId());
+
+            // fin proceso log  
+            
             return $this->render('fieldscomtrad/index.html.twig', array(
                 'fieldsComtrads' => $fieldsComtrads,
             ));        
@@ -96,6 +114,23 @@ class FieldsComtradController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($fieldsComtrad);
             $em->flush();
+            
+            // Procedo log
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:FieldsComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $fieldsComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'FieldsComtrad', 
+                            $fieldsComtrad->getId());
+
+            // fin proceso log            
 
             $fieldsComtrads = $em->getRepository('SGIBundle:FieldsComtrad')->findAll();
 
@@ -125,6 +160,24 @@ class FieldsComtradController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:FieldsComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $fieldsComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'FieldsComtrad', 
+                            $fieldsComtrad->getId());
+
+            // fin proceso log  
+            
             $em->remove($fieldsComtrad);
             $em->flush();
         }
