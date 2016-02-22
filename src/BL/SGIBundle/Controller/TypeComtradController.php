@@ -115,19 +115,30 @@ class TypeComtradController extends Controller
     /**
      * Deletes a TypeComtrad entity.
      *
-     * @Route("/{id}", name="typecomtrad_delete")
+     * @Route("/delete/{id}", name="typecomtrad_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, TypeComtrad $typeComtrad)
     {
-        $form = $this->createDeleteForm($typeComtrad);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+        
+            // Procedo log
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $typeComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeComtrad', 
+                            $typeComtrad->getId());
+
             $em->remove($typeComtrad);
             $em->flush();
-        }
 
         return $this->redirectToRoute('typecomtrad_index');
     }

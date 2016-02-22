@@ -154,11 +154,7 @@ class FieldsComtradController extends Controller
      * @Method("GET")
      */
     public function deleteAction(Request $request, FieldsComtrad $fieldsComtrad)
-    {
-        $form = $this->createDeleteForm($fieldsComtrad);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+    {             
             $em = $this->getDoctrine()->getManager();
             
             // Procedo log
@@ -180,7 +176,6 @@ class FieldsComtradController extends Controller
             
             $em->remove($fieldsComtrad);
             $em->flush();
-        }
 
         return $this->redirectToRoute('fieldscomtrad_index');
     }
