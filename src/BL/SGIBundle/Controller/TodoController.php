@@ -68,6 +68,26 @@ class TodoController extends Controller
             $em->persist($todo);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Todo x WHERE x.id = ?1');
+            $query->setParameter(1, $todo->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'Todo', 
+                            $todo->getId());
+            */
+            
+            // fin proceso log            
+            
             // Redirecciono dependiendo de mi accion
             $action = $todo->getIdBl()->getType(); 
             return $this->redirectToRoute($action.'_index');
@@ -253,6 +273,26 @@ class TodoController extends Controller
             $em->persist($todo);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Todo x WHERE x.id = ?1');
+            $query->setParameter(1, $todo->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Todo', 
+                            $todo->getId());
+            */
+            
+            // fin proceso log            
+            
             return $this->redirectToRoute('todo_edit', array('id' => $todo->getId()));
         }
 
@@ -279,6 +319,27 @@ class TodoController extends Controller
         
         if (count($todos) > 0) {
             foreach($todos as $todo) {
+                
+                // Procedo log
+                /*
+                $userManager = $this->container->get('fos_user.user_manager');
+
+                $user = $userManager->findUserByUsername($this->container->get('security.context')
+                                ->getToken()
+                                ->getUser());
+
+
+                $query = $em->createQuery('SELECT x FROM SGIBundle:Todo x WHERE x.id = ?1');
+                $query->setParameter(1, $todo->getId());
+                $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+                $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                        ->bitacora($user->getId(), 'Delete', 'Todo', 
+                                $todo->getId());
+                */
+
+                // fin proceso log                 
+                
                 $em->remove($todo);
                 $em->flush();           
             }

@@ -50,6 +50,26 @@ class TypeComtradController extends Controller
             $em->persist($typeComtrad);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $typeComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeComtrad', 
+                            $typeComtrad->getId());
+            */
+            
+            // fin proceso log            
+            
             $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findAll();
 
             return $this->render('typecomtrad/index.html.twig', array(
@@ -97,6 +117,26 @@ class TypeComtradController extends Controller
             $em->persist($typeComtrad);
             $em->flush();
             
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $typeComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeComtrad', 
+                            $typeComtrad->getId());
+            */
+            
+            // fin proceso log            
+            
             $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findAll();
 
             return $this->render('typecomtrad/index.html.twig', array(
@@ -123,6 +163,7 @@ class TypeComtradController extends Controller
             $em = $this->getDoctrine()->getManager();
         
             // Procedo log
+            /*
             $userManager = $this->container->get('fos_user.user_manager');
 
             $user = $userManager->findUserByUsername($this->container->get('security.context')
@@ -136,7 +177,10 @@ class TypeComtradController extends Controller
             $bitacora = $em->getRepository('SGIBundle:LogActivity')
                     ->bitacora($user->getId(), 'Delete', 'TypeComtrad', 
                             $typeComtrad->getId());
-
+             * 
+             */
+            // end log
+                       
             $em->remove($typeComtrad);
             $em->flush();
 

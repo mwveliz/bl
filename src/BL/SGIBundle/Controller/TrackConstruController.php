@@ -50,6 +50,26 @@ class TrackConstruController extends Controller
             $em->persist($trackConstru);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $trackConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TrackConstru', 
+                            $trackConstru->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('trackconstru_show', array('id' => $trackconstru->getId()));
         }
 
@@ -92,6 +112,26 @@ class TrackConstruController extends Controller
             $em->persist($trackConstru);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $trackConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TrackConstru', 
+                            $trackConstru->getId());
+            */
+            
+            // fin proceso log              
+            
             return $this->redirectToRoute('trackconstru_edit', array('id' => $trackConstru->getId()));
         }
 
@@ -115,6 +155,27 @@ class TrackConstruController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $trackConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TrackConstru', 
+                            $trackConstru->getId());
+            */
+            
+            // fin proceso log  
+            
             $em->remove($trackConstru);
             $em->flush();
         }

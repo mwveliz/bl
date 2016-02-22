@@ -50,6 +50,26 @@ class TrackAltinvController extends Controller
             $em->persist($trackAltinv);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $trackAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TrackAltinv', 
+                            $trackAltinv->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('trackaltinv_show', array('id' => $trackaltinv->getId()));
         }
 
@@ -91,6 +111,26 @@ class TrackAltinvController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($trackAltinv);
             $em->flush();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $trackAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TrackAltinv', 
+                            $trackAltinv->getId());
+            */
+            
+            // fin proceso log            
 
             return $this->redirectToRoute('trackaltinv_edit', array('id' => $trackAltinv->getId()));
         }
@@ -115,6 +155,27 @@ class TrackAltinvController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $trackAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TrackAltinv', 
+                            $trackAltinv->getId());
+            */
+            
+            // fin proceso log 
+            
             $em->remove($trackAltinv);
             $em->flush();
         }

@@ -50,6 +50,26 @@ class TrackRentalController extends Controller
             $em->persist($trackRental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackRental x WHERE x.id = ?1');
+            $query->setParameter(1, $trackRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TrackRental', 
+                            $trackRental->getId());
+            */
+            
+            // fin proceso log              
+            
             return $this->redirectToRoute('trackrental_show', array('id' => $trackrental->getId()));
         }
 
@@ -92,6 +112,26 @@ class TrackRentalController extends Controller
             $em->persist($trackRental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackRental x WHERE x.id = ?1');
+            $query->setParameter(1, $trackRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TrackRental', 
+                            $trackRental->getId());
+            */
+            
+            // fin proceso log            
+            
             return $this->redirectToRoute('trackrental_edit', array('id' => $trackRental->getId()));
         }
 
@@ -115,6 +155,28 @@ class TrackRentalController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackRental x WHERE x.id = ?1');
+            $query->setParameter(1, $trackRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TrackRental', 
+                            $trackRental->getId());
+            */
+            
+            // fin proceso log
+            
+            
             $em->remove($trackRental);
             $em->flush();
         }

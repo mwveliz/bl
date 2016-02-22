@@ -175,6 +175,26 @@ class ComtradController extends Controller
             $em->persist($comtrad);
             $em->flush();
             
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Comtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $comtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'Comtrad', 
+                            $comtrad->getId());
+            */
+            
+            // fin proceso log             
+            
             // Obtengo mi id y procedo a realizar los inserts en la tabla
             // bl_comtrad
             $id = $comtrad->getId();
@@ -491,6 +511,27 @@ class ComtradController extends Controller
             $em->persist($comtrad);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Comtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $comtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Comtrad', 
+                            $comtrad->getId());
+            */
+            
+            // fin proceso log            
+            
+            
             // Obtengo mi id y procedo a realizar los inserts en la tabla
             // bl_comtrad
             $id = $comtrad->getId();
@@ -668,6 +709,26 @@ class ComtradController extends Controller
         
         $comtrad = $em->getRepository('SGIBundle:Comtrad')
                     ->findOneBy(array('id'=> $id)); 
+        
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Comtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $comtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'Comtrad', 
+                            $comtrad->getId());
+            */
+            
+            // fin proceso log         
         
         $em->remove($comtrad);
         $em->flush();

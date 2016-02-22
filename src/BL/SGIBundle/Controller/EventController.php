@@ -161,6 +161,26 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Event x WHERE x.id = ?1');
+            $query->setParameter(1, $event->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'Event', 
+                            $event->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
@@ -203,6 +223,26 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Event x WHERE x.id = ?1');
+            $query->setParameter(1, $event->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Event', 
+                            $event->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }
 
@@ -226,6 +266,27 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Event x WHERE x.id = ?1');
+            $query->setParameter(1, $event->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'Event', 
+                            $event->getId());
+            */
+            
+            // fin proceso log 
+            
             $em->remove($event);
             $em->flush();
         }

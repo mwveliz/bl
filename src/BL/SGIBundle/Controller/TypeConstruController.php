@@ -49,7 +49,27 @@ class TypeConstruController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($typeConstru);
             $em->flush();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
 
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log   
+            
             return $this->redirectToRoute('typeconstru_show', array('id' => $typeconstru->getId()));
         }
 
@@ -92,6 +112,26 @@ class TypeConstruController extends Controller
             $em->persist($typeConstru);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log            
+            
             return $this->redirectToRoute('typeconstru_edit', array('id' => $typeConstru->getId()));
         }
 
@@ -115,6 +155,28 @@ class TypeConstruController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log  
+            
+            
             $em->remove($typeConstru);
             $em->flush();
         }

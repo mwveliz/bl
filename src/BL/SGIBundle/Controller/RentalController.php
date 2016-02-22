@@ -91,6 +91,26 @@ class RentalController extends Controller
             $em->persist($rental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Rental x WHERE x.id = ?1');
+            $query->setParameter(1, $rental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'Rental', 
+                            $rental->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('rental_show', array('id' => $rental->getId()));
         }
 
@@ -133,6 +153,26 @@ class RentalController extends Controller
             $em->persist($rental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Rental x WHERE x.id = ?1');
+            $query->setParameter(1, $rental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Rental', 
+                            $rental->getId());
+            */
+            
+            // fin proceso log              
+            
             return $this->redirectToRoute('rental_edit', array('id' => $rental->getId()));
         }
 
@@ -156,6 +196,27 @@ class RentalController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Rental x WHERE x.id = ?1');
+            $query->setParameter(1, $rental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'Rental', 
+                            $rental->getId());
+            */
+            
+            // fin proceso log
+            
             $em->remove($rental);
             $em->flush();
         }

@@ -51,6 +51,26 @@ class TypeAltinvController extends Controller
             $em->persist($typeAltinv);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $typeAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeAltinv', 
+                            $typeAltinv->getId());
+            */
+            
+            // fin proceso log            
+            
             return $this->redirectToRoute('typealtinv_show', array('id' => $typealtinv->getId()));
         }
 
@@ -99,6 +119,26 @@ class TypeAltinvController extends Controller
             $em->persist($typeAltinv);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $typeAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeAltinv', 
+                            $typeAltinv->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('typealtinv_edit', array('id' => $typeAltinv->getId()));
         }
 
@@ -122,6 +162,27 @@ class TypeAltinvController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeAltinv x WHERE x.id = ?1');
+            $query->setParameter(1, $typeAltinv->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeAltinv', 
+                            $typeAltinv->getId());
+            */
+            
+            // fin proceso log
+            
             $em->remove($typeAltinv);
             $em->flush();
         }

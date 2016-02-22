@@ -89,6 +89,27 @@ class ConstruController extends Controller
             $em->persist($constru);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Constru x WHERE x.id = ?1');
+            $query->setParameter(1, $constru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'Constru', 
+                            $constru->getId());
+            */
+            
+            // fin proceso log             
+            
+            
             return $this->redirectToRoute('constru_show', array('id' => $constru->getId()));
         }
 
@@ -131,6 +152,26 @@ class ConstruController extends Controller
             $em->persist($constru);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Constru x WHERE x.id = ?1');
+            $query->setParameter(1, $constru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Constru', 
+                            $constru->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('constru_edit', array('id' => $constru->getId()));
         }
 
@@ -154,6 +195,27 @@ class ConstruController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Constru x WHERE x.id = ?1');
+            $query->setParameter(1, $constru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'Constru', 
+                            $constru->getId());
+            */
+            
+            // fin proceso log 
+            
             $em->remove($constru);
             $em->flush();
         }

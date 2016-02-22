@@ -50,6 +50,26 @@ class TrackComtradController extends Controller
             $em->persist($trackComtrad);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $trackComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TrackComtrad', 
+                            $trackComtrad->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('trackcomtrad_show', array('id' => $trackcomtrad->getId()));
         }
 
@@ -92,6 +112,26 @@ class TrackComtradController extends Controller
             $em->persist($trackComtrad);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $trackComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TrackComtrad', 
+                            $trackComtrad->getId());
+            */
+            
+            // fin proceso log             
+            
             return $this->redirectToRoute('trackcomtrad_edit', array('id' => $trackComtrad->getId()));
         }
 
@@ -115,6 +155,27 @@ class TrackComtradController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TrackComtrad x WHERE x.id = ?1');
+            $query->setParameter(1, $trackComtrad->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TrackComtrad', 
+                            $trackComtrad->getId());
+            */
+            
+            // fin proceso log   
+            
             $em->remove($trackComtrad);
             $em->flush();
         }
