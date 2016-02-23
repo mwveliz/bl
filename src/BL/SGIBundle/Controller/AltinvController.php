@@ -52,7 +52,7 @@ class AltinvController extends Controller
     }
 
     /**
-     * Tracks all Altinv entities.
+     * Create Altinv entities.
      *
      * @Route("/add", name="ajax_typealtinv_create")
      * @Method("POST")

@@ -2,7 +2,9 @@
 
 namespace BL\SGIBundle\Controller;
 
+use BL\SGIBundle\Entity\BlAltinv;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -33,6 +35,27 @@ class FieldsAltinvController extends Controller
         ));
     }
 
+
+    /**
+     * Create Altinv entities.
+     *
+     * @Route("/add", name="ajax_fieldsaltinv_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsAltinv(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsAltinv();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget($request->get('widget') );
+        $object->setTrackable($request->get('trackable') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
     /**
      * Creates a new FieldsAltinv entity.
      *
@@ -41,6 +64,7 @@ class FieldsAltinvController extends Controller
      */
     public function newAction(Request $request)
     {
+        $ruta='fieldsaltinv/new.html.twig';
         $fieldsAltinv = new FieldsAltinv();
         $form = $this->createForm('BL\SGIBundle\Form\FieldsAltinvType', $fieldsAltinv);
         $form->handleRequest($request);
@@ -53,7 +77,8 @@ class FieldsAltinvController extends Controller
             return $this->redirectToRoute('fieldsaltinv_show', array('id' => $fieldsAltinv->getId()));
         }
 
-        return $this->render('fieldsaltinv/new.html.twig', array(
+        if ($request->isXmlHttpRequest()) $ruta='fieldsaltinv/ajax_new.html.twig'; //si es por ajhax cargo el twig
+        return $this->render($ruta, array(
             'fieldsAltinv' => $fieldsAltinv,
             'form' => $form->createView(),
         ));

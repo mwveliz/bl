@@ -74,8 +74,14 @@
              $('#a_addtype').on('click',function(e) {
                  e.preventDefault();
                  $('#add').load("{{ path('typealtinv_new') }}");
-
              });
+
+             $('#a_addfield').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('fieldsaltinv_new') }}");
+             });
+
+
          });
      </script>
 

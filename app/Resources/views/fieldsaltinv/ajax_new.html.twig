@@ -59,7 +59,7 @@
                                      break;
                                  case 'Currency':
                                      string+= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm currency'></div>";
-                                     $(".currency").maskMoney();
+
                                      break;
                                  case 'File':
                                      string+= "<input type='file' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]'></div>";
@@ -75,6 +75,7 @@
                                  break;
                              }
                              $('#a_addfield').before(string);
+                             $(".currency").maskMoney();
 
                              $('div#add').children().remove();
                          });

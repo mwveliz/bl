@@ -19,7 +19,7 @@ class FieldsComtradType extends AbstractType
                  'attr' => array('class' => 'form-control input-sm')
              ))   
                 
-            ->add('wiget', 'choice', array(
+            ->add('widget', 'choice', array(
              'attr' => array('class' => 'form-control form-group'),   
              'label' => 'Widget',   
              'choices' => array('Calendar' => 'Calendar', 'Characters' => 'Characters', 
