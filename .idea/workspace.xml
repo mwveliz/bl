@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ec59bdce-fd8b-4b0d-a443-5523b8e26952" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/altinv/track.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/altinv/track.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/typecomtrad/ajax_new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/typecomtrad/ajax_new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/typeconstru/ajax_new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/typeconstru/ajax_new.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php" afterPath="$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php" />
     </list>
     <ignored path="bl.iws" />
@@ -29,46 +33,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="track.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/track.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.025316">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AltinvController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3653846">
-              <caret line="239" column="44" selection-start-line="239" selection-start-column="40" selection-end-line="239" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FieldsAltinvController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/FieldsAltinvController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5769231">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeAltinvController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/TypeAltinvController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.068814054">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -79,22 +43,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/index.html.twig">
+      <file leaf-file-name="AltinvController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-2.8461537">
+              <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
+              <folding>
+                <element signature="e#43#88#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/index.html.twig">
+      <file leaf-file-name="ajax_new.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625">
-              <caret line="58" column="106" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="106" />
-              <folding />
+            <state vertical-scroll-proportion="0.6487119">
+              <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+              <folding>
+                <element signature="e#359#381#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,18 +70,8 @@
       <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125">
-              <caret line="27" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ajax_new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/ajax_new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-38.125">
-              <caret line="61" column="64" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="64" />
+            <state vertical-scroll-proportion="-11.875">
+              <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -153,17 +111,21 @@
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Form/TypeAltinvType.php" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Form/TypeConstruType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/typecomtrad/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/TypeAltinvController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/typealtinv/new.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/ConstruController.php" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/ComtradController.php" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/RentalController.php" />
         <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/BlController.php" />
-        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/altinv/track.html.twig" />
+        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/TypeAltinvController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/trackaltinv/ajax_new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/trackconstru/ajax_new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/typeconstru/ajax_new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/typecomtrad/ajax_new.html.twig" />
+        <option value="$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig" />
       </list>
     </option>
   </component>
@@ -177,10 +139,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-56" />
-    <option name="y" value="50" />
-    <option name="width" value="1292" />
-    <option name="height" value="900" />
+    <option name="x" value="-3" />
+    <option name="y" value="103" />
+    <option name="width" value="1282" />
+    <option name="height" value="890" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -207,6 +169,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -301,58 +265,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fieldsaltinv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,11 +278,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Resources/views/trackaltinv" />
+      <recent name="$PROJECT_DIR$/app/Resources/views/trackconstru" />
       <recent name="$PROJECT_DIR$/app/Resources/views/altinv" />
       <recent name="$PROJECT_DIR$/app/Resources/views/constru" />
       <recent name="$PROJECT_DIR$/app/Resources/views/comtrad" />
-      <recent name="$PROJECT_DIR$/app/Resources/views/rental" />
-      <recent name="$PROJECT_DIR$/app/Resources/views/typealtinv" />
     </key>
   </component>
   <component name="RunManager">
@@ -415,13 +329,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-56" y="50" width="1292" height="900" extended-state="0" />
-    <editor active="false" />
+    <frame x="-3" y="103" width="1282" height="890" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2064" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20967741" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -432,7 +347,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2496124" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -449,38 +363,18 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php</url>
+          <line>114</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45165563">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.769821">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13810742">
-          <caret line="6" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18965517">
-          <caret line="3381" column="34" selection-start-line="3381" selection-start-column="34" selection-end-line="3381" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Resources/views/Default/griddos.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.5">
@@ -583,7 +477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38189533">
           <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -635,14 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.2916665">
           <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.458334">
-          <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,7 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -722,7 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,7 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,7 +620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.021097047">
           <caret line="601" column="74" selection-start-line="601" selection-start-column="74" selection-end-line="601" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,7 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,35 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6835443">
           <caret line="225" column="18" selection-start-line="225" selection-start-column="18" selection-end-line="225" selection-end-column="18" />
-          <folding>
-            <marker date="1456085575662" expanded="true" signature="4430:6250" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="4490:6048" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="4559:4780" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="4838:5973" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="4918:5930" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="5050:5188" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="5270:5883" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="5323:5545" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="5396:5491" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="5598:5833" placeholder="..." />
-            <marker date="1456085575662" expanded="true" signature="6110:6250" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/ajax_new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-38.125">
-          <caret line="61" column="64" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,39 +647,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="58" column="106" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125">
-          <caret line="27" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/track.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.025316">
+        <state vertical-scroll-proportion="0.021337127">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3653846">
-          <caret line="239" column="44" selection-start-line="239" selection-start-column="40" selection-end-line="239" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/FieldsAltinvController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5769231">
+        <state vertical-scroll-proportion="0.021337127">
           <caret line="2" column="28" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="28" />
           <folding />
         </state>
@@ -836,9 +671,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/TypeAltinvController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.068814054">
-          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.07112376">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/trackaltinv/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/trackconstru/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/typeconstru/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.75">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/typecomtrad/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.833333">
+          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding>
+            <element signature="e#355#377#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/fieldsaltinv/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BL/SGIBundle/Controller/AltinvController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8461537">
+          <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
+          <folding>
+            <element signature="e#43#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/altinv/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/typealtinv/ajax_new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6487119">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+          <folding>
+            <element signature="e#359#381#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

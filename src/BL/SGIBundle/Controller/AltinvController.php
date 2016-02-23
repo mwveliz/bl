@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -49,6 +50,24 @@ class AltinvController extends Controller
             'altinvs' => $altinvs,
         ));
     }
+
+    /**
+     * Tracks all Altinv entities.
+     *
+     * @Route("/add", name="ajax_typealtinv_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateAltinv(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new Altinv();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
 
     /**
      * Tracks all Altinv entities.

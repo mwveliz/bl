@@ -1,5 +1,4 @@
-
-<h3>    Type of Alternative Investments</h3>
+<h3> Type of Construction</h3>
 {% block body %}
     <div class="row">
         <div class="col-md-6 ">
@@ -38,16 +37,15 @@
          $( document ).ready(function() {
              $('#btn_addtype').click(function(e) {
                  e.preventDefault();
-                 desc=$("#type_altinv_description").val();
-                 $.post( "{{ path('ajax_typealtinv_create') }}",{ description: desc})
+                 desc=$("#type_constru_description").val();
+                 $.post( "{{ path('ajax_typeconstru_create') }}",{ description: desc})
                          .done(function( resp) {
-                     $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
-                             $( "select#altinv_IdTypeAltinv").val(resp).change();
+                             $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
+                             $( "select#altinv_IdTypeConstru").val(resp).change();
                              $('div#add').children().remove();
-                 });
+                         });
              });
-
-                 $('#clear').click(function() {
+             $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
                  $('span').removeClass("checked");
              });
