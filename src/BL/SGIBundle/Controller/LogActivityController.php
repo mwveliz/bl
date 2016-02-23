@@ -179,32 +179,88 @@ class LogActivityController extends Controller
 
                         // Listado de log
                         // Definir acción
-                        $action = $result->getAction();
+                        $operation = $result->getAction();
                         $table = strtolower($result->getObjectClass());
                         
                         $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
                         
-                        switch ($action) {
+                        $action = '';
+                        $class = $result->getObjectClass();
+                            switch ($class) {
+                                case 'Altinv':
+                                    $action .= ' on Alternatives Investments';
+                                break;
+                                 case 'Client':
+                                    $action .= ' on Clients';
+                                break;
+                                case 'Comtrad':
+                                    $action .= ' on Commodities Trading';
+                                break;
+                                case 'Constru':
+                                    $action .= ' on Constructions';
+                                break;
+                                case 'FieldsComtrad':
+                                    $action .= ' on Fields Comtrad';
+                                break;            
+                                case 'Event':
+                                    $action .= ' on Events';
+                                break;
+                                case 'Rental':
+                                    $action .= ' on Rentals';
+                                break;
+                                case 'Todo':
+                                    $action .= ' on Tasks';
+                                break;
+                                case 'TrackAltinv':
+                                    $action .= ' on Track Alternatives Investments';
+                                break;
+                                case 'TrackComtrad':
+                                    $action .= ' on Track Commodities Trading';
+                                break;
+                                case 'TrackConstru':
+                                    $action .= ' on Track Constructions';
+                                break; 
+                                case 'TrackRental':
+                                    $action .= ' on Track Rentals';
+                                break; 
+                                case 'TypeAltinv':
+                                    $action .= ' on Type Alternatives Investments';
+                                break; 
+                                case 'TypeComtrad':
+                                    $action .= ' on Type Commodities Trading';
+                                break;
+                                case 'TypeConstru':
+                                    $action .= ' on Type Constructions';
+                                break;
+                                case 'TypeRental':
+                                    $action .= ' on Type Rentals';
+                                break;            
+                                case 'Usuario':
+                                    $action .= ' on Users';
+                                break;            
+                            }
+                        
+                        switch ($operation) {
                             case 'Insert':
                                 $label = 'label-success';
                                 $icon = 'icon-plus';
                                 $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
                                 $cierre = '</a href="'.$link.'">';
-                                $desc = 'Insert into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = 'Insert into '.$action.' by '.$usuario;
                                 break;
                             case 'Update':
                                 $label = 'label-info';
                                 $icon = 'icon-pencil';
                                 $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
-                                $desc = 'Update into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = 'Update into '.$action.' by '.$usuario;
                                 break;
                             case 'Delete':
                                 $label = 'label-danger';
                                 $icon = 'icon-trash';
                                 $link = $this->generateUrl($table.'_index', array());
-                                $desc = 'Delete into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = 'Delete into '.$action.' by '.$usuario;
                                 break;
                         }    
 
@@ -252,10 +308,10 @@ class LogActivityController extends Controller
     
     /**
      *
-     * @Route("/log_history", name="log_history")
+     * @Route("/log_box", name="log_box")
      * @Method("GET")
      */
-    public function loghistoryAction()
+    public function logboxAction(Request $request)
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
@@ -275,26 +331,30 @@ class LogActivityController extends Controller
         // Mostrar en la vista si es admin defaul value true
         $show = true;
         
-        if ($grupo_usuario == 'Administrator') {
+        $type = $request->get('type');
+        
+        if ($grupo_usuario == 'Administrator') { 
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:LogActivity e'
                        . ' ORDER BY e.loggedAt DESC')
-               ->setMaxResults(5)     
-               ->getResult();            
-
+               ->setMaxResults(10)     
+               ->getResult(); 
+            
+            // En caso de modificar el filtro por ajax se agrega este filtro
+            if ($type == 'Insert' || $type == 'Update' || $type == 'Delete' ) {  
+                $results = $em
+                   ->createQuery('SELECT e FROM SGIBundle:LogActivity e'
+                           . ' WHERE e.action = :action '
+                           . ' ORDER BY e.loggedAt DESC')
+                    ->setParameter('action', $type)
+                    ->setMaxResults(10)     
+                    ->getResult();                                 
+            }
         }  else {  
             $results = 0;
-        }            
-        
-        // Enlace al listado de Eventos
-        $link_all = $this->generateUrl('logactivity_index', array());        
+        }                   
  
         // Listado de eventos
-        $all_log = '<h3>
-                         &nbsp;&nbsp;&nbsp;&nbsp;</h3>
-                        <a href="'.$link_all.'">view all</a>
-                    </li>';        
-        
         $calendar_log = '';
 
         if ($grupo_usuario == 'Administrator') {
@@ -303,32 +363,88 @@ class LogActivityController extends Controller
 
                         // Listado de log
                         // Definir acción
-                        $action = $result->getAction();
+                        $operation = $result->getAction();
                         $table = strtolower($result->getObjectClass());
                         
                         $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
                         
-                        switch ($action) {
+                        $action = '';
+                        $class = $result->getObjectClass();
+                            switch ($class) {
+                                case 'Altinv':
+                                    $action .= ' on Alternatives Investments';
+                                break;
+                                 case 'Client':
+                                    $action .= ' on Clients';
+                                break;
+                                case 'Comtrad':
+                                    $action .= ' on Commodities Trading';
+                                break;
+                                case 'Constru':
+                                    $action .= ' on Constructions';
+                                break;
+                                case 'FieldsComtrad':
+                                    $action .= ' on Fields Comtrad';
+                                break;            
+                                case 'Event':
+                                    $action .= ' on Events';
+                                break;
+                                case 'Rental':
+                                    $action .= ' on Rentals';
+                                break;
+                                case 'Todo':
+                                    $action .= ' on Tasks';
+                                break;
+                                case 'TrackAltinv':
+                                    $action .= ' on Track Alternatives Investments';
+                                break;
+                                case 'TrackComtrad':
+                                    $action .= ' on Track Commodities Trading';
+                                break;
+                                case 'TrackConstru':
+                                    $action .= ' on Track Constructions';
+                                break; 
+                                case 'TrackRental':
+                                    $action .= ' on Track Rentals';
+                                break; 
+                                case 'TypeAltinv':
+                                    $action .= ' on Type Alternatives Investments';
+                                break; 
+                                case 'TypeComtrad':
+                                    $action .= ' on Type Commodities Trading';
+                                break;
+                                case 'TypeConstru':
+                                    $action .= ' on Type Constructions';
+                                break;
+                                case 'TypeRental':
+                                    $action .= ' on Type Rentals';
+                                break;            
+                                case 'Usuario':
+                                    $action .= ' on Users';
+                                break;            
+                            }
+                        
+                        switch ($operation) {                        
                             case 'Insert':
                                 $label = 'label-success';
                                 $icon = 'icon-plus';
                                 $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
                                 $cierre = '</a href="'.$link.'">';
-                                $desc = 'Insert into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = '<strong> Insert into '.$action.'</strong> by '.$usuario;
                                 break;
                             case 'Update':
                                 $label = 'label-info';
                                 $icon = 'icon-pencil';
                                 $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
                                 $inicio = '<a href="'.$link.'">';
-                                $desc = 'Update into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = '<strong> Update into '.$action.'</strong> by '.$usuario;
                                 break;
                             case 'Delete':
                                 $label = 'label-danger';
                                 $icon = 'icon-trash';
                                 $link = $this->generateUrl($table.'_index', array());
-                                $desc = 'Delete into '.$result->getObjectClass().' by '.$usuario;
+                                $desc = '<strong> Delete into '.$action.'</strong> by '.$usuario;
                                 break;
                         }    
 
@@ -336,17 +452,27 @@ class LogActivityController extends Controller
 
                                 $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
                                 $fecha = $result->getLoggedAt()->format('Y-m-d h:i:s');
+                                
                                 $calendar_log .= '
-                                            <li>
-                                                <a href="'.$link.'">
-                                                    <span class="task">
-                                                        <span class="desc"><span class="label label-sm label-icon '.$label.'">
-                                                        <i class="'.$icon.'">&nbsp;</i></span>
-                                                        <span class="desc" sytle="text-align: justify;">'.$desc.' ('.$fecha.')</span>    
-                                                    </span>
-                                                    </hr>
-                                                </a>
+                                                <li>
+                                                <div class="col-sm-8">
+                                                    <div class="cont">
+                                                        <div class="col-sm-2">
+                                                            <div class="label label-sm '.$label.'">
+                                                                <i class="'.$icon.'">&nbsp;</i></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="desc">'. $desc .'
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="date">'.$fecha.'</div>
+                                                </div>
                                             </li>';
+                                
                         } 
                    }
                 } 
@@ -354,17 +480,11 @@ class LogActivityController extends Controller
                 
         } else {
             $show = false;
-        }    
-        // Cierre de Estructuras
-        $calendar_log .= '</ul>
-                        </li>
-                    </ul>';   
+        }      
         
         $arreglo = array();
             $arreglo[] = array(                   
-                "number" => $number_log,
-                "all" => $all_log,
-                "calendar" => $calendar_log,
+                "all" => $calendar_log,
                 "show" => $show
             );         
         

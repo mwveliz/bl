@@ -75,7 +75,7 @@
                         </div>     
                     </div>
                     <!-- BEGIN LOG AND TASK -->                                                            
-                    <div class="row">
+                    <div class="row" id="admin_box" style="display: none">
                         <!-- BEGIN LOGS -->   
                         <div class="col-md-6 col-sm-6">
                             <div class="portlet light bordered">
@@ -91,41 +91,21 @@
                                             </a>
                                             <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
                                                 <label>
-                                                    <input type="checkbox" /> All</label>
+                                                    <input class="option_log" type="radio" name="tipo" param="All"/> All</label>
                                                 <label>
-                                                    <input type="checkbox" /> Created</label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Insert"/> Created</label>
                                                 <label>
-                                                    <input type="checkbox" /> Updated</label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Update"/> Updated</label>
                                                 <label>
-                                                    <input type="checkbox" /> Deleted</label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Delete"/> Deleted</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
                                     <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
-                                        <ul class="feeds">
-                                            <li>
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-info">
-                                                                <i class="fa fa-check"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> You have 4 pending tasks.
-                                                                <span class="label label-sm label-warning "> Take action
-                                                                    <i class="fa fa-share"></i>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> Just now </div>
-                                                </div>
-                                            </li>
+                                        <ul class="feeds" id="log_box">
+
                                         </ul>
                                     </div>
                                     <div class="scroller-footer">
@@ -545,4 +525,45 @@
                 $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});
         });
 </script>
+<script>    
+        // LOG BOX
+        $( document ).ready(function() {
+                    $.ajax({
+                        url: "{{ path('log_box') }}",
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#log_box').empty();
+                                $('#log_box').html(json[0]['all']);
+                            } 
+                            
+                        }
+                    }); 
+                    
+                    $( ".option_log" ).change(function() {
+                        type = $(this).attr('param');
+                        $.ajax({
+                            url: "{{ path('log_box') }}",
+                            data: "type=" + type,
+                            success: function(data){
+                                var obj = JSON.stringify(data);
+                                var json = $.parseJSON(obj); 
+                                var show = json[0]['show'];
+
+                                if (show) {
+                                    $('#admin_box').css('display','inline');
+                                    $('#log_box').empty();
+                                    $('#log_box').html(json[0]['all']);
+                                } 
+
+                            }
+                        });
+                    });                    
+        });
+         </script>  
+
 {% endblock %}
