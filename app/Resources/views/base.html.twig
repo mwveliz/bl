@@ -70,7 +70,7 @@
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar" style="display: none">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-default" id="number_log"> </span>
+                               <!-- <span class="badge badge-default" id="number_log"> </span> -->
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external" id="total_log">
@@ -835,8 +835,8 @@
                             
                             if (show) {
                                 $('#header_notification_bar').css('display','inline');
-                                $('#number_log').empty();
-                                $('#number_log').html(json[0]['number']);
+                            //    $('#number_log').empty();
+                            //    $('#number_log').html(json[0]['number']);
 
                                 $('#total_log').empty();
                                 $('#total_log').html(json[0]['all']);

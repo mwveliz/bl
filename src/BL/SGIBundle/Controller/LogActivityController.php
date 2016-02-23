@@ -149,7 +149,7 @@ class LogActivityController extends Controller
         if ($grupo_usuario == 'Administrator') {
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:LogActivity e'
-                       . ' ORDER BY e.loggedAt ASC')
+                       . ' ORDER BY e.loggedAt DESC')
                ->setMaxResults(5)     
                ->getResult();            
 
@@ -238,7 +238,7 @@ class LogActivityController extends Controller
         
         $arreglo = array();
             $arreglo[] = array(                   
-                "number" => $number_log,
+              //  "number" => $number_log,
                 "all" => $all_log,
                 "calendar" => $calendar_log,
                 "show" => $show
@@ -249,6 +249,129 @@ class LogActivityController extends Controller
         
     }            
         
+    
+    /**
+     *
+     * @Route("/log_history", name="log_history")
+     * @Method("GET")
+     */
+    public function loghistoryAction()
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                    ->getToken()
+                    ->getUser());
+
+        $usuario = $user->getUsername();
+        
+        // Obtengo el grupo de mi usuario
+        $grupo_usuario = $user->getGroupNames();
+        $grupo_usuario = $grupo_usuario[0]; 
+        
+        $em = $this->getDoctrine()->getManager();
+        $event = '';
+        
+        // Mostrar en la vista si es admin defaul value true
+        $show = true;
+        
+        if ($grupo_usuario == 'Administrator') {
+            $results = $em
+               ->createQuery('SELECT e FROM SGIBundle:LogActivity e'
+                       . ' ORDER BY e.loggedAt DESC')
+               ->setMaxResults(5)     
+               ->getResult();            
+
+        }  else {  
+            $results = 0;
+        }            
+        
+        // Enlace al listado de Eventos
+        $link_all = $this->generateUrl('logactivity_index', array());        
+ 
+        // Listado de eventos
+        $all_log = '<h3>
+                         &nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                        <a href="'.$link_all.'">view all</a>
+                    </li>';        
+        
+        $calendar_log = '';
+
+        if ($grupo_usuario == 'Administrator') {
+                if (count($results) > 0) {
+                   foreach($results as $result) {
+
+                        // Listado de log
+                        // Definir acción
+                        $action = $result->getAction();
+                        $table = strtolower($result->getObjectClass());
+                        
+                        $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
+                        
+                        switch ($action) {
+                            case 'Insert':
+                                $label = 'label-success';
+                                $icon = 'icon-plus';
+                                $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
+                                $inicio = '<a href="'.$link.'">';
+                                $cierre = '</a href="'.$link.'">';
+                                $desc = 'Insert into '.$result->getObjectClass().' by '.$usuario;
+                                break;
+                            case 'Update':
+                                $label = 'label-info';
+                                $icon = 'icon-pencil';
+                                $link = $this->generateUrl($table.'_show', array('id' => $result->getObjectId()));
+                                $inicio = '<a href="'.$link.'">';
+                                $desc = 'Update into '.$result->getObjectClass().' by '.$usuario;
+                                break;
+                            case 'Delete':
+                                $label = 'label-danger';
+                                $icon = 'icon-trash';
+                                $link = $this->generateUrl($table.'_index', array());
+                                $desc = 'Delete into '.$result->getObjectClass().' by '.$usuario;
+                                break;
+                        }    
+
+                        if ($grupo_usuario == 'Administrator') {
+
+                                $usuario = $result->getUserid()->getNombre().' '.$result->getUserid()->getApellido();            
+                                $fecha = $result->getLoggedAt()->format('Y-m-d h:i:s');
+                                $calendar_log .= '
+                                            <li>
+                                                <a href="'.$link.'">
+                                                    <span class="task">
+                                                        <span class="desc"><span class="label label-sm label-icon '.$label.'">
+                                                        <i class="'.$icon.'">&nbsp;</i></span>
+                                                        <span class="desc" sytle="text-align: justify;">'.$desc.' ('.$fecha.')</span>    
+                                                    </span>
+                                                    </hr>
+                                                </a>
+                                            </li>';
+                        } 
+                   }
+                } 
+                
+                
+        } else {
+            $show = false;
+        }    
+        // Cierre de Estructuras
+        $calendar_log .= '</ul>
+                        </li>
+                    </ul>';   
+        
+        $arreglo = array();
+            $arreglo[] = array(                   
+                "number" => $number_log,
+                "all" => $all_log,
+                "calendar" => $calendar_log,
+                "show" => $show
+            );         
+        
+        
+        return new JsonResponse($arreglo);
+        
+    }     
     
     /**
      * Finds and displays a LogActivity entity.
