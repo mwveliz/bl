@@ -55,6 +55,25 @@ class ComtradController extends Controller
             'comtrads' => $comtrads,
         ));
     }
+    /**
+     * Create Comtrad Type entities.
+     *
+     * @Route("/add", name="ajax_typeacomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeComtrad();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
+
 
     /**
      * Track all Comtrad entities.
@@ -65,7 +84,7 @@ class ComtradController extends Controller
     public function trackAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $em = $this->getDoctrine()->getManager();
+
 
         $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');

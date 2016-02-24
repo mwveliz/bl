@@ -2,6 +2,7 @@
 
 namespace BL\SGIBundle\Controller;
 
+use BL\SGIBundle\Entity\TypeAltinv;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,7 +53,7 @@ class AltinvController extends Controller
     }
 
     /**
-     * Create Altinv entities.
+     * Create Altinv Type entities.
      *
      * @Route("/add", name="ajax_typealtinv_create")
      * @Method("POST")
@@ -60,7 +61,7 @@ class AltinvController extends Controller
     public function ajaxCreateAltinv(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $object= new Altinv();
+        $object= new TypeAltinv();
         $object->setDescription( $request->get('description') );
         $em->persist($object);
         $em->flush();

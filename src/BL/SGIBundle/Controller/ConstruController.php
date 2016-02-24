@@ -120,6 +120,25 @@ class ConstruController extends Controller
     }
 
     /**
+     * Create Constru Type entities.
+     *
+     * @Route("/add", name="ajax_typeconstru_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeConstru();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
+
+    /**
      * Finds and displays a Constru entity.
      *
      * @Route("/{id}", name="constru_show")
