@@ -50,6 +50,23 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeRental', 
+                            $typeRental->getId());
+            */            
             return $this->redirectToRoute('typerental_show', array('id' => $typerental->getId()));
         }
 
@@ -92,6 +109,26 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeRental', 
+                            $typeRental->getId());
+            */
+            
+            // fin proceso log 
+            
             return $this->redirectToRoute('typerental_edit', array('id' => $typeRental->getId()));
         }
 
@@ -115,6 +152,27 @@ class TypeRentalController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeRental', 
+                            $typeRental->getId());
+            */
+            
+            // fin proceso log 
+            
             $em->remove($typeRental);
             $em->flush();
         }
