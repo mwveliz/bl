@@ -92,11 +92,20 @@ class TypeComtradController extends Controller
      */
     public function showAction(TypeComtrad $typeComtrad)
     {
-        $deleteForm = $this->createDeleteForm($typeComtrad);
-
-        return $this->render('typecomtrad/show.html.twig', array(
-            'typeComtrad' => $typeComtrad,
-            'delete_form' => $deleteForm->createView(),
+        $id = $typeComtrad->getId();  
+        $form = 'TypeComtrad';  
+        $table = 'SGIBundle:'.$form;
+                
+        $em = $this->getDoctrine()->getManager();
+        
+        $object = $em->getRepository($table)->findOneBy(array('id' => $id));
+                       
+        $form_lowcase = strtolower($form);
+        
+        $ruta = $form_lowcase.'/show.html.twig';
+        
+        return $this->render($ruta, array(
+            'object' => $object,
         ));
     }
 

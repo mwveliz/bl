@@ -90,11 +90,20 @@ class FieldsComtradController extends Controller
      */
     public function showAction(FieldsComtrad $fieldsComtrad)
     {
-        $deleteForm = $this->createDeleteForm($fieldsComtrad);
-
-        return $this->render('fieldscomtrad/show.html.twig', array(
-            'fieldsComtrad' => $fieldsComtrad,
-            'delete_form' => $deleteForm->createView(),
+        $id = $fieldsComtrad->getId();  
+        $form = 'FieldsComtrad';  
+        $table = 'SGIBundle:'.$form;
+                
+        $em = $this->getDoctrine()->getManager();
+        
+        $object = $em->getRepository($table)->findOneBy(array('id' => $id));
+                       
+        $form_lowcase = strtolower($form);
+        
+        $ruta = $form_lowcase.'/show.html.twig';
+        
+        return $this->render($ruta, array(
+            'object' => $object,
         ));
     }
 

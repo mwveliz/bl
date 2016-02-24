@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bl")
  * @ORM\Entity
  */
-class Bl
-{
+class Bl {
+
     /**
      * @var string
      *
@@ -43,16 +43,13 @@ class Bl
      */
     private $id;
 
-
-
     /**
      * Set type
      *
      * @param string $type
      * @return Bl
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -63,8 +60,7 @@ class Bl
      *
      * @return string 
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -74,8 +70,7 @@ class Bl
      * @param integer $codeBl
      * @return Bl
      */
-    public function setCodeBl($codeBl)
-    {
+    public function setCodeBl($codeBl) {
         $this->codeBl = $codeBl;
 
         return $this;
@@ -86,8 +81,7 @@ class Bl
      *
      * @return integer 
      */
-    public function getCodeBl()
-    {
+    public function getCodeBl() {
         return $this->codeBl;
     }
 
@@ -97,8 +91,7 @@ class Bl
      * @param string $description
      * @return Bl
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -109,8 +102,7 @@ class Bl
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -119,8 +111,12 @@ class Bl
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
+
+    public function __toString() {
+        return $this->description;
+    }
+
 }

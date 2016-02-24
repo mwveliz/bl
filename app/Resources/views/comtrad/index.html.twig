@@ -129,20 +129,17 @@
                                     </div>
                                     <div class="actions">
                                         <div class="btn-group">
-                                            <a class="btn green btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;"> All </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;"> Completed </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;"> Pending </a>
-                                                </li>
-                                            </ul>
+                                                <a class="btn btn-sm blue btn-outline btn-circle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="All" param2="comtrad"/> All</label>
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="true" param2="comtrad"/> Completed</label>
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="false" param2="comtrad"/> Pending</label>
+                                                </div>
                                         </div>
                                         <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
                                     </div>
@@ -151,7 +148,7 @@
                                     <div class="task-content">
                                         <div class="scroller" style="height: 312px;" data-always-visible="1" data-rail-visible1="1">
                                             <!-- START TASK LIST -->
-                                            <ul class="task-list">
+                                            <ul class="task-list" id="task_box">
                                                 <li>
                                                     <div class="task-checkbox">
                                                         <input type="checkbox" class="liChild" value="" /> </div>
@@ -161,277 +158,6 @@
                                                         <span class="task-bell">
                                                             <i class="fa fa-bell-o"></i>
                                                         </span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Hold An Interview for Marketing Manager Position </span>
-                                                        <span class="label label-sm label-danger">Marketing</span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> AirAsia Intranet System Project Internal Meeting </span>
-                                                        <span class="label label-sm label-success">AirAsia</span>
-                                                        <span class="task-bell">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Technical Management Meeting </span>
-                                                        <span class="label label-sm label-warning">Company</span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Kick-off Company CRM Mobile App Development </span>
-                                                        <span class="label label-sm label-info">Internal Products</span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Prepare Commercial Offer For SmartVision Website Rewamp </span>
-                                                        <span class="label label-sm label-danger">SmartVision</span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Sign-Off The Comercial Agreement With AutoSmart </span>
-                                                        <span class="label label-sm label-default">AutoSmart</span>
-                                                        <span class="task-bell">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group dropup">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> Company Staff Meeting </span>
-                                                        <span class="label label-sm label-success">Cruise</span>
-                                                        <span class="task-bell">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group dropup">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="last-line">
-                                                    <div class="task-checkbox">
-                                                        <input type="checkbox" class="liChild" value="" /> </div>
-                                                    <div class="task-title">
-                                                        <span class="task-title-sp"> KeenThemes Investment Discussion </span>
-                                                        <span class="label label-sm label-warning">KeenThemes </span>
-                                                    </div>
-                                                    <div class="task-config">
-                                                        <div class="task-config-btn btn-group dropup">
-                                                            <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-check"></i> Complete </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-pencil"></i> Edit </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-trash-o"></i> Cancel </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -528,6 +254,8 @@
 <script>    
         // LOG BOX
         $( document ).ready(function() {
+            
+                    // BOX LOG
                     $.ajax({
                         url: "{{ path('log_box') }}",
                         success: function(data){
@@ -562,8 +290,85 @@
 
                             }
                         });
-                    });                    
-        });
-         </script>  
+                    });    
+                    // END BOX LOG
+                    
+                    
+                    // BOX TASK
+                    $.ajax({
+                        url: "{{ path('todo_history') }}",
+                        data: "pagina=" + 'comtrad',
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
 
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#task_box').empty();
+                                $('#task_box').html(json[0]['all']);
+                            } 
+                            checkbox();                            
+                        }
+                    });                    
+                    
+                    $( ".option_task" ).change(function() {
+                        type = $(this).attr('param');
+                        pagina = $(this).attr('param2');
+                        $.ajax({
+                            url: "{{ path('todo_history') }}",
+                            data: "type=" + type +
+                                  "&pagina=" + pagina,
+                            success: function(data){
+                                var obj = JSON.stringify(data);
+                                var json = $.parseJSON(obj); 
+                                var show = json[0]['show'];
+
+                                if (show) {
+                                    $('#admin_box').css('display','inline');
+                                    $('#task_box').empty();
+                                    $('#task_box').html(json[0]['all']);
+                                }
+                                
+                                checkbox();
+                            }
+                        });
+                    }); 
+                    
+                    
+                    // Checkbox action
+                    $('input[type="checkbox"]').on('click', function() {
+                        alert('vdsfsdfsdf');
+                    });                     
+                    
+                    // END BOX TASK
+                    
+            function checkbox() {
+                $('input.checkbox_task').on('click', function() {
+                    type = $(this).attr('param');
+                    pagina = $(this).attr('param2');
+                    id = $(this).attr('param3');
+                    $.ajax({
+                        url: "{{ path('todo_history') }}",
+                        data: "type=" + type +
+                              "&pagina=" + pagina +
+                              "&id=" + id,
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#task_box').empty();
+                                $('#task_box').html(json[0]['all']);
+                            }  
+
+                        }
+                    });
+                });                
+            }    
+                    
+        });              
+</script>  
 {% endblock %}

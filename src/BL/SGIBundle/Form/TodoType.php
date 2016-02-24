@@ -26,7 +26,15 @@ class TodoType extends AbstractType
                     'class' => 'form-control form-group'
                  ),                
             ))    
-            ->add('idBl')                
+            ->add('idBl','entity_typeahead', array(
+                'label' => 'Business Line',
+                'class' => 'SGIBundle:Bl',
+                'render' => 'id_bl',
+                'route' => 'bl_index_ajax',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                 ),                
+            ))                
             ->add('description', 'text', array(
                  'attr' => array('class' => 'form-control input-sm')
              ))

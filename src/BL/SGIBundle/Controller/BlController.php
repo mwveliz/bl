@@ -38,11 +38,35 @@ class BlController extends Controller
     /**
      * Lists all Bl entities.
      *
+     * @Route("/", name="bl_index_ajax")
+     * @Method("POST")
+     */
+    public function ajaxindexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $bls = $em->getRepository('SGIBundle:Bl')->findAll();
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($bls  as $bl){
+            $indice=(string) $bl->getId();
+            $objeto['id']=(string) $bl->getId();
+            $objeto['value']= $bl->getDescription();
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }
+    
+    /**
+     * Lists all Bl entities.
+     *
      * @Route("/showala", name="ajax_showlogactivity")
      * @Method("POST")
      */
     public function showalaAction(Request $request)
-    {
+    {      
         $id = $request->get('id');  
         $form = $request->get('form');  
         $table = 'SGIBundle:'.$form;
