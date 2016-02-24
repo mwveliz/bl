@@ -270,7 +270,6 @@ class TodoController extends Controller
         
         // Inicio cuando se realiza el click en el checkbox
         $id = $request->get('id');
-   //     die(var_dump($id));
         if (!is_null($id)) {
             
             $todo = $em->getRepository('SGIBundle:Todo')
@@ -302,9 +301,7 @@ class TodoController extends Controller
         }
         // Fin cuando se realiza el click en el checkbox
         
-        
-   //     die(var_dump($type.'  '.$pagina));
-        
+                
         // Busqueda de los elementos en el listado
         if ($grupo_usuario == 'Administrator') {             
                 $results = $em->createQuery('SELECT e FROM SGIBundle:Todo e'
@@ -389,7 +386,15 @@ class TodoController extends Controller
                             .$endcheckbox.    
                         '</li>';  
                    }
-                }     
+                } else {
+                   $all_todo  = '<li>'
+                           . '  <div class="task-title">'
+                           . '      <span class="task-title-sp">'
+                           . '          <center>There are no Tasks to display</center>'
+                           . '      </span>'
+                           . '   </div>'
+                           . '</li>'; 
+                }    
         } else {
             $show = false;
         }          

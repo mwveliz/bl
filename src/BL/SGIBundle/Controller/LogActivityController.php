@@ -82,7 +82,10 @@ class LogActivityController extends Controller
                 break;
                 case 'TypeRental':
                     $action .= ' on Type Rentals';
-                break;            
+                break; 
+                case 'Todo':
+                    $action .= ' on Tasks';
+                break;             
                 case 'Usuario':
                     $action .= ' on Users';
                 break;            
