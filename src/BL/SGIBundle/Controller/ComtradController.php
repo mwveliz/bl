@@ -176,7 +176,7 @@ class ComtradController extends Controller
             $em->flush();
             
             // Procedo log
-            /*
+
             $userManager = $this->container->get('fos_user.user_manager');
 
             $user = $userManager->findUserByUsername($this->container->get('security.context')
@@ -191,7 +191,7 @@ class ComtradController extends Controller
             $bitacora = $em->getRepository('SGIBundle:LogActivity')
                     ->bitacora($user->getId(), 'Insert', 'Comtrad', 
                             $comtrad->getId());
-            */
+
             
             // fin proceso log             
             

@@ -27,6 +27,13 @@ class Bl
     private $codeBl;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -85,6 +92,29 @@ class Bl
     }
 
     /**
+     * Set description
+     *
+     * @param string $description
+     * @return Bl
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -93,8 +123,4 @@ class Bl
     {
         return $this->id;
     }
-     public function __toString()
-	{
-    return $this->codeBl;
-	}
 }

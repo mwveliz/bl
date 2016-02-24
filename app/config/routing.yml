@@ -1,3 +1,7 @@
+sgi_type_rental:
+    resource: "@SGIBundle/Controller/TypeRentalController.php"
+    type:     annotation
+
 sgi_type_constru:
     resource: "@SGIBundle/Controller/TypeConstruController.php"
     type:     annotation

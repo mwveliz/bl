@@ -5,27 +5,13 @@ namespace BL\SGIBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Bl
+ * TypeRental
  *
- * @ORM\Table(name="bl")
+ * @ORM\Table(name="type_rental")
  * @ORM\Entity
  */
-class Bl
+class TypeRental
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="code_bl", type="bigint", nullable=true)
-     */
-    private $codeBl;
-
     /**
      * @var string
      *
@@ -39,7 +25,7 @@ class Bl
      * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="bl_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="type_rental_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
