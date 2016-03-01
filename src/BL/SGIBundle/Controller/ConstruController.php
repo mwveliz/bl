@@ -2,12 +2,14 @@
 
 namespace BL\SGIBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Constru;
 use BL\SGIBundle\Form\ConstruType;
+use BL\SGIBundle\Entity\TypeConstru;
 
 /**
  * Constru controller.
@@ -118,6 +120,24 @@ class ConstruController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Create Constru Type entities.
+     *
+     * @Route("/add", name="ajax_typeconstru_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTypeConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeConstru();
+        $object->setDescription($request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
 
     /**
      * Finds and displays a Constru entity.

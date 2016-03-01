@@ -16,7 +16,17 @@ class RentalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
+            ->add('IdTypeRental', 'entity', array(
+                'label' => 'Type of Rental',
+                'class' => 'SGIBundle:TypeRental',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                ),
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('x')
+                        ->orderBy('x.description', 'ASC');
+                },
+            ))
             ->add('idState','entity_typeahead', array(
                 'label' => 'State',
                 'class' => 'SGIBundle:State',

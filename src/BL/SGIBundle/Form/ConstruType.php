@@ -16,6 +16,17 @@ class ConstruType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('IdTypeConstru', 'entity', array(
+                'label' => 'Type of Constru',
+                'class' => 'SGIBundle:TypeComtrad',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                ),
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('x')
+                        ->orderBy('x.description', 'ASC');
+                },
+            ))
 
             ->add('idState','entity_typeahead', array(
                 'label' => 'State',

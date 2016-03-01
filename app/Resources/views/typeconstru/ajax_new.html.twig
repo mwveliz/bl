@@ -41,7 +41,7 @@
                  $.post( "{{ path('ajax_typeconstru_create') }}",{ description: desc})
                          .done(function( resp) {
                              $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
-                             $( "select#altinv_IdTypeConstru").val(resp).change();
+                             $( "select#constru_IdTypeConstru").val(resp).change();
                              $('div#add').children().remove();
                          });
              });

@@ -121,6 +121,24 @@ class RentalController extends Controller
     }
 
     /**
+     * Create Rental Type entities.
+     *
+     * @Route("/add", name="ajax_typearental_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateRental(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeComtrad();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
+    /**
      * Finds and displays a Rental entity.
      *
      * @Route("/{id}", name="rental_show")

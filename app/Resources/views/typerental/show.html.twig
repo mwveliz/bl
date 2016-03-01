@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Type of Construction</h1>
+    <h1>TypeRental</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Description</th>
-                <td>{{ typeConstru.description }}</td>
+                <td>{{ typeRental.description }}</td>
             </tr>
             <tr>
                 <th>Id</th>
-                <td>{{ typeConstru.id }}</td>
+                <td>{{ typeRental.id }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('typeconstru_index') }}">Back to the list</a>
+            <a href="{{ path('typerental_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('typeconstru_edit', { 'id': typeConstru.id }) }}">Edit</a>
+            <a href="{{ path('typerental_edit', { 'id': typeRental.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

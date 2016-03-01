@@ -1,4 +1,4 @@
-<h3>    Type of Commodities Trading</h3>
+<h3> Type of Rental</h3>
 {% block body %}
     <div class="row">
         <div class="col-md-6 ">
@@ -37,11 +37,11 @@
          $( document ).ready(function() {
              $('#btn_addtype').click(function(e) {
                  e.preventDefault();
-                 desc=$("#type_comtrad_description").val();
-                 $.post( "{{ path('ajax_typecomtrad_create') }}",{ description: desc})
+                 desc=$("#type_rental_description").val();
+                 $.post( "{{ path('ajax_typerental_create') }}",{ description: desc})
                          .done(function( resp) {
                              $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
-                             $( "select#comtrad_IdTypeComtrad").val(resp).change();
+                             $( "select#altinv_IdTypeRental").val(resp).change();
                              $('div#add').children().remove();
                          });
              });

@@ -37,7 +37,7 @@ class FieldsAltinvController extends Controller
 
 
     /**
-     * Create Altinv entities.
+     * Create Altinv Fields entities.
      *
      * @Route("/add", name="ajax_fieldsaltinv_create")
      * @Method("POST")

@@ -2,12 +2,14 @@
 
 namespace BL\SGIBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TypeConstru;
 use BL\SGIBundle\Form\TypeConstruType;
+
 
 /**
  * TypeConstru controller.
@@ -41,6 +43,7 @@ class TypeConstruController extends Controller
      */
     public function newAction(Request $request)
     {
+        $ruta='typeconstru/new.html.twig';
         $typeConstru = new TypeConstru();
         $form = $this->createForm('BL\SGIBundle\Form\TypeConstruType', $typeConstru);
         $form->handleRequest($request);
@@ -70,14 +73,18 @@ class TypeConstruController extends Controller
             
             // fin proceso log   
             
-            return $this->redirectToRoute('typeconstru_show', array('id' => $typeconstru->getId()));
+            return $this->redirectToRoute('typeconstru_show', array('id' => $typeConstru->getId()));
         }
+        if ($request->isXmlHttpRequest()) $ruta='typeconstru/ajax_new.html.twig';
 
-        return $this->render('typeconstru/new.html.twig', array(
+        return $this->render($ruta, array(
             'typeConstru' => $typeConstru,
             'form' => $form->createView(),
         ));
     }
+
+
+
 
     /**
      * Finds and displays a TypeConstru entity.

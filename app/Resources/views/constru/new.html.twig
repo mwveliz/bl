@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page_description %}
-    Construction Business Line
+    Construction  - New Opportunity
 {% endblock %}
 
 {% block body %}
@@ -36,7 +36,7 @@
             </div>
             <!-- END SAMPLE FORM PORTLET-->
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-6" id="add">
 
         </div>
     </div>
@@ -67,7 +67,19 @@
              $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
              $(".currency").maskMoney();
 
-             $('<a class="btn btn-success pull-right" href="{{ path('constru_index') }}"><span>Add Type</span></a><br>').insertAfter( $('#constru_IdTypeConstru').closest("div") );
+             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Type</span></a><br>').insertAfter( $('#constru_IdTypeConstru').closest("div") );
+
+             $('#a_addtype').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('typeconstru_new') }}");
+             });
+
+             $('#a_addfield').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('fieldsconstru_new') }}");
+             });
+
+
          });
      </script>
 

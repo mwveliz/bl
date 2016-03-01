@@ -5,41 +5,43 @@
 {% endblock %} 
 
 {% block page_description %}
-   Commodities Trading Business Line
+   Commodities Trading  - New Opportunity
 {% endblock %} 
 
 {% block body %}
-                     <div class="row">
-                        <div class="col-md-6 ">
-                            <!-- BEGIN SAMPLE FORM PORTLET-->
-                            <div class="portlet light bordered">
-                                <div class="portlet-title">
-                                    <div class="caption font-red-sunglo">
-                                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
-                                        <span class="caption-subject bold uppercase"> New Register</span>
-                                    </div>
-                                </div>
-                                <div class="portlet-body form">
-                                        {{ form_start(form) }}
-                                            {{ form_widget(form) }}
-                                            <br>
-                                            <a class="btn btn-success pull-right" href="{{ path('comtrad_new') }}" ><span>Add Field</span></a>
-                                            <br><br>
-                                            <button type="button" class="btn default"  id="clear">Clear</button>
-                                            <a href="{{ path('comtrad_index') }}" class="btn red" role="button">Cancel</a>
-                                            <button type="submit" class="btn blue">Submit</button>
-                                        {{ form_end(form) }}  
-                                        <br>
-                                        <div class="form-actions">                                          
-                                        </div>
-                                </div>
-                            </div>
-                            <!-- END SAMPLE FORM PORTLET-->
-                        </div>
-                        <div class="col-md-6 ">
-                            
-                        </div>
-                    </div>  
+    <div class="row">
+        <div class="col-md-6 ">
+            <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> New Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <a id= "a_addfield" class="btn btn-success pull-right" href="#" ><span>Add Field</span></a>
+                    <br><br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+                    <a href="{{ path('comtrad_index') }}" class="btn red" role="button">Cancel</a>
+                    <button type="submit" class="btn blue">Submit</button>
+                    {{ form_end(form) }}
+                    <br>
+                    <div class="form-actions">
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+        <div class="col-md-6"  id="add">
+
+
+
+        </div>
+    </div>
  {% endblock %}           
 
  {% block stylesheets_extra %} 
@@ -48,28 +50,41 @@
  
  {% block javascripts_extra %}
 
- <script>    
-    $( document ).ready(function() {
-        $('#clear').click(function() {
-          $('form[name="{{ form.vars.name }}"]').trigger("reset");
-          $('span').removeClass("checked"); 
-        });
+     <script>
+         $( document ).ready(function() {
+             $('#clear').click(function() {
+                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
+                 $('span').removeClass("checked");
+             });
 
-        $('#comtrad_idClient_text').attr('placeholder','Find Client');
-        $('#comtrad_idClient_text').attr('widget_addon', 'type:"append"');
-        $('#comtrad_idState_text').attr('placeholder','Find State');
-        $('#comtrad_idState_text').attr('widget_addon', 'type:"append"');
+             $('#comtrad_idClient_text').attr('placeholder','Find Client');
+             $('#comtrad_idClient_text').attr('widget_addon', 'type:"append"');
+             $('#comtrad_idState_text').attr('placeholder','Find State');
+             $('#comtrad_idState_text').attr('widget_addon', 'type:"append"');
 
-    });
- </script>
-<script type='text/javascript'>  
-$( document ).ready(function() { 
-    $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
-    $(".currency").maskMoney();
-    
-    $('<a class="btn btn-success pull-right" href="{{ path('comtrad_index') }}"><span>Add Type</span></a><br>').insertAfter( $('#comtrad_IdTypeComtrad').closest("div") );
-});
-</script>
+         });
+     </script>
+     <script type='text/javascript'>
+         $( document ).ready(function() {
+             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+             $(".currency").maskMoney();
+
+             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Type</span></a><br>').insertAfter( $('#comtrad_IdTypeComtrad').closest("div") );
+
+             $('#a_addtype').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('typecomtrad_new') }}");
+             });
+
+             $('#a_addfield').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('fieldscomtrad_new') }}");
+             });
+
+
+         });
+     </script>
+
 
 
  {% endblock %}

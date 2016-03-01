@@ -2,6 +2,7 @@
 
 namespace BL\SGIBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -41,6 +42,7 @@ class TypeComtradController extends Controller
      */
     public function newAction(Request $request)
     {
+        $ruta='typecomtrad/new.html.twig';
         $typeComtrad = new TypeComtrad();
         $form = $this->createForm('BL\SGIBundle\Form\TypeComtradType', $typeComtrad);
         $form->handleRequest($request);
@@ -77,12 +79,31 @@ class TypeComtradController extends Controller
             ));            
             
         }
+        if ($request->isXmlHttpRequest()) $ruta='typecomtrad/ajax_new.html.twig';
 
-        return $this->render('typecomtrad/new.html.twig', array(
+        return $this->render($ruta, array(
             'typeComtrad' => $typeComtrad,
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Create Comtrad Type entities.
+     *
+     * @Route("/add", name="ajax_typecomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTypeComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeComtrad();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
 
     /**
      * Finds and displays a TypeComtrad entity.
@@ -92,11 +113,20 @@ class TypeComtradController extends Controller
      */
     public function showAction(TypeComtrad $typeComtrad)
     {
-        $deleteForm = $this->createDeleteForm($typeComtrad);
-
-        return $this->render('typecomtrad/show.html.twig', array(
-            'typeComtrad' => $typeComtrad,
-            'delete_form' => $deleteForm->createView(),
+        $id = $typeComtrad->getId();  
+        $form = 'TypeComtrad';  
+        $table = 'SGIBundle:'.$form;
+                
+        $em = $this->getDoctrine()->getManager();
+        
+        $object = $em->getRepository($table)->findOneBy(array('id' => $id));
+                       
+        $form_lowcase = strtolower($form);
+        
+        $ruta = $form_lowcase.'/show.html.twig';
+        
+        return $this->render($ruta, array(
+            'object' => $object,
         ));
     }
 

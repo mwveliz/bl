@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Constru
  *
- * @ORM\Table(name="constru", indexes={@ORM\Index(name="IDX_EF86AC9C4D1693CB", columns={"id_state"}), @ORM\Index(name="IDX_EF86AC9CE173B1B8", columns={"id_client"})})
+ * @ORM\Table(name="constru", indexes={@ORM\Index(name="IDX_EF86AC9C4D1693CB", columns={"id_state"}), @ORM\Index(name="IDX_EF86AC9CE173B1B8", columns={"id_client"}), @ORM\Index(name="IDX_EF86AC9CE466B61B", columns={"id_type_constru"})})
  * @ORM\Entity
  */
 class Constru
@@ -28,6 +28,16 @@ class Constru
      * @ORM\SequenceGenerator(sequenceName="constru_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
+
+    /**
+     * @var \BL\SGIBundle\Entity\Constru
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Constru")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_type_constru", referencedColumnName="id")
+     * })
+     */
+    private $idTypeConstru;
 
     /**
      * @var \BL\SGIBundle\Entity\Client
@@ -85,6 +95,29 @@ class Constru
     }
 
     /**
+     * Set idTypeConstru
+     *
+     * @param \BL\SGIBundle\Entity\Constru $idTypeConstru
+     * @return Constru
+     */
+    public function setIdTypeConstru(\BL\SGIBundle\Entity\Constru $idTypeConstru = null)
+    {
+        $this->idTypeConstru = $idTypeConstru;
+
+        return $this;
+    }
+
+    /**
+     * Get idTypeConstru
+     *
+     * @return \BL\SGIBundle\Entity\Constru 
+     */
+    public function getIdTypeConstru()
+    {
+        return $this->idTypeConstru;
+    }
+
+    /**
      * Set idClient
      *
      * @param \BL\SGIBundle\Entity\Client $idClient
@@ -129,9 +162,4 @@ class Constru
     {
         return $this->idState;
     }
-    
-     public function __toString()
-	{
-    return $this->description;
-	}
 }

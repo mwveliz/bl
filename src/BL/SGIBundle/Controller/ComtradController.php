@@ -55,6 +55,27 @@ class ComtradController extends Controller
             'comtrads' => $comtrads,
         ));
     }
+    /**
+     * Create Comtrad Type entities.
+     *
+     * @Route("/add", name="ajax_typecomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeComtrad();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
+
+
+
 
     /**
      * Track all Comtrad entities.
@@ -65,7 +86,7 @@ class ComtradController extends Controller
     public function trackAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $em = $this->getDoctrine()->getManager();
+
 
         $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');
@@ -176,7 +197,7 @@ class ComtradController extends Controller
             $em->flush();
             
             // Procedo log
-            /*
+
             $userManager = $this->container->get('fos_user.user_manager');
 
             $user = $userManager->findUserByUsername($this->container->get('security.context')
@@ -191,7 +212,7 @@ class ComtradController extends Controller
             $bitacora = $em->getRepository('SGIBundle:LogActivity')
                     ->bitacora($user->getId(), 'Insert', 'Comtrad', 
                             $comtrad->getId());
-            */
+
             
             // fin proceso log             
             
@@ -241,6 +262,7 @@ class ComtradController extends Controller
             $bl= new Bl();
             $bl->setCodeBl($id);
             $bl->setType('comtrad');
+            $bl->setDescription($comtrad->getDescription());
             $em->persist($bl); 
             $em->flush();             
             
@@ -332,13 +354,50 @@ class ComtradController extends Controller
      */
     public function showAction(Comtrad $comtrad)
     {
-        $deleteForm = $this->createDeleteForm($comtrad);
+        $id = $comtrad->getId();  
+        $form = 'Comtrad';  
+        $table = 'SGIBundle:'.$form;
+                
+        $em = $this->getDoctrine()->getManager();
+        
+        $object = $em->getRepository($table)->findOneBy(array('id' => $id));
+                       
+        $form_lowcase = strtolower($form);
+        
+        $ruta = $form_lowcase.'/show.html.twig';
+        
+        switch ($form) {
+            case 'Comtrad':
+                $nombre_apellido = $object->getIdClient()->getUserid()->getNombre().' ';
+                $nombre_apellido .= $object->getIdClient()->getUserid()->getApellido();
+                
+                $arreglo =  array('Id' => $object->getId(),
+                    'Description' => $object->getDescription(),
+                    'Country' => $object->getIdState()->getIdCountry()->getDescription(),
+                    'State' => $object->getIdState()->getDescription(),
+                    'Client' => $nombre_apellido,
+                    );
+                
+                // List of Fields 
+                $Fields = $em->getRepository('SGIBundle:BlComtrad')
+                ->findBy(array('idComtrad' => $id));
+                
+                if (count($Fields) > 0) {
+                    foreach ($Fields as $Field) {
+                        $arreglo[$Field->getIdField()->getDescription()] = $Field->getValue();
+                    }    
+                }
+                
+                $object = $arreglo;
+            default:
+                break;
+        }
 
-        return $this->render('comtrad/show.html.twig', array(
-            'comtrad' => $comtrad,
-            'delete_form' => $deleteForm->createView(),
+
+        return $this->render($ruta, array(
+            'object' => $object,
         ));
-    }
+    } 
 
     /**
      * Displays a form to edit an existing Comtrad entity.
@@ -531,6 +590,16 @@ class ComtradController extends Controller
             
             // fin proceso log            
             
+            
+            // Edito la Bl
+            $bl = $em->getRepository('SGIBundle:Bl')
+                        ->findOneBy(array('codeBl' => $comtrad->getId(),'type' => 'comtrad'));
+            if (count($bl) > 0) {  
+                $description = $comtrad->getDescription();
+                $bl->setDescription($description);
+                $em->persist($bl); 
+                $em->flush();     
+            }
             
             // Obtengo mi id y procedo a realizar los inserts en la tabla
             // bl_comtrad

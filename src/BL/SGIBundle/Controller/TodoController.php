@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Todo;
 use BL\SGIBundle\Form\TodoType;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Doctrine\ORM\Query;
 
 /**
  * Todo controller.
@@ -239,6 +239,177 @@ class TodoController extends Controller
         
     }            
     
+    /**
+     *
+     * @Route("/todo_history", name="todo_history")
+     * @Method("GET")
+     */
+    public function todohistoryAction(Request $request)
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                    ->getToken()
+                    ->getUser());
+
+        $usuario = $user->getUsername();
+        
+        // Obtengo el grupo de mi usuario
+        $grupo_usuario = $user->getGroupNames();
+        $grupo_usuario = $grupo_usuario[0]; 
+        
+        // Obtengo la pagina que estoy visitando
+        $pagina = $request->get('pagina');
+
+        // Obtengo el tipo de filtro que utilizo
+        $type = $request->get('type');        
+        
+        $em = $this->getDoctrine()->getManager();
+        $event = '';
+        
+        
+        // Inicio cuando se realiza el click en el checkbox
+        $id = $request->get('id');
+        if (!is_null($id)) {
+            
+            $todo = $em->getRepository('SGIBundle:Todo')
+                    ->findOneBy(array('id' => $id));
+            
+            $todo->setCompleted(true);
+            $em->persist($todo);
+            $em->flush(); 
+            
+            // Procedo log
+            
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Todo x WHERE x.id = ?1');
+            $query->setParameter(1, $todo->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'Todo', 
+                            $todo->getId());
+            
+            
+            // fin proceso log             
+        }
+        // Fin cuando se realiza el click en el checkbox
+        
+                
+        // Busqueda de los elementos en el listado
+        if ($grupo_usuario == 'Administrator') {             
+                $results = $em->createQuery('SELECT e FROM SGIBundle:Todo e'
+                           . ' JOIN e.idBl b'
+                           . ' WHERE b.type = :type '
+                           . ' ORDER BY e.idPriority ASC')
+                    ->setParameter('type', $pagina)       
+                    ->setMaxResults(10)     
+                    ->getResult(); 
+            
+            // En caso de modificar el filtro por ajax se agrega este filtro
+            if ($type == 'true' || $type == 'false' ) {  
+                
+                $parameters = array(
+                    'completed' => $type, 
+                    'type' => $pagina
+                );                
+                
+                $results = $em->createQuery('SELECT e FROM SGIBundle:Todo e'
+                           . ' JOIN e.idBl b'
+                           . ' WHERE b.type = :type and e.completed = :completed'                
+                           . ' ORDER BY e.idPriority ASC')
+                    ->setParameters($parameters)
+                    ->setMaxResults(10)     
+                    ->getResult();                                 
+            } 
+        }  else {  
+            $results = 0;
+        }        
+             
+        $all_todo = '';
+        $show = true;
+        
+                
+       if ($grupo_usuario == 'Administrator') {
+                if (count($results) > 0) {
+                   foreach($results as $result) {
+                       
+                       $is_complete = $result->getCompleted();
+                       $priority = $result->getIdPriority()->getDescription();
+                       
+                       $checkbox = '';
+                       $endcheckbox = '';
+                       $label = 'label-success';
+                       if (!$is_complete) {
+                           $checkbox = '<div class="task-checkbox">'
+                                   . '<input type="checkbox" class="checkbox_task"'
+                                   . 'param="'.$type.'" '
+                                   . 'param2="'.$pagina.'" '
+                                   . 'param3="'.$result->getId().'"'
+                                   . 'value="" /> </div>';
+                           $endcheckbox = '</div>';
+                           $label = 'label-warning';
+                       }
+                       
+                        switch ($priority) {
+                            case 'High':
+                                $label_priority = '<i class="fa fa-arrow-circle-up" style="color:red"></i>';
+                                break;
+                            case 'Medium':
+                                $label_priority = '<i class="fa fa-minus-square" style="color:orange"></i>';
+                                break;
+                            case 'Low':
+                                $label_priority = '<i class="fa fa-arrow-circle-down" style="color:blue"></i>';
+                                break;
+                        }  
+                
+                        $nombre_apellido = $result->getUserid()->getNombre().'  '.$result->getUserid()->getApellido();
+                       
+                        // Listado de todo
+                        // Definir acción
+                        $all_todo .= '<li>'.
+                               $checkbox
+                            .'<div class="task-title">
+                                <span class="task-title-sp"><strong>'.$result->getDescription().'</strong></span>
+                                <span class="task-title-sp"> Assigned to: '.$nombre_apellido.'</span>    
+                                <span class="label label-sm '.$label.'">'.$result->getIdBl()->getType().'</span>
+                                   <span class="task-bell">
+                                     '.$label_priority.'
+                                   </span>
+                                </div>'
+                            .$endcheckbox.    
+                        '</li>';  
+                   }
+                } else {
+                   $all_todo  = '<li>'
+                           . '  <div class="task-title">'
+                           . '      <span class="task-title-sp">'
+                           . '          <center>There are no Tasks to display</center>'
+                           . '      </span>'
+                           . '   </div>'
+                           . '</li>'; 
+                }    
+        } else {
+            $show = false;
+        }          
+ 
+        
+        $arreglo = array();
+            $arreglo[] = array(                   
+                "all" => $all_todo,
+                "show" => $show
+            );         
+        
+        
+        return new JsonResponse($arreglo);
+        
+    }                
     
     /**
      * Finds and displays a Todo entity.

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page_description %}
-    Rental Business Line
+    Rental - New Opportunity
 {% endblock %}
 
 {% block body %}
@@ -36,7 +36,7 @@
             </div>
             <!-- END SAMPLE FORM PORTLET-->
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-6" id="add">
 
         </div>
     </div>
@@ -67,14 +67,21 @@
              $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
              $(".currency").maskMoney();
 
-             $('<a class="btn btn-success pull-right" href="{{ path('rental_index') }}"><span>Add Type</span></a><br>').insertAfter( $('#rental_IdTypeRental').closest("div") );
+             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Type</span></a><br>').insertAfter( $('#rental_IdTypeRental').closest("div") );
+
+             $('#a_addtype').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('typerental_new') }}");
+             });
+
+             $('#a_addfield').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('fieldsrental_new') }}");
+             });
+
+
          });
      </script>
 
 
  {% endblock %}
-
-
-
-
-

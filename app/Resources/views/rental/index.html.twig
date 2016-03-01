@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block page_title %}
-    Construction
+    Rental
 {% endblock %}
 
 {% block page_description %}
@@ -74,6 +74,98 @@
 
             </div>
         </div>
+                    <!-- BEGIN LOG AND TASK -->                                                            
+                    <div class="row" id="admin_box" style="display: none">
+                        <!-- BEGIN LOGS -->   
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-share font-blue"></i>
+                                        <span class="caption-subject font-blue bold uppercase">Recent Activities</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm blue btn-outline btn-circle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="All"/> All</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Insert"/> Created</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Update"/> Updated</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Delete"/> Deleted</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+                                        <ul class="feeds" id="log_box">
+
+                                        </ul>
+                                    </div>
+                                    <div class="scroller-footer">
+                                        <div class="btn-arrow-link pull-right">
+                                            <a href="{{ path('logactivity_index') }}" >See All Records</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END LOGS -->
+                        <!-- BEGIN TASK -->
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light tasks-widget bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-share font-green-haze hide"></i>
+                                        <span class="caption-subject font-green bold uppercase">Tasks</span>
+                                        <span class="caption-helper">tasks summary...</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="btn-group">
+                                                <a class="btn btn-sm blue btn-outline btn-circle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="All" param2="rental"/> All</label>
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="true" param2="rental"/> Completed</label>
+                                                    <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="false" param2="rental"/> Pending</label>
+                                                </div>
+                                        </div>
+                                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="task-content">
+                                        <div class="scroller" style="height: 312px;" data-always-visible="1" data-rail-visible1="1">
+                                            <!-- START TASK LIST -->
+                                            <ul class="task-list" id="task_box">
+
+                                            </ul>
+                                            <!-- END START TASK LIST -->
+                                        </div>
+                                    </div>
+                                    <div class="task-footer">
+                                        <div class="btn-arrow-link pull-right">
+                                            <a href="{{ path('todo_index') }}" >See All Records</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END LOGS -->
+                    </div>
+                    <!-- END LOG AND TASK -->                             
         <!-- END CONTENT BODY -->
 
     </div>
@@ -133,5 +225,120 @@
             $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});
         });
     </script>
+<script>    
+        // LOG BOX
+        $( document ).ready(function() {
+            
+                    // BOX LOG
+                    $.ajax({
+                        url: "{{ path('log_box') }}",
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#log_box').empty();
+                                $('#log_box').html(json[0]['all']);
+                            } 
+                            
+                        }
+                    }); 
+                    
+                    $( ".option_log" ).change(function() {
+                        type = $(this).attr('param');
+                        $.ajax({
+                            url: "{{ path('log_box') }}",
+                            data: "type=" + type,
+                            success: function(data){
+                                var obj = JSON.stringify(data);
+                                var json = $.parseJSON(obj); 
+                                var show = json[0]['show'];
+
+                                if (show) {
+                                    $('#admin_box').css('display','inline');
+                                    $('#log_box').empty();
+                                    $('#log_box').html(json[0]['all']);
+                                } 
+
+                            }
+                        });
+                    });    
+                    // END BOX LOG
+                    
+                    
+                    // BOX TASK
+                    $.ajax({
+                        url: "{{ path('todo_history') }}",
+                        data: "pagina=" + 'rental',
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#task_box').empty();
+                                $('#task_box').html(json[0]['all']);
+                            } 
+                            checkbox();                            
+                        }
+                    });                    
+                    
+                    $( ".option_task" ).change(function() {
+                        type = $(this).attr('param');
+                        pagina = $(this).attr('param2');
+                        $.ajax({
+                            url: "{{ path('todo_history') }}",
+                            data: "type=" + type +
+                                  "&pagina=" + pagina,
+                            success: function(data){
+                                var obj = JSON.stringify(data);
+                                var json = $.parseJSON(obj); 
+                                var show = json[0]['show'];
+
+                                if (show) {
+                                    $('#admin_box').css('display','inline');
+                                    $('#task_box').empty();
+                                    $('#task_box').html(json[0]['all']);
+                                }
+                                
+                                checkbox();
+                            }
+                        });
+                    }); 
+                    
+                    
+                    // END BOX TASK
+                    
+            function checkbox() {
+                $('input.checkbox_task').on('click', function() {
+                    type = $(this).attr('param');
+                    pagina = $(this).attr('param2');
+                    id = $(this).attr('param3');
+                    $.ajax({
+                        url: "{{ path('todo_history') }}",
+                        data: "type=" + type +
+                              "&pagina=" + pagina +
+                              "&id=" + id,
+                        success: function(data){
+                            var obj = JSON.stringify(data);
+                            var json = $.parseJSON(obj); 
+                            var show = json[0]['show'];
+
+                            if (show) {
+                                $('#admin_box').css('display','inline');
+                                $('#task_box').empty();
+                                $('#task_box').html(json[0]['all']);
+                            }  
+
+                        }
+                    });
+                });                
+            }    
+                    
+        });              
+</script>      
 {% endblock %}
 

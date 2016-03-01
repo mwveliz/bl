@@ -4,11 +4,17 @@
     <indexes>
       <index name="IDX_EF86AC9C4D1693CB" columns="id_state"/>
       <index name="IDX_EF86AC9CE173B1B8" columns="id_client"/>
+      <index name="IDX_EF86AC9CE466B61B" columns="id_type_constru"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
+    <many-to-one field="idTypeConstru" target-entity="Constru">
+      <join-columns>
+        <join-column name="id_type_constru" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="idClient" target-entity="Client">
       <join-columns>
         <join-column name="id_client" referenced-column-name="id"/>

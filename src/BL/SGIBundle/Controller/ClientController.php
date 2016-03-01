@@ -85,6 +85,10 @@ class ClientController extends Controller
         ));
     }
 
+
+
+
+
     /**
      * Finds and displays a Client entity.
      *
