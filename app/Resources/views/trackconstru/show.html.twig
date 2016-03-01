@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TrackConstru</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Value</th>
+                <td>{{ trackConstru.value }}</td>
+            </tr>
+            <tr>
+                <th>Datetime</th>
+                <td>{% if trackConstru.datetime %}{{ trackConstru.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ trackConstru.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trackconstru_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('trackconstru_edit', { 'id': trackConstru.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>List of Fields for Rental </h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Widget</th>
+                <th>Trackable</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fieldsRental in fieldsRentals %}
+            <tr>
+                <td><a href="{{ path('fieldsrental_show', { 'id': fieldsRental.id }) }}">{{ fieldsRental.description }}</a></td>
+                <td>{{ fieldsRental.widget }}</td>
+                <td>{% if fieldsRental.trackable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fieldsRental.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fieldsrental_show', { 'id': fieldsRental.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fieldsrental_edit', { 'id': fieldsRental.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldsrental_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

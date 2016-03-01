@@ -1,0 +1,99 @@
+
+<h3>Fields for Alternative Investments creation</h3>
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 ">
+            <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> New Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+
+                    <button id="btn_addfield" type="submit" class="btn blue">Submit</button>
+                    {{ form_end(form) }}
+                    <br>
+                    <div class="form-actions">
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+        <div class="col-md-6 ">
+
+        </div>
+    </div>
+{% endblock %}
+
+ {% block stylesheets_extra %}
+     <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
+
+ {% block javascripts_extra %}
+     <script>
+         $( document ).ready(function() {
+             var string;
+             $('#btn_addfield').click(function(e) {
+                 e.preventDefault();
+                desc=$("#fields_altinv_description").val();
+                wg=$("#fields_altinv_widget option:selected").val();
+                track=$("#fields_altinv_trackable ").val();
+
+                 $.post( "{{ path('ajax_fieldsaltinv_create') }}",{ description: desc, widget: wg,trackable:track })
+                         .done(function( resp) {
+                             string="<div><label for='altinv_EF-"+desc+"'>"+desc+"</label>";
+                             //Agregar el widget
+                             switch(wg) {
+                                 case 'Calendar':
+                                     string+= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control datepicker' data-provide='datepicker' data-date-format='dd-mm-yyyy'></div>"
+                                     break;
+                                 case 'Characters':
+                                     string+= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control input-sm'></div>";
+                                     break;
+                                 case 'Currency':
+                                     string+= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm currency'></div>";
+
+                                     break;
+                                 case 'File':
+                                     string+= "<input type='file' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]'></div>";
+                                     break;
+                                 case 'Numeric':
+                                     string+= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm numeric'></div>";
+                                     break;
+                                case 'TextArea':
+                                    string+= "<textarea id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm'></textarea></div>";
+                                     break;
+                                 default:
+                                 //default
+                                 break;
+                             }
+                             $('#a_addfield').before(string);
+                             $(".currency").maskMoney();
+
+                             $('div#add').children().remove();
+                         });
+             });
+
+             $('#clear').click(function() {
+                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
+                 $('span').removeClass("checked");
+             });
+             /*setear valor ture o false de trackable*/
+             $("#fields_altinv_trackable").on('change', function(){
+                 $(this).val(this.checked ? "TRUE" : "FALSE");
+             });
+
+
+             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+
+
+         });
+     </script>
+ {% endblock %}

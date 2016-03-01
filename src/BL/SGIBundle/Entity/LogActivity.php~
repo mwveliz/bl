@@ -1,0 +1,64 @@
+<?php
+
+namespace BL\SGIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * LogActivity
+ *
+ * @ORM\Table(name="log_activity", indexes={@ORM\Index(name="IDX_C227C285F132696E", columns={"userid"})})
+ * @ORM\Entity(repositoryClass="BL\SGIBundle\Entity\ExtLogEntriesRepository")
+ */
+class LogActivity
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="action", type="string", nullable=true)
+     */
+    private $action;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="logged_at", type="datetime", nullable=true)
+     */
+    private $loggedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="object_id", type="integer", nullable=true)
+     */
+    private $objectId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="object_class", type="string", nullable=true)
+     */
+    private $objectClass;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="log_activity_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\SGIBundle\Entity\Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * })
+     */
+    private $userid;
+
+
+}

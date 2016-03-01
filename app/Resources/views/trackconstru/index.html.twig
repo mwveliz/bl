@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TrackConstru list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Datetime</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trackConstru in trackConstrus %}
+            <tr>
+                <td><a href="{{ path('trackconstru_show', { 'id': trackConstru.id }) }}">{{ trackConstru.value }}</a></td>
+                <td>{% if trackConstru.datetime %}{{ trackConstru.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ trackConstru.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trackconstru_show', { 'id': trackConstru.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trackconstru_edit', { 'id': trackConstru.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('trackconstru_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+<?php
+
+namespace BL\SGIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DashboardItem
+ *
+ * @ORM\Table(name="dashboard_item")
+ * @ORM\Entity
+ */
+class DashboardItem
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="dashboard_item_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+
+}

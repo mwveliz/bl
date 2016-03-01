@@ -1,0 +1,47 @@
+{% block body %} 
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-green">
+                                        <i class="icon-settings font-green"></i>
+                                        <span class="caption-subject bold uppercase">Show</span>
+                                    </div>                                   
+                                </div>   
+                                <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
+                                    {% if object is not null %}
+                                        <tr>
+                                            <th>Id</th>
+                                            <td>{{ object.id }}</td>
+                                        </tr>            
+                                        <tr>
+                                            <th>Description</th>
+                                            <td>{{ object.description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Completed</th>
+                                            <td>{% if object.completed %}Yes{% else %}No{% endif %}</td>
+                                        </tr>
+                                    {% else %}
+                                        <center>Deleted Element</center>
+                                    {% endif %}   
+                                    </table>
+                                        
+                                </div>
+                                </div> 
+                            <!-- END EXAMPLE TABLE PORTLET-->
+                        </div>
+                        <div class="col-md-6" id="show">
+                           
+                        </div>     
+                    </div>
+            <!-- END CONTENT BODY -->
+        </div>                                       
+        <!-- END CONTAINER -->          
+{% endblock %}
+

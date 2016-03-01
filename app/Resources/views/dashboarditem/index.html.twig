@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DashboardItem list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dashboardItem in dashboardItems %}
+            <tr>
+                <td><a href="{{ path('dashboarditem_show', { 'id': dashboardItem.id }) }}">{{ dashboardItem.description }}</a></td>
+                <td>{{ dashboardItem.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dashboarditem_show', { 'id': dashboardItem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dashboarditem_edit', { 'id': dashboardItem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dashboarditem_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

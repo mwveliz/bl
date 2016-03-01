@@ -1,0 +1,169 @@
+{%extends '::base.html.twig'%}
+
+{% block stylesheets_extra %} 
+<style>
+
+input {
+    border: none;
+    /*width: 80px;*/
+    /*font-size: 14px;*/
+    /*padding: 2px;*/
+}
+textarea{
+    border: none;
+    /*width: 80px;*/
+    /*font-size: 14px;*/
+    /*padding: 2px;*/
+}
+
+#table1 tr:first-child td {
+    background-color: #DDD;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+    <div id="table1" class="table-responsive col-lg-8">
+        <table class="table table-striped table-bordered table-hover"></table>
+
+    </div>
+
+    <div class="col-lg-4">
+        <table id="table2" class="table table-advance table-striped table-bordered table-hover"></table>
+        <br>
+        <a id= "a_addfield" class="btn btn-success pull-right" href="#" ><span>Add Field</span></a>
+        <br><br>
+
+    </div>
+    <div>
+{%endblock%}
+
+{% block javascripts_extra %} 
+    <script>
+        var aitracks='{{ aitracks}}'; // viene del controlador
+        var ainotracks='{{ ainotracks}}'; // viene del controlador
+
+        jsonStr = aitracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        jsonStr2 = ainotracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        var obj = JSON.parse(jsonStr); //convertir a jsonArray
+        var obj2 = JSON.parse(jsonStr2); //convertir a jsonArray
+
+        var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
+
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+             if (j==0)row.insertCell(-1).outerHTML = '&nbsp; ';
+             row.insertCell(-1).innerHTML =  letter;
+        }
+
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            if(j==0) row.insertCell(-1).outerHTML = '&nbsp; ';
+            row.insertCell(j).innerHTML =  j>0 ? months[j - 1] :"1" ;
+        }
+
+        for (var i = 0; i <= obj.length+1; i++) { //rows
+            var row = document.querySelector("table").insertRow(-1);
+            if(i>1) row.insertCell(-1).outerHTML = '<strong>'+obj[i-2].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+
+            for (var j = 0; j <= 13; j++) { //cols
+                var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+                if (i>1) row.insertCell(-1).innerHTML = i && j? "<input id='" + letter + i + "'/>" : i || letter;
+
+
+            }
+        }
+/*segunda tabla*/
+
+//        /var row = document.querySelector("#table2").insertRow(-1);
+
+
+
+
+
+
+
+
+        for (var i = 0; i < obj2.length; i++) { //rows
+            desc= obj2[i].description;
+           // alert(desc);
+            switch(obj2[i].widget) {
+                case 'Calendar':
+                    string= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control datepicker' data-provide='datepicker' data-date-format='dd-mm-yyyy'>"
+                    break;
+                case 'Characters':
+                    string= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control input-sm'>";
+                    break;
+                case 'Currency':
+                    string= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm currency'>";
+                    //$(".currency").maskMoney();
+                    break;
+                case 'File':
+                    string= "<input type='file' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]'>";
+                    break;
+                case 'Numeric':
+                    string= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm numeric'>";
+                    break;
+                case 'TextArea':
+                    string= "<textarea id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm'></textarea><";
+                    break;
+                default:
+                    //default
+                    break;
+            }
+            var row = document.querySelector("#table2").insertRow(-1);
+
+            row.insertCell(-1).innerHTML = '<strong>'+obj2[i].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+            //row.insertCell(-1).innerHTML = "<textarea id='table2" + obj2[i] + "'/>" ;
+            row.insertCell(-1).innerHTML = string;
+            $(".currency").maskMoney();
+        }
+        var ele=document.querySelector("#table2 td").style.width="20%";
+
+
+
+
+        var DATA = {}, INPUTS = [].slice.call(document.querySelectorAll("input"));
+        INPUTS.forEach(function (elm) {
+            elm.onfocus = function (e) {
+                e.target.value = localStorage[e.target.id] || "";
+            };
+            elm.onblur = function (e) {
+                localStorage[e.target.id] = e.target.value;
+                computeAll();
+            };
+            var getter = function () {
+                var value = localStorage[elm.id] || "";
+                if (value.charAt(0) == "=") {
+                    with (DATA)
+                        return eval(value.substring(1));
+                } else {
+                    return isNaN(parseFloat(value)) ? value : parseFloat(value);
+                }
+            };
+            Object.defineProperty(DATA, elm.id, {get: getter});
+            Object.defineProperty(DATA, elm.id.toLowerCase(), {get: getter});
+        });
+        (window.computeAll = function () {
+            INPUTS.forEach(function (elm) {
+                try {
+                    elm.value = DATA[elm.id];
+                } catch (e) {
+                }
+            });
+        })();
+
+
+
+
+    </script>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>LogActivity</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Action</th>
+                <td>{{ logActivity.action }}</td>
+            </tr>
+            <tr>
+                <th>Loggedat</th>
+                <td>{% if logActivity.loggedAt %}{{ logActivity.loggedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Objectid</th>
+                <td>{{ logActivity.objectId }}</td>
+            </tr>
+            <tr>
+                <th>Objectclass</th>
+                <td>{{ logActivity.objectClass }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ logActivity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('logactivity_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('logactivity_edit', { 'id': logActivity.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

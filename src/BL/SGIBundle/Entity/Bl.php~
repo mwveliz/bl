@@ -1,0 +1,47 @@
+<?php
+
+namespace BL\SGIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Bl
+ *
+ * @ORM\Table(name="bl")
+ * @ORM\Entity
+ */
+class Bl
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="code_bl", type="bigint", nullable=true)
+     */
+    private $codeBl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="bl_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+
+}

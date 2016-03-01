@@ -1,0 +1,223 @@
+sgi_type_constru:
+    resource: "@SGIBundle/Controller/TypeConstruController.php"
+    type:     annotation
+
+sgi_track_rental:
+    resource: "@SGIBundle/Controller/TrackRentalController.php"
+    type:     annotation
+
+sgi_track_comtrad:
+    resource: "@SGIBundle/Controller/TrackComtradController.php"
+    type:     annotation
+
+sgi_track_constru:
+    resource: "@SGIBundle/Controller/TrackConstruController.php"
+    type:     annotation
+
+sgi_track_altinv:
+    resource: "@SGIBundle/Controller/TrackAltinvController.php"
+    type:     annotation
+
+sgi_rental:
+    resource: "@SGIBundle/Controller/RentalController.php"
+    type:     annotation
+
+sgi_fields_rental:
+    resource: "@SGIBundle/Controller/FieldsRentalController.php"
+    type:     annotation
+
+sgi_fields_constru:
+    resource: "@SGIBundle/Controller/FieldsConstruController.php"
+    type:     annotation
+
+sgi_fields_comtrad:
+    resource: "@SGIBundle/Controller/FieldsComtradController.php"
+    type:     annotation
+
+sgi_fields_altinv:
+    resource: "@SGIBundle/Controller/FieldsAltinvController.php"
+    type:     annotation
+
+sgi_constru:
+    resource: "@SGIBundle/Controller/ConstruController.php"
+    type:     annotation
+
+sgi_comtrad:
+    resource: "@SGIBundle/Controller/ComtradController.php"
+    type:     annotation
+
+sgi_altinv:
+    resource: "@SGIBundle/Controller/AltinvController.php"
+    type:     annotation
+
+sgi_type_altinv:
+    resource: "@SGIBundle/Controller/TypeAltinvController.php"
+    type:     annotation
+
+sgi_rental:
+    resource: "@SGIBundle/Controller/RentalController.php"
+    type:     annotation
+
+sgi_menu:
+    resource: "@SGIBundle/Controller/MenuController.php"
+    type:     annotation
+
+sgi_track_constru:
+    resource: "@SGIBundle/Controller/TrackConstruController.php"
+    type:     annotation
+
+sgi_track_comtrad:
+    resource: "@SGIBundle/Controller/TrackComtradController.php"
+    type:     annotation
+
+sgi_twitterfollowup:
+    resource: "@SGIBundle/Controller/TwitterfollowupController.php"
+    type:     annotation
+
+sgi_dashboard_position:
+    resource: "@SGIBundle/Controller/DashboardPositionController.php"
+    type:     annotation
+
+sgi_altinv:
+    resource: "@SGIBundle/Controller/AltinvController.php"
+    type:     annotation
+
+sgi_billing_detail:
+    resource: "@SGIBundle/Controller/BillingDetailController.php"
+    type:     annotation
+
+sgi_todo:
+    resource: "@SGIBundle/Controller/TodoController.php"
+    type:     annotation
+
+sgi_bl_comtrad:
+    resource: "@SGIBundle/Controller/BlComtradController.php"
+    type:     annotation
+
+sgi_constru:
+    resource: "@SGIBundle/Controller/ConstruController.php"
+    type:     annotation
+
+sgi_billing:
+    resource: "@SGIBundle/Controller/BillingController.php"
+    type:     annotation
+
+sgi_fields_rental:
+    resource: "@SGIBundle/Controller/FieldsRentalController.php"
+    type:     annotation
+
+sgi_log_message:
+    resource: "@SGIBundle/Controller/LogMessageController.php"
+    type:     annotation
+
+sgi_tenant:
+    resource: "@SGIBundle/Controller/TenantController.php"
+    type:     annotation
+
+sgi_fields_constru:
+    resource: "@SGIBundle/Controller/FieldsConstruController.php"
+    type:     annotation
+
+sgi_fields_comtrad:
+    resource: "@SGIBundle/Controller/FieldsComtradController.php"
+    type:     annotation
+
+sgi_track_altinv:
+    resource: "@SGIBundle/Controller/TrackAltinvController.php"
+    type:     annotation
+
+sgi_state:
+    resource: "@SGIBundle/Controller/StateController.php"
+    type:     annotation
+
+sgi_log_activity:
+    resource: "@SGIBundle/Controller/LogActivityController.php"
+    type:     annotation
+
+sgi_bl_rental:
+    resource: "@SGIBundle/Controller/BlRentalController.php"
+    type:     annotation
+
+sgi_track_rental:
+    resource: "@SGIBundle/Controller/TrackRentalController.php"
+    type:     annotation
+
+sgi_fields_altinv:
+    resource: "@SGIBundle/Controller/FieldsAltinvController.php"
+    type:     annotation
+
+sgi_client:
+    resource: "@SGIBundle/Controller/ClientController.php"
+    type:     annotation
+
+sgi_comtrad:
+    resource: "@SGIBundle/Controller/ComtradController.php"
+    type:     annotation
+
+sgi_dashboard:
+    resource: "@SGIBundle/Controller/DashboardController.php"
+    type:     annotation
+
+sgi_todo_priority:
+    resource: "@SGIBundle/Controller/TodoPriorityController.php"
+    type:     annotation
+
+sgi_pipeline_workflow:
+    resource: "@SGIBundle/Controller/PipelineWorkflowController.php"
+    type:     annotation
+
+sgi_bl:
+    resource: "@SGIBundle/Controller/BlController.php"
+    type:     annotation
+
+sgi_country:
+    resource: "@SGIBundle/Controller/CountryController.php"
+    type:     annotation
+
+sgi_type_comtrad:
+    resource: "@SGIBundle/Controller/TypeComtradController.php"
+    type:     annotation
+
+sgi_bl_constru:
+    resource: "@SGIBundle/Controller/BlConstruController.php"
+    type:     annotation
+
+sgi_pipeline:
+    resource: "@SGIBundle/Controller/PipelineController.php"
+    type:     annotation
+
+sgi_pipeline_node:
+    resource: "@SGIBundle/Controller/PipelineNodeController.php"
+    type:     annotation
+
+sgi_bl_atlinv:
+    resource: "@SGIBundle/Controller/BlAtlinvController.php"
+    type:     annotation
+
+sgi_event:
+    resource: "@SGIBundle/Controller/EventController.php"
+    type:     annotation
+
+sgi_dashboard_item:
+    resource: "@SGIBundle/Controller/DashboardItemController.php"
+    type:     annotation
+
+sgi_alert:
+    resource: "@SGIBundle/Controller/AlertController.php"
+    type:     annotation
+
+sgi_fields_track_rental:
+    resource: "@SGIBundle/Controller/FieldsTrackRentalController.php"
+    type:     annotation
+
+sgi:
+    resource: "@SGIBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FieldsTrackRental list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fieldsTrackRental in fieldsTrackRentals %}
+            <tr>
+                <td><a href="{{ path('fieldstrackrental_show', { 'id': fieldsTrackRental.id }) }}">{{ fieldsTrackRental.description }}</a></td>
+                <td>{{ fieldsTrackRental.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fieldstrackrental_show', { 'id': fieldsTrackRental.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fieldstrackrental_edit', { 'id': fieldsTrackRental.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldstrackrental_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

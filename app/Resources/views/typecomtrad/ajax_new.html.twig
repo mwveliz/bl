@@ -1,0 +1,54 @@
+<h3>    Type of Commodities Trading</h3>
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 ">
+            <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> New Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+
+                    <button type="submit" id="btn_addtype" class="btn blue">Submit</button>
+                    {{ form_end(form) }}
+                    <br>
+                    <div class="form-actions">
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+    </div>
+{% endblock %}
+
+ {% block stylesheets_extra %}
+     <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
+
+ {% block javascripts_extra %}
+     <script>
+         $( document ).ready(function() {
+             $('#btn_addtype').click(function(e) {
+                 e.preventDefault();
+                 desc=$("#type_comtrad_description").val();
+                 $.post( "{{ path('ajax_typecomtrad_create') }}",{ description: desc})
+                         .done(function( resp) {
+                             $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
+                             $( "select#comtrad_IdTypeComtrad").val(resp).change();
+                             $('div#add').children().remove();
+                         });
+             });
+             $('#clear').click(function() {
+                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
+                 $('span').removeClass("checked");
+             });
+         });
+     </script>
+ {% endblock %}

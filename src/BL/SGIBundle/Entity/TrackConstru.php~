@@ -1,0 +1,60 @@
+<?php
+
+namespace BL\SGIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TrackConstru
+ *
+ * @ORM\Table(name="track_constru", indexes={@ORM\Index(name="IDX_36183481311B05EC", columns={"id_constru"}), @ORM\Index(name="IDX_361834814AA3EA55", columns={"id_fields_track_constru"})})
+ * @ORM\Entity
+ */
+class TrackConstru
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime", type="datetime", nullable=true)
+     */
+    private $datetime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="track_constru_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \BL\SGIBundle\Entity\FieldsConstru
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\FieldsConstru")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_fields_track_constru", referencedColumnName="id")
+     * })
+     */
+    private $idFieldsTrackConstru;
+
+    /**
+     * @var \BL\SGIBundle\Entity\Constru
+     *
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Constru")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_constru", referencedColumnName="id")
+     * })
+     */
+    private $idConstru;
+
+
+}

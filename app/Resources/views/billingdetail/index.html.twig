@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BillingDetail list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Value</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for billingDetail in billingDetails %}
+            <tr>
+                <td><a href="{{ path('billingdetail_show', { 'id': billingDetail.id }) }}">{{ billingDetail.description }}</a></td>
+                <td>{{ billingDetail.value }}</td>
+                <td>{{ billingDetail.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('billingdetail_show', { 'id': billingDetail.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('billingdetail_edit', { 'id': billingDetail.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('billingdetail_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
