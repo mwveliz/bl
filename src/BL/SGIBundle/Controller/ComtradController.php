@@ -78,11 +78,6 @@ class ComtradController extends Controller
 
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
 
     /**
      * Track all Comtrad entities.
