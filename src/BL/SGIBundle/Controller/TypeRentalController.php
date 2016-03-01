@@ -41,10 +41,9 @@ class TypeRentalController extends Controller
      */
     public function newAction(Request $request)
     {
-<<<<<<< HEAD
+
         $ruta ='typerental/new.html.twig';
-=======
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
+
         $typeRental = new TypeRental();
         $form = $this->createForm('BL\SGIBundle\Form\TypeRentalType', $typeRental);
         $form->handleRequest($request);
@@ -54,13 +53,16 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
-<<<<<<< HEAD
+
             return $this->redirectToRoute('typerental_show', array('id' => $typeRental->getId()));
         }
         if ($request->isXmlHttpRequest()) $ruta='typerental/ajax_new.html.twig';
 
-        return $this->render($ruta, array(
-=======
+      return $this->render($ruta, array(
+            'typeRental' => $typeRental,
+            'form' => $form->createView(),
+        ));
+
             // Procedo log
             /*
             $userManager = $this->container->get('fos_user.user_manager');
@@ -78,17 +80,10 @@ class TypeRentalController extends Controller
                     ->bitacora($user->getId(), 'Insert', 'TypeRental', 
                             $typeRental->getId());
             */            
-            return $this->redirectToRoute('typerental_show', array('id' => $typerental->getId()));
-        }
+       
 
-        return $this->render('typerental/new.html.twig', array(
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
-            'typeRental' => $typeRental,
-            'form' => $form->createView(),
-        ));
     }
 
-<<<<<<< HEAD
 
     /**
      * Create Comtrad Type entities.
@@ -107,8 +102,7 @@ class TypeRentalController extends Controller
         return new JsonResponse($object->getId());
     }
 
-=======
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
+
     /**
      * Finds and displays a TypeRental entity.
      *
@@ -142,8 +136,7 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
-<<<<<<< HEAD
-=======
+
             // Procedo log
             /*
             $userManager = $this->container->get('fos_user.user_manager');
@@ -164,7 +157,6 @@ class TypeRentalController extends Controller
             
             // fin proceso log 
             
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
             return $this->redirectToRoute('typerental_edit', array('id' => $typeRental->getId()));
         }
 
@@ -188,9 +180,7 @@ class TypeRentalController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-<<<<<<< HEAD
-=======
-            
+
             // Procedo log
             /*
             $userManager = $this->container->get('fos_user.user_manager');
@@ -211,7 +201,7 @@ class TypeRentalController extends Controller
             
             // fin proceso log 
             
->>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
+
             $em->remove($typeRental);
             $em->flush();
         }
