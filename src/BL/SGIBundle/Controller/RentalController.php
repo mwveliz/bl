@@ -7,7 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Rental;
+use BL\SGIBundle\Entity\TypeRental;
 use BL\SGIBundle\Form\RentalType;
+use Doctrine\ORM\Query;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use BL\SGIBundle\Entity\BlComtrad;
+use Symfony\Component\Validator\Constraints\DateTime;
+use BL\SGIBundle\Entity\Bl;
 
 /**
  * Rental controller.
@@ -123,13 +130,13 @@ class RentalController extends Controller
     /**
      * Create Rental Type entities.
      *
-     * @Route("/add", name="ajax_typearental_create")
+     * @Route("/add", name="ajax_typerental_create")
      * @Method("POST")
      */
     public function ajaxCreateRental(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $object= new TypeComtrad();
+        $object= new TypeRental();
         $object->setDescription( $request->get('description') );
         $em->persist($object);
         $em->flush();
