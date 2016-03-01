@@ -63,8 +63,11 @@ class TypeRental
     {
         return $this->id;
     }
+<<<<<<< HEAD
     public function __toString()
     {
         return $this->description;
     }
+=======
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
 }

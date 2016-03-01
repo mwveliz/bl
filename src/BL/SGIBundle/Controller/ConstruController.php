@@ -127,11 +127,19 @@ class ConstruController extends Controller
      * @Route("/add", name="ajax_typeconstru_create")
      * @Method("POST")
      */
+<<<<<<< HEAD
     public function ajaxCreateTypeConstru(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $object= new TypeConstru();
         $object->setDescription($request->get('description') );
+=======
+    public function ajaxCreateConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeConstru();
+        $object->setDescription( $request->get('description') );
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
         $em->persist($object);
         $em->flush();
 
@@ -139,6 +147,10 @@ class ConstruController extends Controller
     }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
     /**
      * Finds and displays a Constru entity.
      *

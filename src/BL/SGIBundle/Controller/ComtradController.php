@@ -58,7 +58,11 @@ class ComtradController extends Controller
     /**
      * Create Comtrad Type entities.
      *
+<<<<<<< HEAD
      * @Route("/add", name="ajax_typecomtrad_create")
+=======
+     * @Route("/add", name="ajax_typeacomtrad_create")
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
      * @Method("POST")
      */
     public function ajaxCreateComtrad(Request $request)
@@ -74,8 +78,11 @@ class ComtradController extends Controller
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
 
     /**
      * Track all Comtrad entities.

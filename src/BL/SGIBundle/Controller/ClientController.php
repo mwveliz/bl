@@ -84,6 +84,26 @@ class ClientController extends Controller
             'form' => $form->createView(),
         ));
     }
+    /**
+     * Create Altinv entities.
+     *
+     * @Route("/add", name="ajax_typealtinv_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateAltinv(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new TypeAltinv();
+        $object->setDescription( $request->get('description') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
+
+
+
 
 
 

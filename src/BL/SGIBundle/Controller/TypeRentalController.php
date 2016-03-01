@@ -41,7 +41,10 @@ class TypeRentalController extends Controller
      */
     public function newAction(Request $request)
     {
+<<<<<<< HEAD
         $ruta ='typerental/new.html.twig';
+=======
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
         $typeRental = new TypeRental();
         $form = $this->createForm('BL\SGIBundle\Form\TypeRentalType', $typeRental);
         $form->handleRequest($request);
@@ -51,16 +54,41 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
+<<<<<<< HEAD
             return $this->redirectToRoute('typerental_show', array('id' => $typeRental->getId()));
         }
         if ($request->isXmlHttpRequest()) $ruta='typerental/ajax_new.html.twig';
 
         return $this->render($ruta, array(
+=======
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeRental', 
+                            $typeRental->getId());
+            */            
+            return $this->redirectToRoute('typerental_show', array('id' => $typerental->getId()));
+        }
+
+        return $this->render('typerental/new.html.twig', array(
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
             'typeRental' => $typeRental,
             'form' => $form->createView(),
         ));
     }
 
+<<<<<<< HEAD
 
     /**
      * Create Comtrad Type entities.
@@ -79,6 +107,8 @@ class TypeRentalController extends Controller
         return new JsonResponse($object->getId());
     }
 
+=======
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
     /**
      * Finds and displays a TypeRental entity.
      *
@@ -112,6 +142,29 @@ class TypeRentalController extends Controller
             $em->persist($typeRental);
             $em->flush();
 
+<<<<<<< HEAD
+=======
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeRental', 
+                            $typeRental->getId());
+            */
+            
+            // fin proceso log 
+            
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
             return $this->redirectToRoute('typerental_edit', array('id' => $typeRental->getId()));
         }
 
@@ -135,6 +188,30 @@ class TypeRentalController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+<<<<<<< HEAD
+=======
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeRental x WHERE x.id = ?1');
+            $query->setParameter(1, $typeRental->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeRental', 
+                            $typeRental->getId());
+            */
+            
+            // fin proceso log 
+            
+>>>>>>> cedd939f692c45fd89832bef17130d2238d4bcd6
             $em->remove($typeRental);
             $em->flush();
         }
