@@ -1,0 +1,8 @@
+Lsitado de Grupos
+<div class="fos_user_group_list">
+    <ul>
+    {% for group in groups %}
+        <li><a href="{{ path('group_show', {'name': group.getName()} ) }}">{{ group.getName() }}</a></li>
+    {% endfor %}
+    </ul>
+</div>

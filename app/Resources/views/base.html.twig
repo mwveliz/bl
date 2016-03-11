@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}BL Stats{% endblock %}</title>
+        <title>{% block title %}Bluleone Investments{% endblock %}</title>
         
         
         {% block stylesheets %}
@@ -223,12 +223,17 @@
                         <li class="nav-item start active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
-                                <span class="title">BL</span>
+                                <span class="title">BL Division</span>
                                 <span class="selected"></span>
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
+                                        <li class="nav-item start ">
+                                            <a href="{{ path('bl_index')}}" class="nav-link ">
+                                                <span class="title">Overview</span>
 
+                                            </a>
+                                        </li>
                                 <!----- ALTERNATIVE INVESTMENTS SUB MENU----->
                                 <li class="nav-item ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
@@ -244,25 +249,26 @@
                                             </a>
                                         </li>
                                         <li class="nav-item ">
+                                            <a href="{{ path('typealtinv_index')}}" class="nav-link ">
+                                                <span class="title">Opportunities</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ">
                                             <a href="{{ path('altinv_list')}}" class="nav-link ">
-                                                <span class="title">List</span>
+                                                <span class="title">Accounts</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('altinv_new')}}" class="nav-link ">
-                                                <span class="title">Add New Opportunity</span>
+                                                <span class="title">Add New Account</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('altinv_track')}}" class="nav-link ">
-                                                <span class="title">Track</span>
+                                                <span class="title">Financials</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('altinv_index')}}" class="nav-link ">
-                                                <span class="title">Asign</span>
-                                            </a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
                                 <!----- END ALTERNATIVE INVESTMENTS SUB MENU----->
@@ -282,25 +288,26 @@
                                             </a>
                                         </li>
                                         <li class="nav-item ">
+                                            <a href="{{ path('typecomtrad_index')}}" class="nav-link ">
+                                                <span class="title">Opportunities</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ">
                                             <a href="{{ path('comtrad_list')}}" class="nav-link ">
-                                                <span class="title">List</span>
+                                                <span class="title">Account</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('comtrad_new')}}" class="nav-link ">
-                                                <span class="title">Add New Opportunity</span>
+                                                <span class="title">Add New Account</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('comtrad_track')}}" class="nav-link ">
-                                                <span class="title">Track</span>
+                                                <span class="title">Financials</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('comtrad_index')}}" class="nav-link ">
-                                                <span class="title">Asign</span>
-                                            </a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
                                 <!----- END CONSTRU SUB MENU----->
@@ -319,26 +326,28 @@
 
                                             </a>
                                         </li>
+                                         <li class="nav-item start ">
+                                            <a href="{{ path('typeconstru_index')}}" class="nav-link ">
+                                                <span class="title">Opportunities</span>
+
+                                            </a>
+                                        </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('constru_list')}}" class="nav-link ">
-                                                <span class="title">List</span>
+                                                <span class="title">Accounts</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('constru_new')}}" class="nav-link ">
-                                                <span class="title">Add New Opportunity</span>
+                                                <span class="title">Add New Account</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('constru_track')}}" class="nav-link ">
-                                                <span class="title">Track</span>
+                                                <span class="title">Financials</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('constru_index')}}" class="nav-link ">
-                                                <span class="title">Asign</span>
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                                 <!----- END COMMODITIES TRADING SUB MENU----->
@@ -359,25 +368,26 @@
                                             </a>
                                         </li>
                                         <li class="nav-item ">
+                                            <a href="{{ path('typerental_index')}}" class="nav-link ">
+                                                <span class="title">Opportunities</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ">
                                             <a href="{{ path('rental_list')}}" class="nav-link ">
-                                                <span class="title">List</span>
+                                                <span class="title">Accounts</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('rental_new')}}" class="nav-link ">
-                                                <span class="title">Add New Opportunity</span>
+                                                <span class="title">Add New Account</span>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('rental_track')}}" class="nav-link ">
-                                                <span class="title">Track</span>
+                                                <span class="title">Financials</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('rental_index')}}" class="nav-link ">
-                                                <span class="title">Asign</span>
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                                 <!----- END RENTAL SUB MENU----->
@@ -390,9 +400,9 @@
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="{{ path('grid')}}" class="nav-link ">
-                                <i class="icon-table"></i>
-                                <span class="title">Grid</span>
+                            <a href="{{ path('todo_index')}}" class="nav-link ">
+                                <i class="icon-list"></i>
+                                <span class="title">Tasks</span>
                                 <span class="arrow"></span>
                             </a>
                         </li>
@@ -728,8 +738,8 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2016 &copy; Metronic by keenthemes.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            <div class="page-footer-inner"> 2016 &copy; Bluleone Investments.
+                <a href="http://bluleoneinvestments.com" title="Bluleone Investments" target="_blank">Bluleone Investments</a>
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>

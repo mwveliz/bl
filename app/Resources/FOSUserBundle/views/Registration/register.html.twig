@@ -1,0 +1,18 @@
+{#{% extends ":inicio.html.twig" %}#}
+
+
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Crear Usuario</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('usuario') }}"> <img src="{{asset('imagenes/iconos/volver.png') }}" />
+            
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -26,10 +26,7 @@ class FieldsComtradType extends AbstractType
                  'Currency' => 'Currency', 'File' => 'File', 
                  'Numeric' => 'Numeric', 'TextArea' => 'TextArea'),
              ))             
-            ->add('trackable', 'checkbox', array(
-                   'attr' => array('class' => 'checkbox-list'),
-                   'required' => false,
-             )) 
+           
         ;
     }
     

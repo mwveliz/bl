@@ -15,9 +15,18 @@ class FieldsRentalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('widget')
-            ->add('trackable')
+            ->add('description', 'text', array(
+                'attr' => array('class' => 'form-control input-sm')
+            ))
+
+            ->add('widget', 'choice', array(
+                'attr' => array('class' => 'form-control form-group'),
+                'label' => 'Widget',
+                'choices' => array('Calendar' => 'Calendar', 'Characters' => 'Characters',
+                    'Currency' => 'Currency', 'File' => 'File',
+                    'Numeric' => 'Numeric', 'TextArea' => 'TextArea'),
+            ))
+         
         ;
     }
     

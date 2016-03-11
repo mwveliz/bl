@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_group_show">
+    <p>{{ 'Grupo' }}: {{ name }}</p>
+    <ul>
+    {% for rol in roles %}
+        <li>{{ rol }}</a></li>
+    {% endfor %}
+    </ul>
+</div>

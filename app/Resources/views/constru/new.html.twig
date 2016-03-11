@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page_description %}
-    Construction  - New Opportunity
+    Construction  - New Account
 {% endblock %}
 
 {% block body %}
@@ -67,7 +67,7 @@
              $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
              $(".currency").maskMoney();
 
-             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Type</span></a><br>').insertAfter( $('#constru_IdTypeConstru').closest("div") );
+             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Opportunity</span></a><br>').insertAfter( $('#constru_IdTypeConstru').closest("div") );
 
              $('#a_addtype').on('click',function(e) {
                  e.preventDefault();
