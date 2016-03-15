@@ -27,6 +27,13 @@ class Todo
     private $completed;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="duedate", type="date", nullable=true)
+     */
+    private $duedate;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")

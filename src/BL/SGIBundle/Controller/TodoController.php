@@ -41,9 +41,9 @@ class TodoController extends Controller
         $grupo_usuario = $grupo_usuario[0]; 
         
         if ($grupo_usuario == 'Administrator') {        
-            $todos = $em->getRepository('SGIBundle:Todo')->findAll();
+            $todos = $em->getRepository('SGIBundle:Todo')->findBy(array(), array('duedate' => 'ASC'));
         } else {
-            $todos = $em->getRepository('SGIBundle:Todo')->findBy(array('userid' => $user->getId()));
+            $todos = $em->getRepository('SGIBundle:Todo')->findBy(array('userid' => $user->getId()),array('duedate' => 'ASC'));
         }
         
         return $this->render('todo/index.html.twig', array(
@@ -121,23 +121,31 @@ class TodoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $event = '';
         
+        $date = new \DateTime('now');
         if ($grupo_usuario == 'Administrator') {
+            $parameters = array(
+                'completed' => false, 
+                'today' => $date->format('Y-m-d'), 
+            );            
             $results = $em
                ->createQuery('SELECT e FROM SGIBundle:Todo e WHERE e.completed = :completed '
-                       . 'ORDER BY e.idPriority ASC')
-               ->setParameter('completed', false)
+                       . 'or (e.duedate >= :today and e.completed = :completed) '
+                       . 'ORDER BY e.idPriority, e.duedate ASC')
+                ->setParameters($parameters)    
                 ->setMaxResults(5)     
                ->getResult();            
 
         }  else {
             $parameters = array(
                 'completed' => false, 
+                'today' => $date->format('Y-m-d'),
                 'userid' => $user->getId()
             );
             $results = $em
-               ->createQuery('SELECT e FROM SGIBundle:Todo e WHERE e.completed = :completed '
+                    ->createQuery('SELECT e FROM SGIBundle:Todo e WHERE e.completed = :completed '
+                       . 'or (e.duedate >= :today and e.completed = :completed) '
                        . 'and e.userid = :userid '
-                       . 'ORDER BY e.idPriority ASC')
+                       . 'ORDER BY e.idPriority, e.duedate ASC')
                ->setParameters($parameters)
                 ->setMaxResults(5)     
                ->getResult();            
@@ -262,8 +270,8 @@ class TodoController extends Controller
         $pagina = $request->get('pagina');
 
         // Obtengo el tipo de filtro que utilizo
-        $type = $request->get('type');        
-        
+        $type = $request->get('type');
+                
         $em = $this->getDoctrine()->getManager();
         $event = '';
         
@@ -328,6 +336,24 @@ class TodoController extends Controller
                     ->setMaxResults(10)     
                     ->getResult();                                 
             } 
+            
+            if ($type == 'overdue') {
+                $date = new \DateTime('now');
+                $parameters = array(
+                    'completed' => false, 
+                    'type' => $pagina,
+                    'today' => $date->format('Y-m-d'),
+                ); 
+                $results = $em->createQuery('SELECT e FROM SGIBundle:Todo e'
+                           . ' JOIN e.idBl b'
+                           . ' WHERE b.type = :type and e.duedate < :today '
+                           . ' and e.completed = :completed'                
+                           . ' ORDER BY e.idPriority ASC')
+                    ->setParameters($parameters)
+                    ->setMaxResults(10)     
+                    ->getResult(); 
+                
+            }
         }  else {  
             $results = 0;
         }        

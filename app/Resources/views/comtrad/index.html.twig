@@ -48,7 +48,8 @@ Accounts
                                         <thead>
                                             <tr>
                                                 <th class="all" width="10%">Detail</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all">Description</th>
+                                                <th class="all">Type</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +62,8 @@ Accounts
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Comtrad.description }}</td>                                                
+                                                <td>{{ Comtrad.description }}</td>
+                                                <td>{{ Comtrad.idTypeComtrad }}</td>
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        
@@ -139,6 +141,8 @@ Accounts
                                                         <input class="option_task" type="radio" name="tipo" param="true" param2="comtrad"/> Completed</label>
                                                     <label>
                                                         <input class="option_task" type="radio" name="tipo" param="false" param2="comtrad"/> Pending</label>
+                                                   <label>
+                                                        <input class="option_task" type="radio" name="tipo" param="overdue" param2="comtrad"/> Overdue</label>     
                                                 </div>
                                         </div>
                                         <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>

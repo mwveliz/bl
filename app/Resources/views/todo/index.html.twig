@@ -44,6 +44,7 @@
                                             <tr>
                                                 <th class="all" width="10%">Detail</th>
                                                 <th class="all">Description</th> 
+                                                <th class="all">Date</th>
                                                 <th class="all">Priority</th>
                                                 <th class="all">Bl</th>
                                             </tr>
@@ -58,7 +59,8 @@
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ todo.description }}</td>  
+                                                <td>{{ todo.description }}</td>
+                                                <td>{{ todo.duedate |date("d-m-Y") }}</td>
                                                 <td>{{ todo.idPriority }}</td>
                                                 <td>{{ todo.idBl }}</td>
                                             </tr>

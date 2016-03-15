@@ -27,6 +27,13 @@ class Todo
     private $completed;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="duedate", type="date", nullable=true)
+     */
+    private $duedate;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -112,6 +119,29 @@ class Todo
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    /**
+     * Set duedate
+     *
+     * @param \DateTime $duedate
+     * @return Todo
+     */
+    public function setDuedate($duedate)
+    {
+        $this->duedate = $duedate;
+
+        return $this;
+    }
+
+    /**
+     * Get duedate
+     *
+     * @return \DateTime 
+     */
+    public function getDuedate()
+    {
+        return $this->duedate;
     }
 
     /**

@@ -41,9 +41,25 @@
                                             <td>{{ todo.id }}</td>
                                         </tr>            
                                         <tr>
+                                            <th>Assigned To</th>
+                                            <td>{{ todo.userid }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Business Line</th>
+                                            <td>{{ todo.idBl }}</td>
+                                        </tr>                                        
+                                        <tr>
                                             <th>Description</th>
                                             <td>{{ todo.description }}</td>
                                         </tr>
+                                        <tr>
+                                            <th>Date</th>
+                                            <td>{{ todo.duedate | date("d-m-Y") }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Priority</th>
+                                            <td>{{ todo.idPriority }}</td>
+                                        </tr>                                        
                                         <tr>
                                             <th>Completed</th>
                                             <td>{% if todo.completed %}Yes{% else %}No{% endif %}</td>

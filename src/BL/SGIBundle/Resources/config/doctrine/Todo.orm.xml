@@ -11,6 +11,7 @@
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
     <field name="completed" type="boolean" column="completed" nullable="true"/>
+    <field name="duedate" type="date" column="duedate" nullable="true"/>
     <many-to-one field="userid" target-entity="Usuario">
       <join-columns>
         <join-column name="userid" referenced-column-name="id"/>

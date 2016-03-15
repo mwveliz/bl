@@ -34,7 +34,17 @@ class TodoType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control form-group'
                  ),                
-            ))                
+            ))  
+            ->add('duedate', 'date', array(
+                'label' => 'Due Date',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => array(
+                    'class' => 'form-control datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd-mm-yyyy'
+                ),
+            ))               
             ->add('description', 'text', array(
                  'attr' => array('class' => 'form-control input-sm')
              ))

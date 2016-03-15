@@ -337,6 +337,7 @@ class BlController extends Controller
                                   'Assigned To' => $nombre_apellido,
                                   'Business Line' => $form->getIdBl(),
                                   'Description' => $form->getDescription(),
+                                  'Date' => $form->getDuedate()->format('d-m-Y'),
                                   'Priority' =>  $form->getIdPriority()->getDescription(),
                                   'Completed' =>  $completed  
                                   );
