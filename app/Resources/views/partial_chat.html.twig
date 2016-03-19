@@ -1,0 +1,43 @@
+
+                        <!-- BEGIN LOGS -->   
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-share font-blue"></i>
+                                        <span class="caption-subject font-blue bold uppercase">Chat</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm blue btn-outline btn-circle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="All"/> All</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Insert"/> Created</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Update"/> Updated</label>
+                                                <label>
+                                                    <input class="option_log" type="radio" name="tipo" param="Delete"/> Deleted</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+                                        <ul class="feeds" id="log_box">
+
+                                        </ul>
+                                    </div>
+                                    <div class="scroller-footer">
+                                        <div class="btn-arrow-link pull-right">
+                                            <a href="{{ path('logactivity_index') }}" >See All Records</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END LOGS -->
