@@ -794,12 +794,31 @@
         <script src="{{ asset('js/jquery.maskMoney.min.js') }}" type="text/javascript"></script>       
         <!-- END CORE PLUGINS -->
 
-        <!-- CALENDARIO -->
+        <!-- CALENDAR -->
         <script src="{{ asset('/metronic/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/metronic/global/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/metronic/apps/scripts/calendar.js') }}" type="text/javascript"></script>
+        <!-- END CALENDAR-->
+    <!-- MAPS and CHARTS-->
+       <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts.js') }} type="text/javascript"></script>
+        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts-3d.js') }} type="text/javascript"></script>
+        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts-more.js') }} type="text/javascript"></script>
+    
+    
+    <script src={{ asset('metronic/global/plugins/highmaps/js/modules/data.js') }} type="text/javascript"></script>
+        <script src={{ asset('metronic/global/plugins/highmaps/js/modules/map.js') }} type="text/javascript"></script>
+        <script src="http://code.highcharts.com/mapdata/custom/world.js"></script>
+        <script src="http://code.highcharts.com/mapdata/custom/europe.js" type="text/javascript"></script>
+     
+        <!-- END MAPS and CHARTS-->
+
+        
+        
         
         <script>    
+            
+            
+            
         $( document ).ready(function() {
             
                     $.ajax({

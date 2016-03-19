@@ -49,7 +49,7 @@ Accounts
                                             <tr>
                                                 <th class="all" width="10%">Detail</th>
                                                 <th class="all">Description</th>
-                                                <th class="all">Type</th>
+                                                <th class="all">Opportunity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,10 +100,6 @@ Accounts
                     
                     
                     </div>
-                    
-                    
-                    
-                    
                     <!-- END LOG AND TASK -->                    
                                         
             <!-- END CONTENT BODY -->
@@ -133,6 +129,11 @@ Accounts
         <script src="{{ asset('/metronic/pages/scripts/ui-confirmations.min.js') }}" type="text/javascript"></script>
         
         <script src="{{ asset('/js/jquery.colorbox.js') }}" type="text/javascript"></script>
+        
+
+        
+
+        
         <!-- END PAGE LEVEL SCRIPTS -->
 
  <script>    
@@ -292,7 +293,69 @@ Accounts
                     });
                 });                
             }    
-                    
+              
+
+        /*MAP*/
+        /*$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population.json&callback=?', function (data) {
+        // Correct UK to GB in data
+        $.each(data, function () {
+            if (this.code === 'UK') {
+                this.code = 'GB';
+            }
+        });*/
+
+var data=([{
+            code: "US",
+            z: 30552
+            }, {
+            code: "VE",
+            z: 14150
+            }]);
+        var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
+            $('#highmaps_1').highcharts('Map', {
+            chart : {
+                borderWidth : 1
+            },
+
+            title: {
+                text: 'Business Line Accounts'
+            },
+
+            subtitle : {
+                text : 'Commodities Trading'
+            },
+
+            legend: {
+                enabled: false
+            },
+
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+
+            series : [{
+                name: 'Countries',
+                mapData: mapData,
+                color: '#E0E0E0',
+                enableMouseTracking: false
+            }, {
+                type: 'mapbubble',
+                mapData: mapData,
+                name: 'BL Accounts',
+                joinBy: ['iso-a2', 'code'],
+                data: data,
+                minSize: 4,
+                maxSize: '12%',
+                tooltip: {
+                    pointFormat: '{point.code}: {point.z} thousands'
+                }
+            }]
+        });
+
+
         });              
 </script>  
 {% endblock %}
