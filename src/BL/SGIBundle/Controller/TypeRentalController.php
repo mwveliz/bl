@@ -55,7 +55,7 @@ class TypeRentalController extends Controller
             $em->flush();
 
 
-            return $this->redirectToRoute('typerental_show', array('id' => $typeRental->getId()));
+            return $this->redirectToRoute('typerental_index');
         }
         if ($request->isXmlHttpRequest()) $ruta='typerental/ajax_new.html.twig';
 

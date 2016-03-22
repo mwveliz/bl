@@ -5,7 +5,7 @@
 {% endblock %} 
 
 {% block page_description %}
-   Commodities Trading Business Line
+   Accounts
 {% endblock %} 
 
 {% block stylesheets_extra %} 
@@ -47,8 +47,9 @@
                                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
                                         <thead>
                                             <tr>
-                                                <th class="all" width="10%">Detail</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all" width="10%">View</th>
+                                                <th class="all">Description</th>
+                                                <th class="all">Opportunity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +62,9 @@
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Comtrad.description }}</td>                                                
+                                                <td>{{ Comtrad.description }}</td> 
+                                                <td>{{ Comtrad.idTypeComtrad }}</td>
+                                                
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

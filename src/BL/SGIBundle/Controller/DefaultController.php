@@ -54,4 +54,10 @@ class DefaultController extends Controller
     }
     
     
+    public function mapAction()
+    {
+        return $this->render('SGIBundle:Default:map.html.twig');
+    }
+    
+    
 }

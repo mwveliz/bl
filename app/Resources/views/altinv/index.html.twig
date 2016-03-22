@@ -4,7 +4,8 @@
 {% endblock %} 
 
 {% block page_description %}
- Accounts{% endblock %} 
+ OVerview
+{% endblock %} 
 
 
 {% block stylesheets_extra %} 
@@ -47,7 +48,8 @@
                                         <thead>
                                             <tr>
                                                 <th class="all" width="10%">View</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all">Description</th>
+                                                <th class="all">Opportunity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,7 +62,8 @@
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Altinv.description }}</td>                                                
+                                                <td>{{ Altinv.description }}</td>
+                                                <td>{{ Altinv.idTypeAltinv}}</td>
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

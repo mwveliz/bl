@@ -72,7 +72,7 @@ class TypeAltinvController extends Controller
             
             // fin proceso log            
             
-            return $this->redirectToRoute('typealtinv_show', array('id' => $typealtinv->getId()));
+            return $this->redirectToRoute('typealtinv_index');
         }
 
 

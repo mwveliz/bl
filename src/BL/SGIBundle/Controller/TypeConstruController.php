@@ -73,7 +73,7 @@ class TypeConstruController extends Controller
             
             // fin proceso log   
             
-            return $this->redirectToRoute('typeconstru_show', array('id' => $typeConstru->getId()));
+            return $this->redirectToRoute('typeconstru_index');
         }
         if ($request->isXmlHttpRequest()) $ruta='typeconstru/ajax_new.html.twig';
 

@@ -1,56 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block page_title %}
-    Alternative Investments
-{% endblock %}
+   Alternative Investments
+{% endblock %} 
 
 {% block page_description %}
-    Type of Alternative Investments
-{% endblock %}
+   Alternative Investments - New Opportunity
+{% endblock %} 
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-6 ">
-            <!-- BEGIN SAMPLE FORM PORTLET-->
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-red-sunglo">
-                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
-                        <span class="caption-subject bold uppercase"> New Register</span>
-                    </div>
-                </div>
-                <div class="portlet-body form">
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <br>
-                    <button type="button" class="btn default"  id="clear">Clear</button>
-                    <a href="{{ path('altinv_index') }}" class="btn red" role="button">Cancel</a>
-                    <button type="submit" class="btn blue">Submit</button>
-                    {{ form_end(form) }}
-                    <br>
-                    <div class="form-actions">
-                    </div>
-                </div>
-            </div>
-            <!-- END SAMPLE FORM PORTLET-->
-        </div>
-        <div class="col-md-12 ">
+                     <div class="row">
+                        <div class="col-md-6 ">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-red-sunglo">
+                                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                                        <span class="caption-subject bold uppercase"> New Register</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                        {{ form_start(form) }}
+                                            {{ form_widget(form) }}
+                                            <br>
+                                            <button type="button" class="btn default"  id="clear">Clear</button>
+                                            <a href="{{ path('typealtinv_index') }}" class="btn red" role="button">Cancel</a>
+                                            <button type="submit" class="btn blue">Submit</button>
+                                        {{ form_end(form) }}  
+                                        <br>
+                                        <div class="form-actions">                                          
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE FORM PORTLET-->
+                        </div>
+                        <div class="col-md-6 ">
+                            
+                        </div>
+                    </div>   
+ {% endblock %}           
 
-        </div>
-    </div>
-{% endblock %}
-
- {% block stylesheets_extra %}
-     <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
+ {% block stylesheets_extra %} 
+         <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
  {% endblock %}
-
- {% block javascripts_extra %}
-     <script>
-         $( document ).ready(function() {
-             $('#clear').click(function() {
-                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
-                 $('span').removeClass("checked");
-             });
-         });
-     </script>
+ 
+ {% block javascripts_extra %} 
+ <script>    
+    $( document ).ready(function() {
+        $('#clear').click(function() {
+          $('form[name="{{ form.vars.name }}"]').trigger("reset");
+          $('span').removeClass("checked"); 
+        });
+    });
+ </script>
  {% endblock %}

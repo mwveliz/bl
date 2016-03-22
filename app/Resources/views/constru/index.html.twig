@@ -4,7 +4,7 @@
 {% endblock %} 
 
 {% block page_description %}
-Accounts
+Overview
 {% endblock %} 
 
 
@@ -47,8 +47,9 @@ Accounts
                                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
                                         <thead>
                                             <tr>
-                                                <th class="all" width="10%">Detail</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all" width="10%">View</th>
+                                                <th class="all">Description</th>
+                                                <th class="all">Opportunity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +62,8 @@ Accounts
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Constru.description }}</td>                                                
+                                                <td>{{ Constru.description }}</td>
+                                                <td>{{ Constru.idTypeConstru }}</td>
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        
