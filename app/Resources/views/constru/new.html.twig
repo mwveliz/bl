@@ -78,7 +78,11 @@
                  e.preventDefault();
                  $('#add').load("{{ path('fieldsconstru_new') }}");
              });
-
+            $('<a id= "a_addclient"  class="btn btn-success pull-right" href="#"><span>Add Client</span></a><br>').insertAfter( $('#constru_idClient_text').closest("div") );
+             $('#a_addclient').on('click',function(e) {
+                 e.preventDefault();
+                 $('#add').load("{{ path('client_new') }}");
+             });   
 
          });
      </script>

@@ -220,11 +220,10 @@
                             </form>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start active open">
+                        <li class="nav-item  active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">BL Division</span>
-                                <span class="selected"></span>
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
@@ -244,7 +243,7 @@
                                     <ul class="sub-menu">
                                         <li class="nav-item start ">
                                             <a href="{{ path('altinv_index')}}" class="nav-link ">
-                                                <span class="title">Overview</span>
+                                                <span class="title">Accounts</span>
 
                                             </a>
                                         </li>
@@ -253,22 +252,12 @@
                                                 <span class="title">Opportunities</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('altinv_list')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-                                            </a>
-                                        </li>
+                                        
                                         <li class="nav-item ">
                                             <a href="{{ path('altinv_new')}}" class="nav-link ">
                                                 <span class="title">Add New Account</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('altinv_track')}}" class="nav-link ">
-                                                <span class="title">Financials</span>
-                                            </a>
-                                        </li>
-                                       
                                     </ul>
                                 </li>
                                 <!----- END ALTERNATIVE INVESTMENTS SUB MENU----->
@@ -283,7 +272,7 @@
                                     <ul class="sub-menu">
                                         <li class="nav-item start ">
                                             <a href="{{ path('comtrad_index')}}" class="nav-link ">
-                                                <span class="title">Overview</span>
+                                                   <span class="title">Account</span>
 
                                             </a>
                                         </li>
@@ -292,21 +281,13 @@
                                                 <span class="title">Opportunities</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('comtrad_list')}}" class="nav-link ">
-                                                <span class="title">Account</span>
-                                            </a>
-                                        </li>
+                                        
                                         <li class="nav-item ">
                                             <a href="{{ path('comtrad_new')}}" class="nav-link ">
                                                 <span class="title">Add New Account</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('comtrad_track')}}" class="nav-link ">
-                                                <span class="title">Financials</span>
-                                            </a>
-                                        </li>
+                                      
                                        
                                     </ul>
                                 </li>
@@ -322,7 +303,7 @@
                                     <ul class="sub-menu">
                                         <li class="nav-item start ">
                                             <a href="{{ path('constru_index')}}" class="nav-link ">
-                                                <span class="title">Overview</span>
+                                                <span class="title">Accounts</span>
 
                                             </a>
                                         </li>
@@ -332,21 +313,13 @@
 
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('constru_list')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-                                            </a>
-                                        </li>
+                                       
                                         <li class="nav-item ">
                                             <a href="{{ path('constru_new')}}" class="nav-link ">
                                                 <span class="title">Add New Account</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('constru_track')}}" class="nav-link ">
-                                                <span class="title">Financials</span>
-                                            </a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </li>
@@ -363,7 +336,7 @@
                                     <ul class="sub-menu">
                                         <li class="nav-item start ">
                                             <a href="{{ path('rental_index')}}" class="nav-link ">
-                                                <span class="title">Overview</span>
+                                                <span class="title">Accounts</span>
 
                                             </a>
                                         </li>
@@ -372,26 +345,28 @@
                                                 <span class="title">Opportunities</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('rental_list')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-                                            </a>
-                                        </li>
+                                       
                                         <li class="nav-item ">
                                             <a href="{{ path('rental_new')}}" class="nav-link ">
                                                 <span class="title">Add New Account</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('rental_track')}}" class="nav-link ">
-                                                <span class="title">Financials</span>
-                                            </a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </li>
                                 <!----- END RENTAL SUB MENU----->
                             </ul>
+                       
+                         
+                         <li class="nav-item  ">
+                            <a href="{{ path('client_index')}}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">Clients</span>
+                                <span class="arrow"></span>
+                            </a>
+                        </li>   
+                        
                           <li class="nav-item  ">
                             <a href="{{ path('calendar')}}" class="nav-link ">
                                 <i class="icon-calendar"></i>
@@ -468,25 +443,34 @@
                                 <span class="title">Maps</span>
                                 <span class="arrow"></span>
                             </a>
-                            
+                         <li class="nav-item  ">
+                             <a href="{{ path('pipeline_index')}}" class="nav-link ">
+                                <i class="icon-notebook"></i>
+                                <span class="title">Workflow Pipeline</span>
+                                <span class="arrow"></span>
+                            </a>    
                         </li>
                         <li class="heading">
-                            <h3 class="uppercase">Reports</h3>
+                            <h3 class="uppercase">Reports/Invoices</h3>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-layers"></i>
-                                <span class="title">Report 1</span>
-                                <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item  ">
+                          <li class="nav-item  ">
                                     <a href="layout_blank_page.html" class="nav-link ">
-                                        <span class="title">Generator</span>
+                                        <i class="icon-layers"></i>
+                                        <span class="title">Report Generator</span>
                                     </a>
                                 </li>
-                            </ul>
-                        </li>
+                                <li class="nav-item  ">
+                                    <a href="page_general_invoice.html" class="nav-link ">
+                                        <i class="icon-envelope"></i>
+                                        <span class="title">Invoice</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="page_general_invoice_2.html" class="nav-link ">
+                                        <i class="icon-envelope"></i>
+                                        <span class="title">Invoice 2</span>
+                                    </a>
+                                </li>
                         
                         <li class="heading">
                             <h3 class="uppercase">System</h3>
@@ -503,27 +487,22 @@
                                 <li class="nav-item  ">
                                     <a href="page_user_profile_1.html" class="nav-link ">
                                         <i class="icon-user"></i>
-                                        <span class="title">Profile 1</span>
+                                        <span class="title">Roles</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="page_user_profile_1_account.html" class="nav-link ">
                                         <i class="icon-user-female"></i>
-                                        <span class="title">Profile 1 Account</span>
+                                        <span class="title">Permissions</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="page_user_profile_1_help.html" class="nav-link ">
                                         <i class="icon-user-following"></i>
-                                        <span class="title">Profile 1 Help</span>
+                                        <span class="title">Clients</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="page_user_profile_2.html" class="nav-link ">
-                                        <i class="icon-users"></i>
-                                        <span class="title">Profile 2</span>
-                                    </a>
-                                </li>
+                              
                                 <li class="nav-item  ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="icon-notebook"></i>
@@ -551,18 +530,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="page_user_lock_1.html" class="nav-link " target="_blank">
-                                        <i class="icon-lock"></i>
-                                        <span class="title">Lock Screen 1</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="page_user_lock_2.html" class="nav-link " target="_blank">
-                                        <i class="icon-lock-open"></i>
-                                        <span class="title">Lock Screen 2</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                         <li class="nav-item  ">
@@ -587,22 +555,20 @@
                                 <li class="nav-item  ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="icon-notebook"></i>
-                                        <span class="title">Portfolio</span>
+                                        <span class="title">Menu</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="nav-item ">
-                                            <a href="page_general_portfolio_1.html" class="nav-link "> Portfolio 1 </a>
+                                            <a href="page_general_portfolio_1.html" class="nav-link "> Dashboard </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a href="page_general_portfolio_2.html" class="nav-link "> Portfolio 2 </a>
+                                            <a href="page_general_portfolio_2.html" class="nav-link "> Blocks</a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a href="page_general_portfolio_3.html" class="nav-link "> Portfolio 3 </a>
+                                            <a href="page_general_portfolio_3.html" class="nav-link "> Sidebar </a>
                                         </li>
-                                        <li class="nav-item ">
-                                            <a href="page_general_portfolio_4.html" class="nav-link "> Portfolio 4 </a>
-                                        </li>
+                                      
                                     </ul>
                                 </li>
                                 <li class="nav-item  ">
@@ -653,18 +619,7 @@
                                         <span class="title">Blog Post</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="page_general_invoice.html" class="nav-link ">
-                                        <i class="icon-envelope"></i>
-                                        <span class="title">Invoice</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="page_general_invoice_2.html" class="nav-link ">
-                                        <i class="icon-envelope"></i>
-                                        <span class="title">Invoice 2</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                             </ul>

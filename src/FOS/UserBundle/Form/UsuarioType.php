@@ -1,6 +1,6 @@
 <?php
 
-namespace BL\SGIBundle\Form;
+namespace AVN\SiretraBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,61 +16,58 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                 ->add('username', null, array(
-                'attr' => array('class' => 'form-control input-sm'),
-                'label' => 'Username', 
-                'translation_domain' => 'FOSUserBundle'))                            
-           
             ->add('nacionalidad', 'choice', array(
-                'label' => 'Nationality', 
                 'attr' => array('class' => 'form-control form-group'),	
                 'choices' => array('V' => 'V', 'E' => 'E'),
             ))                
             ->add('dni', 'integer', array(
                 'label' => 'DNI',
                 'attr' => array('class' => 'form-control input-sm',
-                                'placeholder' => 'e.g.: 10456789',
+                                'placeholder' => 'Ejemplo: 10456789',
                                 )
             ))    
             ->add('nombre', 'text', array(
-                'label' => 'Name(s)',
+                'label' => 'Nombre(s)',
                 'attr' => array(
                     'class' => 'form-control input-sm'
                 )
                     )
             )
             ->add('apellido', 'text', array(
-                'label' => 'Last Name(s)',
+                'label' => 'Apellido(s)',
                 'attr' => array(
                     'class' => 'form-control input-sm'
                 )
                     )
             )
             ->add('email', 'email', 
-                    array('label' => 'e-Mail', 
+                    array('label' => 'form.email', 
                         'attr' => array(
                             'class' => 'form-control input-sm'
                         ),
                         'translation_domain' => 'FOSUserBundle')
                  )    
             ->add('telefono', 'text', array(
-                'label' => 'Main Phone Number',
+                'label' => 'Teléfono Principal',
                 'attr' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => 'e.g.: +58-212-781-2711',
+                    'placeholder' => 'Ejemplo: 0212 781-2711',
                 )
                     )
             )
             ->add('telefono_secundario', 'text', array(
-                'label' => 'Secondary Phone Number',
+                'label' => 'Teléfono Secundario',
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => 'e.g.: +58-212-781-2711',
+                    'placeholder' => 'Ejemplo: 0212 781-2711',
                 )
                     )
             )                 
-           
+            ->add('username', null, array(
+                'attr' => array('class' => 'form-control input-sm'),
+                'label' => 'form.username', 
+                'translation_domain' => 'FOSUserBundle'))                            
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
@@ -79,7 +76,7 @@ class UsuarioType extends AbstractType
                 'invalid_message' => 'fos_user.password.mismatch',
             )) 
             ->add('enabled', 'checkbox', array(
-                'label' => 'Is Active?',
+                'label' => '¿Se encuentra Activo?',
                 'attr' => array(
                     'class' => 'checkbox'
                 ),
@@ -95,7 +92,7 @@ class UsuarioType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BL\SGIBundle\Entity\Usuario'
+            'data_class' => 'SGI\BlBundle\Entity\Usuario'
         ));
     }
 

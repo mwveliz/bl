@@ -32,6 +32,54 @@ class TrackAltinvController extends Controller
             'trackAltinvs' => $trackAltinvs,
         ));
     }
+    
+    
+    
+     /**
+     * Tracks one  Alternative Investment Account.
+     *
+     * @Route("track/{id}", name="trackaltinv_track")
+     * @Method("GET")
+     */
+    public function trackAction(Request $request)
+    {
+        $idaltinv=$request->get('id');
+         
+       // die(var_dump($idaltinv));
+        $em = $this->getDoctrine()->getManager();
+        $fieldsAltinvs=$em->createQueryBuilder('f')
+             ->add('select','b', 'f')
+             ->add('from', 'SGIBundle:FieldsAltinv f')
+             
+             ->Join('SGIBundle:BlAltinv', 'b')
+             //->where('b.idField = f.id ')
+            ->Where('f.trackable=true')
+             ->andWhere('b.idAltinv=:id')
+             ->setParameter('id', $idaltinv)
+              
+             ->getQuery()
+             ->getResult();
+    
+       // $fieldsAltinvstrackable = $fieldsAltinvs->findBy(array('trackable' => true));
+       // $fieldsAltinvsnotrackable = $fieldsAltinvs->findBy(array('trackable' => false));
+       
+       
+      /* $fieldsAltinvstrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => true));*/
+        $serializer = $this->container->get('serializer');
+        //$aitracks= $serializer->serialize($fieldsAltinvstrackable, 'json');
+        $aitracks= $serializer->serialize($fieldsAltinvs, 'json');
+        /*$fieldsAltinvsnotrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => false));*/
+        $serializer = $this->container->get('serializer');
+        //$ainotracks= $serializer->serialize($fieldsAltinvsnotrackable, 'json');
+        $ainotracks= $serializer->serialize($fieldsAltinvs, 'json');
+        
+        
+       
+
+        return $this->render('trackaltinv/track.html.twig', array(
+            'aitracks' => $aitracks,'ainotracks' => $ainotracks
+        ));
+    }
 
     /**
      * Creates a new TrackAltinv entity.
@@ -41,6 +89,8 @@ class TrackAltinvController extends Controller
      */
     public function newAction(Request $request)
     {
+        
+        
         $trackAltinv = new TrackAltinv();
         $form = $this->createForm('BL\SGIBundle\Form\TrackAltinvType', $trackAltinv);
         $form->handleRequest($request);

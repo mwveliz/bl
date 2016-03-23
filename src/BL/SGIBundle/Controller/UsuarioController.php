@@ -1,14 +1,14 @@
 <?php
 
-namespace SGI\BlBundle\Controller;
+namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use SGI\BlBundle\Entity\Usuario;
-use SGI\BlBundle\Form\UsuarioType;
+use BL\SGIBundle\Entity\Usuario;
+use BL\SGIBundle\Form\UsuarioType;
 use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -64,7 +64,7 @@ class UsuarioController extends Controller
      *
      * @Route("/", name="usuario_create")
      * @Method("POST")
-     * @Template("BlBundle:Usuario:new.html.twig")
+     * @Template("SGIBundle:Usuario:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -83,8 +83,8 @@ class UsuarioController extends Controller
             
             $em2 = $this->getDoctrine()->getEntityManager('reportasistencia');
             $connection = $em2->getConnection();
-            $statement = $connection->prepare("SELECT * FROM userinfo WHERE cedula like :cedula");
-            $statement->bindValue('cedula', $entity->getCedula());
+            $statement = $connection->prepare("SELECT * FROM userinfo WHERE dbi like :dbi");
+            $statement->bindValue('dbi', $entity->getDni());
             $statement->execute();
             $results = $statement->fetchAll();
             if (count($results) > 0) {
@@ -95,7 +95,7 @@ class UsuarioController extends Controller
             }            
 
             for($i=0;$i < count($grupos);$i++) {
-                $entity_group = $em->getRepository('BlBundle:Group')->find($grupos[$i]);
+                $entity_group = $em->getRepository('SGIBundle:Group')->find($grupos[$i]);
                 $entity->addGroup($entity_group);
                 $em->persist($entity);
                 $em->flush();            
@@ -111,11 +111,11 @@ class UsuarioController extends Controller
 
             $usuario = $user->getUsername();
 
-            $query = $em->createQuery('SELECT x FROM BlBundle:Usuario x WHERE x.id = ?1');
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
             $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
             
-            $bitacora = $em->getRepository('BlBundle:ExtLogEntries')
+            $bitacora = $em->getRepository('SGIBundle:ExtLogEntries')
                     ->bitacora($usuario,'Insert','Usuario',$entity->getId(),$arreglo_formulario);
                
             // fin proceso log             
@@ -193,7 +193,7 @@ class UsuarioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BlBundle:Usuario')->find($id);
+        $entity = $em->getRepository('SGIBundle:Usuario')->find($id);
         
 
         $activo = ($entity->IsEnabled()) ? "Sí" : "No";
@@ -206,12 +206,12 @@ class UsuarioController extends Controller
                 $entity_grupo = $this->container->get('fos_user.group_manager')->
                     findGroupBy(array('name' => $grupos_usuario[$i])); 
                 // Por cada grupo que consiga lo elimino
-                $entity_group = $em->getRepository('BlBundle:Group')->find($entity_grupo->getId());
+                $entity_group = $em->getRepository('SGIBundle:Group')->find($entity_grupo->getId());
                 $grupo = $entity_group->getName();
             }        
         
         $usuario = array(                
-                "cedula" => $entity->getCedula(),
+                "dbi" => $entity->getDni(),
                 "nacionalidad" => $entity->getNacionalidad(),
                 "nombre" => $entity->getNombre(),
                 "apellido" => $entity->getApellido(),
@@ -229,7 +229,8 @@ class UsuarioController extends Controller
                         ->getUser());
         
         // Obtengo el grupo de mi usuario
-        $grupo_usuario = $user->getGroupNames();
+       // $grupo_usuario = $user->getGroupNames();
+         $grupo_usuario = 1;
         $grupo_usuario = $grupo_usuario[0];
         
         // Elaboro los botones
@@ -276,7 +277,7 @@ class UsuarioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BlBundle:Usuario')->find($id);
+        $entity = $em->getRepository('SGIBundle:Usuario')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usuario entity.');
@@ -343,13 +344,13 @@ class UsuarioController extends Controller
      *
      * @Route("/{id}", name="usuario_update")
      * @Method("PUT")
-     * @Template("BlBundle:Usuario:edit.html.twig")
+     * @Template("SGIBundle:Usuario:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entity = $em->getRepository('BlBundle:Usuario')->find($id);
+        $entity = $em->getRepository('SGIBundle:Usuario')->find($id);
         
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usuario entity.');
@@ -373,7 +374,7 @@ class UsuarioController extends Controller
                 $entity_grupo = $this->container->get('fos_user.group_manager')->
                     findGroupBy(array('name' => $grupos_usuario[$i])); 
                 // Por cada grupo que consiga lo elimino
-                $entity_group = $em->getRepository('BlBundle:Group')->find($entity_grupo->getId());
+                $entity_group = $em->getRepository('SGIBundle:Group')->find($entity_grupo->getId());
                 $entity->getGroups()->removeElement($entity_group);
                 $em->persist($entity);
                 $em->flush();
@@ -384,7 +385,7 @@ class UsuarioController extends Controller
             $grupos = $usuario['grupo'];
             
             for($i=0;$i < count($grupos);$i++) {
-                $entity_group = $em->getRepository('BlBundle:Group')->find($grupos[$i]);
+                $entity_group = $em->getRepository('SGIBundle:Group')->find($grupos[$i]);
                 $entity->addGroup($entity_group);
                 $em->persist($entity);
                 $em->flush();            
@@ -399,11 +400,11 @@ class UsuarioController extends Controller
 
             $usuario = $user->getUsername();
 
-            $query = $em->createQuery('SELECT x FROM BlBundle:Usuario x WHERE x.id = ?1');
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
             $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
             
-            $bitacora = $em->getRepository('BlBundle:ExtLogEntries')
+            $bitacora = $em->getRepository('SGIBundle:ExtLogEntries')
                     ->bitacora($usuario,'Update','Usuario',$entity->getId(),$arreglo_formulario);
             
             // fin proceso log
@@ -429,7 +430,7 @@ class UsuarioController extends Controller
         $form->handleRequest($request);
 
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BlBundle:Usuario')->find($id);
+            $entity = $em->getRepository('SGIBundle:Usuario')->find($id);
             
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Usuario entity.');
@@ -444,11 +445,11 @@ class UsuarioController extends Controller
 
             $usuario = $user->getUsername();
 
-            $query = $em->createQuery('SELECT x FROM BlBundle:Usuario x WHERE x.id = ?1');
+            $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
             $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
                         
-            $bitacora = $em->getRepository('BlBundle:ExtLogEntries')
+            $bitacora = $em->getRepository('SGIBundle:ExtLogEntries')
                     ->bitacora($usuario,'Update','Usuario',$entity->getId(),$arreglo_formulario);
   
             // fin proceso log
@@ -461,7 +462,7 @@ class UsuarioController extends Controller
                 $pass[] = $alphabet[$n];
             }         
             $password = implode($pass);
-            $query = $em->createQuery('update BlBundle:Usuario u set u.enabled = ?2, u.password = ?3 where u.id = ?1');
+            $query = $em->createQuery('update SGIBundle:Usuario u set u.enabled = ?2, u.password = ?3 where u.id = ?1');
             $query->setParameter(1, $id);
             $query->setParameter(2, 'false');
             $query->setParameter(3, $password);
@@ -496,7 +497,7 @@ class UsuarioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BlBundle:Usuario')->findBy(array(), array('cedula'=>'asc'));
+        $entities = $em->getRepository('SGIBundle:Usuario')->findBy(array(), array('dbi'=>'asc'));
 
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($this->container->get('security.context')
@@ -509,7 +510,7 @@ class UsuarioController extends Controller
                 
       
         $data = array();
-        $cedula = array();
+        $dbi = array();
         $nombre = array();
         $apellido = array();
         $telefono = array();
@@ -529,12 +530,12 @@ class UsuarioController extends Controller
                 $entity_grupo = $this->container->get('fos_user.group_manager')->
                     findGroupBy(array('name' => $grupos_usuario[$i])); 
                 // Por cada grupo que consiga lo elimino
-                $entity_group = $em->getRepository('BlBundle:Group')->find($entity_grupo->getId());
+                $entity_group = $em->getRepository('SGIBundle:Group')->find($entity_grupo->getId());
                 $grupo = $entity_group->getName();
             }            
             $activo_usu = ($list->IsEnabled()) ? "Sí" : "No";
-            $cedula_usu = $list->getNacionalidad().$list->getCedula(); 
-            array_push($cedula, $cedula_usu);
+            $dbi_usu = $list->getNacionalidad().$list->getDni(); 
+            array_push($dbi, $dbi_usu);
             array_push($nombre, $list->getNombre());
             array_push($apellido, $list->getApellido());
             array_push($telefono, $list->getTelefono());
@@ -568,10 +569,10 @@ class UsuarioController extends Controller
         }
                 
             $k = 0;
-            for ($i = 0; $i < count($cedula); $i++) {
+            for ($i = 0; $i < count($dbi); $i++) {
                               
                 $row = array();
-                $row["cedula"] = $cedula[$k];
+                $row["dbi"] = $dbi[$k];
                 $row["nombre"] = $nombre[$k];
                 $row["apellido"] = $apellido[$k];
                 $row["telefono"] = $telefono[$k];

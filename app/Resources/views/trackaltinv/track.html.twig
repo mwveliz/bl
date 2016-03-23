@@ -54,6 +54,13 @@ textarea{
         jsonStr2 = ainotracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
         var obj = JSON.parse(jsonStr); //convertir a jsonArray
         var obj2 = JSON.parse(jsonStr2); //convertir a jsonArray
+        
+        
+        for (var i = 0; i <= obj.length; i++){
+            if(obj[i].id_field.trackable==true){
+                obj.splice(i,1); //busco solo los trackable
+            }
+        }
 
         var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
 
@@ -72,7 +79,7 @@ textarea{
 
         for (var i = 0; i <= obj.length+1; i++) { //rows
             var row = document.querySelector("table").insertRow(-1);
-            if(i>1) row.insertCell(-1).outerHTML = '<strong>'+obj[i-2].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+            if(i>1) row.insertCell(-1).outerHTML = '<strong>'+obj[i-2].id_field.description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
 
             for (var j = 0; j <= 13; j++) { //cols
                 var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
@@ -85,17 +92,10 @@ textarea{
 
 //        /var row = document.querySelector("#table2").insertRow(-1);
 
-
-
-
-
-
-
-
         for (var i = 0; i < obj2.length; i++) { //rows
-            desc= obj2[i].description;
+            desc= obj2[i].id_field.description;
            // alert(desc);
-            switch(obj2[i].widget) {
+            switch(obj2[i].id_field.widget) {
                 case 'Calendar':
                     string= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control datepicker' data-provide='datepicker' data-date-format='dd-mm-yyyy'>"
                     break;
@@ -121,7 +121,7 @@ textarea{
             }
             var row = document.querySelector("#table2").insertRow(-1);
 
-            row.insertCell(-1).innerHTML = '<strong>'+obj2[i].description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+            row.insertCell(-1).innerHTML = '<strong>'+obj2[i].id_field.description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
             //row.insertCell(-1).innerHTML = "<textarea id='table2" + obj2[i] + "'/>" ;
             row.insertCell(-1).innerHTML = string;
             $(".currency").maskMoney();
@@ -160,9 +160,6 @@ textarea{
                 }
             });
         })();
-
-
-
 
     </script>
 {% endblock %}

@@ -8,6 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Client;
 use BL\SGIBundle\Form\ClientType;
+use BL\SGIBundle\Entity\Usuario;
+use BL\SGIBundle\Form\UsuarioType;
+
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -67,8 +71,17 @@ class ClientController extends Controller
      */
     public function newAction(Request $request)
     {
-        $client = new Client();
-        $form = $this->createForm('BL\SGIBundle\Form\ClientType', $client);
+        $ruta='client/new.html.twig';
+        $client = new Usuario();
+        $form = $this->createForm('BL\SGIBundle\Form\UsuarioType', $client);
+        // $form ->setAction($this->generateUrl('client/ajax_create'))
+       // $client = new Client();
+       //$form = $this->createForm('BL\SGIBundle\Form\ClientType', $client);
+       $form->remove('plainPassword');
+       $form->remove('enabled');
+       
+       
+       
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -76,10 +89,16 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_show', array('id' => $client->getId()));
+            return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('client/new.html.twig', array(
+        
+        
+          if ($request->isXmlHttpRequest()) $ruta='client/ajax_new.html.twig';
+
+          
+          
+        return $this->render($ruta, array(
             'client' => $client,
             'form' => $form->createView(),
         ));

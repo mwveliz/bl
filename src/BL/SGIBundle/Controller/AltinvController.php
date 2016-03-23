@@ -69,28 +69,7 @@ class AltinvController extends Controller
         return new JsonResponse($object->getId());
     }
 
-    /**
-     * Tracks all Altinv entities.
-     *
-     * @Route("/track", name="altinv_track")
-     * @Method("GET")
-     */
-    public function trackAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $fieldsAltinvstrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => true));
-        $serializer = $this->container->get('serializer');
-        $aitracks= $serializer->serialize($fieldsAltinvstrackable, 'json');
-
-        $fieldsAltinvsnotrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => false));
-        $serializer = $this->container->get('serializer');
-        $ainotracks= $serializer->serialize($fieldsAltinvsnotrackable, 'json');
-
-        return $this->render('altinv/track.html.twig', array(
-            'aitracks' => $aitracks,'ainotracks' => $ainotracks
-        ));
-    }
+   
 
     /**
      * Creates a new Altinv entity.

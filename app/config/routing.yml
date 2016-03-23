@@ -210,6 +210,10 @@ sgi_alert:
     resource: "@SGIBundle/Controller/AlertController.php"
     type:     annotation
 
+usuario:
+    resource: "@SGIBundle/Controller/UsuarioController.php"
+    type:     annotation
+
 sgi:
     resource: "@SGIBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,13 @@
+<h3>Add new Client </h3>
+{% block body %}
+ 
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+         <br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+
+                    <button type="submit" id="btn_addclient" class="btn blue">Submit</button>
+    {{ form_end(form) }}
+
+
+{% endblock %}

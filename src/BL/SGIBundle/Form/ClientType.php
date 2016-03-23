@@ -5,6 +5,9 @@ namespace BL\SGIBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use BL\SGIBundle\Form\UsuarioType;
+use BL\SGIBundle\Entity\Usuario;
+
 
 class ClientType extends AbstractType
 {
@@ -16,7 +19,8 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('userid')
-        ;
+      
+                ;
     }
     
     /**
