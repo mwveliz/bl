@@ -4,8 +4,8 @@
         <title>{% block title %}Bluleone Investments{% endblock %}</title>       
         {% block stylesheets %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
-            <link href="{{ asset('/bundles/siretra/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-            <link href="{{ asset('/bundles/siretra/css/background.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('/metronic/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('/css/background.css') }}" rel="stylesheet" type="text/css" />
         {% endblock %}
     <body>
         {% block body %}
@@ -151,8 +151,8 @@
 
         {% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('/bundles/siretra/js/jquery-2.1.4.min.js') }}"  type="text/javascript" ></script> 
-            <script src="{{ asset('/bundles/siretra/js/bootstrap.min.js') }}"  type="text/javascript" ></script>  
+            <script src="{{ asset('/metronic/global/plugins/jquery.min.js') }}"  type="text/javascript" ></script> 
+            <script src="{{ asset('/metronic/global/plugins/bootstrap/js/bootstrap.min.js') }}"  type="text/javascript" ></script>  
         {% endblock %}
     </body>
 </html>

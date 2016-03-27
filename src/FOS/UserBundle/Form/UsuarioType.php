@@ -101,6 +101,6 @@ class UsuarioType extends AbstractType
      */
     public function getName()
     {
-        return 'sgi_blbundle_usuario';
+        return 'bl_sgibundle_usuario';
     }
 }
