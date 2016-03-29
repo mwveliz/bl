@@ -4,10 +4,35 @@
     {{ form_start(form) }}
         {{ form_widget(form) }}
          <br>
-                    <button type="button" class="btn default"  id="clear">Clear</button>
+                    <button type="button" class="btn default"  id="client_clear">Clear</button>
 
                     <button type="submit" id="btn_addclient" class="btn blue">Submit</button>
     {{ form_end(form) }}
 
 
 {% endblock %}
+{% block javascripts_extra %}
+     <script>
+         $( document ).ready(function() {
+             
+             $('#btn_addclient').click(function(e) {
+                 e.preventDefault();
+                  
+                 $.post( "{{ path('ajax_client_create') }}", $('form[name="bl_sgibundle_usuario"]').serialize() )
+                         .done(function( resp) {
+                             alert(resp);
+                    });
+             });
+
+             $('#client_clear').click(function() {
+                 $('form#bl_sgibundle_usuario').trigger("reset");
+                 $('span').removeClass("checked");
+             });
+             
+
+             
+
+
+         });
+     </script>
+ {% endblock %}

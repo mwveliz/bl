@@ -61,6 +61,29 @@ class ClientController extends Controller
 
         return new JsonResponse($arreglo);
     }
+    
+    /**
+     * Create Usuario entities via client ajax.
+     *
+     * @Route("/add", name="ajax_client_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateClient(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new Usuario();
+        $object->setPassword(123456);
+        $object->setEnabled(true);
+        $form = $this->createForm('BL\SGIBundle\Form\UsuarioType', $object);
+        $form->bind($request);
+        if ($form->isValid()){
+            $em->persist($object);
+            $em->flush();
+        }
+        
+        return new JsonResponse($object->getId());
+        
+    }
 
 
     /**
@@ -103,23 +126,7 @@ class ClientController extends Controller
             'form' => $form->createView(),
         ));
     }
-    /**
-     * Create Altinv entities.
-     *
-     * @Route("/add", name="ajax_typealtinv_create")
-     * @Method("POST")
-     */
-    public function ajaxCreateAltinv(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $object= new TypeAltinv();
-        $object->setDescription( $request->get('description') );
-        $em->persist($object);
-        $em->flush();
-
-        return new JsonResponse($object->getId());
-    }
-
+   
 
 
 
