@@ -21,30 +21,18 @@ class StateController extends Controller
      * Lists all State entities.
      *
      * @Route("/", name="state_index")
-     * @Method("GET")
+      * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('SGIBundle:State');
+	$busqueda=$request->get('query') .'%';
+	$states = $repository->createQueryBuilder('o')->where('o.description LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
 
-        $states = $em->getRepository('SGIBundle:State')->findAll();
-
-        return $this->render('state/index.html.twig', array(
-            'states' => $states,
-        ));
-    }
-
-    /**
-     * Lists all States entities.
-     *
-     * @Route("/", name="state_index_ajax")
-     * @Method("POST")
-     */
-    public function ajaxindexAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $states = $em->getRepository('SGIBundle:State')->findAll();
+     /*   $states = $em->getRepository('SGIBundle:State')
+        			->where('description LIKE '. $busqueda)
+  				->execute();
+       */ 
         $objeto=array();
         $arreglo=array();
 
@@ -57,6 +45,35 @@ class StateController extends Controller
 
         return new JsonResponse($arreglo);
     }    
+
+    /**
+     * Lists all States entities.
+     *
+     * @Route("/ajax_index", name="state_index_ajax")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxindexAction(Request $request)
+     {
+       $repository = $this->getDoctrine()->getRepository('SGIBundle:State');
+	$busqueda=$request->get('query') .'%';
+	$states = $repository->createQueryBuilder('o')->where('o.description LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
+
+     /*   $states = $em->getRepository('SGIBundle:State')
+        			->where('description LIKE '. $busqueda)
+  				->execute();
+       */ 
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($states  as $state){
+            $indice=(string) $state->getId();
+            $objeto['id']=(string) $state->getId();
+            $objeto['value']= $state->getIdCountry()->getDescription() . ' - ' .$state->getDescription();
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }      
     
     /**
      * Creates a new State entity.
