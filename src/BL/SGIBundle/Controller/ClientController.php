@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -81,7 +82,7 @@ class ClientController extends Controller
             $em->flush();
         }
         
-        return new JsonResponse($object->getId());
+        return new Response($object->getId());
         
     }
 

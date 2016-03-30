@@ -20,7 +20,8 @@
                   
                  $.post( "{{ path('ajax_client_create') }}", $('form[name="bl_sgibundle_usuario"]').serialize() )
                          .done(function( resp) {
-                             alert(resp);
+                             $('input[placeholder="Find Client"]').val($("#bl_sgibundle_usuario_nombre").val()+ ' '+ $("#bl_sgibundle_usuario_apellido").val());
+                             $('input[placeholder="Find Client"]').next('[type=hidden]').val(resp);
                     });
              });
 
