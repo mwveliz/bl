@@ -26,13 +26,10 @@ class StateController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('SGIBundle:State');
-	$busqueda=$request->get('query') .'%';
-	$states = $repository->createQueryBuilder('o')->where('o.description LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
+	$busqueda='%'.strtoupper($request->get('query')) .'%';
+	$states = $repository->createQueryBuilder('o')->where('UPPER(o.description) LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
 
-     /*   $states = $em->getRepository('SGIBundle:State')
-        			->where('description LIKE '. $busqueda)
-  				->execute();
-       */ 
+   
         $objeto=array();
         $arreglo=array();
 
@@ -55,13 +52,10 @@ class StateController extends Controller
     public function ajaxindexAction(Request $request)
      {
        $repository = $this->getDoctrine()->getRepository('SGIBundle:State');
-	$busqueda=$request->get('query') .'%';
-	$states = $repository->createQueryBuilder('o')->where('o.description LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
-
-     /*   $states = $em->getRepository('SGIBundle:State')
-        			->where('description LIKE '. $busqueda)
-  				->execute();
-       */ 
+	$busqueda='%'.strtoupper($request->get('query')) .'%';
+	$states = $repository->createQueryBuilder('o')->where('UPPER(o.description) LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
+          
+       
         $objeto=array();
         $arreglo=array();
 

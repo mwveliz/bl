@@ -3,12 +3,15 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackAltinv;
 use BL\SGIBundle\Form\TrackAltinvType;
-
+use BL\SGIBundle\Entity\FieldsAltinv;
+use BL\SGIBundle\Form\FieldsAltinvType;
+use Symfony\Component\Validator\Constraints\DateTime;
 /**
  * TrackAltinv controller.
  *
@@ -44,41 +47,81 @@ class TrackAltinvController extends Controller
     public function trackAction(Request $request)
     {
         $idaltinv=$request->get('id');
-         
-       // die(var_dump($idaltinv));
-        $em = $this->getDoctrine()->getManager();
-        $fieldsAltinvs=$em->createQueryBuilder('f')
-             ->add('select','b', 'f')
+          $fieldsAltinv = new FieldsAltinv();
+     $form = $this->createForm('BL\SGIBundle\Form\FieldsAltinvType', $fieldsAltinv);
+     $em = $this->getDoctrine()->getManager();
+        $fields=$em->createQueryBuilder('f')
+             ->add('select','f')
              ->add('from', 'SGIBundle:FieldsAltinv f')
              
              ->Join('SGIBundle:BlAltinv', 'b')
-             //->where('b.idField = f.id ')
-            ->Where('f.trackable=true')
+             ->where('b.idField = f.id ')
+            ->andWhere('f.trackable=true')
              ->andWhere('b.idAltinv=:id')
              ->setParameter('id', $idaltinv)
-              
              ->getQuery()
              ->getResult();
     
-       // $fieldsAltinvstrackable = $fieldsAltinvs->findBy(array('trackable' => true));
-       // $fieldsAltinvsnotrackable = $fieldsAltinvs->findBy(array('trackable' => false));
-       
-       
-      /* $fieldsAltinvstrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => true));*/
         $serializer = $this->container->get('serializer');
-        //$aitracks= $serializer->serialize($fieldsAltinvstrackable, 'json');
-        $aitracks= $serializer->serialize($fieldsAltinvs, 'json');
-        /*$fieldsAltinvsnotrackable = $em->getRepository('SGIBundle:FieldsAltinv')->findBy(array('trackable' => false));*/
-        $serializer = $this->container->get('serializer');
-        //$ainotracks= $serializer->serialize($fieldsAltinvsnotrackable, 'json');
-        $ainotracks= $serializer->serialize($fieldsAltinvs, 'json');
-        
-        
+        $objects= $serializer->serialize($fields, 'json');
        
-
+      
         return $this->render('trackaltinv/track.html.twig', array(
-            'aitracks' => $aitracks,'ainotracks' => $ainotracks
+            'objects' => $objects,
+            'form' =>$form->createView(),
         ));
+    }
+    
+    
+     /**
+     * Create TrackAltinv entities via ajax.
+     *
+     * @Route("/add", name="ajax_trackaltinv_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTrackAltinv(Request $request)
+    {
+        
+         $mes=$request->get('mes');
+        if($mes<10) $mes="0".$mes;
+        //$fecha= 'd-'.$mes.'-y h:i:s';
+        $fecha =  new \DateTime();
+        $fecha->setDate(date('Y'),$mes, 01);
+        $fecha->setTime(0,0, 0);
+        
+        $value=$request->get('valor');
+        $em = $this->getDoctrine()->getManager();
+        $id_fieldsaltinv = $em->getReference('BL\SGIBundle\Entity\FieldsAltinv', $request->get('id_fieldsaltinv'));      
+        $id_altinv = $em->getReference('BL\SGIBundle\Entity\Altinv', $request->get('id_altinv'));     
+        
+        /*antes que nada buscar si ya esta el registro, si esya modificar*/
+        $object= $em->getRepository('SGIBundle:TrackAltinv')
+          ->findOneBy(array(
+            'idAltinv'=> $id_altinv, 
+            'idFieldsTrackAltinv' => $id_fieldsaltinv,
+            'datetime'=> $fecha,
+         
+           ));
+        
+      
+        
+        if(count($object)==0) $object= new TrackAltinv();
+       
+                
+     
+           
+        $object->setIdAltinv($id_altinv ); //objeto de tipo altinv
+        $object->setIdFieldsTrackAltinv($id_fieldsaltinv); //objeto de tipo fields altinv
+        $object->setDatetime($fecha);
+        $object->setValue($value);
+        
+        
+        $em->persist($object);
+        $em->flush();
+        
+        
+        return new Response($object->getId());
+        
     }
 
     /**

@@ -37,12 +37,32 @@ class FieldsAltinvController extends Controller
 
 
     /**
-     * Create Altinv Fields entities.
+     * Create Altinv Fields entities via ajax.
      *
      * @Route("/add", name="ajax_fieldsaltinv_create")
      * @Method("POST")
      */
     public function ajaxCreateFieldsAltinv(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsAltinv();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget($request->get('widget') );
+        $object->setTrackable($request->get('trackable') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+    
+    
+    /**
+     * Remove Altinv Fields entities from form via ajax.
+     *
+     * @Route("/remo", name="ajax_fieldsaltinv_remove")
+     * @Method("POST")
+     */
+    public function ajaxRemoveFieldsAltinv(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $object= new FieldsAltinv();

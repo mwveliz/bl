@@ -3,24 +3,14 @@
 {% block stylesheets_extra %} 
 <style>
 
-input {
-    border: none;
-    /*width: 80px;*/
-    /*font-size: 14px;*/
-    /*padding: 2px;*/
-}
-textarea{
-    border: none;
-    /*width: 80px;*/
-    /*font-size: 14px;*/
-    /*padding: 2px;*/
-}
+
 
 #table1 tr:first-child td {
     background-color: #DDD;
     font-size: 14px;
     font-weight: 400;
     color: #666;
+    
 }
 
 </style>
@@ -36,9 +26,31 @@ textarea{
     </div>
 
     <div class="col-lg-4">
-        <table id="table2" class="table table-advance table-striped table-bordered table-hover"></table>
-        <br>
-        <a id= "a_addfield" class="btn btn-success pull-right" href="#" ><span>Add Field</span></a>
+       <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> New Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <button type="button" class="btn default"  id="clear">Clear</button>
+   
+                    <button id="btn_addfield" type="submit" class="btn blue">Add Financial Field</button>
+                 
+                    {{ form_end(form) }}
+                    <br>
+                    <div class="form-actions">
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+      
         <br><br>
 
     </div>
@@ -47,21 +59,97 @@ textarea{
 
 {% block javascripts_extra %} 
     <script>
-        var aitracks='{{ aitracks}}'; // viene del controlador
-        var ainotracks='{{ ainotracks}}'; // viene del controlador
+    
+    function formula(matriz){
+        
+        
+        
+        return x
+    }
+    
+    
+    
+    /*funcion que elabora matriz de totales*/
+    function totales(){
+            
+                 var matriz = [];
+                 var lastrow=$(".table tr:last td:first").text()-2;
+                 for(i=2;i<lastrow;i++){
+                  for(j=0;j<12;j++){
+                      var casilla=String.fromCharCode(65+j)+i;
+                          matriz.push(localStorage.getItem(casilla));
+                       }
+                 }
+          console.log(matriz);
+          
+          //generando totales
+          
+          $(".table tr:last td").each(function(index){
+               var letra_col=String.fromCharCode(65+index);
+             //  var casilla_neg=letra_col+(lastrow);//la casilla de total negativo
+             //  var casilla_pos=letra_col+(lastrow+1);//la casilla de total positivo
+               var casilla_total=letra_col+(lastrow+2);//la casilla de total general
+               var sigma='=';
+               for(i=2;i<=lastrow;i++) sigma+="+"+letra_col+i;
+               
+               localStorage.setItem(casilla_total,sigma);
+               $(this).trigger('click');
+                
+        });
+          
+          //calcular las formulas desde el storage recursivamente
+        /*var filas=lastrow-2;
+           for(c=0;c<13;c++){//recorro las columnas y las sumo
+            var total_col=0;
+              for(f=0;f<filas;f++){
+                total_col+=parseFloat(matriz[c+f*12]);
+              }
+              var casilla=String.fromCharCode(65+c)+"6";
+              $("span#"+casilla).html('<strong>'+ parseFloat(total_col)+'</strong>');
+        }//fin recorro las col
+          */
+          
+          
+          
+        /*
+        $(".table tr").each(function(i) {
+            
+            var arrayOfThisRow = [];
+            var tableData = $(this).find('td');
+            tableData.each(function(j) { 
+            var casilla=String.fromCharCode(65+i)+j;
+            
+             arrayOfThisRow.push( localStorage.getItem(casilla) );
+            });
+              myTableArray.push(arrayOfThisRow);
+        });
 
-        jsonStr = aitracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
-        jsonStr2 = ainotracks.replace(/&quot;/g, '"'); //arreglar comillas dobles
-        var obj = JSON.parse(jsonStr); //convertir a jsonArray
-        var obj2 = JSON.parse(jsonStr2); //convertir a jsonArray
+            console.log(myTableArray);
+*/        
         
-        
-        for (var i = 0; i <= obj.length; i++){
-            if(obj[i].id_field.trackable==true){
-                obj.splice(i,1); //busco solo los trackable
-            }
         }
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        var objects='{{ objects}}'; // viene del controlador
 
+        jsonStr = objects.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        var obj = JSON.parse(jsonStr); //convertir a jsonArray
+        console.log(obj);
+    /*for (var i = 0; i <= obj.length; i++){
+                obj.splice(i,1); 
+        }
+*/
         var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
 
         var row = document.querySelector("table").insertRow(-1);
@@ -79,57 +167,38 @@ textarea{
 
         for (var i = 0; i <= obj.length+1; i++) { //rows
             var row = document.querySelector("table").insertRow(-1);
-            if(i>1) row.insertCell(-1).outerHTML = '<strong>'+obj[i-2].id_field.description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+            if(i>1) row.insertCell(-1).outerHTML = obj[i-2].description+'&nbsp;&nbsp;&nbsp;&nbsp';
 
             for (var j = 0; j <= 13; j++) { //cols
                 var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
-                if (i>1) row.insertCell(-1).innerHTML = i && j? "<input id='" + letter + i + "'/>" : i || letter;
-
-
+                if (i>1) row.insertCell(-1).innerHTML = i && j? "<input param='"+ obj[i-2].id+"' id='" + letter + i + "'/>" : i || letter;
             }
+            
+            
         }
-/*segunda tabla*/
-
-//        /var row = document.querySelector("#table2").insertRow(-1);
-
-        for (var i = 0; i < obj2.length; i++) { //rows
-            desc= obj2[i].id_field.description;
-           // alert(desc);
-            switch(obj2[i].id_field.widget) {
-                case 'Calendar':
-                    string= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control datepicker' data-provide='datepicker' data-date-format='dd-mm-yyyy'>"
-                    break;
-                case 'Characters':
-                    string= "<input id='altinv_EF-"+desc+"' type='text' name='altinv[EF-"+desc+"]' class='form-control input-sm'>";
-                    break;
-                case 'Currency':
-                    string= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm currency'>";
-                    //$(".currency").maskMoney();
-                    break;
-                case 'File':
-                    string= "<input type='file' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]'>";
-                    break;
-                case 'Numeric':
-                    string= "<input type='text' id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm numeric'>";
-                    break;
-                case 'TextArea':
-                    string= "<textarea id='altinv_EF-"+desc+"' name='altinv[EF-"+desc+"]' class='form-control input-sm'></textarea><";
-                    break;
-                default:
-                    //default
-                    break;
+        
+       var k=0;
+       var total_label=Array();
+       total_label[0]= 'Total Income';
+       total_label[1]= 'Total Outcome';
+       total_label[2]= 'Total ';
+       
+        for (var i = obj.length+2; i<obj.length+5; i++) { //rows
+            var row = document.querySelector("table").insertRow(-1);
+            row.insertCell(-1).outerHTML = '<strong>'+total_label[k]+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
+            k++;
+            for (var j = 0; j <= 13; j++) { //cols
+                var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+                row.insertCell(-1).innerHTML = i && j? "<strong><input id='" + letter + i + "'/></strong>" : i || letter;
             }
-            var row = document.querySelector("#table2").insertRow(-1);
-
-            row.insertCell(-1).innerHTML = '<strong>'+obj2[i].id_field.description+'&nbsp;&nbsp;&nbsp;&nbsp; </strong>';
-            //row.insertCell(-1).innerHTML = "<textarea id='table2" + obj2[i] + "'/>" ;
-            row.insertCell(-1).innerHTML = string;
-            $(".currency").maskMoney();
+            
+            
         }
-        var ele=document.querySelector("#table2 td").style.width="20%";
-
-
-
+        //agregando SubTotal outcome
+        //agregando SubTotal income
+        //agregando Total income-outcome
+        
+        
 
         var DATA = {}, INPUTS = [].slice.call(document.querySelectorAll("input"));
         INPUTS.forEach(function (elm) {
@@ -138,7 +207,7 @@ textarea{
             };
             elm.onblur = function (e) {
                 localStorage[e.target.id] = e.target.value;
-                computeAll();
+                computeAll(e.target.id);
             };
             var getter = function () {
                 var value = localStorage[elm.id] || "";
@@ -152,15 +221,63 @@ textarea{
             Object.defineProperty(DATA, elm.id, {get: getter});
             Object.defineProperty(DATA, elm.id.toLowerCase(), {get: getter});
         });
-        (window.computeAll = function () {
+         
+        (window.computeAll = function (clicked) {
+            
             INPUTS.forEach(function (elm) {
                 try {
                     elm.value = DATA[elm.id];
+                    if(clicked==elm.id)   $.post( "{{ path('ajax_trackaltinv_create') }}",{
+                                                    mes:elm.id.charCodeAt(0)-64, 
+                                                    valor:elm.value, 
+                                                    id_altinv: {{app.request.attributes.get('id')}}, 
+                                                    id_fieldsaltinv:$("input#"+elm.id).attr('param') 
+                                            });
                 } catch (e) {
                 }
             });
         })();
-
+ $( document ).ready(function() {
+     
+     
+        totales();
+    
+        $('#btn_addfield').click(function(e) {
+                 e.preventDefault();
+                desc=$("#fields_altinv_description").val();
+                wg=$("#fields_altinv_widget option:selected").val();
+                alert(desc+' '+wg);
+         });
+        
+        $('#clear').click(function() {
+                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
+                 $('span').removeClass("checked");
+             });
+             
+             
+             $("select#fields_altinv_widget").val('Currency');
+             $("select#fields_altinv_widget").hide();
+             $("label[for=fields_altinv_widget] ").hide();
+             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+               $(".currency").maskMoney();
+               
+               //$("td").css("text-align","right");
+               $("textarea").css("border","none");
+               $("td input").css("text-align","right");
+               $("td input").css("border","none");
+               /*cuando cambie un input guardo en Base de datos track col = date month*/
+              $("td input").focusout(function() {
+                var mes=$(this).prop('id').charCodeAt(0)-64; //obtengo el mes Enero=1
+                var field=$(this).attr('param');
+               
+        
+                });
+               
+               
+               
+               
+               
+ });
     </script>
 {% endblock %}
 
