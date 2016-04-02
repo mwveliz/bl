@@ -1,0 +1,103 @@
+
+
+{"nodes": [
+        {
+            "id":"start",
+            "type":"start",
+            "text":"Start",
+            "left": 204,
+            "top": 155,
+            "w": 100,
+            "h": 70
+        },
+        {
+            "id":"decide",
+            "type":"action",
+            "text":"Make Decision",
+            "left": 423,
+            "top": 201,
+            "w": 120,
+            "h": 120
+        },
+        {
+            "id":"something",
+            "type":"output",
+            "text":"Do Something",
+            "left": 853,
+            "top": 446,
+            "w": 120,
+            "h": 50
+        },
+        {
+            "id":"question2",
+            "type":"question",
+            "text":"Do Nothing?TT",
+            "left": 110,
+            "top": 354,
+            "w": 150,
+            "h": 150
+        },
+        {
+            "id":"nothing",
+            "type":"output",
+            "text":"Do Nothing",
+            "left": 433,
+            "top": 558,
+            "w": 100,
+            "h": 50
+        },
+        {
+            "w": 120,
+            "h": 80,
+            "type":"output",
+            "left": 63.56810648018827,
+            "top": 231.04030087778892,
+            "text":"dsds",
+            "id":"89991baf-d576-4df2-90a6-b4a5de2a0b7f"
+        },
+        {
+            "w": 120,
+            "h": 80,
+            "type":"output",
+            "left": 193.51962163170342,
+            "top": 224.63424027172832,
+            "text":"dsds",
+            "id":"8598ee9f-f722-464c-9105-ee2460133ae2"
+        }
+    ],
+    "edges": [
+        {
+            "source":"decide",
+            "target":"nothing",
+            "data": {
+                "label":"Can't Decide",
+                "type":"connection"
+            }
+        },
+        {
+            "source":"decide",
+            "target":"something",
+            "data": {
+                "label":"Decision Made",
+                "type":"connection"
+            }
+        },
+        {
+            "source":"question2",
+            "target":"decide",
+            "data": {
+                "label":"no",
+                "type":"connection"
+            }
+        },
+        {
+            "source":"question2",
+            "target":"nothing",
+            "data": {
+                "label":"yes",
+                "type":"connection"
+            }
+        }
+    ]
+}
+  
