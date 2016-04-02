@@ -203,7 +203,7 @@
 
         // Load the data.
         toolkit.load({
-            url: "../../jsPlumb/data/flowchart-1.json",
+            url: "../../jsPlumb/data/flowchart.json",
             onload: function () {
                 _updateDataset();
             }

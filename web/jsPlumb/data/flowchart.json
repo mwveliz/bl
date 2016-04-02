@@ -1,0 +1,15 @@
+
+
+{"nodes": [
+        {
+            "id":"start",
+            "type":"start",
+            "text":"Start",
+            "left": 204,
+            "top": 155,
+            "w": 100,
+            "h": 70
+        }
+    ]
+}
+  

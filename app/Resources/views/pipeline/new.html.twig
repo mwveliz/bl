@@ -1,16 +1,66 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets_extra %} 
+        
+        <link href="{{ asset('/jsPlumb/css/jsPlumbToolkit-defaults.css') }}" rel="stylesheet" type="text/css" />  
+        <link href="{{ asset('/jsPlumb/css/jsPlumbToolkit-demo.css') }}" rel="stylesheet" type="text/css" />  
+        <link href="{{ asset('/jsPlumb/css/app.css') }}" rel="stylesheet" type="text/css" />  
+{% endblock %}
+     
 {% block body %}
-    <h1>Pipeline creation</h1>
+   <!-- content -->
+        <script type="text/x-jtk-templates" src={{ asset('/jsPlumb/templates.html') }}></script>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <div class="jtk-demo-main" id="jtk-demo-flowchart">
 
-    <ul>
-        <li>
-            <a href="{{ path('pipeline_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <!-- the node palette -->
+            <div class="sidebar node-palette">
+               <ul>
+                    <li jtk-node-type="question" title="Drag to add new" >
+                        <i class="icon-tablet"></i>Question
+                    </li>
+                    <li jtk-node-type="action" title="Drag to add new">
+                        <i class="icon-eye-open"></i>Action
+                    </li>
+                    <li jtk-node-type="output" title="Drag to add new" >
+                        <i class="icon-eye-open"></i>Output
+                    </li>
+                </ul>
+            </div>
+
+            <!-- this is the main drawing area -->
+            <div class="jtk-demo-canvas">
+                <!-- controls -->
+                <div class="controls">
+                    <i class="fa fa-arrows selected-mode" mode="pan" title="Pan Mode"></i>
+                    <i class="fa fa-pencil" mode="select" title="Select Mode"></i>
+                    <i class="fa fa-home" reset title="Zoom To Fit"></i>
+                </div>
+                <!-- miniview -->
+                <div class="miniview"></div>
+            </div>
+
+            <div class="description">
+               
+            </div>
+
+            <!-- the current dataset -->
+            <div class="jtk-demo-dataset"></div>
+        </div>
+
+        <!-- /content -->
+{% endblock %}
+
+{% block javascripts_extra %}     
+
+     <script src="{{ asset('/jsPlumb/js/jsPlumb-2.0.7.js') }}" type="text/javascript"></script>
+     <script src="{{ asset('/jsPlumb/js/jsPlumbToolkit-1.0.20.js') }}" type="text/javascript"></script>
+     <script src="{{ asset('/jsPlumb/js/jquery.validate.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/jsPlumb/js/app.js') }}" type="text/javascript"></script>
+    
+     
+     <script type="javascript">
+                       
+         </script>
+
 {% endblock %}
