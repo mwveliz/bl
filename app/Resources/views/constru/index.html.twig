@@ -1,11 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block page_title %}
-   Construction
-{% endblock %} 
-
-{% block page_description %}
-Accounts
-{% endblock %} 
 
 
 {% block stylesheets_extra %} 
@@ -29,11 +22,14 @@ Accounts
 
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
-            <!-- BEGIN CONTENT -->
+            <!-- BEGIN CONTENT -->  
+            <div class="row">
+                          {% include 'stats.html.twig' %}
+                          {% include 'graphs.html.twig' %}
                             {% include 'constru/list.html.twig' %}
 
                     <!-- BEGIN LOG AND TASK -->                                                            
-                    <div class="row" id="admin_box" style="display: none">
+                    
                         <!-- BEGIN LOGS -->   
                      {% include 'partial_log.html.twig' %}
                         <!-- END LOGS --> 

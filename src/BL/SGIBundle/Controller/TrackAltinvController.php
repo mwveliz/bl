@@ -4,6 +4,7 @@ namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponseResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,7 +36,26 @@ class TrackAltinvController extends Controller
             'trackAltinvs' => $trackAltinvs,
         ));
     }
-    
+    /**
+     * Create Altinv Track Fields entities via ajax.
+     *
+     * @Route("/fieldtrackadd", name="ajax_fieldstrackaltinv_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsTrackAltinv(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //primero creo elcampo en fields altinv trackable true
+        $object= new FieldsAltinv();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget('Currency' );
+        $object->setTrackable(true);
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+
     
     
      /**

@@ -1,12 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block page_title %}
-   Alternative Investments
-{% endblock %} 
-
-{% block page_description %}
- Accounts
-{% endblock %} 
-
 
 {% block stylesheets_extra %} 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -30,9 +22,11 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN CONTENT -->
+            <div class="row">
+                          {% include 'stats.html.twig' %}
+                          {% include 'graphs.html.twig' %}
                     {% include 'altinv/list.html.twig' %}
                     <!-- BEGIN LOG AND TASK -->                                                            
-                    <div class="row" id="admin_box" style="display: none">
                         <!-- BEGIN LOGS -->   
                      {% include 'partial_log.html.twig' %}
                         <!-- END LOGS --> 
@@ -58,7 +52,8 @@
                     <!-- END LOG AND TASK -->                                         
             <!-- END CONTENT BODY -->
             
-        </div>                                       
+        </div>     
+        </div>     
         <!-- END CONTAINER -->
      
 {% endblock %}
@@ -117,6 +112,19 @@
         $(document).ready(function(){
                 //Examples of how to assign the Colorbox event to elements
                 $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});
+                //buttton collapse graphs
+                 $(".collap").click(function() {
+                        if($("#collapseme").hasClass("out")) {
+                            $("#collapseme").addClass("in");
+                            $("#collapseme").removeClass("out");
+                            $(".collap").html("Show Graphs");
+                            } else {
+                            $("#collapseme").addClass("out");
+                            $("#collapseme").removeClass("in");
+                            $(".collap").html("Hide Graphs");
+                        }
+                    });
+                
         });
 </script>
 <script>    

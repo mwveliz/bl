@@ -15,7 +15,7 @@
                     <div class="portlet-title">
                         <div class="caption font-green">
                             <i class="icon-settings font-green"></i>
-                            <span class="caption-subject bold uppercase">List</span>
+                            <span class="caption-subject bold uppercase">Accounts</span>
                         </div>
                         <div class="tools"> </div>
                     </div>
@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th class="all" width="10%">View</th>
+                                <th class="all" width="10%">Financ.</th>
                                 <th class="all">Description</th>
                                 <th class="all">Opportunity</th>
                             </tr>
@@ -36,6 +37,13 @@
                                             <a href="#" class="a_show" param="{{ Rental.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                 <i class="fa fa-search fa-x"></i>
                                             </a>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a href="{{ path('trackrental_track', { 'id': Rental.id }) }}" class="a_track" param="{{ Rental.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                <i class="fa fa-dollar fa-x"></i>
+                                            </a>       
                                         </center>
                                     </td>
                                     <td>{{ Rental.description }}</td>

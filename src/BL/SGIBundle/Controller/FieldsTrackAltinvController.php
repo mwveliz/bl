@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\FieldsTrackAltinv;
+use BL\SGIBundle\Entity\FieldsAltinv;
+
 use BL\SGIBundle\Form\FieldsTrackAltinvType;
 
 /**
@@ -32,7 +34,7 @@ class FieldsTrackAltinvController extends Controller
             'fieldsTrackAltinvs' => $fieldsTrackAltinvs,
         ));
     }
-
+        
     /**
      * Creates a new FieldsTrackAltinv entity.
      *

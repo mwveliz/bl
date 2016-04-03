@@ -58,7 +58,39 @@ class BlController extends Controller
 
         return new JsonResponse($arreglo);
     }
+     /**
+     * Tracks one   Account.
+     *
+     * @Route("track/{id}", name="bl_track")
+     * @Method("GET")
+     */
+    public function trackAction(Request $request)
+    {
+       /* $id_bl=$request->get('id');
+          $fieldsAltinv = new FieldsAltinv();
+     $form = $this->createForm('BL\SGIBundle\Form\BlType', $fieldsAltinv);
+     $em = $this->getDoctrine()->getManager();
+        $fields=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:FieldsAltinv f')
+             
+             ->Join('SGIBundle:BlAltinv', 'b')
+             ->where('b.idField = f.id ')
+            ->andWhere('f.trackable=true')
+             ->andWhere('b.idAltinv=:id')
+             ->setParameter('id', $idaltinv)
+             ->getQuery()
+             ->getResult();
     
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($fields, 'json');
+       */
+      
+        return $this->render('bl/track.html.twig', array(
+           // 'objects' => $objects,
+           // 'form' =>$form->createView(),
+        ));
+    }
     /**
      * Lists all Bl entities.
      *

@@ -1,13 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block page_title %}
-   Commodities Trading
-{% endblock %} 
-
-{% block page_description %}
-Accounts
-{% endblock %} 
-
 {% block stylesheets_extra %} 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="{{ asset('/metronic/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
@@ -30,9 +22,12 @@ Accounts
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN CONTENT -->
-                     {% include 'comtrad/list.html.twig' %}
+                      <div class="row">
+                          {% include 'stats.html.twig' %}
+                          {% include 'graphs.html.twig' %}
+                          {% include 'comtrad/list.html.twig' %}
                     <!-- BEGIN LOG AND TASK -->                                                            
-                    <div class="row" id="admin_box" style="display: none">
+                    
                         <!-- BEGIN LOGS -->   
                      {% include 'partial_log.html.twig' %}
                         <!-- END LOGS --> 

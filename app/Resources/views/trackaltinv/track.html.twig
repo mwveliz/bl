@@ -2,17 +2,12 @@
 
 {% block stylesheets_extra %} 
 <style>
-
-
-
 #table1 tr:first-child td {
     background-color: #DDD;
     font-size: 14px;
     font-weight: 400;
     color: #666;
-    
 }
-
 </style>
 {% endblock %}
 
@@ -61,17 +56,13 @@
     <script>
     
     function formula(matriz){
-        
-        
-        
-        return x
+          return x
     }
     
     
     
     /*funcion que elabora matriz de totales*/
     function totales(){
-            
                  var matriz = [];
                  var lastrow=$(".table tr:last td:first").text()-2;
                  for(i=2;i<lastrow;i++){
@@ -91,10 +82,8 @@
                var casilla_total=letra_col+(lastrow+2);//la casilla de total general
                var sigma='=';
                for(i=2;i<=lastrow;i++) sigma+="+"+letra_col+i;
-               
                localStorage.setItem(casilla_total,sigma);
                $(this).trigger('click');
-                
         });
           
           //calcular las formulas desde el storage recursivamente
@@ -108,8 +97,6 @@
               $("span#"+casilla).html('<strong>'+ parseFloat(total_col)+'</strong>');
         }//fin recorro las col
           */
-          
-          
           
         /*
         $(".table tr").each(function(i) {
@@ -125,20 +112,9 @@
         });
 
             console.log(myTableArray);
-*/        
-        
+*/       
         }
-        
-             
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         
         var objects='{{ objects}}'; // viene del controlador
@@ -246,8 +222,12 @@
                  e.preventDefault();
                 desc=$("#fields_altinv_description").val();
                 wg=$("#fields_altinv_widget option:selected").val();
-                alert(desc+' '+wg);
-         });
+                 $.post( "{{ path('ajax_fieldstrackaltinv_create') }}",{ description: desc, widget: wg })
+                         .done(function( resp){
+                            alert(resp);
+                          });
+                });
+        
         
         $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
@@ -269,14 +249,8 @@
               $("td input").focusout(function() {
                 var mes=$(this).prop('id').charCodeAt(0)-64; //obtengo el mes Enero=1
                 var field=$(this).attr('param');
-               
-        
                 });
-               
-               
-               
-               
-               
+                
  });
     </script>
 {% endblock %}

@@ -28,7 +28,6 @@
                           {% include 'stats.html.twig' %}
                           {% include 'graphs.html.twig' %}
                         <div class="col-md-6">
-                            <!--a class="btn btn-success" href="{{ path('comtrad_new') }}" ><span>Add</span></a-->
                             <br><br>                            
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                             <div class="portlet light bordered">
@@ -44,6 +43,7 @@
                                         <thead>
                                             <tr>
                                                  <th class="all" width="10%">View</th>
+                                                 <th class="all" width="10%">Financ.</th>
                                                 <th class="all">Description</th>
                                                 <th class="all">Bussiness Line</th>
                                                 
@@ -54,10 +54,17 @@
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ bl.codebl}}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ bl.id}}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
+                                                <td>
+                                                    <center>
+                                                        <a href="{{ path('bl_track', { 'id': bl.id }) }}" class="a_track" param="{{ bl.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                            <i class="fa fa-dollar fa-x"></i>
+                                                        </a>       
+                                                    </center>
+                                                </td>
                                                 </td>
                                                 <td>{{ bl.description }}</td>
                                                 <td>{{ bl.type}}</td>
@@ -168,6 +175,19 @@
         $(document).ready(function(){
                 //Examples of how to assign the Colorbox event to elements
                 $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});
+                //buttton collapse graphs
+                 $(".collap").click(function() {
+                        if($("#collapseme").hasClass("out")) {
+                            $("#collapseme").addClass("in");
+                            $("#collapseme").removeClass("out");
+                            $(".collap").html("Show Graphs");
+                            } else {
+                            $("#collapseme").addClass("out");
+                            $("#collapseme").removeClass("in");
+                            $(".collap").html("Hide Graphs");
+                        }
+                    });
+                
         });
 </script>
 <script>    

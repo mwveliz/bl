@@ -48,7 +48,7 @@ class FieldsAltinvController extends Controller
         $object= new FieldsAltinv();
         $object->setDescription( $request->get('description') );
         $object->setWidget($request->get('widget') );
-        $object->setTrackable($request->get('trackable') );
+        $object->setTrackable(false);
         $em->persist($object);
         $em->flush();
 
