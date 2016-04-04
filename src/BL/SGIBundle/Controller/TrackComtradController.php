@@ -3,11 +3,15 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackComtrad;
 use BL\SGIBundle\Form\TrackComtradType;
+use BL\SGIBundle\Entity\FieldsComtrad;
+use BL\SGIBundle\Entity\BlComtrad;
 
 /**
  * TrackComtrad controller.
@@ -33,6 +37,120 @@ class TrackComtradController extends Controller
         ));
     }
 
+    /**
+     * Create Comtrad Track Fields entities via ajax.
+     *
+     * @Route("/fieldtrackadd", name="ajax_fieldstrackcomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsTrackComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //primero creo elcampo en fields comtrad trackable true
+        $object= new FieldsComtrad();
+        $object->setDescription( $request->get('description') );
+        $object->setWiget('Currency' );
+        $object->setTrackable(true);
+        $em->persist($object);
+        $em->flush();
+        $id_field=$em->getReference('BL\SGIBundle\Entity\FieldsComtrad', intval($object->getId()));     
+        
+        $id_comtrad = $em->getReference('BL\SGIBundle\Entity\Comtrad', $request->get('id_comtrad'));     
+     
+        $object= new BlComtrad();
+        $object->setIdField($id_field);
+        $object->setIdComtrad( $id_comtrad);
+        $em->persist($object);
+        $em->flush();
+          return new JsonResponse($id_field);
+    }
+
+    
+    
+     /**
+     * Tracks one  Alternative Investment Account.
+     *
+     * @Route("track/{id}", name="trackcomtrad_track")
+     * @Method("GET")
+     */
+    public function trackAction(Request $request)
+    {
+        $idcomtrad=$request->get('id');
+          $fieldsComtrad = new FieldsComtrad();
+     $form = $this->createForm('BL\SGIBundle\Form\FieldsComtradType', $fieldsComtrad);
+     $em = $this->getDoctrine()->getManager();
+        $fields=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:FieldsComtrad f')
+             
+             ->Join('SGIBundle:BlComtrad', 'b')
+             ->where('b.idField = f.id ')
+            ->andWhere('f.trackable=true')
+             ->andWhere('b.idComtrad=:id')
+             ->setParameter('id', $idcomtrad)
+             ->getQuery()
+             ->getResult();
+    
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($fields, 'json');
+       
+      
+        return $this->render('trackcomtrad/track.html.twig', array(
+            'objects' => $objects,
+            'form' =>$form->createView(),
+        ));
+    }
+    
+     /**
+     * Create TrackComtrad entities via ajax.
+     *
+     * @Route("/add", name="ajax_trackcomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTrackComtrad(Request $request)
+    {
+        
+         $mes=$request->get('mes');
+        if($mes<10) $mes="0".$mes;
+        //$fecha= 'd-'.$mes.'-y h:i:s';
+        $fecha =  new \DateTime();
+        $fecha->setDate(date('Y'),$mes, 01);
+        $fecha->setTime(0,0, 0);
+        
+        $value=$request->get('valor');
+        $em = $this->getDoctrine()->getManager();
+        $id_fieldscomtrad = $em->getReference('BL\SGIBundle\Entity\FieldsComtrad', $request->get('id_fieldscomtrad'));      
+        $id_comtrad = $em->getReference('BL\SGIBundle\Entity\Comtrad', $request->get('id_comtrad'));     
+        
+        /*antes que nada buscar si ya esta el registro, si esya modificar*/
+        $object= $em->getRepository('SGIBundle:TrackComtrad')
+          ->findOneBy(array(
+            'idComtrad'=> $id_comtrad, 
+            'idFieldsTrackComtrad' => $id_fieldscomtrad,
+            'datetime'=> $fecha,
+         
+           ));
+        
+      
+        
+        if(count($object)==0) $object= new TrackComtrad();
+       
+                
+     
+           
+        $object->setIdComtrad($id_comtrad ); //objeto de tipo comtrad
+        $object->setIdFieldsTrackComtrad($id_fieldscomtrad); //objeto de tipo fields comtrad
+        $object->setDatetime($fecha);
+        $object->setValue($value);
+        
+        
+        $em->persist($object);
+        $em->flush();
+        
+        
+        return new Response($object->getId());
+        
+    }
     /**
      * Creates a new TrackComtrad entity.
      *

@@ -3,11 +3,15 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackRental;
 use BL\SGIBundle\Form\TrackRentalType;
+use BL\SGIBundle\Entity\FieldsRental;
+use BL\SGIBundle\Entity\BlRental;
 
 /**
  * TrackRental controller.
@@ -33,6 +37,123 @@ class TrackRentalController extends Controller
         ));
     }
 
+    /**
+     * Create Rental Track Fields entities via ajax.
+     *
+     * @Route("/fieldtrackadd", name="ajax_fieldstrackrental_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsTrackRental(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //primero creo elcampo en fields rental trackable true
+        $object= new FieldsRental();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget('Currency' );
+        $object->setTrackable(true);
+        $em->persist($object);
+        $em->flush();
+        $id_field=$em->getReference('BL\SGIBundle\Entity\FieldsRental', intval($object->getId()));     
+        
+        $id_rental = $em->getReference('BL\SGIBundle\Entity\Rental', $request->get('id_rental'));     
+     
+        $object= new BlRental();
+        $object->setIdField($id_field);
+        $object->setIdRental( $id_rental);
+        $em->persist($object);
+        $em->flush();
+        
+
+        return new JsonResponse($id_field);
+    }
+
+    
+    
+     /**
+     * Tracks one  Alternative Investment Account.
+     *
+     * @Route("track/{id}", name="trackrental_track")
+     * @Method("GET")
+     */
+    public function trackAction(Request $request)
+    {
+        $idrental=$request->get('id');
+          $fieldsRental = new FieldsRental();
+     $form = $this->createForm('BL\SGIBundle\Form\FieldsRentalType', $fieldsRental);
+     $em = $this->getDoctrine()->getManager();
+        $fields=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:FieldsRental f')
+             
+             ->Join('SGIBundle:BlRental', 'b')
+             ->where('b.idField = f.id ')
+            ->andWhere('f.trackable=true')
+             ->andWhere('b.idRental=:id')
+             ->setParameter('id', $idrental)
+             ->getQuery()
+             ->getResult();
+    
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($fields, 'json');
+       
+      
+        return $this->render('trackrental/track.html.twig', array(
+            'objects' => $objects,
+            'form' =>$form->createView(),
+        ));
+    }
+    
+     /**
+     * Create TrackRental entities via ajax.
+     *
+     * @Route("/add", name="ajax_trackrental_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTrackRental(Request $request)
+    {
+        
+         $mes=$request->get('mes');
+        if($mes<10) $mes="0".$mes;
+        //$fecha= 'd-'.$mes.'-y h:i:s';
+        $fecha =  new \DateTime();
+        $fecha->setDate(date('Y'),$mes, 01);
+        $fecha->setTime(0,0, 0);
+        
+        $value=$request->get('valor');
+        $em = $this->getDoctrine()->getManager();
+        $id_fieldsrental = $em->getReference('BL\SGIBundle\Entity\FieldsRental', $request->get('id_fieldsrental'));      
+        $id_rental = $em->getReference('BL\SGIBundle\Entity\Rental', $request->get('id_rental'));     
+        
+        /*antes que nada buscar si ya esta el registro, si esya modificar*/
+        $object= $em->getRepository('SGIBundle:TrackRental')
+          ->findOneBy(array(
+            'idRental'=> $id_rental, 
+            'idFieldsTrackRental' => $id_fieldsrental,
+            'datetime'=> $fecha,
+         
+           ));
+        
+      
+        
+        if(count($object)==0) $object= new TrackRental();
+       
+                
+     
+           
+        $object->setIdRental($id_rental ); //objeto de tipo rental
+        $object->setIdFieldsTrackRental($id_fieldsrental); //objeto de tipo fields rental
+        $object->setDatetime($fecha);
+        $object->setValue($value);
+        
+        
+        $em->persist($object);
+        $em->flush();
+        
+        
+        return new Response($object->getId());
+        
+    }
+    
     /**
      * Creates a new TrackRental entity.
      *

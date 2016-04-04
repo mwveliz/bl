@@ -3,6 +3,9 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,6 +34,41 @@ class PipelineController extends Controller
         return $this->render('pipeline/index.html.twig', array(
             'pipelines' => $pipelines,
         ));
+    }
+    
+    
+     /**
+     * Create Pipeline entities via ajax.
+     *
+     * @Route("/nodeadd", name="ajax_createnode")
+     * @Method("GET")
+     */
+    public function ajaxCreateNode(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //primero creo elcampo en fields altinv trackable true
+        $object= new \BL\SGIBundle\Entity\PipelineNode();
+        //$object->setDescription(  );
+        
+        $desc=$request->get('id');
+        //die(var_dump($desc));        
+        $res=count($desc['nodes']);
+        
+        //$em->persist($object);
+        //$em->flush();
+        /*$id_field=$em->getReference('BL\SGIBundle\Entity\FieldsAltinv', intval($object->getId()));     
+        
+        $id_altinv = $em->getReference('BL\SGIBundle\Entity\Altinv', $request->get('id_altinv'));     
+     
+        $object= new BlAltinv();
+        $object->setIdField($id_field);
+        $object->setIdAltinv( $id_altinv);
+        $em->persist($object);
+        $em->flush();
+        */
+
+        return new JsonResponse($res);
+        //return new JsonResponse($object->getId());
     }
 
     /**

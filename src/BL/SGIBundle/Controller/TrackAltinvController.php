@@ -4,13 +4,15 @@ namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponseResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackAltinv;
 use BL\SGIBundle\Form\TrackAltinvType;
 use BL\SGIBundle\Entity\FieldsAltinv;
+use BL\SGIBundle\Entity\BlAltinv;
+
 use BL\SGIBundle\Form\FieldsAltinvType;
 use Symfony\Component\Validator\Constraints\DateTime;
 /**
@@ -52,8 +54,18 @@ class TrackAltinvController extends Controller
         $object->setTrackable(true);
         $em->persist($object);
         $em->flush();
+        $id_field=$em->getReference('BL\SGIBundle\Entity\FieldsAltinv', intval($object->getId()));     
+        
+        $id_altinv = $em->getReference('BL\SGIBundle\Entity\Altinv', $request->get('id_altinv'));     
+     
+        $object= new BlAltinv();
+        $object->setIdField($id_field);
+        $object->setIdAltinv( $id_altinv);
+        $em->persist($object);
+        $em->flush();
+        
 
-        return new JsonResponse($object->getId());
+        return new JsonResponse($id_field);
     }
 
     
@@ -91,7 +103,6 @@ class TrackAltinvController extends Controller
             'form' =>$form->createView(),
         ));
     }
-    
     
      /**
      * Create TrackAltinv entities via ajax.

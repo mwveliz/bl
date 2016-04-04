@@ -289,6 +289,10 @@
         var datasetContainer = document.querySelector(".jtk-demo-dataset");
         var _updateDataset = function () {
             datasetContainer.innerHTML = _syntaxHighlight(JSON.stringify(toolkit.exportData(), null, 4));
+            //insert into database
+             $.get( "nodeadd",{
+                                                    id:toolkit.exportData(), 
+                                            });
         };
         //
         // any operation that caused a data update (and would have caused an autosave), fires a dataUpdated event.

@@ -203,11 +203,11 @@
             INPUTS.forEach(function (elm) {
                 try {
                     elm.value = DATA[elm.id];
-                    if(clicked==elm.id)   $.post( "{{ path('ajax_trackaltinv_create') }}",{
+                    if(clicked==elm.id)   $.post( "{{ path('ajax_trackrental_create') }}",{
                                                     mes:elm.id.charCodeAt(0)-64, 
                                                     valor:elm.value, 
-                                                    id_altinv: {{app.request.attributes.get('id')}}, 
-                                                    id_fieldsaltinv:$("input#"+elm.id).attr('param') 
+                                                    id_rental: {{app.request.attributes.get('id')}}, 
+                                                    id_fieldsrental:$("input#"+elm.id).attr('param') 
                                             });
                 } catch (e) {
                 }
@@ -220,9 +220,9 @@
     
         $('#btn_addfield').click(function(e) {
                  e.preventDefault();
-                desc=$("#fields_altinv_description").val();
-                wg=$("#fields_altinv_widget option:selected").val();
-                 $.post( "{{ path('ajax_fieldstrackaltinv_create') }}",{ description: desc, widget: wg, id_altinv: {{app.request.attributes.get('id')}}})
+                desc=$("#fields_rental_description").val();
+                wg=$("#fields_rental_widget option:selected").val();
+                 $.post( "{{ path('ajax_fieldstrackrental_create') }}",{ description: desc, widget: wg, id_rental: {{app.request.attributes.get('id')}}})
                          .done(function( resp){
                               $('form[name="{{ form.vars.name }}"]').trigger("reset");
                             location.reload();
@@ -236,9 +236,9 @@
              });
              
              
-             $("select#fields_altinv_widget").val('Currency');
-             $("select#fields_altinv_widget").hide();
-             $("label[for=fields_altinv_widget] ").hide();
+             $("select#fields_rental_widget").val('Currency');
+             $("select#fields_rental_widget").hide();
+             $("label[for=fields_rental_widget] ").hide();
              $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
                $(".currency").maskMoney();
                

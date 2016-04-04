@@ -3,11 +3,15 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackConstru;
 use BL\SGIBundle\Form\TrackConstruType;
+use BL\SGIBundle\Entity\FieldsConstru;
+use BL\SGIBundle\Entity\BlConstru;
 
 /**
  * TrackConstru controller.
@@ -33,6 +37,122 @@ class TrackConstruController extends Controller
         ));
     }
 
+    /**
+     * Create Constru Track Fields entities via ajax.
+     *
+     * @Route("/fieldtrackadd", name="ajax_fieldstrackconstru_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsTrackConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //primero creo elcampo en fields constru trackable true
+        $object= new FieldsConstru();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget('Currency' );
+        $object->setTrackable(true);
+        $em->persist($object);
+        $em->flush();
+        $id_field=$em->getReference('BL\SGIBundle\Entity\FieldsConstru', intval($object->getId()));     
+        
+        $id_constru = $em->getReference('BL\SGIBundle\Entity\Constru', $request->get('id_constru'));     
+     
+        $object= new BlConstru();
+        $object->setIdField($id_field);
+        $object->setIdConstru( $id_constru);
+        $em->persist($object);
+        $em->flush();
+        
+
+        return new JsonResponse($id_field);
+    }
+
+    
+    
+     /**
+     * Tracks one  COnstruction Account.
+     *
+     * @Route("track/{id}", name="trackconstru_track")
+     * @Method("GET")
+     */
+    public function trackAction(Request $request)
+    {
+        $idconstru=$request->get('id');
+          $fieldsConstru = new FieldsConstru();
+     $form = $this->createForm('BL\SGIBundle\Form\FieldsConstruType', $fieldsConstru);
+     $em = $this->getDoctrine()->getManager();
+        $fields=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:FieldsConstru f')
+             
+             ->Join('SGIBundle:BlConstru', 'b')
+             ->where('b.idField = f.id ')
+            ->andWhere('f.trackable=true')
+             ->andWhere('b.idConstru=:id')
+             ->setParameter('id', $idconstru)
+             ->getQuery()
+             ->getResult();
+    
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($fields, 'json');
+       
+      
+        return $this->render('trackconstru/track.html.twig', array(
+            'objects' => $objects,
+            'form' =>$form->createView(),
+        ));
+    }
+    
+     /**
+     * Create TrackConstru entities via ajax.
+     *
+     * @Route("/add", name="ajax_trackconstru_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateTrackConstru(Request $request)
+    {
+        
+         $mes=$request->get('mes');
+        if($mes<10) $mes="0".$mes;
+        //$fecha= 'd-'.$mes.'-y h:i:s';
+        $fecha =  new \DateTime();
+        $fecha->setDate(date('Y'),$mes, 01);
+        $fecha->setTime(0,0, 0);
+        
+        $value=$request->get('valor');
+        $em = $this->getDoctrine()->getManager();
+        $id_fieldsconstru = $em->getReference('BL\SGIBundle\Entity\FieldsConstru', $request->get('id_fieldsconstru'));      
+        $id_constru = $em->getReference('BL\SGIBundle\Entity\Constru', $request->get('id_constru'));     
+        
+        /*antes que nada buscar si ya esta el registro, si esya modificar*/
+        $object= $em->getRepository('SGIBundle:TrackConstru')
+          ->findOneBy(array(
+            'idConstru'=> $id_constru, 
+            'idFieldsTrackConstru' => $id_fieldsconstru,
+            'datetime'=> $fecha,
+         
+           ));
+        
+      
+        
+        if(count($object)==0) $object= new TrackConstru();
+       
+                
+     
+           
+        $object->setIdConstru($id_constru ); //objeto de tipo constru
+        $object->setIdFieldsTrackConstru($id_fieldsconstru); //objeto de tipo fields constru
+        $object->setDatetime($fecha);
+        $object->setValue($value);
+        
+        
+        $em->persist($object);
+        $em->flush();
+        
+        
+        return new Response($object->getId());
+        
+    }
     /**
      * Creates a new TrackConstru entity.
      *
