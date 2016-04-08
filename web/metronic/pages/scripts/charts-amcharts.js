@@ -689,7 +689,7 @@ var ChartsAmcharts = function() {
         });
     }
 
-    var initChartSample7 = function() {
+   /* var initChartSample7 = function() {
         var chart = AmCharts.makeChart("chart_7", {
             "type": "pie",
             "theme": "light",
@@ -883,16 +883,16 @@ var ChartsAmcharts = function() {
             chart.invalidateSize();
         });
     }
+*/
+   // var initChartSample10 = function() {
+        
+        //    although ammap has methos like getAreaCenterLatitude and getAreaCenterLongitude,
+        //    they are not suitable in quite a lot of cases as the center of some countries
+        //    is even outside the country itself (like US, because of Alaska and Hawaii)
+        //    That's why wehave the coordinates stored here
+        
 
-    var initChartSample10 = function() {
-        /*
-            although ammap has methos like getAreaCenterLatitude and getAreaCenterLongitude,
-            they are not suitable in quite a lot of cases as the center of some countries
-            is even outside the country itself (like US, because of Alaska and Hawaii)
-            That's why wehave the coordinates stored here
-        */
-
-        var latlong = {};
+    /*    var latlong = {};
         latlong["AD"] = {
             "latitude": 42.5,
             "longitude": 1.5
@@ -2701,8 +2701,8 @@ var ChartsAmcharts = function() {
             "color": "#de4c4f"
         }];
 
-
-        var map;
+*/
+     /*   var map;
         var minBulletSize = 3;
         var maxBulletSize = 70;
         var min = Infinity;
@@ -2719,9 +2719,9 @@ var ChartsAmcharts = function() {
                 max = value;
             }
         }
-
+*/
         // build map
-        AmCharts.ready(function() {
+   /*     AmCharts.ready(function() {
             AmCharts.theme = AmCharts.themes.dark;
             map = new AmCharts.AmMap();
             map.pathToImages = App.getGlobalPluginsPath() + "amcharts/ammap/images/",
@@ -3044,8 +3044,8 @@ var ChartsAmcharts = function() {
             map.invalidateSize();
         });
     }
-
-    var initChartSample12 = function() {
+*/
+   /* var initChartSample12 = function() {
         var chartData = [];
         generateChartData();
 
@@ -3224,24 +3224,24 @@ var ChartsAmcharts = function() {
             chart.invalidateSize();
         });
     }
-
+*/
     return {
         //main function to initiate the module
 
         init: function() {
 
             initChartSample1();
-            initChartSample2();
+            //initChartSample2();
             initChartSample3();
             initChartSample4();
-            initChartSample5();
+            //initChartSample5();
             initChartSample6();
-            initChartSample7();
-            initChartSample8();
-            initChartSample9();
-            initChartSample10();
-            initChartSample11();
-            initChartSample12();
+            //initChartSample7();
+            //initChartSample8();
+            //initChartSample9();
+            //initChartSample10();
+            //initChartSample11();
+            //initChartSample12();
         }
 
     };

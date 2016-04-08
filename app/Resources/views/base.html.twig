@@ -235,7 +235,7 @@
                                         </li>
                                 <!----- ALTERNATIVE INVESTMENTS SUB MENU----->
                                 <li class="nav-item ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                    <a href="{{ path('altinv_index')}}" class="nav-toggle nav-link">
                                         <i class="icon-graph"></i>
                                         <span class="title">Alternative Investments</span>
                                         <span class="arrow"></span>
@@ -714,10 +714,11 @@
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="{{ asset('/metronic/global/scripts/app.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/metronic/global/scripts/app.js') }}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{ asset('/metronic/pages/scripts/dashboard.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/metronic/pages/scripts/charts-amcharts.js') }}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->  
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ asset('/metronic/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
@@ -736,12 +737,12 @@
         <!-- END CALENDAR-->
     <!-- MAPS and CHARTS-->
        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts.js') }} type="text/javascript"></script>
-        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts-3d.js') }} type="text/javascript"></script>
-        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts-more.js') }} type="text/javascript"></script>
-        <script src={{ asset('metronic/pages/scripts/charts-highcharts.min.js') }} type="text/javascript"></script>
-    
-    
-    <script src={{ asset('metronic/global/plugins/highmaps/js/modules/data.js') }} type="text/javascript"></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/serial.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/pie.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/radar.js') }}" ></script>
+        
+        <script src={{ asset('metronic/global/plugins/highmaps/js/modules/data.js') }} type="text/javascript"></script>
         <script src={{ asset('metronic/global/plugins/highmaps/js/modules/map.js') }} type="text/javascript"></script>
         <script src="http://code.highcharts.com/mapdata/custom/world.js"></script>
         <script src="http://code.highcharts.com/mapdata/custom/europe.js" type="text/javascript"></script>

@@ -11,11 +11,11 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var assetsPath = '../assets/';
+    var assetsPath = './';
 
     var globalImgPath = 'global/img/';
 
-    var globalPluginsPath = 'global/plugins/';
+    var globalPluginsPath = '../../metronic/global/plugins/';
 
     var globalCssPath = 'global/css/';
 
