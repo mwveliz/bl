@@ -38,12 +38,16 @@
              $('#btn_addtype').click(function(e) {
                  e.preventDefault();
                  desc=$("#type_constru_description").val();
+                 if(desc.length>0){//si la descripcion no esta vacia
                  $.post( "{{ path('ajax_typeconstru_create') }}",{ description: desc})
                          .done(function( resp) {
                              $( "select" ).append( '<option value='+resp+'>'+desc+'</option>' );
                              $( "select#constru_IdTypeConstru").val(resp).change();
                              $('div#add').children().remove();
                          });
+                      }else{
+                     alert('Description cannot be empty');
+                     }    
              });
              $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");

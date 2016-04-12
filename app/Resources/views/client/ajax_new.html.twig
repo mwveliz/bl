@@ -22,6 +22,7 @@
                          .done(function( resp) {
                              $('input[placeholder="Find Client"]').val($("#bl_sgibundle_usuario_nombre").val()+ ' '+ $("#bl_sgibundle_usuario_apellido").val());
                              $('input[placeholder="Find Client"]').next('[type=hidden]').val(resp);
+                             $('div#add').empty();
                     });
              });
 

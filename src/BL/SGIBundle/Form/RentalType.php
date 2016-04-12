@@ -17,7 +17,7 @@ class RentalType extends AbstractType
     {
         $builder
             ->add('IdTypeRental', 'entity', array(
-                'label' => 'Type of Rental',
+                'label' => 'Opportunity',
                 'class' => 'SGIBundle:TypeRental',
                 'attr' => array(
                     'class' => 'form-control form-group'

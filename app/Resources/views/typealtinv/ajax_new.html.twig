@@ -38,6 +38,7 @@
              $('#btn_addtype').click(function(e) {
                  e.preventDefault();
                  desc=$("#type_altinv_description").val();
+                 if(desc.length>0){//si la descripcion no esta vacia
                  $.post( "{{ path('ajax_typealtinv_create') }}",{ description: desc})
                          .done(function( resp) {
                              $( "select#altinv_IdTypeAltinv" ).append( '<option value='+resp+'>'+desc+'</option>' );
@@ -45,6 +46,9 @@
                             $( "select#altinv_IdTypeAltinv").val(resp).change();
 
                          });
+                     }else{
+                     alert('Description cannot be empty');
+                     }    
              });
              $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");

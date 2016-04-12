@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,6 +33,44 @@ class FieldsComtradController extends Controller
         return $this->render('fieldscomtrad/index.html.twig', array(
             'fieldsComtrads' => $fieldsComtrads,
         ));
+    }
+     /**
+     * Create Comtrad Fields entities via ajax.
+     *
+     * @Route("/add", name="ajax_fieldscomtrad_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsComtrad();
+        $object->setDescription( $request->get('description') );
+        $object->setWiget($request->get('widget') );
+        $object->setTrackable(false);
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
+    
+    
+    /**
+     * Remove Comtrad Fields entities from form via ajax.
+     *
+     * @Route("/remo", name="ajax_fieldscomtrad_remove")
+     * @Method("POST")
+     */
+    public function ajaxRemoveFieldsComtrad(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsComtrad();
+        $object->setDescription( $request->get('description') );
+        $object->setWiget($request->get('widget') );
+        $object->setTrackable($request->get('trackable') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
     }
 
     /**
@@ -71,7 +110,9 @@ class FieldsComtradController extends Controller
 
             // fin proceso log  
             
-            return $this->render('fieldscomtrad/index.html.twig', array(
+            if ($request->isXmlHttpRequest()) $ruta='fieldscomtrad/ajax_new.html.twig'; //si es por ajhax cargo el twig
+            
+            return $this->render($ruta, array(
                 'fieldsComtrads' => $fieldsComtrads,
             ));        
             

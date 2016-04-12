@@ -43,9 +43,9 @@
              $('#btn_addfield').click(function(e) {
                  e.preventDefault();
                 desc=$("#fields_comtrad_description").val();
-                wg=$("#fields_comtrad_widget option:selected").val();
+                wg=$("#fields_comtrad_wiget option:selected").val();
                 track=$("#fields_comtrad_trackable ").val();
-
+                   if(desc.length>0){//si no es vacia la descripcion 
                  $.post( "{{ path('ajax_fieldscomtrad_create') }}",{ description: desc, widget: wg,trackable:track })
                          .done(function( resp) {
                              string="<div><label for='comtrad_EF-"+desc+"'>"+desc+"</label>";
@@ -77,8 +77,11 @@
                              $('#a_addfield').before(string);
                              $(".currency").maskMoney();
 
-                             $('div#add').children().remove();
+                             $('div#add').empty();
                          });
+                     }else{
+                         alert('Description cannot be empty')
+                     }  
              });
 
              $('#clear').click(function() {

@@ -17,7 +17,7 @@ class AltinvType extends AbstractType
     {
         $builder
             ->add('IdTypeAltinv', 'entity', array(
-                'label' => 'Type of Commodity Trading',
+                'label' => 'Opportunity',
                 'class' => 'SGIBundle:TypeAltinv',
                 'attr' => array(
                     'class' => 'form-control form-group'

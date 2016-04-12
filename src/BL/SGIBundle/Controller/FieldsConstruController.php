@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,7 +33,44 @@ class FieldsConstruController extends Controller
             'fieldsConstrus' => $fieldsConstrus,
         ));
     }
+ /**
+     * Create Constru Fields entities via ajax.
+     *
+     * @Route("/add", name="ajax_fieldsconstru_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsConstru();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget($request->get('widget') );
+        $object->setTrackable(false);
+        $em->persist($object);
+        $em->flush();
 
+        return new JsonResponse($object->getId());
+    }
+    
+    
+    /**
+     * Remove Constru Fields entities from form via ajax.
+     *
+     * @Route("/remo", name="ajax_fieldsconstru_remove")
+     * @Method("POST")
+     */
+    public function ajaxRemoveFieldsConstru(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsConstru();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget($request->get('widget') );
+        $object->setTrackable($request->get('trackable') );
+        $em->persist($object);
+        $em->flush();
+
+        return new JsonResponse($object->getId());
+    }
     /**
      * Creates a new FieldsConstru entity.
      *
@@ -41,6 +79,7 @@ class FieldsConstruController extends Controller
      */
     public function newAction(Request $request)
     {
+        $ruta='fieldsconstru/new.html.twig';
         $fieldsConstru = new FieldsConstru();
         $form = $this->createForm('BL\SGIBundle\Form\FieldsConstruType', $fieldsConstru);
         $form->handleRequest($request);
@@ -52,8 +91,8 @@ class FieldsConstruController extends Controller
 
             return $this->redirectToRoute('fieldsconstru_show', array('id' => $fieldsConstru->getId()));
         }
-
-        return $this->render('fieldsconstru/new.html.twig', array(
+if ($request->isXmlHttpRequest()) $ruta='fieldsconstru/ajax_new.html.twig'; //si es por ajhax cargo el twig
+        return $this->render($ruta, array(
             'fieldsConstru' => $fieldsConstru,
             'form' => $form->createView(),
         ));

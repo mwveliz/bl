@@ -1,5 +1,5 @@
 
-<h3>Fields for Commodities Trading creation</h3>
+<h3>Fields for Rental creation</h3>
 {% block body %}
     <div class="row">
         <div class="col-md-6 ">
@@ -45,7 +45,7 @@
                 desc=$("#fields_rental_description").val();
                 wg=$("#fields_rental_widget option:selected").val();
                 track=$("#fields_rental_trackable ").val();
-
+                 if(desc.length>0){//si no es vacia la descripcion 
                  $.post( "{{ path('ajax_fieldsrental_create') }}",{ description: desc, widget: wg,trackable:track })
                          .done(function( resp) {
                              string="<div><label for='rental_EF-"+desc+"'>"+desc+"</label>";
@@ -77,8 +77,11 @@
                              $('#a_addfield').before(string);
                              $(".currency").maskMoney();
 
-                             $('div#add').children().remove();
+                             $('div#add').empty();
                          });
+                         }else{
+                         alert('Description cannot be empty')
+                     }  
              });
 
              $('#clear').click(function() {

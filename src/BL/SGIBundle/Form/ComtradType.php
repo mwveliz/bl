@@ -18,7 +18,7 @@ class ComtradType extends AbstractType
     {
         $builder
             ->add('IdTypeComtrad', 'entity', array(
-                    'label' => 'Type of Commodity Trading',
+                    'label' => 'Opportunity',
                     'class' => 'SGIBundle:TypeComtrad',
                     'attr' => array(
                         'class' => 'form-control form-group'

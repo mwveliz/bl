@@ -17,7 +17,7 @@ class ConstruType extends AbstractType
     {
         $builder
             ->add('IdTypeConstru', 'entity', array(
-                'label' => 'Type of Constru',
+                'label' => 'Opportunity',
                 'class' => 'SGIBundle:TypeComtrad',
                 'attr' => array(
                     'class' => 'form-control form-group'
