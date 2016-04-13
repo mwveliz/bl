@@ -103,7 +103,22 @@ class TypeRentalController extends Controller
         return new JsonResponse($object->getId());
     }
 
-
+ /**
+     * Finds and displays a TypeRental entity.
+     *
+     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function accountsPerOpportunityAction(TypeRental $typeRental)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $rentals = $em->getRepository('SGIBundle:Rental')->findByIdTypeRental($typeRental);
+        
+        return $this->render('typerental/accounts_per_opportunity.html.twig', array(
+            'rentals' => $rentals,
+            
+        ));
+    }
     /**
      * Finds and displays a TypeRental entity.
      *

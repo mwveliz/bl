@@ -29,9 +29,9 @@ class ConstruController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $construs = $em->getRepository('SGIBundle:Constru')->findAll();
-
+        $typeConstrus = $em->getRepository('SGIBundle:TypeConstru')->findAll();
         return $this->render('constru/index.html.twig', array(
-            'construs' => $construs,
+            'construs' => $construs, 'typeConstrus' => $typeConstrus
         ));
     }
     /**

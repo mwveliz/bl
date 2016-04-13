@@ -34,9 +34,9 @@ class RentalController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $rentals = $em->getRepository('SGIBundle:Rental')->findAll();
-
+        $typeRentals = $em->getRepository('SGIBundle:TypeRental')->findAll();
         return $this->render('rental/index.html.twig', array(
-            'rentals' => $rentals,
+            'rentals' => $rentals, 'typeRentals' => $typeRentals
         ));
     }
 

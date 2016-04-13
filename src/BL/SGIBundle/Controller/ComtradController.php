@@ -34,8 +34,9 @@ class ComtradController extends Controller
 
         $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
 
+        $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findAll();
         return $this->render('comtrad/index.html.twig', array(
-            'comtrads' => $comtrads,
+            'comtrads' => $comtrads, 'typeComtrads' => $typeComtrads
         ));
     }
 

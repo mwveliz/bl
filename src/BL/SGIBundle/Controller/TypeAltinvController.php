@@ -107,7 +107,23 @@ class TypeAltinvController extends Controller
 
 
 
-
+    /**
+     * Finds and displays a TypeAltinv entity.
+     *
+     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function accountsPerOpportunityAction(TypeAltinv $typeAltinv)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $altinvs = $em->getRepository('SGIBundle:Altinv')->findByIdTypeAltinv($typeAltinv);
+        
+        return $this->render('typealtinv/accounts_per_opportunity.html.twig', array(
+            'altinvs' => $altinvs,
+            
+        ));
+    }
+    
     /**
      * Finds and displays a TypeAltinv entity.
      *

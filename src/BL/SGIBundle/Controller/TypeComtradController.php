@@ -104,7 +104,22 @@ class TypeComtradController extends Controller
         return new JsonResponse($object->getId());
     }
 
-
+ /**
+     * Finds and displays a TypeComtrad entity.
+     *
+     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function accountsPerOpportunityAction(TypeComtrad $typeComtrad)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comtrads = $em->getRepository('SGIBundle:Comtrad')->findByIdTypeComtrad($typeComtrad);
+        
+        return $this->render('typecomtrad/accounts_per_opportunity.html.twig', array(
+            'comtrads' => $comtrads,
+            
+        ));
+    }
     /**
      * Finds and displays a TypeComtrad entity.
      *

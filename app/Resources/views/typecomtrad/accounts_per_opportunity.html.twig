@@ -1,25 +1,20 @@
 {% extends 'base.html.twig' %}
 
 
-   {% block body %}
-    
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-
+{% block body %}
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN CONTENT -->
                     <div class="row">
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="{{ path('typealtinv_new') }}" ><span>Add</span></a>
+                            <a class="btn btn-success" href="{{ path('comtrad_new') }}" ><span>Add</span></a>
                             <br><br>                            
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption font-green">
                                         <i class="icon-settings font-green"></i>
-                                        <span class="caption-subject bold uppercase">Opportunities</span>
+                                        <span class="caption-subject bold uppercase">Accounts</span>
                                     </div>
                                     <div class="tools"> </div>
                                 </div>
@@ -28,20 +23,31 @@
                                         <thead>
                                             <tr>
                                                 <th class="all" width="10%">View</th>
-                                                <th class="all">Description</th>                                               
+                                                <th class="all" width="10%">Financ.</th>
+
+                                                <th class="all">Description</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for TypeAltinv in typeAltinvs %}
+                                        {% for Comtrad in comtrads %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ TypeAltinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ Comtrad.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ TypeAltinv.description }}</td>                                                
+                                                <td>
+                                                    <center>
+                                                        <a href="{{ path('trackcomtrad_track', { 'id': Comtrad.id }) }}" class="a_track" param="{{ Comtrad.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                            <i class="fa fa-dollar fa-x"></i>
+                                                        </a>       
+                                                    </center>
+                                                </td>
+                                                <td>{{ Comtrad.description }}</td>
+                                                                                      
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        
@@ -50,7 +56,11 @@
                             </div>
                             <!-- END EXAMPLE TABLE PORTLET-->
                         </div>
-                        <div class="col-md-6" id="show">
+                       
+                    
+                                        
+                                        
+                        <div class="col-md-6" id="show" style="margin-top: 50px">
                            
                         </div>     
                     </div>
@@ -60,7 +70,6 @@
         <!-- END CONTAINER -->
      
 {% endblock %}
-
 {% block javascripts_extra %} 
        <!--[if lt IE 9]>
 <script src="{{ asset('/metronic/global/plugins/respond.min.js') }}"></script>
@@ -84,8 +93,6 @@
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>    
     $( document ).ready(function() {
-           // $('#show').css({display: "none"});
-
         $('.a_show').click(function() {
             id = $(this).attr('param');
             form_name = $(this).attr('param2');
@@ -98,8 +105,7 @@
                 "&id=" + id,
                 success: function(data){
                     $('#show').empty();
-                   
-                   // $('#show').css({display: "block"});
+                    
                     $('#show').html(data);
                     $('#agregar').html('<button class="btn green-sharp btn-large" data-toggle="confirmation" data-original-title="Are you sure ?" title="">Default configuration</button>');
                     $(".colorbox").colorbox({rel:'colorbox', width:"75%", height:"75%"});

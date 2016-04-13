@@ -83,7 +83,22 @@ class TypeConstruController extends Controller
         ));
     }
 
-
+ /**
+     * Finds and displays a TypeConstru entity.
+     *
+     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function accountsPerOpportunityAction(TypeConstru $typeConstru)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $construs = $em->getRepository('SGIBundle:Constru')->findByIdTypeConstru($typeConstru);
+        
+        return $this->render('typeconstru/accounts_per_opportunity.html.twig', array(
+            'construs' => $construs,
+            
+        ));
+    }
 
 
     /**

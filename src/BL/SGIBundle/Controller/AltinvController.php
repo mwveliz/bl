@@ -35,9 +35,9 @@ class AltinvController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $altinvs = $em->getRepository('SGIBundle:Altinv')->findAll();
-
+        $typeAltinvs = $em->getRepository('SGIBundle:TypeAltinv')->findAll();
         return $this->render('altinv/index.html.twig', array(
-            'altinvs' => $altinvs,
+            'altinvs' => $altinvs, 'typeAltinvs' => $typeAltinvs
         ));
     }
 
