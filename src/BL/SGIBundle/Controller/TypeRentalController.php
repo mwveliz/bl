@@ -106,10 +106,10 @@ class TypeRentalController extends Controller
  /**
      * Finds and displays a TypeRental entity.
      *
-     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Route("/{id}", name="rental_accounts_per_opportunity")
      * @Method("GET")
      */
-    public function accountsPerOpportunityAction(TypeRental $typeRental)
+    public function rentalaccountsPerOpportunityAction(TypeRental $typeRental)
     {
         $em = $this->getDoctrine()->getManager();
         $rentals = $em->getRepository('SGIBundle:Rental')->findByIdTypeRental($typeRental);

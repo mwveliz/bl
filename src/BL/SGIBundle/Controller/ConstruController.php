@@ -9,7 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Constru;
 use BL\SGIBundle\Form\ConstruType;
+use Doctrine\ORM\Query;
 use BL\SGIBundle\Entity\TypeConstru;
+use Symfony\Component\HttpFoundation\Response;
+use BL\SGIBundle\Entity\BlConstru;
+use Symfony\Component\Validator\Constraints\DateTime;
+use BL\SGIBundle\Entity\Bl;
 
 /**
  * Constru controller.

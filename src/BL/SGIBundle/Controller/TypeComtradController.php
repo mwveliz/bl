@@ -107,10 +107,10 @@ class TypeComtradController extends Controller
  /**
      * Finds and displays a TypeComtrad entity.
      *
-     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Route("/{id}", name="comtrad_accounts_per_opportunity")
      * @Method("GET")
      */
-    public function accountsPerOpportunityAction(TypeComtrad $typeComtrad)
+    public function comtradaccountsPerOpportunityAction(TypeComtrad $typeComtrad)
     {
         $em = $this->getDoctrine()->getManager();
         $comtrads = $em->getRepository('SGIBundle:Comtrad')->findByIdTypeComtrad($typeComtrad);

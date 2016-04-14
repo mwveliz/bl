@@ -7,7 +7,7 @@
             <!-- BEGIN CONTENT -->
                     <div class="row">
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="{{ path('constru_new') }}" ><span>Add</span></a>
+                          
                             <br><br>                            
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                             <div class="portlet light bordered">
@@ -30,23 +30,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for Constru in construs %}
+                                        {% for Object in objects %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ Constru.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ Object.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
                                                 <td>
                                                     <center>
-                                                        <a href="{{ path('trackconstru_track', { 'id': Constru.id }) }}" class="a_track" param="{{ Constru.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="{{ path('trackaltinv_track', { 'id': Object.id }) }}" class="a_track" param="{{ Object.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-dollar fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Constru.description }}</td>
+                                                <td>{{ Altinv.description }}</td>
                                                                                       
                                             </tr>
                                         {% endfor %} 

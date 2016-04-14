@@ -8,7 +8,7 @@
 <!--[if !IE]><!-->
 
         <!-- BEGIN CONTAINER -->
-                        <div class="col-md-6" id="show" style="margin-top: 50px;">
+                        <div class="col-md-6" id="show" style="margin-top: 38px;">
                            
                         </div>
                         <div id="opportunity" class="col-md-6">
@@ -31,16 +31,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for TypeConstru in typeConstrus %}
+                                        {% for Object in objects %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="{{ path('constru_accounts_per_opportunity', { 'id': TypeConstru.id }) }}">
+                                                        <a href="{{ path('bl_accounts_per_opportunity', { 'id': Object.id }) }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ TypeConstru.description }}</td>                                                
+                                                <td>{{ Object.description }}</td>                                                
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

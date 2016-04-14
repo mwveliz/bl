@@ -86,10 +86,10 @@ class TypeConstruController extends Controller
  /**
      * Finds and displays a TypeConstru entity.
      *
-     * @Route("/{id}", name="accounts_per_opportunity")
+     * @Route("/{id}", name="constru_accounts_per_opportunity")
      * @Method("GET")
      */
-    public function accountsPerOpportunityAction(TypeConstru $typeConstru)
+    public function construaccountsPerOpportunityAction(TypeConstru $typeConstru)
     {
         $em = $this->getDoctrine()->getManager();
         $construs = $em->getRepository('SGIBundle:Constru')->findByIdTypeConstru($typeConstru);

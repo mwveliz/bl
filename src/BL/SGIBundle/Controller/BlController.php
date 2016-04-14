@@ -10,6 +10,11 @@ use BL\SGIBundle\Entity\Bl;
 use BL\SGIBundle\Form\BlType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use BL\SGIBundle\Entity\TypeAltinv;
+use BL\SGIBundle\Entity\TypeComtrad;
+use BL\SGIBundle\Entity\TypeConstru;
+use BL\SGIBundle\Entity\TypeRental;
+
 
 /**
  * Bl controller.
@@ -29,9 +34,9 @@ class BlController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $bls = $em->getRepository('SGIBundle:Bl')->findAll();
-
+        $objects = $em->getRepository('SGIBundle:TypeAltinv')->findAll();
         return $this->render('bl/index.html.twig', array(
-            'bls' => $bls,
+            'bls' => $bls,'objects' => $objects,
         ));
     }
     
@@ -57,6 +62,22 @@ class BlController extends Controller
         }
 
         return new JsonResponse($arreglo);
+    }
+     /**
+     * Finds and displays a TypeAltinv entity.
+     *
+     * @Route("/{id}", name="bl_accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function blaccountsPerOpportunityAction(TypeAltinv $typeAltinv)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $objects = $em->getRepository('SGIBundle:Altinv')->findByIdTypeAltinv($typeAltinv);
+        
+        return $this->render('bl/accounts_per_opportunity.html.twig', array(
+            'objects' => $objects,
+            
+        ));
     }
      /**
      * Tracks one   Account.
