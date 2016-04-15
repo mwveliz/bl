@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FieldsClient list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Widget</th>
+                <th>Visible</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fieldsClient in fieldsClients %}
+            <tr>
+                <td><a href="{{ path('fieldsclient_show', { 'id': fieldsClient.id }) }}">{{ fieldsClient.description }}</a></td>
+                <td>{{ fieldsClient.widget }}</td>
+                <td>{% if fieldsClient.visible %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fieldsClient.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fieldsclient_show', { 'id': fieldsClient.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fieldsclient_edit', { 'id': fieldsClient.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldsclient_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

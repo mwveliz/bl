@@ -2,9 +2,9 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="BL\SGIBundle\Entity\Constru" table="constru">
     <indexes>
+      <index name="IDX_EF86AC9CE466B61B" columns="id_type_constru"/>
       <index name="IDX_EF86AC9C4D1693CB" columns="id_state"/>
       <index name="IDX_EF86AC9CE173B1B8" columns="id_client"/>
-      <index name="IDX_EF86AC9CE466B61B" columns="id_type_constru"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
@@ -15,14 +15,14 @@
         <join-column name="id_type_constru" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idClient" target-entity="Client">
-      <join-columns>
-        <join-column name="id_client" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idState" target-entity="State">
       <join-columns>
         <join-column name="id_state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idClient" target-entity="Client">
+      <join-columns>
+        <join-column name="id_client" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

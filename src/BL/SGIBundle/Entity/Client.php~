@@ -13,6 +13,76 @@ use Doctrine\ORM\Mapping as ORM;
 class Client
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", nullable=true)
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="treatment", type="string", nullable=true)
+     */
+    private $treatment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="string", nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_one", type="string", nullable=true)
+     */
+    private $emailOne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_two", type="string", nullable=true)
+     */
+    private $emailTwo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="legal_id", type="string", nullable=true)
+     */
+    private $legalId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logo", type="string", nullable=true)
+     */
+    private $logo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", nullable=true)
+     */
+    private $picture;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")

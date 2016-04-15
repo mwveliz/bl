@@ -10,6 +10,18 @@
                 <td>{{ pipelineNode.description }}</td>
             </tr>
             <tr>
+                <th>Datenode</th>
+                <td>{% if pipelineNode.dateNode %}{{ pipelineNode.dateNode|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ pipelineNode.status }}</td>
+            </tr>
+            <tr>
+                <th>Percentagecompletion</th>
+                <td>{{ pipelineNode.percentageCompletion }}</td>
+            </tr>
+            <tr>
                 <th>Id</th>
                 <td>{{ pipelineNode.id }}</td>
             </tr>

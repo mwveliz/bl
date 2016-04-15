@@ -80,7 +80,7 @@ class PipelineController extends Controller
     public function newAction(Request $request)
     {
         $pipeline = new Pipeline();
-        $form = $this->createForm('BL\SGIBundle\Form\PipelineType', $pipeline);
+        /*$form = $this->createForm('BL\SGIBundle\Form\PipelineType', $pipeline);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,10 +90,10 @@ class PipelineController extends Controller
 
             return $this->redirectToRoute('pipeline_show', array('id' => $pipeline->getId()));
         }
-
+*/
         return $this->render('pipeline/new.html.twig', array(
             'pipeline' => $pipeline,
-            'form' => $form->createView(),
+            //'form' => $form->createView(),
         ));
     }
 

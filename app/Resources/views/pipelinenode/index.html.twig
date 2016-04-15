@@ -7,6 +7,9 @@
         <thead>
             <tr>
                 <th>Description</th>
+                <th>Datenode</th>
+                <th>Status</th>
+                <th>Percentagecompletion</th>
                 <th>Id</th>
                 <th>Actions</th>
             </tr>
@@ -15,6 +18,9 @@
         {% for pipelineNode in pipelineNodes %}
             <tr>
                 <td><a href="{{ path('pipelinenode_show', { 'id': pipelineNode.id }) }}">{{ pipelineNode.description }}</a></td>
+                <td>{% if pipelineNode.dateNode %}{{ pipelineNode.dateNode|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ pipelineNode.status }}</td>
+                <td>{{ pipelineNode.percentageCompletion }}</td>
                 <td>{{ pipelineNode.id }}</td>
                 <td>
                     <ul>

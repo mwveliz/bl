@@ -1,0 +1,224 @@
+<?php
+
+namespace BL\SGIBundle\Controller;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use BL\SGIBundle\Entity\TypeConstru;
+use BL\SGIBundle\Form\TypeConstruType;
+
+
+/**
+ * TypeConstru controller.
+ *
+ * @Route("/typeconstru")
+ */
+class TypeConstruController extends Controller
+{
+    /**
+     * Lists all TypeConstru entities.
+     *
+     * @Route("/", name="typeconstru_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $typeConstrus = $em->getRepository('SGIBundle:TypeConstru')->findAll();
+
+        return $this->render('typeconstru/index.html.twig', array(
+            'typeConstrus' => $typeConstrus,
+        ));
+    }
+
+    /**
+     * Creates a new TypeConstru entity.
+     *
+     * @Route("/new", name="typeconstru_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $ruta='typeconstru/new.html.twig';
+        $typeConstru = new TypeConstru();
+        $form = $this->createForm('BL\SGIBundle\Form\TypeConstruType', $typeConstru);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($typeConstru);
+            $em->flush();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Insert', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log   
+            
+            return $this->redirectToRoute('typeconstru_index');
+        }
+        if ($request->isXmlHttpRequest()) $ruta='typeconstru/ajax_new.html.twig';
+
+        return $this->render($ruta, array(
+            'typeConstru' => $typeConstru,
+            'form' => $form->createView(),
+        ));
+    }
+
+ /**
+     * Finds and displays a TypeConstru entity.
+     *
+     * @Route("/{id}", name="constru_accounts_per_opportunity")
+     * @Method("GET")
+     */
+    public function construaccountsPerOpportunityAction(TypeConstru $typeConstru)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $construs = $em->getRepository('SGIBundle:Constru')->findByIdTypeConstru($typeConstru);
+        
+        return $this->render('typeconstru/accounts_per_opportunity.html.twig', array(
+            'construs' => $construs,
+            
+        ));
+    }
+
+
+    /**
+     * Finds and displays a TypeConstru entity.
+     *
+     * @Route("/{id}", name="typeconstru_show")
+     * @Method("GET")
+     */
+    public function showAction(TypeConstru $typeConstru)
+    {
+        $deleteForm = $this->createDeleteForm($typeConstru);
+
+        return $this->render('typeconstru/show.html.twig', array(
+            'typeConstru' => $typeConstru,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing TypeConstru entity.
+     *
+     * @Route("/{id}/edit", name="typeconstru_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, TypeConstru $typeConstru)
+    {
+        $deleteForm = $this->createDeleteForm($typeConstru);
+        $editForm = $this->createForm('BL\SGIBundle\Form\TypeConstruType', $typeConstru);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($typeConstru);
+            $em->flush();
+
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Update', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log            
+            
+            return $this->redirectToRoute('typeconstru_edit', array('id' => $typeConstru->getId()));
+        }
+
+        return $this->render('typeconstru/edit.html.twig', array(
+            'typeConstru' => $typeConstru,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Deletes a TypeConstru entity.
+     *
+     * @Route("/{id}", name="typeconstru_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, TypeConstru $typeConstru)
+    {
+        $form = $this->createDeleteForm($typeConstru);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            
+            // Procedo log
+            /*
+            $userManager = $this->container->get('fos_user.user_manager');
+
+            $user = $userManager->findUserByUsername($this->container->get('security.context')
+                            ->getToken()
+                            ->getUser());
+            
+
+            $query = $em->createQuery('SELECT x FROM SGIBundle:TypeConstru x WHERE x.id = ?1');
+            $query->setParameter(1, $typeConstru->getId());
+            $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
+
+            $bitacora = $em->getRepository('SGIBundle:LogActivity')
+                    ->bitacora($user->getId(), 'Delete', 'TypeConstru', 
+                            $typeConstru->getId());
+            */
+            
+            // fin proceso log  
+            
+            
+            $em->remove($typeConstru);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('typeconstru_index');
+    }
+
+    /**
+     * Creates a form to delete a TypeConstru entity.
+     *
+     * @param TypeConstru $typeConstru The TypeConstru entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(TypeConstru $typeConstru)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('typeconstru_delete', array('id' => $typeConstru->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
+}

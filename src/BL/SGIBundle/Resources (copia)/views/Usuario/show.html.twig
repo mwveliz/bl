@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <div class="col-lg-12">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <h3 id="containers">Información Asociada al Usuario</h3>
+                </div>
+                <div class="col-sm-4 text-right">
+                    {% set route_params = app.request.get('_route_params') %}
+                    <a href = "{{ path('reporte_show_pdf',{ 'id': route_params.id, 'modelo': app.request.attributes.get("_template").get('controller') }) }}" 
+                       data-toggle="tooltip" data-placement="left" data-original-title="Generar PDF"
+                       title="Generar PDF"
+                       class = "fa fa-file-pdf-o fa-3x">
+                    </a>                
+                </div>                
+            </div>            
+            <hr/>
+            <p class="text-right">{{ botones | raw }}</p>
+        </div>        
+        <div class="panel panel-default">            
+            <div class="panel-body" style="background-color: #fff;">
+                 <div ng-app="myApp" ng-controller="Ctrl">
+                    <p><strong>Login</strong></p>
+                    <p>{{ '{{username}}' }}</p>                     
+                    <p><strong>DNI</strong></p>
+                    <p>{{ '{{nacionalidad}}' }}{{ '{{dni}}' }}</p>
+                    <p><strong>Name(s)</strong></p>
+                    <p>{{ '{{nombre}}' }}</p>
+                    <p><strong>Last Name(s)</strong></p>
+                    <p>{{ '{{apellido}}' }}</p>
+                    <p><strong>Main Phone Number</strong></p>
+                    <p>{{ '{{telefono}}' }}</p>
+                    <p><strong>Secondary Phone Number</strong></p>
+                    <p>{{ '{{telefono_secundario}}' }}</p> 
+                    <p><strong>Groups</strong></p>
+                    <p>{{ '{{grupo}}' }}</p>                    
+                    <p><strong>Is Active?</strong></p>
+                    <p>{{ '{{activo}}' }}</p>
+                    <p><strong>Is a Client?</strong></p>
+                    <p>{{ '{{activo}}' }}</p>
+                 </div>
+            </div>
+        </div>
+         {{ botones | raw }}         
+    </div>                         
+           
+{% endblock %}
+
+{% block angular %}     
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('Ctrl', function ($scope) {
+            $scope.dni = '{{ usuario.dni }}';
+            $scope.nacionalidad = '{{ usuario.nacionalidad }}';
+            $scope.nombre = '{{ usuario.nombre }}';
+            $scope.apellido = '{{ usuario.apellido }}';
+            $scope.telefono = '{{ usuario.telefono }}';
+            $scope.telefono_secundario = '{{ usuario.telefono_secundario }}';
+            $scope.username = '{{ usuario.username }}';
+            $scope.email = '{{ usuario.email }}';
+            $scope.activo = '{{ usuario.activo }}';
+            $scope.grupo = '{{ usuario.grupo }}';
+        });
+        
+        $( document ).ready(function() {
+            $("a#eliminar").click(function(e) {
+                var isGood=confirm('¿Está seguro de que desea desactivar este ítem?');
+                if (!isGood) {
+                  e.preventDefault();  
+                }
+            });
+            
+        });
+        
+       
+    </script>
+{% endblock %}

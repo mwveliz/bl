@@ -1,0 +1,132 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="page-header">          
+        <div class="row">
+            <div class="col-sm-8 text-left">
+                <h3 id="containers">Listado de Usuarios</h3>
+            </div>
+            <div class="col-sm-4 text-right">
+                <form id="form" method="post" action="{{ path('client_index',{ 'modelo': app.request.attributes.get("_template").get('controller') }) }}">
+                 <table width="100%">
+                    <tr>
+                        <td>
+                            <strong>Activo:  </strong>
+                            <select id="activo" name="activo" class="input-small">
+                                <option value="1">Sí</option>
+                                <option value="2">No</option>
+                                <option value="3">Ambos</option>
+                            </select>                             
+                        </td>
+                        <td>
+                            <a href="#" onclick="return false;" id="pdfform" type="submit" data-toggle="tooltip" data-placement="left" data-original-title="Generar PDF"
+                               title="Generar PDF"
+                               class = "fa fa-file-pdf-o fa-3x">
+                            </a>                           
+                        </td>
+                    </tr>
+                 </table> 
+                </form>               
+            </div>                
+        </div>                       
+        <hr/>
+    </div>    
+    <div class="col-lg-12">
+        <div id='boton'>
+            <p class="text-right">{{ new | raw }}</p>
+        </div>
+        <div id='jqxWidget'>
+            <div id="jqxgrid">
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+{% block jqwidgets %} 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var source =
+                    {
+                        datatype: "json",
+                        url: "{{ path('usuario_ajax') }}",
+                        pager: function (pagenum, pagesize, oldpagenum) {
+                            // callback called when a page or page size is changed.
+                        }
+                    };
+            var dataAdapter = new $.jqx.dataAdapter(source);    
+            var initrowdetails = function (index, parentElement, gridElement, datarecord) {
+                var tabsdiv = null;
+                var information = null;
+                var notes = null;
+                tabsdiv = $($(parentElement).children()[0]);
+                if (tabsdiv != null) {
+                    information = tabsdiv.find('.information');
+                    notes = tabsdiv.find('.notes');
+                    var title = tabsdiv.find('.title');
+                    title.text(datarecord.username);
+                    var container = $('<div style="margin: 5px;"></div>')
+                    container.appendTo($(information));
+                    var photocolumn = $('<div style="float: left; width: 15%;"></div>');
+                    var leftcolumn = $('<div style="float: left; width: 45%;"></div>');
+                    var rightcolumn = $('<div style="float: left; width: 40%;"></div>');
+                    container.append(photocolumn);
+                    container.append(leftcolumn);
+                    container.append(rightcolumn);
+                    var cedula = "<div style='margin: 10px;'><b>Cédula:</b> " + datarecord.cedula + "</div>";
+                    var nombre = "<div style='margin: 10px;'><b>Nombre:</b> " + datarecord.nombre + "</div>";
+                    var apellido = "<div style='margin: 10px;'><b>Apellido:</b> " + datarecord.apellido + "</div>";
+                    var tipo = "<div style='margin: 10px;'><b>Tipo de Usuario:</b> " + datarecord.tipo + "</div>";
+                    var telefono = "<div style='margin: 10px;'><b>Teléfono:</b> " + datarecord.telefono + "</div>";
+                    var telefono_secundario = "<div style='margin: 10px;'><b>Teléfono Secundario:</b> " + datarecord.telefono_secundario + "</div>";
+                    var username = "<div style='margin: 10px;'><b>Usuario:</b> " + datarecord.username + "</div>";
+                    var email = "<div style='margin: 10px;'><b>Correo Electrónico:</b> " + datarecord.email + "</div>";
+                    var activo = "<div style='margin: 10px;'><b>¿Se encuentra activo?:</b> " + datarecord.activo + "</div>";
+                    $(leftcolumn).append(cedula);
+                    $(leftcolumn).append(nombre);
+                    $(leftcolumn).append(apellido);
+                    $(leftcolumn).append(tipo);
+                    var hiredate = "<div style='margin: 10px;'><b>Hire Date:</b> " + datarecord.hiredate + "</div>";
+                    $(rightcolumn).append(email);
+                    $(rightcolumn).append(telefono);
+                    $(rightcolumn).append(telefono_secundario);
+                    $(rightcolumn).append(activo);
+                    var notescontainer = $('<div style="white-space: normal; margin: 5px;"><span>' + datarecord.notes + '</span></div>');
+                    $(notes).append(notescontainer);
+                    $(tabsdiv).jqxTabs({ width: 750, height: 170});
+                }
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            $("#jqxgrid").jqxGrid(
+            {
+                source: dataAdapter,
+                rowdetails: true,
+                width: '100%',
+                pagesize: 15,
+                sortable: true,
+                pageable: true,
+                filterable: true,
+                altrows: true,
+                autoheight: true,
+                columnsresize: true,
+                autoshowfiltericon: true,
+                theme: 'ui-redmond',                
+                rowdetailstemplate: { rowdetails: "<div style='margin: 10px;'><ul style='margin-left: 30px;'><li class='title'></li></ul><div class='information'></div></div>", rowdetailsheight: 200 },
+                initrowdetails: initrowdetails,
+                columns: [
+                      { text: '', datafield: 'botones', width: 70, cellsalign: 'center', }, 
+                      { text: 'Cédula', datafield: 'cedula', width: 200 },
+                      { text: 'Apellido', datafield: 'apellido', width: 200 },
+                      { text: 'Nombre', datafield: 'nombre', width: 180 },
+                      { text: 'Activo', datafield: 'activo', width: 100 },
+                  ]
+            });
+        });
+        
+            $('#pdfform').click(function(e) {
+                e.preventDefault();
+                $('#form').submit();
+            });        
+    </script>  
+    
+{% endblock %}    

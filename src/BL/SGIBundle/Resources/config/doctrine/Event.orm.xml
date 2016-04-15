@@ -12,14 +12,14 @@
     <field name="datetimeStart" type="datetime" column="datetime_start" nullable="true"/>
     <field name="datetimeEnd" type="datetime" column="datetime_end" nullable="true"/>
     <field name="place" type="string" column="place" nullable="true"/>
-    <many-to-one field="userid" target-entity="Usuario">
-      <join-columns>
-        <join-column name="userid" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idBl" target-entity="Bl">
       <join-columns>
         <join-column name="id_bl" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="userid" target-entity="Usuario">
+      <join-columns>
+        <join-column name="userid" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

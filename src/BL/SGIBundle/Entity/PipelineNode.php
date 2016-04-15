@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PipelineNode
  *
- * @ORM\Table(name="pipeline_node", indexes={@ORM\Index(name="IDX_21ACFE6A926BCFAE", columns={"id_bl"})})
+ * @ORM\Table(name="pipeline_node", indexes={@ORM\Index(name="IDX_21ACFE6A2D27354C", columns={"id_pipeline"})})
  * @ORM\Entity
  */
 class PipelineNode
@@ -20,6 +20,27 @@ class PipelineNode
     private $description;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_node", type="date", nullable=true)
+     */
+    private $dateNode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="percentage_completion", type="string", nullable=true)
+     */
+    private $percentageCompletion;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -30,14 +51,14 @@ class PipelineNode
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\Bl
+     * @var \BL\SGIBundle\Entity\PipelineNode
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Bl")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\PipelineNode")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_bl", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_pipeline", referencedColumnName="id")
      * })
      */
-    private $idBl;
+    private $idPipeline;
 
 
 
@@ -65,6 +86,75 @@ class PipelineNode
     }
 
     /**
+     * Set dateNode
+     *
+     * @param \DateTime $dateNode
+     * @return PipelineNode
+     */
+    public function setDateNode($dateNode)
+    {
+        $this->dateNode = $dateNode;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNode
+     *
+     * @return \DateTime 
+     */
+    public function getDateNode()
+    {
+        return $this->dateNode;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return PipelineNode
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set percentageCompletion
+     *
+     * @param string $percentageCompletion
+     * @return PipelineNode
+     */
+    public function setPercentageCompletion($percentageCompletion)
+    {
+        $this->percentageCompletion = $percentageCompletion;
+
+        return $this;
+    }
+
+    /**
+     * Get percentageCompletion
+     *
+     * @return string 
+     */
+    public function getPercentageCompletion()
+    {
+        return $this->percentageCompletion;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -75,25 +165,25 @@ class PipelineNode
     }
 
     /**
-     * Set idBl
+     * Set idPipeline
      *
-     * @param \BL\SGIBundle\Entity\Bl $idBl
+     * @param \BL\SGIBundle\Entity\PipelineNode $idPipeline
      * @return PipelineNode
      */
-    public function setIdBl(\BL\SGIBundle\Entity\Bl $idBl = null)
+    public function setIdPipeline(\BL\SGIBundle\Entity\PipelineNode $idPipeline = null)
     {
-        $this->idBl = $idBl;
+        $this->idPipeline = $idPipeline;
 
         return $this;
     }
 
     /**
-     * Get idBl
+     * Get idPipeline
      *
-     * @return \BL\SGIBundle\Entity\Bl 
+     * @return \BL\SGIBundle\Entity\PipelineNode 
      */
-    public function getIdBl()
+    public function getIdPipeline()
     {
-        return $this->idBl;
+        return $this->idPipeline;
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BL\SGIBundle\Entity\Altinv" table="altinv">
+    <indexes>
+      <index name="IDX_CFEBB2544D1693CB" columns="id_state"/>
+      <index name="IDX_CFEBB254E173B1B8" columns="id_client"/>
+      <index name="IDX_CFEBB254F42E149B" columns="id_type_altinv"/>
+    </indexes>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="description" type="string" column="description" nullable="true"/>
+    <many-to-one field="idTypeAltinv" target-entity="TypeAltinv">
+      <join-columns>
+        <join-column name="id_type_altinv" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idClient" target-entity="Client">
+      <join-columns>
+        <join-column name="id_client" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idState" target-entity="State">
+      <join-columns>
+        <join-column name="id_state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

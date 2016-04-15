@@ -10,14 +10,14 @@
     </id>
     <field name="value" type="string" column="value" nullable="true"/>
     <field name="datetime" type="datetime" column="datetime" nullable="true"/>
-    <many-to-one field="idFieldsTrackConstru" target-entity="FieldsConstru">
-      <join-columns>
-        <join-column name="id_fields_track_constru" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idConstru" target-entity="Constru">
       <join-columns>
         <join-column name="id_constru" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idFieldsTrackConstru" target-entity="FieldsConstru">
+      <join-columns>
+        <join-column name="id_fields_track_constru" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

@@ -94,4 +94,32 @@ class State {
         return $this->idCountry->description . ' ' . $this->description;
     }
 
+    /**
+     * @var string
+     */
+    private $descriptionCountry;
+
+
+    /**
+     * Set descriptionCountry
+     *
+     * @param string $descriptionCountry
+     * @return State
+     */
+    public function setDescriptionCountry($descriptionCountry)
+    {
+        $this->descriptionCountry = $descriptionCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionCountry
+     *
+     * @return string 
+     */
+    public function getDescriptionCountry()
+    {
+        return $this->descriptionCountry;
+    }
 }

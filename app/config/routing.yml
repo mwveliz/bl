@@ -1,3 +1,15 @@
+sgi_pipeline_node:
+    resource: "@SGIBundle/Controller/PipelineNodeController.php"
+    type:     annotation
+
+sgi_fields_client:
+    resource: "@SGIBundle/Controller/FieldsClientController.php"
+    type:     annotation
+
+sgi_bl_client:
+    resource: "@SGIBundle/Controller/BlClientController.php"
+    type:     annotation
+
 sgi_type_rental:
     resource: "@SGIBundle/Controller/TypeRentalController.php"
     type:     annotation
@@ -166,9 +178,6 @@ sgi_todo_priority:
     resource: "@SGIBundle/Controller/TodoPriorityController.php"
     type:     annotation
 
-sgi_pipeline_workflow:
-    resource: "@SGIBundle/Controller/PipelineWorkflowController.php"
-    type:     annotation
 
 sgi_bl:
     resource: "@SGIBundle/Controller/BlController.php"

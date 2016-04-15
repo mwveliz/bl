@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PipelineNode
  *
- * @ORM\Table(name="pipeline_node", indexes={@ORM\Index(name="IDX_21ACFE6A926BCFAE", columns={"id_bl"})})
+ * @ORM\Table(name="pipeline_node", indexes={@ORM\Index(name="IDX_21ACFE6A2D27354C", columns={"id_pipeline"})})
  * @ORM\Entity
  */
 class PipelineNode
@@ -20,6 +20,27 @@ class PipelineNode
     private $description;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_node", type="date", nullable=true)
+     */
+    private $dateNode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="percentage_completion", type="string", nullable=true)
+     */
+    private $percentageCompletion;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="bigint")
@@ -30,14 +51,14 @@ class PipelineNode
     private $id;
 
     /**
-     * @var \BL\SGIBundle\Entity\Bl
+     * @var \BL\SGIBundle\Entity\PipelineNode
      *
-     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\Bl")
+     * @ORM\ManyToOne(targetEntity="BL\SGIBundle\Entity\PipelineNode")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_bl", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_pipeline", referencedColumnName="id")
      * })
      */
-    private $idBl;
+    private $idPipeline;
 
 
 }

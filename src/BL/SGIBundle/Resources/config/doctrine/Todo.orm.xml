@@ -12,9 +12,9 @@
     <field name="description" type="string" column="description" nullable="true"/>
     <field name="completed" type="boolean" column="completed" nullable="true"/>
     <field name="duedate" type="date" column="duedate" nullable="true"/>
-    <many-to-one field="userid" target-entity="Usuario">
+    <many-to-one field="idPriority" target-entity="TodoPriority">
       <join-columns>
-        <join-column name="userid" referenced-column-name="id"/>
+        <join-column name="id_priority" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="idBl" target-entity="Bl">
@@ -22,9 +22,9 @@
         <join-column name="id_bl" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idPriority" target-entity="TodoPriority">
+    <many-to-one field="userid" target-entity="Usuario">
       <join-columns>
-        <join-column name="id_priority" referenced-column-name="id"/>
+        <join-column name="userid" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

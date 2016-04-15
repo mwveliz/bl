@@ -10,9 +10,9 @@
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
-    <many-to-one field="idClient" target-entity="Client">
+    <many-to-one field="idTypeComtrad" target-entity="TypeComtrad">
       <join-columns>
-        <join-column name="id_client" referenced-column-name="id"/>
+        <join-column name="id_type_comtrad" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="idState" target-entity="State">
@@ -20,9 +20,9 @@
         <join-column name="id_state" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idTypeComtrad" target-entity="TypeComtrad">
+    <many-to-one field="idClient" target-entity="Client">
       <join-columns>
-        <join-column name="id_type_comtrad" referenced-column-name="id"/>
+        <join-column name="id_client" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

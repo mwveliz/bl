@@ -16,7 +16,10 @@ class PipelineNodeType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('idBl')
+            ->add('dateNode', 'date')
+            ->add('status')
+            ->add('percentageCompletion')
+            ->add('idPipeline')
         ;
     }
     

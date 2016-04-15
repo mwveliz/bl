@@ -8,6 +8,7 @@
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
+    <field name="descriptionCountry" type="string" column="description_country" nullable="true"/>
     <many-to-one field="idCountry" target-entity="Country">
       <join-columns>
         <join-column name="id_country" referenced-column-name="id"/>

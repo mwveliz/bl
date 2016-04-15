@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BlClient list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blClient in blClients %}
+            <tr>
+                <td><a href="{{ path('blclient_show', { 'id': blClient.id }) }}">{{ blClient.value }}</a></td>
+                <td>{{ blClient.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blclient_show', { 'id': blClient.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blclient_edit', { 'id': blClient.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blclient_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -2,15 +2,18 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="BL\SGIBundle\Entity\PipelineNode" table="pipeline_node">
     <indexes>
-      <index name="IDX_21ACFE6A926BCFAE" columns="id_bl"/>
+      <index name="IDX_21ACFE6A2D27354C" columns="id_pipeline"/>
     </indexes>
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
-    <many-to-one field="idBl" target-entity="Bl">
+    <field name="dateNode" type="date" column="date_node" nullable="true"/>
+    <field name="status" type="string" column="status" nullable="true"/>
+    <field name="percentageCompletion" type="string" column="percentage_completion" nullable="true"/>
+    <many-to-one field="idPipeline" target-entity="PipelineNode">
       <join-columns>
-        <join-column name="id_bl" referenced-column-name="id"/>
+        <join-column name="id_pipeline" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

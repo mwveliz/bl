@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FieldsClient</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Description</th>
+                <td>{{ fieldsClient.description }}</td>
+            </tr>
+            <tr>
+                <th>Widget</th>
+                <td>{{ fieldsClient.widget }}</td>
+            </tr>
+            <tr>
+                <th>Visible</th>
+                <td>{% if fieldsClient.visible %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ fieldsClient.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fieldsclient_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fieldsclient_edit', { 'id': fieldsClient.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

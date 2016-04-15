@@ -1,0 +1,35 @@
+sgi_homepage:
+    path:     /
+    defaults: { _controller: SGIBundle:Bl:index }
+
+grid:
+    path:     /grid
+    defaults: { _controller: SGIBundle:Default:grid }
+
+griddos:
+    path:     /griddos
+    defaults: { _controller: SGIBundle:Default:griddos }
+
+calendar:
+    path:     /calendar
+    defaults: { _controller: SGIBundle:Default:calendar }
+
+map:
+    path:     /map
+    defaults: { _controller: SGIBundle:Default:map}
+
+contact:
+    path:     /contact
+    defaults: { _controller: SGIBundle:Default:contact}
+
+financial:
+    path:     /financial
+    defaults: { _controller: SGIBundle:Default:financial}
+    
+chat:
+    path:     /chat
+    defaults: { _controller: SGIBundle:Default:chat}
+
+grafic:
+    path:     /grafic
+    defaults: { _controller: SGIBundle:Default:grafic}    
