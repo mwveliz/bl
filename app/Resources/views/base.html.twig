@@ -220,40 +220,34 @@
                             </form>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item  active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                        <li class="nav-item bl_index menu_primer_nivel 
+                                  altinv_index typealtinv_index altinv_new 
+                                  comtrad_index typecomtrad_index comtrad_new
+                                  constru_index typeconstru_index constru_new
+                                  rental_index typerental_index rental_new">
+                            <a href="{{ path('bl_index')}}" id="bl_index" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">BL Division</span>
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                        <li class="nav-item start ">
-                                            <a href="{{ path('bl_index')}}" class="nav-link ">
-                                                <span class="title">Overview</span>
-
-                                            </a>
-                                        </li>
+                                        
                                 <!----- ALTERNATIVE INVESTMENTS SUB MENU----->
-                                <li class="nav-item ">
-                                    <a href="{{ path('altinv_index')}}" class="nav-toggle nav-link">
+                                <li class="nav-item altinv_index typealtinv_index altinv_new" >
+                                    <a href="{{ path('altinv_index')}}" id="altinv_index" class="nav-toggle nav-link">
                                         <i class="icon-graph"></i>
                                         <span class="title">Alternative Investments</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
-                                        <li class="nav-item start ">
-                                            <a href="{{ path('altinv_index')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-
-                                            </a>
-                                        </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ path('typealtinv_index')}}" class="nav-link ">
+                                       
+                                        <li class="nav-item">
+                                            <a href="{{ path('typealtinv_index')}}"  class="nav-link ">
                                                 <span class="title">Opportunities</span>
                                             </a>
                                         </li>
                                         
-                                        <li class="nav-item ">
+                                        <li class="nav-item " id="">
                                             <a href="{{ path('altinv_new')}}" class="nav-link ">
                                                 <span class="title">Add New Account</span>
                                             </a>
@@ -263,19 +257,13 @@
                                 <!----- END ALTERNATIVE INVESTMENTS SUB MENU----->
 
                                 <!----- COMMODITIES TRADING SUB MENU----->
-                                <li class="nav-item ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                <li class="nav-item comtrad_index typecomtrad_index comtrad_new">
+                                    <a href="{{ path('comtrad_index')}}" id="comtrad_index" class="nav-link nav-toggle">
                                         <i class="icon-graph"></i>
                                         <span class="title">Commodities Trading</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
-                                        <li class="nav-item start ">
-                                            <a href="{{ path('comtrad_index')}}" class="nav-link ">
-                                                   <span class="title">Account</span>
-
-                                            </a>
-                                        </li>
                                         <li class="nav-item ">
                                             <a href="{{ path('typecomtrad_index')}}" class="nav-link ">
                                                 <span class="title">Opportunities</span>
@@ -294,19 +282,14 @@
                                 <!----- END CONSTRU SUB MENU----->
 
                                 <!----- CONSTRU SUB MENU----->
-                                <li class="nav-item ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                <li class="nav-item nav-item constru_index typeconstru_index constru_new">
+                                    <a href="{{ path('constru_index')}}" id="constru_index" class="nav-link nav-toggle">
                                         <i class="icon-graph"></i>
                                         <span class="title">Construction</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
-                                        <li class="nav-item start ">
-                                            <a href="{{ path('constru_index')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-
-                                            </a>
-                                        </li>
+                                        
                                          <li class="nav-item start ">
                                             <a href="{{ path('typeconstru_index')}}" class="nav-link ">
                                                 <span class="title">Opportunities</span>
@@ -327,19 +310,14 @@
 
 
                                 <!----- RENTAL SUB MENU----->
-                                <li class="nav-item ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                <li class="nav-item rental_index typerental_index rental_new">
+                                    <a href="{{ path('rental_index')}}" id="rental_index" class="nav-link nav-toggle">
                                         <i class="icon-graph"></i>
                                         <span class="title">Rental</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
-                                        <li class="nav-item start ">
-                                            <a href="{{ path('rental_index')}}" class="nav-link ">
-                                                <span class="title">Accounts</span>
-
-                                            </a>
-                                        </li>
+                                        
                                         <li class="nav-item ">
                                             <a href="{{ path('typerental_index')}}" class="nav-link ">
                                                 <span class="title">Opportunities</span>
@@ -359,7 +337,7 @@
                             </ul>
                        
                          
-                         <li class="nav-item  ">
+                         <li class="nav-item client_index menu_primer_nivel">
                             <a href="{{ path('client_index')}}" class="nav-link ">
                                 <i class="icon-user"></i>
                                 <span class="title">Clients</span>
@@ -367,21 +345,21 @@
                             </a>
                         </li>   
                         
-                          <li class="nav-item  ">
+                          <li class="nav-item  menu_primer_nivel">
                             <a href="{{ path('calendar')}}" class="nav-link ">
                                 <i class="icon-calendar"></i>
                                 <span class="title">Calendar</span>
                                 <span class="arrow"></span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item todo_index menu_primer_nivel">
                             <a href="{{ path('todo_index')}}" class="nav-link ">
                                 <i class="icon-list"></i>
                                 <span class="title">Tasks</span>
                                 <span class="arrow"></span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  menu_primer_nivel">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-bar-chart"></i>
                                 <span class="title">Charts</span>
@@ -393,79 +371,45 @@
                                         <span class="title">amChart</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="charts_flotcharts.html" class="nav-link ">
-                                        <span class="title">Flot Charts</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="charts_flowchart.html" class="nav-link ">
-                                        <span class="title">Flow Charts</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="charts_google.html" class="nav-link ">
-                                        <span class="title">Google Charts</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="charts_echarts.html" class="nav-link ">
-                                        <span class="title">eCharts</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="charts_morris.html" class="nav-link ">
-                                        <span class="title">Morris Charts</span>
-                                    </a>
-                                </li>
+                               
                                 <li class="nav-item  ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <span class="title">HighCharts</span>
                                         <span class="arrow"></span>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item ">
-                                            <a href="charts_highcharts.html" class="nav-link "> HighCharts </a>
-                                        </li>
-                                        <li class="nav-item ">
-                                            <a href="charts_highstock.html" class="nav-link "> HighStock </a>
-                                        </li>
-                                        <li class="nav-item ">
-                                            <a href="charts_highmaps.html" class="nav-link "> HighMaps </a>
-                                        </li>
-                                    </ul>
+                              
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item menu_primer_nivel ">
                              <a href="{{ path('map')}}" class="nav-link ">
                                 <i class="icon-pointer"></i>
                                 <span class="title">Maps</span>
                                 <span class="arrow"></span>
                             </a>
-                         <li class="nav-item  ">
+                         <li class="nav-item  pipeline_index menu_primer_nivel">
                              <a href="{{ path('pipeline_index')}}" class="nav-link ">
                                 <i class="icon-notebook"></i>
                                 <span class="title">Workflow Pipeline</span>
                                 <span class="arrow"></span>
                             </a>    
                         </li>
-                        <li class="heading">
+                        <li class="heading" >
                             <h3 class="uppercase">Reports/Invoices</h3>
                         </li>
-                          <li class="nav-item  ">
+                          <li class="nav-item  menu_primer_nivel">
                                     <a href="layout_blank_page.html" class="nav-link ">
                                         <i class="icon-layers"></i>
                                         <span class="title">Report Generator</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
+                                <li class="nav-item  menu_primer_nivel">
                                     <a href="page_general_invoice.html" class="nav-link ">
                                         <i class="icon-envelope"></i>
                                         <span class="title">Invoice</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
+                                <li class="nav-item  menu_primer_nivel">
                                     <a href="page_general_invoice_2.html" class="nav-link ">
                                         <i class="icon-envelope"></i>
                                         <span class="title">Invoice 2</span>
@@ -477,7 +421,7 @@
                         </li>
                         
                        
-                        <li class="nav-item  ">
+                        <li class="nav-item  menu_primer_nivel">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">User</span>
@@ -533,7 +477,7 @@
                                 
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  menu_primer_nivel">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-social-dribbble"></i>
                                 <span class="title">General</span>
@@ -641,11 +585,11 @@
                         <ul class="page-breadcrumb">
                             {% block page_breadcrumb %}
                             <li>
-                                <a href="index.html">Home</a>
+                                <a href="{{path('bl_index')}}">Home</a>
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Dashboard</span>
+                                <span>{{app.request.get('controller')}}</span>
                             </li>
                             {% endblock %}
                         </ul>
@@ -757,7 +701,38 @@
             
             
         $( document ).ready(function() {
+            /*INTERACCIONES DEL SIDEBAR*/
+          // var path_actual="{#{app.request.getUri()}#}";
+          // var path_anterior="{#{app.request.headers.get('referer')}#}";
+         //  alert(path_anterior);
+           //$("li#altinv_index").toggleClass('active');
             
+        var ruta_actual="{{app.request.get('_route')}}";
+        
+        $('li.'+ruta_actual).toggleClass('active');
+        
+        $('a#bl_index').click(function(e){
+                   window.location.href="{{path('bl_index')}}"
+                   
+        });
+        $('a#altinv_index').click(function(e){
+                   window.location.href="{{path('altinv_index')}}"
+        });
+        $('a#constru_index').click(function(e){
+                   window.location.href="{{path('constru_index')}}"
+        });
+        $('a#comtrad_index').click(function(e){
+                   window.location.href="{{path('comtrad_index')}}"
+        });   
+        $('a#rental_index').click(function(e){
+                   window.location.href="{{path('rental_index')}}"
+        }); 
+        /*$('a#menu_primer_nivel').click(function(e){
+                    $('li.'+ruta_actual).toggleClass('active');
+        });*/ 
+        
+        
+           /*****FIN INTERACCIONES DEL SIDEBAR******/
                     $.ajax({
                         url: "{{ path('event_list') }}",
                         success: function(data){
