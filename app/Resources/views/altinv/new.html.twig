@@ -84,6 +84,8 @@
              $('#a_addclient').on('click',function(e) {
                  e.preventDefault();
                  $('#add').load("{{ path('client_new') }}");
+                 $(".currency").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+                 $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
              });   
 
          });

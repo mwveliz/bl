@@ -8,7 +8,7 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
-    <field name="value" type="string" column="value" length="1" nullable="true"/>
+    <field name="value" type="string" column="value" nullable="true"/>
     <many-to-one field="idField" target-entity="FieldsClient">
       <join-columns>
         <join-column name="id_field" referenced-column-name="id"/>

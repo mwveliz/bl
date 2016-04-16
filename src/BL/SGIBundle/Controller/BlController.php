@@ -33,8 +33,16 @@ class BlController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $bls = $em->getRepository('SGIBundle:Bl')->findAll();
-        $objects = $em->getRepository('SGIBundle:TypeAltinv')->findAll();
+        $bls = $em->getRepository('SGIBundle:Bl')
+                ->findBy(
+                    array(), 
+                    array('id' => 'DESC')
+                );
+        $objects = $em->getRepository('SGIBundle:TypeAltinv')
+                ->findBy(
+                    array(), 
+                    array('id' => 'DESC')
+                );
         return $this->render('bl/index.html.twig', array(
             'bls' => $bls,'objects' => $objects,
         ));
@@ -134,8 +142,8 @@ class BlController extends Controller
         
         switch ($form) {
             case 'Comtrad':
-                $nombre_apellido = $object->getIdClient()->getUserid()->getNombre().' ';
-                $nombre_apellido .= $object->getIdClient()->getUserid()->getApellido();
+                $nombre_apellido = $object->getIdClient()->getNombre().' ';
+                $nombre_apellido .= $object->getIdClient()->getApellido();
                 
                 $arreglo =  array('Id' => $object->getId(),
                     'Description' => $object->getDescription(),
@@ -346,8 +354,8 @@ class BlController extends Controller
         
         switch ($form_name) {
             case 'Altinv':
-                $nombre_apellido = $form->getIdClient()->getUserid()->getNombre().' ';
-                $nombre_apellido .= $form->getIdClient()->getUserid()->getApellido();
+                $nombre_apellido = $form->getIdClient()->getName().' ';
+                $nombre_apellido .= $form->getIdClient()->getLastName();
 
                 $arreglo =  array('Id' => $id,
                     'Description' => $form->getDescription(),
@@ -362,8 +370,8 @@ class BlController extends Controller
                     'Widget' => $form->getWiget(), 'Trackable' => $trackable);
                 break;  
             case 'Comtrad':
-                $nombre_apellido = $form->getIdClient()->getUserid()->getNombre().' ';
-                $nombre_apellido .= $form->getIdClient()->getUserid()->getApellido();
+                $nombre_apellido = $form->getIdClient()->getNombre().' ';
+                $nombre_apellido .= $form->getIdClient()->getApellido();
                 
                 $arreglo =  array('Id' => $id,
                     'Description' => $form->getDescription(),

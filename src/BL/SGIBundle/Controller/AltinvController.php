@@ -125,7 +125,7 @@ class AltinvController extends Controller
                     ));
                     break;
                 case 'Currency':
-                    $form->add('EF-'.$desc,'number', array(
+                    $form->add('EF-'.$desc,'text', array(
                         'mapped' => false,
                         'attr' => array('class' => 'form-control input-sm currency'),
                         'label' => $desc,
@@ -166,7 +166,7 @@ class AltinvController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($altinv);
             $em->flush();
-
+            
             // Procedo log
             /*
             $userManager = $this->container->get('fos_user.user_manager');
@@ -229,7 +229,14 @@ class AltinvController extends Controller
                 }
             }
 
-
+            // Inserto la Bl
+            $bl= new Bl();
+            $bl->setCodeBl($id);
+            $bl->setType('altinv');
+            $bl->setDescription($altinv->getDescription());
+            $em->persist($bl); 
+            $em->flush();  
+            
             // Procedo a insertar cada uno de mis tipo Archivo
             $arreglo_archivos = $_FILES;
             if (count($arreglo_archivos) > 0) {
@@ -296,9 +303,10 @@ class AltinvController extends Controller
             }
 
             $altinvs = $em->getRepository('SGIBundle:Altinv')->findAll();
-
+             $typeAltinvs = $em->getRepository('SGIBundle:TypeAltinv')->findAll();
+             
             return $this->render('altinv/index.html.twig', array(
-                'altinvs' => $altinvs,
+                'altinvs' => $altinvs, 'typeAltinvs' => $typeAltinvs,
             ));
 
 
@@ -336,9 +344,163 @@ class AltinvController extends Controller
     {
         $deleteForm = $this->createDeleteForm($altinv);
         $editForm = $this->createForm('BL\SGIBundle\Form\AltinvType', $altinv);
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SGIBundle:FieldsAltinv')
+                    ->findBy(
+                        array('trackable'=> false), 
+                        array('id' => 'ASC')    
+                     );
+        if (count($entities) > 0) {
+            foreach ($entities as $entity) {
+            
+                // Reemplazar los espacios en blanco
+                $desc = str_replace(" ","_",$entity->getDescription());            
+
+                $bl_altinv = $em->getRepository('SGIBundle:BlAltinv')
+                                ->findOneBy(
+                                    array('idField'=> $entity->getId(),'idAltinv' => $altinv->getId()) 
+                                 );       
+                        
+                
+                    switch ($entity->getWidget()) {
+
+                        case 'Calendar':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue();
+                                $date = new \DateTime($value);
+
+                                $editForm->add('EF-'.$desc, 'date', array(
+                                    'widget' => 'single_text',
+                                    'format' => 'dd-MM-yyyy',
+                                    'attr' => array(
+                                        'class' => 'form-control datepicker',
+                                        'data-provide' => 'datepicker',
+                                        'data-date-format' => 'dd-mm-yyyy'
+                                    ),
+                                    'mapped' => false,
+                                    'label' => $desc, 
+                                    'required' => false,
+                                    'data' => $date, 
+                                ));                                 
+                            } else {
+                                $editForm->add('EF-'.$desc, 'date', array(
+                                    'widget' => 'single_text',
+                                    'format' => 'dd-MM-yyyy',
+                                    'attr' => [
+                                        'class' => 'form-control datepicker',
+                                        'data-provide' => 'datepicker',
+                                        'data-date-format' => 'dd-mm-yyyy'
+                                    ],
+                                    'mapped' => false,
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));
+                            }                      
+                            break;
+                        case 'Characters':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue();
+                                $editForm->add('EF-'.$desc,'text', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                 $editForm->add('EF-'.$desc,'text', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+
+                            break;
+                        case 'Currency':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue();
+                                $editForm->add('EF-'.$desc,'text', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm currency'),
+                                    'label' => $desc,
+                                    'data' => $value,
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm currency'),
+                                    'label' => $desc,
+                                    'required' => false,
+                                ));                                
+                            }
+                            break;
+                        case 'File':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue(); 
+                                $editForm->add('EF-'.$desc,'file', array(
+                                    'mapped' => false,
+                                    'label' => $desc,
+                                    'data_class' => 'Symfony\Component\HttpFoundation\File\File',
+                                    'required' => false,
+                                ));                               
+                            } else {
+                                $editForm->add('EF-'.$desc,'file', array(
+                                    'mapped' => false,
+                                    'label' => $desc,
+                                    'required' => false,
+                                ));                                
+                            }
+                            break; 
+                        case 'Numeric':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue();
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm numeric'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'number', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm numeric'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+                            break;
+                        case 'TextArea':
+                            if (count($bl_altinv) > 0) {
+                                $value = $bl_altinv->getValue();
+                                $editForm->add('EF-'.$desc,'textarea', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'data' => $value, 
+                                    'required' => false,
+                                ));                                
+                            } else {
+                                $editForm->add('EF-'.$desc,'textarea', array(
+                                    'mapped' => false,
+                                    'attr' => array('class' => 'form-control input-sm'),
+                                    'label' => $desc, 
+                                    'required' => false,
+                                ));                                
+                            }
+
+                            break;                    
+                    }
+
+            }        
+        }
+        
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($altinv);
             $em->flush();
@@ -361,9 +523,164 @@ class AltinvController extends Controller
                             $altinv->getId());
             */
             
-            // fin proceso log             
+            // fin proceso log            
             
-            return $this->redirectToRoute('altinv_edit', array('id' => $altinv->getId()));
+            
+            // Edito la Bl
+            $bl = $em->getRepository('SGIBundle:Bl')
+                        ->findOneBy(array('codeBl' => $altinv->getId(),'type' => 'altinv'));
+            if (count($bl) > 0) {  
+                $description = $altinv->getDescription();
+                $bl->setDescription($description);
+                $em->persist($bl); 
+                $em->flush();     
+            }
+            
+            // Obtengo mi id y procedo a realizar los inserts en la tabla
+            // bl_altinv
+            $id = $altinv->getId();
+            
+            $arreglo = $_POST['altinv'];
+
+            // Obtengo unicamente los elementos extra 
+            foreach ($arreglo as $key => $value) {
+                if (strpos($key, 'EF-') !== 0) {
+                    unset($arreglo[$key]);
+                } 
+            }             
+            
+            // Procedo a buscar mi campo dentro de la tabla fields
+            foreach ($arreglo as $key => $value) {
+                $key2 = str_replace("_"," ",$key);
+                $key2 = str_replace("EF-","",$key2);
+                               
+                $field = $em->getRepository('SGIBundle:FieldsAltinv')
+                        ->findBy(array('description' => $key2));
+                                
+                $getid_field = $field[0]->getId();
+                
+                $bl_altinv = $em->getRepository('SGIBundle:BlAltinv')
+                           ->findOneBy(array('idAltinv'=> $id,'idField' => $getid_field));     
+                
+                // El objeto ya existe
+                if (count($bl_altinv) > 0) {     
+                    $em->remove($bl_altinv);
+                    $em->flush();                   
+                }           
+                
+                $bl_altinv = new BlAltinv();
+                
+                $id_altinv = $em->getReference
+                        ('BL\SGIBundle\Entity\Altinv', $id); 
+                
+
+                $id_field = $em->getReference
+                        ('BL\SGIBundle\Entity\FieldsAltinv', $getid_field); 
+                
+                if (trim($value) != '') {    
+                    $bl_altinv->setIdAltinv($id_altinv);
+                    $bl_altinv->setIdField($id_field);
+                    $bl_altinv->setValue($value);
+                    $em->persist($bl_altinv);
+                    $em->flush();       
+                }
+                
+            }            
+
+            
+            // Procedo a insertar cada uno de mis tipo Archivo
+            $arreglo_archivos = $_FILES;
+            if (count($arreglo_archivos) > 0) {
+                $n = count($arreglo_archivos['altinv']['name']);
+                
+                // Crear un directorio dentro de Web
+                if (!file_exists('photos')) {
+                    mkdir('photos', 0777, true);
+                }
+        
+                // Creo un directorio dentro que identifica a mi Controlador
+                $ruta_foto = 'photos/altinv/';
+                if (!file_exists($ruta_foto)) {
+                    mkdir($ruta_foto, 0777, true);
+                }        
+                
+                $arreglo_archivos_name = $arreglo_archivos['altinv']['name'];
+                
+
+                $i = 0;
+                foreach ($arreglo_archivos_name as $key => $value) {
+                
+                    $file_name = $arreglo_archivos['altinv']['name'][$key].' ';
+                    $time=  time().''.$i;
+                    if (trim($file_name) != '') {
+                    
+                        // Obtengo la extensión de la imagen y la concateno
+                        list($img,$type) = explode('/', $arreglo_archivos['altinv']['type'][$key]);
+                        $new_image_name =  $time.'.'.$type;        
+                        $destination = $ruta_foto.$new_image_name;
+
+                        // Realiza el movimiento de la foto
+                        move_uploaded_file($arreglo_archivos['altinv']['tmp_name'][$key], $destination);
+
+                        // Creo mi registro
+                        $key2 = str_replace("_"," ",$key);
+                        $key2 = str_replace("EF-","",$key2); 
+
+                        $field = $em->getRepository('SGIBundle:FieldsAltinv')
+                                ->findBy(array('description' => $key2));
+
+                        $getid_field = $field[0]->getId();
+
+                        
+                        $bl_altinv = $em->getRepository('SGIBundle:BlAltinv')
+                           ->findOneBy(array('idAltinv'=> $id,'idField' => $getid_field));                         
+                        $insert = false;
+                        // El objeto ya existe
+                        if (count($bl_altinv) > 0) {
+                            // Si no me llega data no borro el que tengo
+                            if (trim($value) != '') {
+                                // Si hay un registro nuevo con valor
+                                // se borra
+                                $ruta_foto_eliminar = $bl_altinv->getValue();
+                                $em->remove($bl_altinv);
+                                $em->flush();
+                                // Borro el archivo fisico
+                                unlink($ruta_foto_eliminar);
+                                // Creo mi objeto nuevo
+                                $bl_altinv = new BlAltinv();
+                                $insert = true;
+                            }
+                        } else {
+                            $insert = true;
+                        }
+                        
+                        // Procedo a insertar el archivo en caso de que 
+                        // las condiciones sean las deseadas
+                        if ($insert) {
+                            $bl_altinv = new BlAltinv();
+
+                            $id_altinv = $em->getReference
+                                    ('BL\SGIBundle\Entity\Altinv', $id);
+
+                            $id_field = $em->getReference
+                                ('BL\SGIBundle\Entity\FieldsAltinv', $getid_field); 
+
+                            if (trim($value) != '') {         
+		                $bl_altinv->setIdAltinv($id_altinv);
+		                $bl_altinv->setIdField($id_field);
+		                $bl_altinv->setValue($destination);
+		                $em->persist($bl_altinv);
+		                $em->flush();   
+                            }                            
+                        }
+
+                        $i++;
+                    
+                    }
+                }
+            }            
+            
+            return $this->redirectToRoute('altinv_index');
         }
 
         return $this->render('altinv/edit.html.twig', array(

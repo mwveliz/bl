@@ -24,13 +24,13 @@
 {% block javascripts_extra %}
      <script>
          $( document ).ready(function() {
-   
+             
              $('#btn_addclient').click(function(e) {
                  e.preventDefault();
                   
-                 $.post( "{{ path('ajax_client_create') }}", $('form[name="bl_sgibundle_usuario"]').serialize() )
+                 $.post( "{{ path('ajax_client_create') }}", $('form[name="client"]').serialize() )
                          .done(function( resp) {
-                             $('input[placeholder="Find Client"]').val($("#bl_sgibundle_usuario_nombre").val()+ ' '+ $("#bl_sgibundle_usuario_apellido").val());
+                             $('input[placeholder="Find Client"]').val($("#client_name").val()+ ' '+ $("#client_lastname").val());
                              $('input[placeholder="Find Client"]').next('[type=hidden]').val(resp);
                              $('div#add').empty();
                     });
@@ -47,6 +47,8 @@
                 wg=$("#fields_client_widget option:selected").val();
                  //Agregar el widget
                 if(desc.length>0){//si no es vacia la descripcion  
+                     $.post( "{{ path('ajax_fieldsclient_create') }}",{ description: desc, widget: wg})
+                         .done(function( resp) {
                 var string="<div><label for='client_EF-"+desc+"'>"+desc+"</label>";
 
                              switch(wg) {
@@ -72,12 +74,13 @@
                                  default:
                                  //default
                                  break;
-                             }
-                $('input#client__token').before(string);
-                $(".currency").maskMoney();
-                $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
-                $('input#fields_client_description').val('');
-                $('#fields_client_widget').val('Calendar').change();
+                            }//fin switch
+                           $('input#client__token').before(string);
+                           $(".currency").maskMoney();
+                           $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+                           $('input#fields_client_description').val('');
+                           $('#fields_client_widget').val('Calendar').change();
+                            });
             }else{
                   alert('Description cannot be empty');
             }

@@ -15,7 +15,7 @@ class BlClient
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=1, nullable=true)
+     * @ORM\Column(name="value", type="string", nullable=true)
      */
     private $value;
 

@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,7 +33,26 @@ class FieldsClientController extends Controller
             'fieldsClients' => $fieldsClients,
         ));
     }
+/**
+     * Create Client Fields entities via ajax.
+     *
+     * @Route("/add", name="ajax_fieldsclient_create")
+     * @Method("POST")
+     */
+    public function ajaxCreateFieldsClient(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $object= new FieldsClient();
+        $object->setDescription( $request->get('description') );
+        $object->setWidget($request->get('widget') );
+        $object->setVisible(true);
+        $em->persist($object);
+        $em->flush();
 
+        return new JsonResponse($object->getId());
+    }
+    
+    
     /**
      * Creates a new FieldsClient entity.
      *

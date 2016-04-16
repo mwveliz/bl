@@ -4,12 +4,14 @@ namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Client;
 use BL\SGIBundle\Form\ClientType;
-
+use BL\SGIBundle\Entity\BlClient;
 /**
  * Client controller.
  *
@@ -50,7 +52,7 @@ class ClientController extends Controller
         foreach($clients  as $client){
             $indice=(string) $client->getId();
             $objeto['id']=(string) $client->getId();
-            $objeto['value']= $client->getUserid()->getNombre().' '. $client->getUserid()->getApellido();
+            $objeto['value']= $client->getName().' '. $client->getLastname();
             array_push($arreglo, $objeto);
         }
 
@@ -66,17 +68,130 @@ class ClientController extends Controller
     public function ajaxCreateClient(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $object= new Usuario();
-        $object->setPassword(123456);
-        $object->setEnabled(true);
-        $form = $this->createForm('BL\SGIBundle\Form\UsuarioType', $object);
-        $form->bind($request);
-        if ($form->isValid()){
-            $em->persist($object);
-            $em->flush();
-        }
+        $client= new Client();
+        $client->setName($_POST['client']['name']);
+        $client->setLastname($_POST['client']['lastname']);
+        $client->setTreatment($_POST['client']['treatment']);
+        $client->setAddress($_POST['client']['address']);
+        $client->setContact($_POST['client']['contact']);
+        $client->setEmailOne($_POST['client']['emailOne']);
+        $client->setEmailTwo($_POST['client']['emailTwo']);
+        $client->setLegalId($_POST['client']['legalId']);
+        //$client->setPicture($_POST['client']['picture]');
+        //$client->setLogo($_POST['client']['logo]');
         
-        return new Response($object->getId());
+        
+        $em->persist($client);
+        $em->flush();
+        
+
+        $id_client=$client->getId();
+        
+        
+        $arreglo = $_POST['client'];
+        // Obtengo unicamente los elementos extra
+            foreach ($arreglo as $key => $value) {
+                if (strpos($key, 'EF-') !== 0) {
+                    unset($arreglo[$key]);
+                }
+            }
+            
+
+            // Procedo a buscar mi campo dentro de la tabla fields
+            foreach ($arreglo as $key => $value) {
+                $key2 = str_replace("_"," ",$key);
+                $key2 = str_replace("EF-","",$key2);
+
+                $field = $em->getRepository('SGIBundle:FieldsClient')
+                    ->findBy(array('description' => $key2));
+
+                $getid_field = $field[0]->getId();
+
+
+                $bl_client = new BlClient();
+
+                $id = $em->getReference
+                ('BL\SGIBundle\Entity\Client', $id_client);
+
+
+                $id_field = $em->getReference
+                ('BL\SGIBundle\Entity\FieldsClient', $getid_field);
+
+                if (trim($value) != '') {
+                    $bl_client->setIdClient($id);
+                    $bl_client->setIdField($id_field);
+                    $bl_client->setValue($value);
+                    $em->persist($bl_client);
+                    $em->flush();
+                }
+            }
+
+
+            // Procedo a insertar cada uno de mis tipo Archivo
+            $arreglo_archivos = $_FILES;
+            if (count($arreglo_archivos) > 0) {
+                $n = count($arreglo_archivos['client']['name']);
+
+                // Crear un directorio dentro de Web
+                if (!file_exists('photos')) {
+                    mkdir('photos', 0777, true);
+                }
+
+                // Creo un directorio dentro que identifica a mi Controlador
+                $ruta_foto = 'photos/client/';
+                if (!file_exists($ruta_foto)) {
+                    mkdir($ruta_foto, 0777, true);
+                }
+
+                $arreglo_archivos_name = $arreglo_archivos['client']['name'];
+
+
+                $i = 0;
+                foreach ($arreglo_archivos_name as $key => $value) {
+
+                    $file_name = $arreglo_archivos['client']['name'][$key].' ';
+                    $time=  time().''.$i;
+                    if (trim($file_name) != '') {
+
+                        // Obtengo la extensión de la imagen y la concateno
+                        list($img,$type) = explode('/', $arreglo_archivos['client']['type'][$key]);
+                        $new_image_name =  $time.'.'.$type;
+                        $destination = $ruta_foto.$new_image_name;
+
+                        // Realiza el movimiento de la foto
+                        move_uploaded_file($arreglo_archivos['client']['tmp_name'][$key], $destination);
+
+                        // Creo mi registro
+                        $key2 = str_replace("_"," ",$key);
+                        $key2 = str_replace("EF-","",$key2);
+
+                        $field = $em->getRepository('SGIBundle:FieldsClient')
+                            ->findBy(array('description' => $key2));
+
+                        $getid_field = $field[0]->getId();
+
+                        $bl_client = new BlClient();
+
+                        $id = $em->getReference
+                        ('BL\SGIBundle\Entity\Client', $id_client);
+
+
+                        $id_field = $em->getReference
+                        ('BL\SGIBundle\Entity\FieldsClient', $getid_field);
+
+
+                        $bl_client->setIdClient($id);
+                        $bl_client->setIdField($id_field);
+                        $bl_client->setValue($destination);
+                        $em->persist($bl_client);
+                        $em->flush();
+
+                        $i++;
+
+                    }
+                }
+            }
+        return new Response($id_client);
         
     }
 
@@ -88,13 +203,88 @@ class ClientController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $client= new Client();
         $ruta='client/new.html.twig';
         $client = new Client();
         $fieldsclient =new \BL\SGIBundle\Entity\FieldsClient;
         $form = $this->createForm('BL\SGIBundle\Form\ClientType', $client);
         $fieldsform = $this->createForm('BL\SGIBundle\Form\FieldsClientType', $fieldsclient);
+        
+        $entities = $em->getRepository('SGIBundle:FieldsClient')
+            ->findBy(
+                array('visible'=> true),
+                array('id' => 'ASC')
+            );
+        foreach ($entities as $entity) {
+            // Reemplazar los espacios en blanco
+            $desc = str_replace(" ","_",$entity->getDescription());
+            switch ($entity->getWidget()) {
+                case 'Calendar':
+                    $form->add('EF-'.$desc, 'date', array(
+                        'widget' => 'single_text',
+                        'format' => 'dd-MM-yyyy',
+                        'attr' => array(
+                            'class' => 'form-control datepicker',
+                            'data-provide' => 'datepicker',
+                            'data-date-format' => 'dd-mm-yyyy'
+                        ),
+                        'mapped' => false,
+                        'required' => false,
+                        'label' => $desc,
+                    ));
+                    break;
+                case 'Characters':
+                    $form->add('EF-'.$desc,'text', array(
+                        'mapped' => false,
+                        'attr' => array('class' => 'form-control input-sm'),
+                        'label' => $desc,
+                        'required' => false,
+                    ));
+                    break;
+                case 'Currency':
+                    $form->add('EF-'.$desc,'number', array(
+                        'mapped' => false,
+                        'attr' => array('class' => 'form-control input-sm currency'),
+                        'label' => $desc,
+                        'required' => false,
+                    ));
+                    break;
+                case 'File':
+                    $form->add('EF-'.$desc,'file', array(
+                        'mapped' => false,
+                        'label' => $desc,
+                        'required' => false,
+                    ));
+                    break;
+                case 'Numeric':
+                    $form->add('EF-'.$desc,'number', array(
+                        'mapped' => false,
+                        'attr' => array('class' => 'form-control input-sm numeric'),
+                        'label' => $desc,
+                        'required' => false,
+                    ));
+                    break;
+                case 'TextArea':
+                    $form->add('EF-'.$desc,'textarea', array(
+                        'mapped' => false,
+                        'attr' => array('class' => 'form-control input-sm'),
+                        'label' => $desc,
+                        'required' => false,
+                    ));
+                    break;
+            }
+        }//fin foreach entities extrafields
+        
+
+        
+        
+        
         $form->handleRequest($request);
 
+        
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);

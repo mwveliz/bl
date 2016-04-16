@@ -157,7 +157,7 @@ class ComtradController extends Controller
                         ));
                         break;
                     case 'Currency':
-                        $form->add('EF-'.$desc,'number', array(
+                        $form->add('EF-'.$desc,'text', array(
                             'mapped' => false,
                             'attr' => array('class' => 'form-control input-sm currency'),
                             'label' => $desc, 
@@ -335,9 +335,10 @@ class ComtradController extends Controller
             }
            
             $comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();
-
+            $typeComtrads= $em->getRepository('SGIBundle:TypeComtrad')->findAll();
+            
             return $this->render('comtrad/index.html.twig', array(
-                'comtrads' => $comtrads,
+                'comtrads' => $comtrads, 'typeComtrads' => $typeComtrads,
             ));
               
         
@@ -489,7 +490,7 @@ class ComtradController extends Controller
                         case 'Currency':
                             if (count($bl_comtrad) > 0) {
                                 $value = $bl_comtrad->getValue();
-                                $editForm->add('EF-'.$desc,'number', array(
+                                $editForm->add('EF-'.$desc,'text', array(
                                     'mapped' => false,
                                     'attr' => array('class' => 'form-control input-sm currency'),
                                     'label' => $desc,
