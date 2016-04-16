@@ -1,3 +1,11 @@
+sgi_client:
+    resource: "@SGIBundle/Controller/ClientController.php"
+    type:     annotation
+
+sgi_bl_seller:
+    resource: "@SGIBundle/Controller/BlSellerController.php"
+    type:     annotation
+
 sgi_pipeline_node:
     resource: "@SGIBundle/Controller/PipelineNodeController.php"
     type:     annotation

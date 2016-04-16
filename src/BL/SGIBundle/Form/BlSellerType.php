@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PipelineNodeType extends AbstractType
+class BlSellerType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,12 @@ class PipelineNodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('dateNode', 'date')
-            ->add('status')
-            ->add('percentageCompletion')
-            ->add('idPipeline')
+            ->add('dateStart', 'date')
+            ->add('dateEnd', 'date')
+            ->add('active')
+            ->add('percentage')
+            ->add('idBl')
+            ->add('idUsuario')
         ;
     }
     
@@ -29,7 +30,7 @@ class PipelineNodeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BL\SGIBundle\Entity\PipelineNode'
+            'data_class' => 'BL\SGIBundle\Entity\BlSeller'
         ));
     }
 }

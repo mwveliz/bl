@@ -9,14 +9,14 @@
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="value" type="string" column="value" nullable="true"/>
-    <many-to-one field="idAltinv" target-entity="Altinv">
-      <join-columns>
-        <join-column name="id_altinv" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idField" target-entity="FieldsAltinv">
       <join-columns>
         <join-column name="id_field" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAltinv" target-entity="Altinv">
+      <join-columns>
+        <join-column name="id_altinv" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

@@ -10,14 +10,14 @@
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
     <field name="value" type="float" column="value" precision="10" scale="0" nullable="true"/>
-    <many-to-one field="idClient" target-entity="Client">
-      <join-columns>
-        <join-column name="id_client" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="idBilling" target-entity="Billing">
       <join-columns>
         <join-column name="id_billing" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idClient" target-entity="Client">
+      <join-columns>
+        <join-column name="id_client" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

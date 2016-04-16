@@ -9,11 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\Client;
 use BL\SGIBundle\Form\ClientType;
-use BL\SGIBundle\Entity\Usuario;
-use BL\SGIBundle\Form\UsuarioType;
-
-
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Client controller.
@@ -38,8 +33,7 @@ class ClientController extends Controller
             'clients' => $clients,
         ));
     }
-
-    /**
+  /**
      * Lists all Client entities.
      *
      * @Route("/", name="client_index_ajax")
@@ -86,7 +80,6 @@ class ClientController extends Controller
         
     }
 
-
     /**
      * Creates a new Client entity.
      *
@@ -96,16 +89,10 @@ class ClientController extends Controller
     public function newAction(Request $request)
     {
         $ruta='client/new.html.twig';
-        $client = new Usuario();
-        $form = $this->createForm('BL\SGIBundle\Form\UsuarioType', $client);
-        // $form ->setAction($this->generateUrl('client/ajax_create'))
-       // $client = new Client();
-       //$form = $this->createForm('BL\SGIBundle\Form\ClientType', $client);
-       $form->remove('plainPassword');
-       $form->remove('enabled');
-       
-       
-       
+        $client = new Client();
+        $fieldsclient =new \BL\SGIBundle\Entity\FieldsClient;
+        $form = $this->createForm('BL\SGIBundle\Form\ClientType', $client);
+        $fieldsform = $this->createForm('BL\SGIBundle\Form\FieldsClientType', $fieldsclient);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -113,28 +100,18 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_index');
+              return $this->redirectToRoute('client_index');
         }
+         if ($request->isXmlHttpRequest()) $ruta='client/ajax_new.html.twig';
 
-        
-        
-          if ($request->isXmlHttpRequest()) $ruta='client/ajax_new.html.twig';
-
-          
-          
+         
+         
         return $this->render($ruta, array(
             'client' => $client,
             'form' => $form->createView(),
+            'fieldsform' => $fieldsform->createView(),
         ));
     }
-   
-
-
-
-
-
-
-
 
     /**
      * Finds and displays a Client entity.
@@ -214,28 +191,4 @@ class ClientController extends Controller
             ->getForm()
         ;
     }
-    
-    /**
-     * Lists all User entities.
-     *
-     * @Route("/", name="user_index_ajax")
-     * @Method("POST")
-     */
-    public function ajaxuserindexAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('SGIBundle:Client')->findBy(array('enabled' => true));
-        $objeto=array();
-        $arreglo=array();
-
-        foreach($users  as $user){
-            $indice=(string) $user->getId();
-            $objeto['id']=(string) $user->getId();
-            $objeto['value']= $user->getNombre().' '. $user->getApellido();
-            array_push($arreglo, $objeto);
-        }
-
-        return new JsonResponse($arreglo);
-    }    
 }

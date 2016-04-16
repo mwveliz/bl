@@ -6,6 +6,16 @@
     <table>
         <thead>
             <tr>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Treatment</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Emailone</th>
+                <th>Emailtwo</th>
+                <th>Legalid</th>
+                <th>Logo</th>
+                <th>Picture</th>
                 <th>Id</th>
                 <th>Actions</th>
             </tr>
@@ -13,7 +23,17 @@
         <tbody>
         {% for client in clients %}
             <tr>
-                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.name }}</a></td>
+                <td>{{ client.lastname }}</td>
+                <td>{{ client.treatment }}</td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.contact }}</td>
+                <td>{{ client.emailOne }}</td>
+                <td>{{ client.emailTwo }}</td>
+                <td>{{ client.legalId }}</td>
+                <td>{{ client.logo }}</td>
+                <td>{{ client.picture }}</td>
+                <td>{{ client.id }}</td>
                 <td>
                     <ul>
                         <li>

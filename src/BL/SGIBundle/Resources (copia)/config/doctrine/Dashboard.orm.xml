@@ -9,9 +9,9 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
-    <many-to-one field="idMenu" target-entity="Menu">
+    <many-to-one field="idPosition" target-entity="DashboardPosition">
       <join-columns>
-        <join-column name="id_menu" referenced-column-name="id"/>
+        <join-column name="id_position" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="idItem" target-entity="DashboardItem">
@@ -19,9 +19,9 @@
         <join-column name="id_item" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idPosition" target-entity="DashboardPosition">
+    <many-to-one field="idMenu" target-entity="Menu">
       <join-columns>
-        <join-column name="id_position" referenced-column-name="id"/>
+        <join-column name="id_menu" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

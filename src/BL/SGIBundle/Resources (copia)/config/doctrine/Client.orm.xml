@@ -7,6 +7,16 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
+    <field name="name" type="string" column="name" nullable="true"/>
+    <field name="lastname" type="string" column="lastname" nullable="true"/>
+    <field name="treatment" type="string" column="treatment" nullable="true"/>
+    <field name="address" type="text" column="address" nullable="true"/>
+    <field name="contact" type="string" column="contact" nullable="true"/>
+    <field name="emailOne" type="string" column="email_one" nullable="true"/>
+    <field name="emailTwo" type="string" column="email_two" nullable="true"/>
+    <field name="legalId" type="string" column="legal_id" nullable="true"/>
+    <field name="logo" type="string" column="logo" nullable="true"/>
+    <field name="picture" type="string" column="picture" nullable="true"/>
     <many-to-one field="userid" target-entity="Usuario">
       <join-columns>
         <join-column name="userid" referenced-column-name="id"/>

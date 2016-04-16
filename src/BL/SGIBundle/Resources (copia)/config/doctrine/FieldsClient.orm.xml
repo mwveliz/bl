@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="BL\SGIBundle\Entity\Pipeline" table="pipeline">
+  <entity name="BL\SGIBundle\Entity\FieldsClient" table="fields_client">
     <id name="id" type="bigint" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
     <field name="description" type="string" column="description" nullable="true"/>
-    <field name="idBl" type="bigint" column="id_bl" nullable="true"/>
-    <field name="node" type="json" column="node" nullable="true"/>
-    <field name="edge" type="json" column="edge" nullable="true"/>
-    <field name="port" type="json" column="port" nullable="true"/>
+    <field name="widget" type="string" column="widget" nullable="true"/>
     <field name="visible" type="boolean" column="visible" nullable="true"/>
   </entity>
 </doctrine-mapping>

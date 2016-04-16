@@ -7,14 +7,24 @@
                     <button type="button" class="btn default"  id="client_clear">Clear</button>
 
                     <button type="submit" id="btn_addclient" class="btn blue">Submit</button>
-    {{ form_end(form) }}
-
+    
+                    
+   {{ form_end(form) }}
+    
+    <br>
+    <br>
+     {{ form_widget(fieldsform) }}
+        {{ form_widget(fieldsform) }}
+        
+        <br>
+                    <button type="submit" id="btn_addfieldsclient" class="btn btn_success">Add Another Client Field</button>
+     {{ form_end(fieldsform) }}               
 
 {% endblock %}
 {% block javascripts_extra %}
      <script>
          $( document ).ready(function() {
-             
+   
              $('#btn_addclient').click(function(e) {
                  e.preventDefault();
                   
@@ -27,14 +37,55 @@
              });
 
              $('#client_clear').click(function() {
-                 $('form#bl_sgibundle_usuario').trigger("reset");
+                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
                  $('span').removeClass("checked");
              });
-             
+             /***click en agregar campo de cliente*///
+              $('#btn_addfieldsclient').click(function(e) {
+                e.preventDefault();
+                desc=$("#fields_client_description").val();
+                wg=$("#fields_client_widget option:selected").val();
+                 //Agregar el widget
+                if(desc.length>0){//si no es vacia la descripcion  
+                var string="<div><label for='client_EF-"+desc+"'>"+desc+"</label>";
 
+                             switch(wg) {
+                                 case 'Calendar':
+                                     string+= "<input id='client_EF-"+desc+"' type='text' name='client[EF-"+desc+"]' class='form-control datepicker' data-provide='datepicker' data-date-format='dd-mm-yyyy'></div>"
+                                     break;
+                                 case 'Characters':
+                                     string+= "<input id='client_EF-"+desc+"' type='text' name='client[EF-"+desc+"]' class='form-control input-sm'></div>";
+                                     break;
+                                 case 'Currency':
+                                     string+= "<input type='text' id='client_EF-"+desc+"' name='client[EF-"+desc+"]' class='form-control input-sm currency'></div>";
+
+                                     break;
+                                 case 'File':
+                                     string+= "<input type='file' id='client_EF-"+desc+"' name='client[EF-"+desc+"]'></div>";
+                                     break;
+                                 case 'Numeric':
+                                     string+= "<input type='text' id='client_EF-"+desc+"' name='client[EF-"+desc+"]' class='form-control input-sm numeric'></div>";
+                                     break;
+                                case 'TextArea':
+                                    string+= "<textarea id='client_EF-"+desc+"' name='client[EF-"+desc+"]' class='form-control input-sm'></textarea></div>";
+                                     break;
+                                 default:
+                                 //default
+                                 break;
+                             }
+                $('input#client__token').before(string);
+                $(".currency").maskMoney();
+                $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+                $('input#fields_client_description').val('');
+                $('#fields_client_widget').val('Calendar').change();
+            }else{
+                  alert('Description cannot be empty');
+            }
+             });
              
 
 
          });
      </script>
  {% endblock %}
+

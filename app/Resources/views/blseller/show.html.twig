@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BlSeller</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Datestart</th>
+                <td>{% if blSeller.dateStart %}{{ blSeller.dateStart|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateend</th>
+                <td>{% if blSeller.dateEnd %}{{ blSeller.dateEnd|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if blSeller.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Percentage</th>
+                <td>{{ blSeller.percentage }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ blSeller.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blseller_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('blseller_edit', { 'id': blSeller.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

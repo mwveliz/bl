@@ -101,8 +101,6 @@ class AltinvController extends Controller
 
             // Reemplazar los espacios en blanco
             $desc = str_replace(" ","_",$entity->getDescription());
-
-
             switch ($entity->getWidget()) {
                 case 'Calendar':
                     $form->add('EF-'.$desc, 'date', array(

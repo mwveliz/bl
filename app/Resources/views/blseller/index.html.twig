@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BlSeller list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Datestart</th>
+                <th>Dateend</th>
+                <th>Active</th>
+                <th>Percentage</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blSeller in blSellers %}
+            <tr>
+                <td><a href="{{ path('blseller_show', { 'id': blSeller.id }) }}">{{ blSeller.dateStart }}</a></td>
+                <td>{% if blSeller.dateEnd %}{{ blSeller.dateEnd|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if blSeller.active %}Yes{% else %}No{% endif %}</td>
+                <td>{{ blSeller.percentage }}</td>
+                <td>{{ blSeller.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blseller_show', { 'id': blSeller.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blseller_edit', { 'id': blSeller.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blseller_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
