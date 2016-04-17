@@ -2,7 +2,7 @@
 
 {% block stylesheets_extra %} 
 <style>
-#table1 tr:first-child td td:first{
+#table1 tr:first-child td {
     background-color: #DDD;
     font-size: 14px;
     font-weight: 400;
@@ -20,31 +20,8 @@
 
     <div class="row">
     <div id="table1" class="table-responsive col-lg-9">
-        <form id="calx_form">
-            <table class="table table-striped table-bordered table-hover">
-             <thead>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td style="width: 3%">@</td>
-                                        <td class="chead">A</td>
-                                        <td class="chead">B</td>
-                                        <td class="chead">C</td>
-                                        <td class="chead">D</td>
-                                        <td class="chead">E</td>
-                                        <td class="chead">F</td>
-                                        <td class="chead">G</td>
-                                        <td class="chead">H</td>
-                                        <td class="chead">I</td>
-                                        <td class="chead">J</td>
-                                        <td class="chead">K</td>
-                                        <td class="chead">L</td>
-                                        <td class="chead">M</td>
-                                    </tr>
-            </thead>
-            
-            
-        </table>
-     </form>       
+        <table class="table table-striped table-bordered table-hover"></table>
+
     </div>
 
     <div class="col-lg-3">
@@ -80,10 +57,7 @@
 {%endblock%}
 
 {% block javascripts_extra %} 
-    
     <script>
-        
-         
     
     function formula(matriz){
           return x
@@ -179,8 +153,9 @@
         }//fin totales
        
         
+       
         
-        var objects='{{ objects}}'; // viene del controlador
+    var objects='{{ objects}}'; // viene del controlador
 
         jsonStr = objects.replace(/&quot;/g, '"'); //arreglar comillas dobles
         var obj = JSON.parse(jsonStr); //convertir a jsonArray
@@ -189,32 +164,34 @@
                 obj.splice(i,1); 
         }
 */
-        var months =['','Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic'];
-        var fila='<tr><td></td>';
-        for (var j = 0; j < 13; j++) { //cols
-            fila+='<td>'+months[j]+'</td>';
-        }
-        fila+='<td>Total</td></tr>';
-        $('.table').append(fila);
-        fila='';
+        var months =['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic', 'Total'];
 
-        //ahroa elcontenido
-        
-        for (var i = 1; i < obj.length; i++) { //rows
-            fila+='<tr></td><td>'+i+'</td><td>'+obj[i-1].description+'';
-            //+'&nbsp;&nbsp;&nbsp;&nbsp';
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+             if (j==0)row.insertCell(-1).outerHTML = '&nbsp; ';
+             row.insertCell(-1).innerHTML =  letter;
+        }
+
+        var row = document.querySelector("table").insertRow(-1);
+        for (var j = 0; j <= 13; j++) { //cols
+            if(j==0) row.insertCell(-1).outerHTML = '&nbsp; ';
+            row.insertCell(j).innerHTML =  j>0 ? months[j - 1] :"1" ;
+        }
+
+        for (var i = 0; i <= obj.length+1; i++) { //rows
+            var row = document.querySelector("table").insertRow(-1);
+            if(i>1) row.insertCell(-1).outerHTML = obj[i-2].description+'&nbsp;&nbsp;&nbsp;&nbsp';
+
+            for (var j = 0; j <= 13; j++) { //cols
+                var letter = String.fromCharCode("A".charCodeAt(0) + j - 1);
+                if (i>1) row.insertCell(-1).innerHTML = i && j? "<input param='"+ obj[i-2].id+"' id='" + letter + i + "'/>" : i || letter;
+            }
             
-                    for (var j = 0; j < 12; j++) { //cols
-                        var letter = String.fromCharCode("A".charCodeAt(0) +j);
-                         fila+= '<td><input id='+obj[i].id +" data-cell="+letter + i+ ' data-format="$ 0,0[.]00"></td>' ;
-                    }
-            fila+='<td><input data-cell="+M' + i+'"  data-formula="SUM(A'+i+':L'+i+')" data-format="$ 0,0[.]00"></td></tr>';
-             $('.table').append(fila);
-             fila='';
-
+            
         }
         
-       /*var k=0;
+       var k=0;
        var total_label=Array();
        total_label[0]= 'Total Income';
        total_label[1]= 'Total Outcome';
@@ -230,49 +207,63 @@
             }
             
             
-        }*/
+        }
         //agregando SubTotal outcome
         //agregando SubTotal income
         //agregando Total income-outcome
-        /**cuando cambia una celda guardo en BD***/
-        //  $.post( "{#{ path('ajax_trackaltinv_create') }#}",{
-                                                    //mes:elm.id.charCodeAt(0)-64, 
-                                                    //valor:elm.value, 
-                                                    //id_altinv: {#{app.request.attributes.get('id')}#}, 
-                                                    //id_fieldsaltinv:$("input#"+elm.id).attr('param') 
-           // });
-            /*****/
+        
+        quitar_moneda();
 
+        var DATA = {}, INPUTS = [].slice.call(document.querySelectorAll(".table input"));
+        INPUTS.forEach(function (elm) {
+            elm.onfocus = function (e) {
+                e.target.value = localStorage[e.target.id] || "";
+            };
+            elm.onblur = function (e) {
+                localStorage[e.target.id] = e.target.value;
+                computeAll(e.target.id);
+            };
+            var getter = function () {
+                var value = localStorage[elm.id] || "";
+                
+                if (value.charAt(0) == "=") {
+                    with (DATA)
+                                 
+                        return eval(value.substring(1));
+                        
+                } else {
+                    return isNaN(parseFloat(value)) ? value : parseFloat(value) ;
+                }
+            };
+            Object.defineProperty(DATA, elm.id, {get: getter});
+            Object.defineProperty(DATA, elm.id.toLowerCase(), {get: getter});
+        });
+         
+        (window.computeAll = function (clicked) {
+            
+            INPUTS.forEach(function (elm) {
+                
+                try {
+                    elm.value = DATA[elm.id];
+                    if(clicked==elm.id)   $.post( "{{ path('ajax_trackaltinv_create') }}",{
+                                                    mes:elm.id.charCodeAt(0)-64, 
+                                                    valor:elm.value, 
+                                                    id_altinv: {{app.request.attributes.get('id')}}, 
+                                                    id_fieldsaltinv:$("input#"+elm.id).attr('param') 
+                                            });
+                } catch (e) {
+                }
+            });
+        })();
         //poner_moneda();
         
  $( document ).ready(function() {
-      $("td input").css("text-align","right");
-      $("td input").css("border","none");
-               
-      $('form#calx_form').calx({
-                onBeforeCalculate : function(){
-                   
-                },
-                onAfterRender : function(){
-                    
-                },
-            
-            });
-       
+   
      
         totales();
-    $('td input').focusout(function(){
-        var casilla=$(this).val();
-        if(casilla.charAt(0)=='='){//es formula
-            var formula=casilla.substr(1,casilla.length);
-            alert(formula);
-            $(this).attr('data-formula',formula);
-            $(this).calx('update');
-            
-        }
+         //$(".table tr td input").maskMoney({prefix:'$ ', allowNegative: true, thousands:',', decimal:'.', affixesStay: false})
         
-    })
-    
+        
         $('#btn_addfield').click(function(e) {
                  e.preventDefault();
                 desc=$("#fields_altinv_description").val();
