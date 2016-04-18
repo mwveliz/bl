@@ -25,7 +25,7 @@ STOCK id="chart_12"
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div id="chart_1" class="chart" style="height: 400px;"> </div>
+                                            <div id="chart_99" class="chart" style="height: 400px;"> </div>
                                         </div>
                                     </div>
                         </div>    
@@ -114,3 +114,101 @@ STOCK id="chart_12"
                             </div>
                         </div-->
                     <!-- END : HIGHCHARTS -->
+
+
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/serial.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/pie.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/radar.js') }}" ></script>                    
+<script>
+//var ChartsAmcharts99 = function() {      
+    function initChartSample99(data) {
+        var chart = AmCharts.makeChart("chart_99", {
+            "type": "serial",
+            "theme": "light",
+            "pathToImages":  "amcharts/amcharts/images/",
+            "autoMargins": false,
+            "marginLeft": 30,
+            "marginRight": 8,
+            "marginTop": 10,
+            "marginBottom": 26,
+
+            "fontFamily": 'Open Sans',            
+            "color":    '#888',
+            
+            "dataProvider": data,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                "position": "left"
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "alphaField": "alpha",
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "dashLengthField": "dashLengthColumn",
+                "fillAlphas": 1,
+                "title": "Income",
+                "type": "column",
+                "valueField": "income"
+            }, {
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "bullet": "round",
+                "dashLengthField": "dashLengthLine",
+                "lineThickness": 3,
+                "bulletSize": 7,
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true,
+                "bulletBorderThickness": 3,
+                "fillAlphas": 0,
+                "lineAlpha": 1,
+                "title": "Expenses",
+                "valueField": "expenses"
+            }],
+            "categoryField": "year",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "tickLength": 0
+            }
+        });
+ 
+        //jQuery('#chart_99').closest('.portlet').find('.fullscreen').click(function() {
+          //  chart.invalidateSize();
+       // });  
+    
+    }   
+//     return {
+        //main function to initiate the module
+
+/*        init: function() {
+            initChartSample99();
+        }   
+  */        
+        
+   // };
+    
+ //}();   
+   // ChartsAmcharts99.init();
+  
+  
+  $(document).ready(function(){
+        $.ajax({
+                url: "{{path('grafico')}}",
+                data: "model=" + 'altinv' +
+                      "&track_field=" + 4,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (chartData) {
+                    //debugger;
+                    //initialize graph in successs
+                    data=JSON.stringify(chartData).replace(/&quot;/g, '"')
+                    initChartSample99(data)
+                },
+                error: function (xhr,status,error) {
+                    alert(status);
+                }
+            });
+  });
+  
+   </script>    

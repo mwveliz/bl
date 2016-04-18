@@ -6,6 +6,7 @@
         
         
         {% block stylesheets %}
+            <script src="{{ asset('/metronic/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/metronic/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -636,7 +637,7 @@
         <!-- END FOOTER -->
         {% block javascripts %}
          <!-- BEGIN CORE PLUGINS -->
-        <script src="{{ asset('/metronic/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
+        
         <script src="{{ asset('/metronic/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>         
         <script src="{{ asset('/metronic/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript" ></script>
         <script src="{{ asset('/metronic/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -683,10 +684,7 @@
         <!-- END CALENDAR-->
     <!-- MAPS and CHARTS-->
        <script src={{ asset('metronic/global/plugins/highcharts/js/highcharts.js') }} type="text/javascript"></script>
-        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>
-        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/serial.js') }}" ></script>
-        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/pie.js') }}" ></script>
-        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/radar.js') }}" ></script>
+        
         
         <script src={{ asset('metronic/global/plugins/highmaps/js/modules/data.js') }} type="text/javascript"></script>
         <script src={{ asset('metronic/global/plugins/highmaps/js/modules/map.js') }} type="text/javascript"></script>

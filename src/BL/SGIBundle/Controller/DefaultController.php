@@ -3,6 +3,17 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\ORM\Query;
+use Symfony\Component\Validator\Constraints\DateTime;
+use BL\SGIBundle\Entity\Bl;
+use BL\SGIBundle\Entity\Altinv;
+use BL\SGIBundle\Entity\TrackAltinv;
+
 
 class DefaultController extends Controller
 {
@@ -59,5 +70,28 @@ class DefaultController extends Controller
         return $this->render('SGIBundle:Default:map.html.twig');
     }
     
+    
+    public function ajax_graphAction(Request $request)
+    {
+         $em = $this->getDoctrine()->getManager();
+       
+        $model=$request->get('model');
+        $track_field=$request->get('track_field');
+        
+     
+        $fields=$em->getRepository('SGIBundle:TrackAltinv')
+                ->findBy(
+                    array('idFieldsTrackAltinv'=> $track_field),
+                    array('idFieldsTrackAltinv' => 'ASC')
+            );
+                
+                
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($fields, 'json');
+        
+        
+        return new Response($objects);
+        //return new JsonResponse(($object));
+    }
     
 }

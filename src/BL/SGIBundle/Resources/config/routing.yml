@@ -32,4 +32,8 @@ chat:
 
 grafic:
     path:     /grafic
-    defaults: { _controller: SGIBundle:Default:grafic}    
+    defaults: { _controller: SGIBundle:Default:grafic}
+
+grafico:
+    path:     /ajax_graph
+    defaults: { _controller: SGIBundle:Default:ajax_graph}        
