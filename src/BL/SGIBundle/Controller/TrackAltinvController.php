@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\TrackAltinv;
 use BL\SGIBundle\Form\TrackAltinvType;
 use BL\SGIBundle\Entity\FieldsAltinv;
+use BL\SGIBundle\Entity\FieldsTrackAltinv;
 use BL\SGIBundle\Entity\BlAltinv;
 
 use BL\SGIBundle\Form\FieldsAltinvType;
@@ -50,7 +51,7 @@ class TrackAltinvController extends Controller
         //primero creo elcampo en fields altinv trackable true
         $object= new FieldsAltinv();
         $object->setDescription( $request->get('description') );
-        $object->setWidget('Currency' );
+        $object->setWidget( $request->get('credordeb').','.$request->get('currency_symbol') ); //utilizo el symbol y su signo en el  widget
         $object->setTrackable(true);
         $em->persist($object);
         $em->flush();
@@ -78,28 +79,63 @@ class TrackAltinvController extends Controller
      */
     public function trackAction(Request $request)
     {
-        $idaltinv=$request->get('id');
-          $fieldsAltinv = new FieldsAltinv();
+     $i=0; 
+     $idaltinv=$request->get('id');
+     $fieldsAltinv = new FieldsAltinv();
      $form = $this->createForm('BL\SGIBundle\Form\FieldsAltinvType', $fieldsAltinv);
      $em = $this->getDoctrine()->getManager();
         $fields=$em->createQueryBuilder('f')
              ->add('select','f')
              ->add('from', 'SGIBundle:FieldsAltinv f')
-             
              ->Join('SGIBundle:BlAltinv', 'b')
              ->where('b.idField = f.id ')
             ->andWhere('f.trackable=true')
              ->andWhere('b.idAltinv=:id')
              ->setParameter('id', $idaltinv)
+             ->add('orderBy','f.id ASC')
              ->getQuery()
              ->getResult();
-    
+        
+        
+        
+        $filas=$em->getRepository('SGIBundle:BlAltinv')
+                ->findBy(
+                    array('idAltinv'=> $idaltinv),
+                    array('idField' => 'ASC')
+            );
+        
+        
+        ;
+        foreach($filas as $fila){//itero sobre cada campo financial trackable para tomnar sus vaores por mes
+            
+            $columnas=$em->getRepository('SGIBundle:TrackAltinv')
+                ->findBy(
+                    array('idFieldsTrackAltinv'=> $fila->getIdField()),
+                    array('idFieldsTrackAltinv' => 'ASC')
+            );
+           
+            if(count($columnas)>0){
+                $i++;//incremento la fila para la matriz si exsite para este id
+           
+                foreach($columnas as $col){
+                    $dateObj=$col->getDatetime(); 
+                    list($dia,$mes,$anio)=explode('-', $dateObj->format('Y-m-d H:i:s') );
+                    $mes=chr(trim($mes, "0")+64);
+                    $matriz[$mes.$i]=$col->getValue();
+                }
+            }//fin si el count de columnas>0
+            
+        }
+        
         $serializer = $this->container->get('serializer');
         $objects= $serializer->serialize($fields, 'json');
+        $cifras= $serializer->serialize($matriz, 'json');
        
       
         return $this->render('trackaltinv/track.html.twig', array(
             'objects' => $objects,
+            'cifras' => $cifras,
+            
             'form' =>$form->createView(),
         ));
     }
@@ -114,45 +150,47 @@ class TrackAltinvController extends Controller
     {
         
          $mes=$request->get('mes');
+         $id_fields_track_altinv= intval($request->get('id_fieldsaltinv'));
+         
         if($mes<10) $mes="0".$mes;
         //$fecha= 'd-'.$mes.'-y h:i:s';
+        $date=date('Y').'-'.$mes.'-01';
+        $time='00:00:00';
+        $datetime=$date.' '.$time;
         $fecha =  new \DateTime();
         $fecha->setDate(date('Y'),$mes, 01);
-        $fecha->setTime(0,0, 0);
+        $fecha->setTime(0,0,0);
+        
+        //$fecha_obj=new TrackAltinv();
+        //$fecha_obj->setDatetime($datetime);
+        
+        //$fecha = $fecha_obj->getDatetime();
+        //$fecha=date('Y').'-01-01 00:00:00';
         
         $value=$request->get('valor');
         $em = $this->getDoctrine()->getManager();
         $id_fieldsaltinv = $em->getReference('BL\SGIBundle\Entity\FieldsAltinv', $request->get('id_fieldsaltinv'));      
         $id_altinv = $em->getReference('BL\SGIBundle\Entity\Altinv', $request->get('id_altinv'));     
         
-        /*antes que nada buscar si ya esta el registro, si esya modificar*/
-        $object= $em->getRepository('SGIBundle:TrackAltinv')
-          ->findOneBy(array(
-            'idAltinv'=> $id_altinv, 
-            'idFieldsTrackAltinv' => $id_fieldsaltinv,
-            'datetime'=> $fecha,
-         
+        
+        /*antes que nada buscar si ya esta el registro, si esta modificar*/
+        $object=$em->getRepository('SGIBundle:TrackAltinv')
+              ->findOneBy(array(
+                    'idAltinv'=> $id_altinv, 
+                    'idFieldsTrackAltinv' => $id_fields_track_altinv,
+                    'datetime'=> $fecha,
            ));
         
-      
-        
         if(count($object)==0) $object= new TrackAltinv();
-       
-                
-     
-           
         $object->setIdAltinv($id_altinv ); //objeto de tipo altinv
         $object->setIdFieldsTrackAltinv($id_fieldsaltinv); //objeto de tipo fields altinv
         $object->setDatetime($fecha);
         $object->setValue($value);
-        
-        
+       
         $em->persist($object);
         $em->flush();
         
-        
         return new Response($object->getId());
-        
     }
 
     /**

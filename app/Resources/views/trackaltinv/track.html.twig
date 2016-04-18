@@ -2,16 +2,14 @@
 
 {% block stylesheets_extra %} 
 <style>
-#table1 tr:first-child td td:first{
+#table1 tr:first-child td{
     background-color: #DDD;
     font-size: 14px;
     font-weight: 400;
     color: #666;
-    
 }
-#table1 td input{
-    max-width: 100px;
-}
+
+
 </style>
 {% endblock %}
 
@@ -19,13 +17,13 @@
 {% block body %}
 
     <div class="row">
-    <div id="table1" class="table-responsive col-lg-9">
+    <div id="table1" class="table-responsive col-lg-10">
         <form id="calx_form">
             <table class="table table-striped table-bordered table-hover">
              <thead>
                                     <tr>
-                                        <td>&nbsp;</td>
-                                        <td style="width: 3%">@</td>
+                                        <td>@</td>
+                                        <td class="chead"></td>
                                         <td class="chead">A</td>
                                         <td class="chead">B</td>
                                         <td class="chead">C</td>
@@ -47,18 +45,54 @@
      </form>       
     </div>
 
-    <div class="col-lg-3">
+    <div class="col-lg-2">
        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-wrench" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> ToolBox</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                   <div>
+                       <label for="currency_symbol" class="">Currency Symbol</label>
+                    <select id="currency_symbol" class="form-control">
+                       <option value="$">$</option>
+                       <option value="Bs">Bs</option>
+                       <option value="£">£</option>
+                   </select>
+                   
+                   </div>
+                    <br>
+                   <div>
+                       <label for="coord" class="">Cell=</label><label id="coord"></label>
+                       <input type="text" id="cell" name="cell" required="required" class="form-control input-md">
+                   </div>
+                    <br>
+                    </div>
+                </div>
+       
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption font-red-sunglo">
                         <i class="fa fa-plus" style="color:#E26A6A;"></i>
-                        <span class="caption-subject bold uppercase"> New Register</span>
+                        <span class="caption-subject bold uppercase"> New Financial Field</span>
                     </div>
                 </div>
                 <div class="portlet-body form">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
+                    
+                    <div>
+                       <label for="currency_symbol" class="">Field Sign</label>
+                    <select id="credordeb" class="form-control">
+                       <option value="C">Creditor (+)</option>
+                       <option value="D">Debitor (-)</option>
+                   </select>
+                   
+                   </div>
+                    
                     <br>
                     <button type="button" class="btn default"  id="clear">Clear</button>
    
@@ -71,125 +105,30 @@
                 </div>
             </div>
             <!-- END SAMPLE FORM PORTLET-->
-        </div>
-      
+            
+            </div>
+            
+        <
+    
         <br><br>
 
-    </div>
-    <div>
 {%endblock%}
 
 {% block javascripts_extra %} 
     
     <script>
         
-         
-    
-    function formula(matriz){
-          return x
-    }
-    
-        //function que quita la mascara de moneda a una casilla solamente
-
-    function quitar_moneda_casilla(elemento){
-        elemento.val(elemento.val().replace('$', '' ));
-    }
-    
-    //function que quita la mascara de moneda
-    function quitar_moneda(){
-         $(".table tr td input").each(function(index){
-                $(this).val($(this).val().replace('$', '' ));
-            });
-        }
-    
-    //function que hace la mascara de moneda
-    function poner_moneda(){
-         $(".table tr td input").each(function(index){
-        quitar_moneda_casilla($(this));    
-        if( $(this).val().substr(0,1) != '=' ) {
-                $(this).val("$"+ $(this).val());
-            }else{
-                //quitar_moneda($(this));
-            }
-                
-        });
-        
-    }
-    
-    /*funcion que elabora matriz de totales*/
-    function totales(){
-                 var matriz = [];
-                 var lastrow=$(".table tr:last td:first").text()-2;
-                 for(i=2;i<lastrow;i++){
-                  for(j=0;j<12;j++){
-                      var casilla=String.fromCharCode(65+j)+i;
-                          matriz.push(localStorage.getItem(casilla));
-                       }
-                 }
-          console.log(matriz);
-          
-          //generando totales
-          
-          $(".table tr:last td").each(function(index){
-               var letra_col=String.fromCharCode(65+index);
-             //  var casilla_neg=letra_col+(lastrow);//la casilla de total negativo
-             //  var casilla_pos=letra_col+(lastrow+1);//la casilla de total positivo
-               var casilla_total=letra_col+(lastrow+2);//la casilla de total general
-               var sigma='=';
-               for(i=2;i<=lastrow;i++) sigma+="+"+letra_col+i;
-               localStorage.setItem(casilla_total,sigma);
-               $(this).trigger('click');
-        });
-               
-            //poner_moneda();
-         
-          
-          // agrego los simbnolos de dolar sNaN(parseFloat(value)) ? value : "$"+parseFloat(value) ;
-          
-          
-          
-          
-          //calcular las formulas desde el storage recursivamente
-        /*var filas=lastrow-2;
-           for(c=0;c<13;c++){//recorro las columnas y las sumo
-            var total_col=0;
-              for(f=0;f<filas;f++){
-                total_col+=parseFloat(matriz[c+f*12]);
-              }
-              var casilla=String.fromCharCode(65+c)+"6";
-              $("span#"+casilla).html('<strong>'+ parseFloat(total_col)+'</strong>');
-        }//fin recorro las col
-          */
-          
-        /*
-        $(".table tr").each(function(i) {
-            
-            var arrayOfThisRow = [];
-            var tableData = $(this).find('td');
-            tableData.each(function(j) { 
-            var casilla=String.fromCharCode(65+i)+j;
-            
-             arrayOfThisRow.push( localStorage.getItem(casilla) );
-            });
-              myTableArray.push(arrayOfThisRow);
-        });
-
-            console.log(myTableArray);
-*/       
-        }//fin totales
-       
-        
-        
         var objects='{{ objects}}'; // viene del controlador
+         var cifs='{{ cifras}}'; // viene del controlador
 
         jsonStr = objects.replace(/&quot;/g, '"'); //arreglar comillas dobles
+        jsonStr2 = cifs.replace(/&quot;/g, '"'); //arreglar comillas dobles
         var obj = JSON.parse(jsonStr); //convertir a jsonArray
+        var cifras = JSON.parse(jsonStr2); //convertir a jsonArray
         console.log(obj);
-    /*for (var i = 0; i <= obj.length; i++){
-                obj.splice(i,1); 
-        }
-*/
-        var months =['','Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic'];
+        console.log(cifras);
+        
+      var months =['','Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Ago','Sep', 'Oct', 'Nov','Dic'];
         var fila='<tr><td></td>';
         for (var j = 0; j < 13; j++) { //cols
             fila+='<td>'+months[j]+'</td>';
@@ -198,19 +137,20 @@
         $('.table').append(fila);
         fila='';
 
-        //ahroa elcontenido
-        
-        for (var i = 1; i < obj.length; i++) { //rows
-            fila+='<tr></td><td>'+i+'</td><td>'+obj[i-1].description+'';
-            //+'&nbsp;&nbsp;&nbsp;&nbsp';
-            
+        //ahora elcontenido
+        for (var i = 0; i < obj.length; i++) { //rows
+            var id_fields_track=obj[i].id;
+            var indice_fila=i+1;
+            fila+='<tr></td><td>'+indice_fila+'</td><td>'+obj[i].description+'';
                     for (var j = 0; j < 12; j++) { //cols
                         var letter = String.fromCharCode("A".charCodeAt(0) +j);
-                        var coord=letter + i;
-                         fila+= '<td><input id='+obj[i].id +" data-cell="+coord+ ' data-format="$ 0,0[.]00">\n\
-                                 <input type="hidden" value="" class="'+coord+'"></td>' ;
+                        var coord=letter + indice_fila;
+                        if (cifras[coord]==null || cifras[coord].charCodeAt(0)=='=') cifras[coord]='';
+                         fila+= '<td><input id="'+id_fields_track +'" value="'+cifras[coord]+'" data-cell="'+coord+ '" data-format="$ 0,0[.]00">\n\
+                                 <input type="hidden" value="'+cifras[coord]+'" class="'+coord+'"></td>' ;
                     }
-            fila+='<td><input data-cell="+M' + i+'"  data-formula="SUM(A'+i+':L'+i+')" data-format="$ 0,0[.]00"></td></tr>';
+            fila+='<td><input data-cell="M' + i+'"  data-formula="SUM(A'+i+':L'+i+')" data-format="$ 0,0[.]00">\n\
+                        <input type="hidden" value="" class="M'+i+'"></td></tr>';
              $('.table').append(fila);
              fila='';
 
@@ -237,17 +177,12 @@
         //agregando SubTotal income
         //agregando Total income-outcome
         /**cuando cambia una celda guardo en BD***/
-        //  $.post( "{#{ path('ajax_trackaltinv_create') }#}",{
-                                                    //mes:elm.id.charCodeAt(0)-64, 
-                                                    //valor:elm.value, 
-                                                    //id_altinv: {#{app.request.attributes.get('id')}#}, 
-                                                    //id_fieldsaltinv:$("input#"+elm.id).attr('param') 
-           // });
-            /*****/
+       
 
         //poner_moneda();
         
  $( document ).ready(function() {
+     localStorage.clear();
       $("td input").css("text-align","right");
       $("td input").css("border","none");
                
@@ -256,56 +191,184 @@
                    
                 },
                 onAfterRender : function(){
-                    
+                     //$('form#calx_form').calx('refresh');
                 },
-            
+                
             });
        
-     
-        totales();
-        
-        
-            //$('input.'+id).val('='+formula);
-            //$('input.'+id).attr('data-formula',formula);
-            //$(this).attr('data-formula',formula);
-            //$('input.'+id).calx('evaluate', formula);
-         $('td input').focusout(function(){
-        var coord=$(this).attr('data-cell');
-        var fila=coord.substr(0,1);
-        alert(coord);
-        var casilla=$(this).val();
-         if(casilla.charAt(0)=='='){//es formula
-            var formula=casilla.substr(1,casilla.length);
-            $('input.'+coord).val('='+formula);
-             if($('form#calx_form').calx('getSheet')){
-                $('form#calx_form').calx('getCell', coord)
-                            .setFormula(formula)
+        ////****AL INICIO RECALCULAR LAS FORMULAS
+        $('td input[type=hidden]').each(function(el){ 
+                var casilla=$(this).val();
+                var coord=$(this).attr('class');
+                if(casilla.charAt(0)=='=' ){//es formula
+                    var formula=casilla.substr(1,casilla.length);
+                    
+                    $('input.'+coord).val('='+formula);
+                        if($('form#calx_form').calx('getSheet')){//obtengo la hoja
+                            $('form#calx_form').calx('getCell', coord)
+                                    .setFormula(formula)
+                                    .calculate()
+                                    .renderComputedValue();
+                    }//fin si get hoja    
+                } 
+            }); 
+                          
+                    
+                    
+        ////***al salir de una celda
+        $('td input').blur(function(){
+            var coord=$(this).attr('data-cell');
+            var fila=coord.substr(1,1);
+            var casilla=$(this).val();
+            var id_field=$(this).attr('id');
+            var hidden_val=hidden_val=$('input.'+coord).val();
+            var toolbox_input= $("input#cell").val();
+            var sigma='SUM(A'+fila+':L'+fila+')';
+            var celda_sigma='M'+fila;
+            
+           
+            if(casilla.charAt(0)=='='|| isNaN(hidden_val.charAt(0)) ){//es formula
+                var formula=toolbox_input.substr(1,toolbox_input.length);
+                $('input.'+coord).val('='+formula);
+                 if($('form#calx_form').calx('getSheet')){//obtengo la hoja
+                        $('form#calx_form').calx('getCell', coord)
+                                    .setFormula(formula)
+                                    .calculate()
+                                    .renderComputedValue();
+                    }//fin si get hoja    
+
+                }else{//si no fue formula
+                    
+                $('input.'+coord).val(casilla);
+                }//fin sin no fue formula 
+
+             //Recalcular los totales fila y col
+            //filas
+            if($('form#calx_form').calx('getSheet')){// obtengo la hoja 
+            $('form#calx_form').calx('getCell', celda_sigma)
+                            .setFormula(sigma)
                             .calculate()
                             .renderComputedValue();
-                }//fin si get hoja    
-            }else{
-            $('input.'+coord).val(casilla);
-             //debo recalcular los totales tb
-          /*  $('form#calx_form').calx('getCell', "M"+fila)
-                            .setFormula('SUM(A'+fila+':L'+fila)
+           }//fin si get hoja    
+           var contenido_celda=casilla;
+           if(formula!=null) contenido_celda='='+formula;
+           
+        
+            //grabo en base de datos el valor de la celda / formula
+            if(contenido_celda.length>0 && id_field!=null){
+             $.post( "{{ path('ajax_trackaltinv_create') }}",{
+                                                    mes:coord.charCodeAt(0)-64, 
+                                                    valor:contenido_celda, 
+                                                    id_altinv: {{app.request.attributes.get('id')}}, 
+                                                    id_fieldsaltinv:id_field 
+                     });
+                    
+          }//fin si
+           
+           
+           //***********************fin grabar en bd
+        
+    });//fin focusout input de la tabla
+    /*************toolbox*******************/
+                $('td input').bind("change paste keyup", function(k) {
+                       var tecla = k.keyCode || k.which;
+                        if( (tecla>45 && tecla<91) ||(tecla>95 && tecla<112)||(tecla>185 && tecla<192) ) {//si no es tab ni shift ni enter ni nada debajo de supr o del
+                           var coord=$(this).attr('data-cell');
+                           var hidden_val=$('input.'+coord).val();
+                           var valor=$(this).val()
+                           $("label#coord").empty().html(coord);
+                           $("input#cell").val(valor);
+                   }//fin si NO es TAB
+                       
+                });
+    //***************************************
+    
+    /*******focus in cell inside table////////*/
+       $('td input').bind("focusin", function() {
+                        var coord=$(this).attr('data-cell');
+                        var hidden_val=$('input.'+coord).val();
+                        var valor=$(this).val()
+                       $("label#coord").empty().html(coord);
+                        if(isNaN(hidden_val.charAt(0))){//es formula
+                            valor=hidden_val;//escribo la formula
+                        }
+                        $("input#cell").val(valor);
+        
+       });
+    //*******************************************
+    /*******focus in toolbox ////////*/
+       $('input#cell').bind("focusin", function() {
+                        var coord=$("label#coord").html();
+                        var hidden_val=$('input.'+coord).val();
+                        var valor=$(this).val()
+                      
+                        if(isNaN(hidden_val.charAt(0))){//es formula
+                            valor=hidden_val;//escribo la formula
+                        }
+                        $('input[data_cell='+coord+']').val(valor);
+        
+       });
+    //*******************************************
+    
+    /*******focusout in toolbox ////////*/
+        
+       $('input#cell').bind("focusout", function() {
+                        var coord=$("label#coord").html();
+                        var fila=coord.substr(1,1);
+                        var valor=$(this).val()
+                        var formula=valor.substr(1,valor.length);
+                        var sigma='SUM(A'+fila+':L'+fila+')';
+                        var celda_sigma='M'+fila;
+                        if(valor.charAt(0)=='='){//es formula
+                            try {
+                                if($('form#calx_form').calx('getSheet')){//obtengo la hoja
+                                     $('form#calx_form').calx('getCell', coord)
+                                        .setFormula(formula)
+                                        .calculate()
+                                        .renderComputedValue();
+                                     $('input.'+coord).val(formula);   
+                                }//fin si get hoja    
+                            }catch(err){
+                                console.log(err.message)
+                            }
+                        }
+                     //Recalcular los totales fila y col
+            //filas
+            if($('form#calx_form').calx('getSheet')){// obtengo la hoja 
+            $('form#calx_form').calx('getCell', celda_sigma)
+                            .setFormula(sigma)
                             .calculate()
-                            .renderComputedValue();*/
-            }//fin si es formula
-        
-        
+                            .renderComputedValue();
+           }//fin si get hoja    
+                
+                    
+                            
+       });
+    //*******************************************
+    /**controlo tecla presionada***/
+    $('td input').bind("keydown", function(k) {
+        var tecla = k.keyCode || k.which;
+        if( (tecla==9) ) k.preventDefault();
     });
+    
+    
     
         $('#btn_addfield').click(function(e) {
                  e.preventDefault();
-                desc=$("#fields_altinv_description").val();
-                wg=$("#fields_altinv_widget option:selected").val();
-                 $.post( "{{ path('ajax_fieldstrackaltinv_create') }}",{ description: desc, widget: wg, id_altinv: {{app.request.attributes.get('id')}}})
+                var desc=$("#fields_altinv_description").val();
+                var credordeb=$("#credordeb option:selected").val();
+                var currency_symbol=$("#currency_symbol option:selected").val();
+                if(desc.length>0){//si no es vacia la descripcion 
+                 $.post( "{{ path('ajax_fieldstrackaltinv_create') }}",{ description: desc, currency_symbol: currency_symbol,  credordeb: credordeb, id_altinv: {{app.request.attributes.get('id')}}})
                          .done(function( resp){
                               $('form[name="{{ form.vars.name }}"]').trigger("reset");
                             location.reload();
                           });
+                   }else{
+                         alert('Description cannot be empty') 
+                  }//fin si la desc esta em blanco      
                 });
-        
+                
         
         $('#clear').click(function() {
                  $('form[name="{{ form.vars.name }}"]').trigger("reset");
@@ -332,11 +395,8 @@
                 //poner_moneda();
                  
                 });
-                
-                   $("td input").click(function() {
-                        quitar_moneda();
-                });
- });
+            
+});
     </script>
 {% endblock %}
 

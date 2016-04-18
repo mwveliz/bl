@@ -16,6 +16,11 @@ class FieldsTrackAltinvType extends AbstractType
     {
         $builder
             ->add('description')
+          /*  ->add('sign', 'choice', array(
+             'attr' => array('class' => 'form-control form-group'),   
+             'label' => 'Sign',   
+             'choices' => array('Creditor (+) ' => 'positive', 'Debitor (-)' => 'negative'), 
+             ))*/      
         ;
     }
     
