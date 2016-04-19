@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use BL\SGIBundle\Entity\Bl;
 use BL\SGIBundle\Entity\Altinv;
 use BL\SGIBundle\Entity\TrackAltinv;
+use BL\SGIBundle\Entity\State;
 
 
 class DefaultController extends Controller
@@ -71,21 +72,27 @@ class DefaultController extends Controller
     }
     
     
+    /**
+     * amCharts Generation via ajax
+    */
+    
     public function ajax_graphAction(Request $request)
     {
          $em = $this->getDoctrine()->getManager();
        
         $model=$request->get('model');
         $track_field=$request->get('track_field');
+    
+       $table='SGIBundle:'.$model;
         
         
-       // $campos = array('d.value', 'd.datetime', 'o.id');
+    // $campos = array('d.value', 'd.datetime', 'o.id');
     //$fields = 'partial d.{id, name}, partial o.{id}';  //if you want to get entity object
          $campos = array('t.value', 't.datetime');
         $query = $em->createQueryBuilder();
         $query
             ->select($campos)
-            ->from('SGIBundle:TrackAltinv', 't')
+            ->from($table, 't')
             //->leftjoin('d.otherEntity', 'o');
             ->where('t.idFieldsTrackAltinv= :track_field')
             ->setParameter('track_field', $track_field)
@@ -99,10 +106,8 @@ class DefaultController extends Controller
                     array('idFieldsTrackAltinv' => 'ASC')
             );
          */       
-        
-
-
-        //cambios los indices para que pueda verse
+   
+        //cambios los nombres de los indices para que pueda verse
         foreach ( $registros as $k=>$v )
         {
             /*primero el eje de tiempo*/
@@ -116,11 +121,70 @@ class DefaultController extends Controller
             unset($registros[$k]['datetime']);
             unset($registros[$k]['value']);
         }
-        
-        
         $serializer = $this->container->get('serializer');
         $objects= $serializer->serialize($registros, 'json');
         
+        return new Response($objects);
+        //return new JsonResponse(($object));
+    }
+    
+    
+    
+    /**
+     *Map Generation via ajax
+    */
+    public function ajax_mapAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+       
+       $model=$request->get('model');
+       $opportunity=$request->get('opportunity');//type
+       $account=$request->get('bl_code');//id_bl
+    
+       
+       $table='SGIBundle:'.$model;
+        
+        
+    // $campos = array('d.value', 'd.datetime', 'o.id');
+    //$fields = 'partial d.{id, name}, partial o.{id}';  //if you want to get entity object
+        $campos = array('o.description', 't.idState','t.description');
+        $query = $em->createQueryBuilder();
+        $query
+            ->select('o')
+            ->from($table, 't')
+            ->Join('SGIBundle:State', 'o')
+             ->where('o.id= t.idState ');
+            //->where('t.idFieldsTrackAltinv= :track_field')
+            //->setParameter('track_field', $track_field)
+            //->add('orderBy','t.idStateASC');    
+        //$query->setMaxResults(10);
+        $registros= $query->getQuery()->getArrayResult();
+     
+       /* $fields=$em->getRepository('SGIBundle:TrackAltinv')
+                ->findBy(
+                    array('idFieldsTrackAltinv'=> $track_field),
+                    array('idFieldsTrackAltinv' => 'ASC')
+            );
+         */       
+   
+        
+        //cambios los nombres de los indices para que pueda verse
+        foreach ( $registros as $k=>$v )
+        {
+            /*primero el coidgo de pais*/
+            $code=$registros[$k]['descriptionCountry'];
+            $registros[$k] ['name'] = $code;
+            
+            /**luego cuento o imprimoel estado*/
+            $z=$registros[$k]['id'];
+            $registros[$k] ['z'] = $z;
+            
+           unset($registros[$k]['descriptionCountry']);
+            unset($registros[$k]['id']);
+            unset($registros[$k]['description']);
+        }
+        $serializer = $this->container->get('serializer');
+        $objects= $serializer->serialize($registros, 'json');
         
         return new Response($objects);
         //return new JsonResponse(($object));

@@ -18,6 +18,10 @@ map:
     path:     /map
     defaults: { _controller: SGIBundle:Default:map}
 
+mapa:
+    path:     /ajax_map
+    defaults: { _controller: SGIBundle:Default:ajax_map}
+
 contact:
     path:     /contact
     defaults: { _controller: SGIBundle:Default:contact}
