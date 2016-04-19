@@ -149,7 +149,7 @@ STOCK id="chart_12"
                 "fillAlphas": 1,
                 "title": "Income",
                 "type": "column",
-                "valueField": "income"
+                "valueField": "serie1"
             }, {
                 "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
                 "bullet": "round",
@@ -165,7 +165,7 @@ STOCK id="chart_12"
                 "title": "Expenses",
                 "valueField": "expenses"
             }],
-            "categoryField": "year",
+            "categoryField": "date",
             "categoryAxis": {
                 "gridPosition": "start",
                 "axisAlpha": 0,
@@ -202,8 +202,12 @@ STOCK id="chart_12"
                 success: function (chartData) {
                     //debugger;
                     //initialize graph in successs
+                    
+                    
+                    
                     data=JSON.stringify(chartData).replace(/&quot;/g, '"')
-                    initChartSample99(data)
+                    console.log(JSON.stringify(chartData));
+                    initChartSample99(chartData)
                 },
                 error: function (xhr,status,error) {
                     alert(status);
