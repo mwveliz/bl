@@ -80,6 +80,7 @@ class TrackAltinvController extends Controller
     public function trackAction(Request $request)
     {
      $i=0; 
+     $matriz=array();
      $idaltinv=$request->get('id');
      $fieldsAltinv = new FieldsAltinv();
      $form = $this->createForm('BL\SGIBundle\Form\FieldsAltinvType', $fieldsAltinv);
