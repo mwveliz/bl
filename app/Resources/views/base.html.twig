@@ -637,6 +637,8 @@
             </div>
         </div>
         <!-- END FOOTER -->
+        
+      
         {% block javascripts %}
          <!-- BEGIN CORE PLUGINS -->
                   <script src="{{ asset('/metronic/global/scripts/app.js') }}" type="text/javascript"></script>
@@ -704,21 +706,99 @@
         
         $('li.'+ruta_actual).toggleClass('active');
         
-        $('a#bl_index').click(function(e){
-                   window.location.href="{{path('bl_index')}}"
-                   
+        
+        $('a#bl_index').hover(function(e){
+                 if (!$(this).parent('li').hasClass('open')){
+                        $(this).trigger('click');
+                    }
+                 e.stopPropagation();
+        });        
+        $('a#bl_index').mouseleave(function(e){
+                 e.preventDefault();
+                 e.stopPropagation();
+        });        
+        $('a#bl_index').click(function(e){ //si el click vino de un hover no hago nada en caso contrario navego
+            if (e.originalEvent === undefined) {
+                  
+         } else {
+                window.location.href="{{path('bl_index')}}"
+         }
         });
+ 
+
+        $('a#altinv_index').hover(function(e){
+                 if (!$(this).parent('li').hasClass('open')){
+                        $(this).trigger('click');
+                    }
+                 e.stopPropagation();
+        });        
+        $('a#altinv_index').mouseleave(function(e){
+                 e.preventDefault();
+                 e.stopPropagation();
+        });        
         $('a#altinv_index').click(function(e){
-                   window.location.href="{{path('altinv_index')}}"
+              if (e.originalEvent === undefined) {
+                  
+         } else {       
+             window.location.href="{{path('altinv_index')}}"
+         }    
         });
+        
+        $('a#constru_index').hover(function(e){
+                 if (!$(this).parent('li').hasClass('open')){
+                        $(this).trigger('click');
+                    }
+                 e.stopPropagation();
+        });        
+        $('a#constru_index').mouseleave(function(e){
+                 e.preventDefault();
+                 e.stopPropagation();
+        }); 
         $('a#constru_index').click(function(e){
-                   window.location.href="{{path('constru_index')}}"
+         if (e.originalEvent === undefined) {
+                  
+         } else {       
+             window.location.href="{{path('constru_index')}}"
+        }     
         });
+        
+        
+        
+        $('a#comtrad_index').hover(function(e){
+                 if (!$(this).parent('li').hasClass('open')){
+                        $(this).trigger('click');
+                    }
+                 e.stopPropagation();
+        });        
+        $('a#comtrad_index').mouseleave(function(e){
+                 e.preventDefault();
+                 e.stopPropagation();
+        }); 
         $('a#comtrad_index').click(function(e){
+          if (e.originalEvent === undefined) {
+                  
+         } else {       
                    window.location.href="{{path('comtrad_index')}}"
-        });   
+         }
+        });
+        
+        
+        $('a#rental_index').hover(function(e){
+                 if (!$(this).parent('li').hasClass('open')){
+                        $(this).trigger('click');
+                    }
+                 e.stopPropagation();
+        });        
+        $('a#rental_index').mouseleave(function(e){
+                 e.preventDefault();
+                 e.stopPropagation();
+        }); 
         $('a#rental_index').click(function(e){
+           if (e.originalEvent === undefined) {
+                  
+         } else {       
                    window.location.href="{{path('rental_index')}}"
+         }          
         }); 
         /*$('a#menu_primer_nivel').click(function(e){
                     $('li.'+ruta_actual).toggleClass('active');

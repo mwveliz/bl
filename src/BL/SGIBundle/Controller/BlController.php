@@ -48,6 +48,34 @@ class BlController extends Controller
         ));
     }
     
+     /**
+     * Lists all Bl entities by type.
+     *
+     * @Route("/indexbytype/{type}", name="bl_indexbytype")
+     * @Method("GET")
+     */
+    public function indexbytypeAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $type=$request->get('type');
+        //segun el caso debo filtrar el tipo de bl
+        /*$altinvs = $em->getRepository('SGIBundle:Bl')->findByIdTypeBl($type);
+        $typeBls = $em->getRepository('SGIBundle:TypeBl')->findById($type);
+        
+        
+        
+        return $this->render('altinv/index.html.twig', array(
+            'altinvs' => $altinvs, 'typeBls' => $typeBls
+        ));*/
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     /**
      * Lists all Bl entities.
      *

@@ -32,16 +32,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for TypeAltinv in typeAltinvs %}
+                                        {% for typeAltinv in typeAltinvs %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ TypeAltinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                         <a href="{{path("altinv_indexbytype",{ 'type': typeAltinv.id})}}" param="{{ typeAltinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ TypeAltinv.description }}</td>                                                
+                                                <td>{{ typeAltinv.description }}</td>                                                
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

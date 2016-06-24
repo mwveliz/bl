@@ -32,16 +32,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for TypeRental in typeRentals %}
+                                        {% for typeRental in typeRentals %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ TypeRental.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="{{path("rental_indexbytype",{ 'type': typeRental.id})}}" param="{{ typeRental.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ TypeRental.description }}</td>                                                
+                                                <td>{{ typeRental.description }}</td>                                                
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        

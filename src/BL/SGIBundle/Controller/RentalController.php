@@ -40,6 +40,23 @@ class RentalController extends Controller
         ));
     }
 
+     /**
+     * Lists all Rental entities by type.
+     *
+     * @Route("/indexbytype/{type}", name="rental_indexbytype")
+     * @Method("GET")
+     */
+    public function indexbytypeAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $type=$request->get('type');
+        $rentals = $em->getRepository('SGIBundle:Rental')->findByIdTypeRental($type);
+        $typeRentals = $em->getRepository('SGIBundle:TypeRental')->findById($type);
+        return $this->render('rental/index.html.twig', array(
+            'rentals' => $rentals, 'typeRentals' => $typeRentals
+        ));
+    }
+    
     /**
      * Lists all Rental entities.
      *

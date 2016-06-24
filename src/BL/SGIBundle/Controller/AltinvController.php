@@ -41,6 +41,26 @@ class AltinvController extends Controller
         ));
     }
 
+    
+    
+      /**
+     * Lists all Altinv entities by type.
+     *
+     * @Route("/indexbytype/{type}", name="altinv_indexbytype")
+     * @Method("GET")
+     */
+    public function indexbytypeAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $type=$request->get('type');
+        $altinvs = $em->getRepository('SGIBundle:Altinv')->findByIdTypeAltinv($type);
+        $typeAltinvs = $em->getRepository('SGIBundle:TypeAltinv')->findById($type);
+        return $this->render('altinv/index.html.twig', array(
+            'altinvs' => $altinvs, 'typeAltinvs' => $typeAltinvs
+        ));
+    }
+    
+    
     /**
      * Lists all Altinv entities.
      *

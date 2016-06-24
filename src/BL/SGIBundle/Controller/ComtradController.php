@@ -39,6 +39,24 @@ class ComtradController extends Controller
             'comtrads' => $comtrads, 'typeComtrads' => $typeComtrads
         ));
     }
+    
+      /**
+     * Lists all Comtrad entities by type.
+     *
+     * @Route("/indexbytype/{type}", name="comtrad_indexbytype")
+     * @Method("GET")
+     */
+    public function indexbytypeAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $type=$request->get('type');
+        $comtrads = $em->getRepository('SGIBundle:Comtrad')->findByIdTypeComtrad($type);
+        $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findById($type);
+        return $this->render('comtrad/index.html.twig', array(
+            'comtrads' => $comtrads, 'typeComtrads' => $typeComtrads
+        ));
+    }
+    
 
     /**
      * Lists all Comtrad entities.

@@ -33,6 +33,8 @@ class TypeAltinvController extends Controller
             'typeAltinvs' => $typeAltinvs,
         ));
     }
+    
+    
 
     /**
      * Creates a new TypeAltinv entity.

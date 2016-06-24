@@ -47,7 +47,7 @@
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ typeConstru.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="{{path("constru_indexbytype",{ 'type': typeConstru.id})}}" param="{{ typeConstru.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
@@ -98,15 +98,15 @@
         
         // Click al cambiar la página
         $('.btn-sm').on('click', function() {
-            show();
+            //show();
         });
         
         $('.pagination-panel-input').on('keyup', function() {
-            show();
+            //show();
         }); 
         
         // Carga inicial
-        show();
+        //show();
         
         function show() {
             $('.a_show').on('click', function() {

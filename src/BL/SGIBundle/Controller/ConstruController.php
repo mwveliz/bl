@@ -39,6 +39,25 @@ class ConstruController extends Controller
             'construs' => $construs, 'typeConstrus' => $typeConstrus
         ));
     }
+    
+     /**
+     * Lists all Constru entities by type.
+     *
+     * @Route("/indexbytype/{type}", name="constru_indexbytype")
+     * @Method("GET")
+     */
+    public function indexbytypeAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $type=$request->get('type');
+        $construs = $em->getRepository('SGIBundle:Constru')->findByIdTypeConstru($type);
+        $typeConstrus = $em->getRepository('SGIBundle:TypeConstru')->findById($type);
+        return $this->render('constru/index.html.twig', array(
+            'construs' => $construs, 'typeConstrus' => $typeConstrus
+        ));
+    }
+    
+    
     /**
      * Lists all Constru entities.
      *
@@ -66,13 +85,13 @@ class ConstruController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $fieldsComtradstrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => true));
+        $fieldsConstrustrackable = $em->getRepository('SGIBundle:FieldsConstru')->findBy(array('trackable' => true));
         $serializer = $this->container->get('serializer');
-        $fctracks= $serializer->serialize($fieldsComtradstrackable, 'json');
+        $fctracks= $serializer->serialize($fieldsConstrustrackable, 'json');
 
-        $fieldsComtradsnotrackable = $em->getRepository('SGIBundle:FieldsComtrad')->findBy(array('trackable' => false));
+        $fieldsConstrusnotrackable = $em->getRepository('SGIBundle:FieldsConstru')->findBy(array('trackable' => false));
         $serializer = $this->container->get('serializer');
-        $fcnotracks= $serializer->serialize($fieldsComtradsnotrackable, 'json');
+        $fcnotracks= $serializer->serialize($fieldsConstrusnotrackable, 'json');
 
         return $this->render('constru/track.html.twig', array(
             'fctracks' => $fctracks,'fcnotracks' => $fcnotracks
