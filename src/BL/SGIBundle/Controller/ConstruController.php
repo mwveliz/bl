@@ -57,6 +57,25 @@ class ConstruController extends Controller
         ));
     }
     
+    /**
+     * Lists one  Constru dashboard.
+     *
+     * @Route("/dashboard/{id}", name="constru_dashboard")
+     * @Method("GET")
+     */
+    public function dashboardAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $construs = $em->getRepository('SGIBundle:Constru')->findOneById($id);
+        $type=$construs->getIdTypeConstru();
+        $typeConstrus = $em->getRepository('SGIBundle:TypeConstru')->findById($type);
+        
+        return $this->render('constru/index.html.twig', array(
+            'construs' => $construs, 'typeConstrus' => $typeConstrus
+        ));
+    }
+    
     
     /**
      * Lists all Constru entities.

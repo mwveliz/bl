@@ -60,6 +60,26 @@ class AltinvController extends Controller
         ));
     }
     
+      /**
+     * Lists one  Altinv dashboard.
+     *
+     * @Route("/dashboard/{id}", name="altinv_dashboard")
+     * @Method("GET")
+     */
+    public function dashboardAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $altinvs = $em->getRepository('SGIBundle:Altinv')->findOneById($id);
+        $type=$altinvs->getIdTypeAltinv();
+        $typeAltinvs = $em->getRepository('SGIBundle:TypeAltinv')->findById($type);
+        
+        return $this->render('altinv/index.html.twig', array(
+            'altinvs' => $altinvs, 'typeAltinvs' => $typeAltinvs
+        ));
+    }
+    
+    
     
     /**
      * Lists all Altinv entities.

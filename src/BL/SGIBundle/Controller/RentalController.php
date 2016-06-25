@@ -57,6 +57,25 @@ class RentalController extends Controller
         ));
     }
     
+    
+    /**
+     * Lists one  Rental dashboard.
+     *
+     * @Route("/dashboard/{id}", name="rental_dashboard")
+     * @Method("GET")
+     */
+    public function dashboardAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $rentals = $em->getRepository('SGIBundle:Rental')->findOneById($id);
+        $type=$rentals->getIdTypeRental();
+        $typeRentals = $em->getRepository('SGIBundle:TypeRental')->findById($type);
+        
+        return $this->render('rental/index.html.twig', array(
+            'rentals' => $rentals, 'typeRentals' => $typeRentals
+        ));
+    }
     /**
      * Lists all Rental entities.
      *

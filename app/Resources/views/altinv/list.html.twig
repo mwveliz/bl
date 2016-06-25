@@ -21,8 +21,9 @@
                                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
                                         <thead>
                                             <tr>
+                                                <th class="all" width="10%">Dashboard</th>
                                                 <th class="all" width="10%">View</th>
-                                                <th class="all" width="10%">Financ.</th>
+                                                <th class="all" width="10%">Fin.</th>
 
                                                 <th class="all">Description</th>
                                                 <th class="all">Opportunity</th>
@@ -31,6 +32,13 @@
                                         <tbody>
                                         {% for Altinv in altinvs %}
                                             <tr>
+                                                <td>
+                                                    <center>
+                                                        <a href="{{path("altinv_dashboard",{ 'id': Altinv.id} )}}"  param="{{ Altinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                            <i class="fa fa-line-chart fa-x"></i>
+                                                        </a>       
+                                                    </center>
+                                                </td>
                                                 <td>
                                                     <center>
                                                         <a href="#" class="a_show" param="{{ Altinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">

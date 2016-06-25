@@ -57,6 +57,25 @@ class ComtradController extends Controller
         ));
     }
     
+     /**
+     * Lists one  Comtrad dashboard.
+     *
+     * @Route("/dashboard/{id}", name="comtrad_dashboard")
+     * @Method("GET")
+     */
+    public function dashboardAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $comtrads = $em->getRepository('SGIBundle:Comtrad')->findOneById($id);
+        $type=$comtrads->getIdTypeComtrad();
+        $typeComtrads = $em->getRepository('SGIBundle:TypeComtrad')->findById($type);
+        
+        return $this->render('comtrad/index.html.twig', array(
+            'comtrads' => $comtrads, 'typeComtrads' => $typeComtrads
+        ));
+    }
+    
 
     /**
      * Lists all Comtrad entities.
