@@ -66,13 +66,13 @@ class UsuarioType extends AbstractType
             )                 
             ->add('username', null, array(
                 'attr' => array('class' => 'form-control input-sm'),
-                'label' => 'form.username', 
+                'label' => 'Username', 
                 'translation_domain' => 'FOSUserBundle'))                            
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password','attr' => array('class' => 'form-control input-sm')),
-                'second_options' => array('label' => 'form.password_confirmation','attr' => array('class' => 'form-control input-sm'),),
+                'first_options' => array('label' => 'Password','attr' => array('class' => 'form-control input-sm')),
+                'second_options' => array('label' => 'Password_confirmation','attr' => array('class' => 'form-control input-sm'),),
                 'invalid_message' => 'fos_user.password.mismatch',
             )) 
             ->add('enabled', 'checkbox', array(

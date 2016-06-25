@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block page_title %}
-    Client
+    Seller
 {% endblock %}
 
 {% block page_description %}
-    New Client
+    New Seller
 {% endblock %}
 {% block body %}
-    <div class="row">
+   <div class="row">
         <div class="col-md-6 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
             <div class="portlet light bordered">
@@ -19,15 +19,15 @@
                 </div>
                 <div class="portlet-body form">
 
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                   
-                {{ form_end(form) }}
-                    <br>
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+            
+                   {{ form_end(form) }}
+                   <br>
                     <a id= "a_addaccount" class="btn btn-success pull-right" href="#" ><span>Add Account</span></a>
                     <br><br>
                     <button type="button" class="btn default"  id="clear">Clear</button>
-                    <a href="{{ path('client_index') }}" class="btn red" role="button">Cancel</a>
+                    <a href="{{ path('blseller_index') }}" class="btn red" role="button">Cancel</a>
                     <button type="submit" class="btn blue">Submit</button>
                     {{ form_end(form) }}
                     <br>
@@ -43,7 +43,7 @@
 
         </div>
     </div>
-  
+    
 {% endblock %}
  {% block stylesheets_extra %}
      <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />

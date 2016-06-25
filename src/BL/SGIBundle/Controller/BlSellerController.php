@@ -7,8 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BL\SGIBundle\Entity\BlSeller;
+use BL\SGIBundle\Entity\Usuario;
 use BL\SGIBundle\Form\BlSellerType;
-
+use BL\SGIBundle\Form\UsuarioType;
 /**
  * BlSeller controller.
  *
@@ -59,6 +60,37 @@ class BlSellerController extends Controller
         ));
     }
 
+    
+    /**
+     * Creates a new BlSeller entity.
+     *
+     * @Route("/blsellerusuarionew", name="blseller_usuarionew")
+     * @Method({"GET", "POST"})
+     */
+    public function usuarionewAction(Request $request)
+    {
+        $usuario= new Usuario();
+        $blSeller = new BlSeller();
+        
+        $form = $this->createForm('BL\SGIBundle\Form\UsuarioType', $usuario);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            
+            
+            $em->flush();
+            //falta agregar registo de blseller
+            return $this->redirectToRoute('blseller_index');
+        }
+
+        return $this->render('blseller/new_usuarioseller.html.twig', array(
+            'usuario' => $usuario,
+            'form' => $form->createView(),
+        ));
+    }
+    
     /**
      * Finds and displays a BlSeller entity.
      *
