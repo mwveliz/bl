@@ -116,6 +116,148 @@ class BlSellerController extends Controller
             'form' => $form->createView(),
         ));
     }
+    
+    /**
+     * Show client in the right side via ajax.
+     *
+     * @Route("/accountsperseller", name="blseller_dashboard")
+     * @Method("GET")
+     */
+    public function dashboardAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $usuario=$em->getRepository('SGIBundle:Usuario')->findOneById($id);
+        $seller=$em->getReference('BL\SGIBundle\Entity\Usuario',$id );
+        
+        
+        /******bloque altinvs******/
+        $id_altinvs=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:Bl f')
+             ->innerJoin('SGIBundle:BlSeller', 'b')
+             ->where('f.id=b.idBl')
+             ->andWhere('b.idUsuario = :idusuario ')
+             ->andWhere('f.type= :type ')
+             ->setParameter('idusuario', $id)
+             ->setParameter('type', 'altinv')
+             ->add('orderBy','f.type ASC')
+             ->getQuery()
+             ->getResult();
+        $array_idaltinvs=array();
+        foreach($id_altinvs as $registro){
+             array_push($array_idaltinvs, $registro->getId())   ;
+        }
+        $array_altinvs=$em->createQueryBuilder('c')
+             ->add('select','c')
+             ->add('from', 'SGIBundle:Altinv c')
+             ->innerJoin('SGIBundle:Bl', 'f')
+             ->where('c.id=f.codeBl')
+             ->andWhere("f.id IN(:ids)")
+             ->setParameter('ids', $array_idaltinvs)
+             ->getQuery()
+             ->getResult();
+        /****fin bloque altinvs***/
+        
+        
+        /******bloque comtrads******/
+        $id_comtrads=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:Bl f')
+             ->innerJoin('SGIBundle:BlSeller', 'b')
+             ->where('f.id=b.idBl')
+             ->andWhere('b.idUsuario = :idusuario ')
+             ->andWhere('f.type= :type ')
+             ->setParameter('idusuario', $id)
+             ->setParameter('type', 'comtrad')
+             ->add('orderBy','f.type ASC')
+             ->getQuery()
+             ->getResult();
+       
+        $array_idcomtrads=array();
+        foreach($id_comtrads as $registro){
+             array_push($array_idcomtrads, $registro->getId())   ;
+        }
+        $array_comtrads=$em->createQueryBuilder('c')
+             ->add('select','c')
+             ->add('from', 'SGIBundle:Comtrad c')
+             ->innerJoin('SGIBundle:Bl', 'f')
+             ->where('c.id=f.codeBl')
+             ->andWhere("f.id IN(:ids)")
+             ->setParameter('ids', $array_idcomtrads)
+             ->getQuery()
+             ->getResult();
+        
+        /****fin bloque comtrads***/
+        
+       /******bloque construs******/
+        $id_construs=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:Bl f')
+             ->innerJoin('SGIBundle:BlSeller', 'b')
+             ->where('f.id=b.idBl')
+             ->andWhere('b.idUsuario = :idusuario ')
+             ->andWhere('f.type= :type ')
+             ->setParameter('idusuario', $id)
+             ->setParameter('type', 'constru')
+             ->add('orderBy','f.id DESC')
+             ->getQuery()
+             ->getResult();
+         $array_idconstrus=array();
+        foreach($id_construs as $registro){
+             array_push($array_idconstrus, $registro->getId())   ;
+        }
+        $array_construs=$em->createQueryBuilder('c')
+             ->add('select','c')
+             ->add('from', 'SGIBundle:Constru c')
+             ->innerJoin('SGIBundle:Bl', 'f')
+             ->where('c.id=f.codeBl')
+             ->andWhere("f.id IN(:ids)")
+             ->setParameter('ids', $array_idconstrus)
+             ->getQuery()
+             ->getResult();
+         /****fin bloque construs***/
+        
+         /******bloque rentals******/
+        $id_rentals=$em->createQueryBuilder('f')
+             ->add('select','f')
+             ->add('from', 'SGIBundle:Bl f')
+             ->innerJoin('SGIBundle:BlSeller', 'b')
+             ->where('f.id=b.idBl')
+             ->andWhere('b.idUsuario = :idusuario ')
+             ->andWhere('f.type= :type ')
+             ->setParameter('idusuario', $id)
+             ->setParameter('type', 'rental')
+             ->add('orderBy','f.id DESC')
+             ->getQuery()
+             ->getResult();
+           $array_idrentals=array();
+        foreach($id_rentals as $registro){
+             array_push($array_idrentals, $registro->getId())   ;
+        }
+        $array_rentals=$em->createQueryBuilder('c')
+             ->add('select','c')
+             ->add('from', 'SGIBundle:Rental c')
+             ->innerJoin('SGIBundle:Bl', 'f')
+             ->where('c.id=f.codeBl')
+             ->andWhere("f.id IN(:ids)")
+             ->setParameter('ids', $array_idrentals)
+             ->getQuery()
+             ->getResult();
+     
+        
+        
+         /****fin bloque construs***/
+     $array_subtotal1 =array_merge($array_altinvs,$array_comtrads); 
+     $array_subtotal2 =array_merge($array_construs,$array_rentals); 
+     $accounts = array_merge($array_subtotal1,$array_subtotal2);
+      
+        return $this->render('blseller/dashboard.html.twig', array(
+            'accounts' => $accounts, 
+        ));
+    }
+    
+    
     /**
      * Show client in the right side via ajax.
      *
@@ -185,7 +327,10 @@ class BlSellerController extends Controller
      */
     public function editAction(Request $request, Usuario $usuario)
     {
-        $deleteForm = $this->createDeleteForm($usuario);
+          
+        $blSeller = new BlSeller();
+        //$deleteForm = $this->createDeleteForm($blSeller);
+        
         $editForm = $this->createForm('BL\SGIBundle\Form\UsuarioType', $usuario);
         $editForm->handleRequest($request);
 
@@ -200,7 +345,7 @@ class BlSellerController extends Controller
         return $this->render('blseller/edit.html.twig', array(
             'usuario' => $usuario,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
