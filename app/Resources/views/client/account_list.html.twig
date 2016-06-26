@@ -32,34 +32,24 @@
                                 <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
                                     <thead>
                                         <tr>
-                                            <th class="all" width="10%">Dashboard</th>
-                                            <th class="all" width="10%">View</th>
-                                          
-                                            <th>Name</th>
-                                            <th>Lastname</th>
-                                            <th>Email</th>
+                                            <th class="all" width="10%">Associate</th>
+                                            <th>Account</th>
+                                            <th>Opportunity</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for blSeller in blSellers %}
+                                    {% for account in accounts %}
                                         <tr>
                                             <td>
                                                     <center>
-                                                        <a href="{{path("altinv_dashboard",{ 'id': blSeller.id} )}}"  param="{{ blSeller.id }}" param2="{{ app.request.attributes.get('_controller') }}">
-                                                            <i class="fa fa-line-chart fa-x"></i>
+                                                        <a href="#"  param="{{ account.codeBl }}" param=1"{{ account.type}}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                            <i class="fa fa-bank fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="#" class="a_show" param="{{ blSeller.id }}" param2="{{ app.request.attributes.get('_controller') }}">
-                                                            <i class="fa fa-search fa-x"></i>
-                                                        </a>       
-                                                    </center>
-                                                </td>
-                                            <td>{{ blSeller.id}}</td>
-                                            <td>{{ blSeller.id}}</td>
-                                            <td>{{ blSeller.id}}</td>
+                                            <td>{{ account.description}}</td>
+                                            <td>{{ account.codeBl}}</td>
                                             
                                         </tr>
                                     {% endfor %}
@@ -109,24 +99,5 @@
         
 
 
-<script> 
-     $(document).ready(function(){
-        $('a.a_show').on('click',function(e) {
-                    e.preventDefault();
-                    var id_client=$(this).attr("param");
-                    $.ajax({
-                        url: "{{ path('blseller_ajaxshow') }}",
-                        data: 'id='+id_client,
-                        success: function(plantilla){
-                        $('#show').html(plantilla);    
-                        }
-                    });                    
-    
-                        
-             }); 
-        
-    });
-    
-    
- </script>   
+<script>   
     {% endblock %}

@@ -203,6 +203,8 @@ class ClientController extends Controller
      */
     public function newAction(Request $request)
     {
+        
+        
         $em = $this->getDoctrine()->getManager();
         $client= new Client();
         $ruta='client/new.html.twig';
@@ -276,9 +278,6 @@ class ClientController extends Controller
             }
         }//fin foreach entities extrafields
         
-
-        
-        
         
         $form->handleRequest($request);
 
@@ -286,9 +285,14 @@ class ClientController extends Controller
         
         
         if ($form->isSubmitted() && $form->isValid()) {
+             
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush();
+            
+            
+             $arreglo = $_POST["EF"];
+             
 
               return $this->redirectToRoute('client_index');
         }
@@ -303,6 +307,26 @@ class ClientController extends Controller
         ));
     }
 
+    
+    /**
+     * Show client in the right side via ajax.
+     *
+     * @Route("/ajaxshow", name="client_ajaxshow")
+     * @Method("GET")
+     */
+    public function showaccountsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $client = $em->getRepository('SGIBundle:Client')->findOneById($id); 
+        
+        $deleteForm = $this->createDeleteForm($client);
+
+        return $this->render('client/ajax_show.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+            'client' => $client
+        ));
+    }
     /**
      * Finds and displays a Client entity.
      *
@@ -336,7 +360,7 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_edit', array('id' => $client->getId()));
+             return $this->redirectToRoute('client_index');
         }
 
         return $this->render('client/edit.html.twig', array(

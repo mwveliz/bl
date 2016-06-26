@@ -85,7 +85,8 @@ class UsuarioType extends AbstractType
                 ),
                 'required' => false,
                 'data' => true,
-            ));    
+            ))    
+           
         ;
     }
     

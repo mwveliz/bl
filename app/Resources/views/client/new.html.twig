@@ -22,9 +22,9 @@
                 {{ form_start(form) }}
                     {{ form_widget(form) }}
                    
-                {{ form_end(form) }}
+         
                     <br>
-                    <a id= "a_addaccount" class="btn btn-success pull-right" href="#" ><span>Add Account</span></a>
+                    <!a-- id= "a_addaccount" class="btn btn-success pull-right" href=""" --><span>Add Account</span></a--!>
                     <br><br>
                     <button type="button" class="btn default"  id="clear">Clear</button>
                     <a href="{{ path('client_index') }}" class="btn red" role="button">Cancel</a>
@@ -48,3 +48,21 @@
  {% block stylesheets_extra %}
      <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
  {% endblock %}
+  
+{% block javascripts_extra %}
+     <script type='text/javascript'>
+         $( document ).ready(function() {
+             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
+             $(".currency").maskMoney();
+
+              $('#a_addaccount').on('click',function(e) {
+                 e.preventDefault();
+                 //$('#add').load("{#{ path('client_showaccounts') }#}");
+             });
+             
+             
+                
+         });
+     </script>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+
 {% block stylesheets_extra %} 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="{{ asset('/metronic/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
@@ -16,7 +16,7 @@
 <div class="page-container">
             <!-- BEGIN CONTENT -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <a class="btn btn-success" href="{{ path('blseller_usuarionew') }}" ><span>Add</span></a>
                             <br><br>                            
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -24,7 +24,7 @@
                                 <div class="portlet-title">
                                     <div class="caption font-green">
                                         <i class="icon-settings font-green"></i>
-                                        <span class="caption-subject bold uppercase">Sellers</span>
+                                        <span class="caption-subject bold uppercase">Accounts</span>
                                     </div>
                                     <div class="tools"> </div>
                                 </div>
@@ -32,35 +32,36 @@
                                 <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_2">
                                     <thead>
                                         <tr>
-                                            <th class="all" width="10%">Dashboard</th>
-                                            <th class="all" width="10%">View</th>
-                                          
-                                            <th>Name</th>
-                                            <th>Lastname</th>
-                                            <th>Email</th>
+                                            <th class="all" width="10%">Associate</th>
+                                            <th>Account</th>
+                                            <th>Opportunity</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for blSeller in blSellers %}
+                                    {% for account in accounts %}
+                                         {% set accountype = account.type%}
                                         <tr>
                                             <td>
                                                     <center>
-                                                        <a href="{{path("altinv_dashboard",{ 'id': blSeller.id} )}}"  param="{{ blSeller.id }}" param2="{{ app.request.attributes.get('_controller') }}">
-                                                            <i class="fa fa-line-chart fa-x"></i>
+                                                        <a class="a_associate" id="{{ account.id}}" description="{{account.description}}">
+                                                            <i class="fa fa-bank fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="#" class="a_show" param="{{ blSeller.id }}" param2="{{ app.request.attributes.get('_controller') }}">
-                                                            <i class="fa fa-search fa-x"></i>
-                                                        </a>       
-                                                    </center>
-                                                </td>
-                                            <td>{{ blSeller.id}}</td>
-                                            <td>{{ blSeller.id}}</td>
-                                            <td>{{ blSeller.id}}</td>
-                                            
+                                            <td>{{ account.description}}</td>
+                                                {% if accountype== "comtrad" %}
+                                                   <td> Commodities Trading</td>
+                                                {% endif %}
+                                                {% if accountype== "constru" %}
+                                               <td>Construction</td>
+                                                {% endif %}
+                                                {% if accountype== "altinv" %}
+                                               <td>Alternative Investments</td>
+                                                {% endif %}
+                                                {% if accountype== "rental" %}
+                                               <td>Rental</td>
+                                                {% endif %}
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -109,24 +110,21 @@
         
 
 
-<script> 
-     $(document).ready(function(){
-        $('a.a_show').on('click',function(e) {
+<script>
+         $(document).ready(function(){
+              $('a.a_associate').on('click',function(e) {
+                    var value=$(this).attr("description");
+                    var id_bl=$(this).attr("id");
                     e.preventDefault();
-                    var id_client=$(this).attr("param");
-                    $.ajax({
-                        url: "{{ path('blseller_ajaxshow') }}",
-                        data: 'id='+id_client,
-                        success: function(plantilla){
-                        $('#show').html(plantilla);    
-                        }
-                    });                    
-    
-                        
-             }); 
-        
-    });
+                    $('<br><div><label for="EF_account">Account Associated</label><input value="'+value+'" type="text" readonly name="EF_account['+id_bl+']" class="form-control input-sm"></div>').insertAfter( $('#a_addaccount'));
+                  }); 
+             
+         });
     
     
- </script>   
+    
+</script>
+    
+    
+    
     {% endblock %}

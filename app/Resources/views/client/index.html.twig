@@ -23,7 +23,7 @@
                                         <tr>
                                             <th class="all" width="10%">Dashboard</th>
                                             <th class="all" width="10%">View</th>
-                                            <th class="all" width="10%">Accounts</th>
+                                         
                                             <th>Name</th>
                                             <th>Lastname</th>
                                             <th>Email</th>
@@ -47,13 +47,7 @@
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="{{ path('trackaltinv_track', { 'id': client.id }) }}" class="a_track" param="{{ client.id }}" param2="{{ app.request.attributes.get('_controller') }}">
-                                                            <i class="fa fa-dollar fa-x"></i>
-                                                        </a>       
-                                                    </center>
-                                                </td>
+                                               
                                             <td>{{ client.name }}</td>
                                             <td>{{ client.lastname }}</td>
                                             <td>{{ client.emailOne }}</td>
@@ -70,9 +64,9 @@
                       
                                         
                                         
-                        <!--div class="col-md-6" id="show">
+                        <div class="col-md-6" id="show">
                            
-                        </div-->     
+                        </div>     
                     </div>
             <!-- END CONTENT BODY -->
             
@@ -102,5 +96,23 @@
         
 
 
-<script>   
+<script>
+    $(document).ready(function(){
+        $('a.a_show').on('click',function(e) {
+                    e.preventDefault();
+                    var id_client=$(this).attr("param");
+                    $.ajax({
+                        url: "{{ path('client_ajaxshow') }}",
+                        data: 'id='+id_client,
+                        success: function(plantilla){
+                        $('#show').html(plantilla);    
+                        }
+                    });                    
+    
+                        
+             }); 
+        
+    });
+    
+</script>    
     {% endblock %}
