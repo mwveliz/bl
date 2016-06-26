@@ -32,11 +32,12 @@ class BlSellerController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $blSellers = $em->getRepository('SGIBundle:BlSeller')->findAll();
+         $userManager = $this->container->get('fos_user.user_manager');
+         
+        $users = $userManager->findUsers();
 
         return $this->render('blseller/index.html.twig', array(
-            'blSellers' => $blSellers,
+            'usuarios' =>$users,
         ));
     }
 
@@ -125,13 +126,20 @@ class BlSellerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $id=$request->get('id');
-        $client = $em->getRepository('SGIBundle:BlSeller')->findOneById($id); 
+        $usuario=$em->getRepository('SGIBundle:Usuario')->findOneById($id);
+        $seller=$em->getReference('BL\SGIBundle\Entity\Usuario',$id );
         
-        $deleteForm = $this->createDeleteForm($client);
+        $blseller= $em->getRepository('SGIBundle:BlSeller')->findOneByIdUsuario($seller);
+        //die(var_dump($seller));
+        //$em->getReference('BL\SGIBundle\Entity\Usuario', 2
+        
+        
+        $deleteForm = $this->createDeleteForm($blseller);
 
         return $this->render('blseller/ajax_show.html.twig', array(
             'delete_form' => $deleteForm->createView(),
-            'client' => $client
+            'blSeller' => $blseller,
+             'usuario' => $usuario  
         ));
     }
     
@@ -175,22 +183,22 @@ class BlSellerController extends Controller
      * @Route("/{id}/edit", name="blseller_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, BlSeller $blSeller)
+    public function editAction(Request $request, Usuario $usuario)
     {
-        $deleteForm = $this->createDeleteForm($blSeller);
-        $editForm = $this->createForm('BL\SGIBundle\Form\BlSellerType', $blSeller);
+        $deleteForm = $this->createDeleteForm($usuario);
+        $editForm = $this->createForm('BL\SGIBundle\Form\UsuarioType', $usuario);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($blSeller);
+            $em->persist($usuario);
             $em->flush();
 
-            return $this->redirectToRoute('blseller_edit', array('id' => $blSeller->getId()));
+            return $this->redirectToRoute('blseller_index');
         }
 
         return $this->render('blseller/edit.html.twig', array(
-            'blSeller' => $blSeller,
+            'usuario' => $usuario,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

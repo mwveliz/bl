@@ -1,74 +1,57 @@
 
-{% block body %}
-<br>
-<br>
 
-<div class="portlet light bordered">
+{% block body %}
+ <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption font-green">
                                         <i class="icon-settings font-green"></i>
-                                        <span class="caption-subject bold uppercase">Client </span>
+                                        <span class="caption-subject bold uppercase">Seller </span>
                                     </div>
                                     <div class="tools"> </div>
                                 </div>
                                 <div class="portlet-body">
                                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_1">
                                     <tbody>
-                                        <tr>
-                                            <th>Name</th>
-                                            <td>{{ client.name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Lastname</th>
-                                            <td>{{ client.lastname }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Treatment</th>
-                                            <td>{{ client.treatment }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Address</th>
-                                            <td>{{ client.address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Contact</th>
-                                            <td>{{ client.contact }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email 1</th>
-                                            <td>{{ client.emailOne }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email 2</th>
-                                            <td>{{ client.emailTwo }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Legal Id</th>
-                                            <td>{{ client.legalId }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Logo</th>
-                                            <td>{{ client.logo }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Picture</th>
-                                            <td>{{ client.picture }}</td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-
-                    
-                    <br>
-                    <div class="form-actions">
+                                     <tr>
+                                        <th>Name</th>
+                                        <td>{{ usuario.nombre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Last Name</th>
+                                        <td>{{ usuario.apellido}}¿</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Account</th>
+                                        <td>{{ blSeller.idbl }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Datestart</th>
+                                        <td>{% if blSeller.dateStart %}{{ blSeller.dateStart|date('Y-m-d') }}{% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Dateend</th>
+                                        <td>{% if blSeller.dateEnd %}{{ blSeller.dateEnd|date('Y-m-d') }}{% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Active</th>
+                                        <td>{% if blSeller.active %}Yes{% else %}No{% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Percentage</th>
+                                        <td>{{ blSeller.percentage }}</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                <div class="form-actions">
                     </div>
                         {{ form_start(delete_form) }}
                       
-                        <button type="button" onclick=" window.location.href='{{path("client_edit", {'id':client.id} )}}'" id="btn_edit" class="btn blue">Edit</button>
+                        <button type="button" onclick=" window.location.href='{{path("blseller_edit", {'id':blSeller.id} )}}'" id="btn_edit" class="btn blue">Edit</button>
                         <input type="button" class="btn red" value="Delete">
                         {{ form_end(delete_form) }}
-   </div>
-                            </div>
+                     </div>
+           </div>
                             <!-- END EXAMPLE TABLE PORTLET-->
-                        </div>
+      
 {% endblock %}
