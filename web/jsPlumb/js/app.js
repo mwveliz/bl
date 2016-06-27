@@ -290,9 +290,23 @@
         var _updateDataset = function () {
             datasetContainer.innerHTML = _syntaxHighlight(JSON.stringify(toolkit.exportData(), null, 4));
             //insert into database
-             $.get( "nodeadd",{
-                                                    id:toolkit.exportData(), 
-                                            });
+            
+            
+            $.ajax({
+                url: "nodeadd",
+                data: "id=" + 1+
+                "&description="+$("#pipeline_description").val()+
+                "&idBl="+$("#pipeline_idBl").val()+
+                "&node=" + JSON.stringify(toolkit.exportData()["nodes"])+
+                "&edge="+JSON.stringify(toolkit.exportData()["edges"])+
+                "&port="+JSON.stringify(toolkit.exportData()["ports"]),
+                success: function(resultado){
+                    console.log(resultado);
+                }
+            });
+            
+                                            
+                                            
         };
         //
         // any operation that caused a data update (and would have caused an autosave), fires a dataUpdated event.

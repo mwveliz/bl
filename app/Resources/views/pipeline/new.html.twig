@@ -10,8 +10,15 @@
 {% block body %}
    <!-- content -->
         <script type="text/x-jtk-templates" src={{ asset('/jsPlumb/templates.html') }}></script>
+        <div class="row col-md-6">
+            {{ form_start(form) }}
+             {{ form_widget(form) }}
+                 
+             {{ form_end(form) }}
 
-        <div class="jtk-demo-main" id="jtk-demo-flowchart">
+        </div>
+             
+        <div class="row col-md-12 jtk-demo-main" style="margin-top: 10px;" id="jtk-demo-flowchart">
 
             <!-- the node palette -->
             <div class="sidebar node-palette">
@@ -52,19 +59,22 @@
 {% endblock %}
 
 {% block javascripts_extra %}     
-
+      
+    
+    
      <script src="{{ asset('/jsPlumb/js/jsPlumb-2.0.7.js') }}" type="text/javascript"></script>
      <script src="{{ asset('/jsPlumb/js/jsPlumbToolkit-1.0.20.js') }}" type="text/javascript"></script>
      <script src="{{ asset('/jsPlumb/js/jquery.validate.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/jsPlumb/js/app.js') }}" type="text/javascript"></script>
     
-     
-     <script type="javascript">
-                   $('document'').ready(function (){
-                   // var json_map=$('.jtk-demo-dataset').html();
-                    alert(json_map);
-                       
+       <script>
+                   $(document).ready(function (){
+                
+                   $('.jtk-demo-dataset').bind("DOMSubtreeModified",function(){
+                                console.log($('.jtk-demo-dataset').html());
+                        });
                    });    
          </script>
-
+         
+     
 {% endblock %}

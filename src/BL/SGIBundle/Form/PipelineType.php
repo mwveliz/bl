@@ -15,9 +15,21 @@ class PipelineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('idWorkflow')
-        ;
+            ->add('description', 'text', array(
+                'label' => 'Description',
+                'attr' => array(
+                    'class' => 'form-control input-md'
+                )
+             ))
+          ->add('idBl','entity_typeahead', array(
+                'label' => 'Account for pipeline',
+                'class' => 'SGIBundle:Bl',
+                'render' => 'description',
+                'route' => 'ajax_blaccounts',
+                'attr' => array(
+                    'class' => 'form-control form-group'
+                ),
+            ));
     }
     
     /**

@@ -6,7 +6,7 @@
             <!-- BEGIN CONTENT -->
                     <div class="row">
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="{{ path('altinv_new') }}" ><span>Add</span></a>
+                            <!--a class="btn btn-success" href="{#{ path('altinv_new') }#}" ><span>Add</span></a-->
                             <br><br>                            
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                             <div class="portlet light bordered">
@@ -30,31 +30,44 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for Altinv in altinvs %}
+                                        {% for Account in accounts %}
+                                            {% set clase= class(Account) %}
+                                            {% set type= class(Account)|lower %}
                                             <tr>
                                                 <td>
                                                     <center>
-                                                        <a href="{{path("altinv_dashboard",{ 'id': Altinv.id} )}}"  param="{{ Altinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="{{path(type~"_dashboard",{ 'id': Account.id} )}}"  param="{{ Account.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-line-chart fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
                                                 <td>
                                                     <center>
-                                                        <a href="#" class="a_show" param="{{ Altinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="#" class="a_show" param="{{ Account.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-search fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
                                                 <td>
                                                     <center>
-                                                        <a href="{{ path('trackaltinv_track', { 'id': Altinv.id }) }}" class="a_track" param="{{ Altinv.id }}" param2="{{ app.request.attributes.get('_controller') }}">
+                                                        <a href="{{ path('trackaltinv_track', { 'id': Account.id }) }}" class="a_track" param="{{ Account.id }}" param2="{{ app.request.attributes.get('_controller') }}">
                                                             <i class="fa fa-dollar fa-x"></i>
                                                         </a>       
                                                     </center>
                                                 </td>
-                                                <td>{{ Altinv.description }}</td>
-                                                <td>{{ Altinv.idTypeAltinv}}</td>                                                
+                                                <td>{{ Account.description }}</td>
+                                                {% if type== "comtrad" %}
+                                                   <td> Commodities Trading</td>
+                                                {% endif %}
+                                                {% if type== "constru" %}
+                                               <td>Construction</td>
+                                                {% endif %}
+                                                {% if type== "altinv" %}
+                                               <td>Alternative Investments</td>
+                                                {% endif %}
+                                                {% if type== "rental" %}
+                                               <td>Rental</td>
+                                                {% endif %}                                         
                                             </tr>
                                         {% endfor %} 
                                         </tbody>                                        
@@ -63,7 +76,7 @@
                             </div>
                             <!-- END EXAMPLE TABLE PORTLET-->
                         </div>
-                        {% include 'typealtinv/opportunities.html.twig' %}
+                        {#% include 'blsellser/opportunities.html.twig' %#}
                     
                                         
                                         

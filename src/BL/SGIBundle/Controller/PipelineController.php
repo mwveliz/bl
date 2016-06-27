@@ -46,16 +46,26 @@ class PipelineController extends Controller
     public function ajaxCreateNode(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        //primero creo elcampo en fields altinv trackable true
-        $object= new \BL\SGIBundle\Entity\PipelineNode();
-        //$object->setDescription(  );
         
-        $desc=$request->get('id');
-        //die(var_dump($desc));        
-        $res=count($desc['nodes']);
+        $description=$request->get('description');
+        $idBl=$request->get('idBl');
+        $node=$request->get('node');
+        $edge=$request->get('edge');
+        $port=$request->get('port');
         
-        //$em->persist($object);
-        //$em->flush();
+        
+        $object= new \BL\SGIBundle\Entity\Pipeline();
+        $object->setDescription( $description);
+        $object->setIdBl($idBl);
+        $object->setNode($node);
+        $object->setEdge($edge);
+        $object->setPort($port);
+        
+        $em->persist($object);
+        $em->flush();
+        
+        
+        
         /*$id_field=$em->getReference('BL\SGIBundle\Entity\FieldsAltinv', intval($object->getId()));     
         
         $id_altinv = $em->getReference('BL\SGIBundle\Entity\Altinv', $request->get('id_altinv'));     
@@ -67,7 +77,7 @@ class PipelineController extends Controller
         $em->flush();
         */
 
-        return new JsonResponse($res);
+        return new JsonResponse('...Autosaved');
         //return new JsonResponse($object->getId());
     }
 
@@ -80,10 +90,10 @@ class PipelineController extends Controller
     public function newAction(Request $request)
     {
         $pipeline = new Pipeline();
-        /*$form = $this->createForm('BL\SGIBundle\Form\PipelineType', $pipeline);
+        $form = $this->createForm('BL\SGIBundle\Form\PipelineType', $pipeline);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        
+        /*if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($pipeline);
             $em->flush();
@@ -93,7 +103,7 @@ class PipelineController extends Controller
 */
         return $this->render('pipeline/new.html.twig', array(
             'pipeline' => $pipeline,
-            //'form' => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 

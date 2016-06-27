@@ -252,6 +252,7 @@ class BlSellerController extends Controller
      $array_subtotal2 =array_merge($array_construs,$array_rentals); 
      $accounts = array_merge($array_subtotal1,$array_subtotal2);
       
+   
         return $this->render('blseller/dashboard.html.twig', array(
             'accounts' => $accounts, 
         ));

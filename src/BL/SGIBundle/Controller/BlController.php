@@ -490,4 +490,61 @@ class BlController extends Controller
     }
     
     
+     /**
+     * @Route("/ajax/bl_accounts", name="ajax_blaccounts")
+     * @Method({"GET", "POST"})
+     */   
+    public function ajaxblaccountsAction(Request $request) //ruta for typeahead accounts in bl
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('SGIBundle:Bl');
+        $busqueda='%'.strtoupper($request->get('query')) .'%';
+        $accounts = $repository->createQueryBuilder('o')->where('UPPER(o.description) LIKE :q')->setParameter('q', $busqueda)->getQuery()->getResult();
+          
+       
+        
+        $Altinvs = $em->getRepository('SGIBundle:Altinv')->findAll();  
+        $Comtrads = $em->getRepository('SGIBundle:Comtrad')->findAll();  
+        $Construs = $em->getRepository('SGIBundle:Constru')->findAll();  
+        $Rentals = $em->getRepository('SGIBundle:Rental')->findAll();  
+        
+        /*$array_subtotal1 =array_merge($array_altinvs,$array_comtrads); 
+        $array_subtotal2 =array_merge($array_construs,$array_rentals); 
+        $accounts = array_merge($array_subtotal1,$array_subtotal2);
+        */
+        
+        $objeto=array();
+        $arreglo=array();
+
+        foreach($accounts  as $account){
+            
+            $indice=$account->getId();
+            switch($account->getType()){
+                case  'altinv':
+                    $tipo='Alternative Investments';
+                    break;
+                case  'comtrad':
+                    $tipo='Commodities Trading';
+                    break;
+                case  'constru':
+                    $tipo='Construction';
+                    break;
+                case  'rental':
+                    $tipo='Rental';
+                    break;
+
+                
+            }
+            
+            $objeto['id']=$indice;
+            $objeto['value']= $account->getDescription() . ' - ' .$tipo;
+           
+            
+            array_push($arreglo, $objeto);
+        }
+
+        return new JsonResponse($arreglo);
+    }
+    
+    
 }
