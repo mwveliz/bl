@@ -29,12 +29,14 @@ class TodoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $userManager = $this->container->get('fos_user.user_manager');
-
-        $user = $userManager->findUserByUsername($this->container->get('security.context')
+        /*$user = $userManager->findUserByUsername($this->container->get('security.context')
                     ->getToken()
-                    ->getUser());
+                   ->getUser());*/
+    
 
-        $usuario = $user->getUsername();
+        //$usuario = $user->getUsername();
+        
+        $user=$this->getUser();
         
         // Obtengo el grupo de mi usuario
         $grupo_usuario = $user->getGroupNames();
@@ -107,13 +109,14 @@ class TodoController extends Controller
     public function taskAction()
     {
         $userManager = $this->container->get('fos_user.user_manager');
-
+        /*
         $user = $userManager->findUserByUsername($this->container->get('security.context')
                     ->getToken()
                     ->getUser());
-
-        $usuario = $user->getUsername();
         
+        $usuario = $user->getUsername();
+        */
+        $user=$this->getUser();
         // Obtengo el grupo de mi usuario
         $grupo_usuario = $user->getGroupNames();
         $grupo_usuario = $grupo_usuario[0]; 
@@ -256,11 +259,12 @@ class TodoController extends Controller
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
-        $user = $userManager->findUserByUsername($this->container->get('security.context')
+        /*$user = $userManager->findUserByUsername($this->container->get('security.context')
                     ->getToken()
                     ->getUser());
 
-        $usuario = $user->getUsername();
+        $usuario = $user->getUsername();*/
+        $user=$this->getUser();
         
         // Obtengo el grupo de mi usuario
         $grupo_usuario = $user->getGroupNames();

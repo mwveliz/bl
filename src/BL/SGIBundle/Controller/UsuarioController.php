@@ -34,11 +34,13 @@ class UsuarioController extends Controller
                 
         $userManager = $this->container->get('fos_user.user_manager');
 
-        $user = $userManager->findUserByUsername($this->container->get('security.context')
+       /* $user = $userManager->findUserByUsername($this->container->get('security.context')
                     ->getToken()
                     ->getUser());
 
         $usuario = $user->getUsername();
+        */
+        $user=$this->getUser();
         
         // Obtengo el grupo de mi usuario
         $grupo_usuario = $user->getGroupNames();
@@ -105,12 +107,13 @@ class UsuarioController extends Controller
             // Procedo log
             $userManager = $this->container->get('fos_user.user_manager');
 
-            $user = $userManager->findUserByUsername($this->container->get('security.context')
+            /*$user = $userManager->findUserByUsername($this->container->get('security.context')
                         ->getToken()
                         ->getUser());
 
             $usuario = $user->getUsername();
-
+*/
+            $user=$this->getUser();
             $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
             $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
@@ -394,11 +397,12 @@ class UsuarioController extends Controller
 	    // Proceso Log
             $userManager = $this->container->get('fos_user.user_manager');
 
-            $user = $userManager->findUserByUsername($this->container->get('security.context')
+            /*$user = $userManager->findUserByUsername($this->container->get('security.context')
                         ->getToken()
                         ->getUser());
 
-            $usuario = $user->getUsername();
+            $usuario = $user->getUsername();*/
+            $user=$this->getUser();
 
             $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
@@ -439,12 +443,13 @@ class UsuarioController extends Controller
 	    // Proceso Log
             $userManager = $this->container->get('fos_user.user_manager');
 
-            $user = $userManager->findUserByUsername($this->container->get('security.context')
+            /*$user = $userManager->findUserByUsername($this->container->get('security.context')
                         ->getToken()
                         ->getUser());
 
             $usuario = $user->getUsername();
-
+            */
+            $user=$this->getUser();
             $query = $em->createQuery('SELECT x FROM SGIBundle:Usuario x WHERE x.id = ?1');
             $query->setParameter(1, $id);
             $arreglo_formulario = $query->getSingleResult(Query::HYDRATE_ARRAY);
