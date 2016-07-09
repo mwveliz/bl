@@ -1,0 +1,242 @@
+{%extends '::base.html.twig'%}
+
+{% block header %}
+    
+<!-- BEGIN : HIGHCHARTS 
+BAR vert AND LINE id="chart_1"
+BAR vert AND GLOBE id="chart_1"
+LINE AND AREA id="chart_3"
+BAR hor AND LINE id="chart_4"
+PIE id="chart_6"
+STOCK id="chart_12"-->
+                    <h3 class="page-title"> Admin Charts
+                        <small>Drag n Drop</small>
+                    </h3>
+{% endblock %}
+ 
+ 
+                    
+         
+ {% block body %}              
+                        <div class="gridster">
+                        <ul>
+                            <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="icon-bar-chart font-green-haze"></i>
+                                                <span class="caption-subject bold uppercase font-green-haze">Bar</span>
+                                                <span class="caption-helper">Vertical Bar</span>
+                                            </div>
+                                            <div class="tools">
+                                                <a href="javascript:;" class="collapse"> </a>
+                                                <a href="javascript:;" class="fullscreen"> </a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div id="chart_99" class="chart" style="height: 400px;"> </div>
+                                        </div>
+                                    </div>
+                        </li>    
+                    
+                        
+                 
+                        <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="icon-bar-chart font-green-haze"></i>
+                                                <span class="caption-subject bold uppercase font-green-haze"> Line</span>
+                                                <span class="caption-helper">Line Hor</span>
+                                            </div>
+                                            <div class="tools">
+                                                <a href="javascript:;" class="collapse"> </a>
+                                                <a href="javascript:;" class="fullscreen"> </a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div id="chart_3" class="chart" style="height: 400px;"> </div>
+                                        </div>
+                                    </div>
+                        </li>
+                           
+                         <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="icon-bar-chart font-green-haze"></i>
+                                                <span class="caption-subject bold uppercase font-green-haze"> Bar and Line</span>
+                                                <span class="caption-helper">Bar Hor and Line</span>
+                                            </div>
+                                            <div class="tools">
+                                                <a href="javascript:;" class="collapse"> </a>
+                                                <a href="javascript:;" class="fullscreen"> </a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div id="chart_4" class="chart" style="height: 400px;"> </div>
+                                        </div>
+                                    </div>
+                        </li>
+                        <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                             <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="icon-bar-chart font-green-haze"></i>
+                                                <span class="caption-subject bold uppercase font-green-haze"> Pie</span>
+                                                <span class="caption-helper">Circle Pie</span>
+                                            </div>
+                                            <div class="tools">
+                                                <a href="javascript:;" class="collapse"> </a>
+                                                <a href="javascript:;" class="fullscreen"> </a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div id="chart_6" class="chart" style="height: 400px;"> </div>
+                                        </div>
+                                    </div>
+                        </li>
+                    
+                   </ul>     
+                   </div>
+                    <!--div class="col-md-12">
+                            <div class="portlet light portlet-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" icon-layers font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">Stock</span>
+                                    </div>
+                                    <div class="actions">
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-cloud-upload"></i>
+                                        </a>
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-wrench"></i>
+                                        </a>
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="highchart_12" style="height:500px;"></div>
+                                </div>
+                            </div>
+                        </div-->
+                    <!-- END : HIGHCHARTS -->
+{% endblock %}
+
+
+{% block javascripts_extra %} 
+            <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>                
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/serial.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/pie.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/radar.js') }}" ></script>   
+        <script src="{{ asset('ducksboard-gridster/utils.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.collision.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.coords.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.draggable.js') }}" ></script>    
+          <script src="{{ asset('ducksboard-gridster/jquery.gridster.js') }}" ></script>
+          <script src="{{ asset('ducksboard-gridster/jquery.gridster.extras.js') }}" ></script>    
+<script>
+
+   function initChartSample99(data) {
+        var chart = AmCharts.makeChart("chart_99", {
+            "type": "serial",
+            "theme": "light",
+            "pathToImages":  "amcharts/amcharts/images/",
+            "autoMargins": false,
+            "marginLeft": 30,
+            "marginRight": 8,
+            "marginTop": 10,
+            "marginBottom": 26,
+
+            "fontFamily": 'Open Sans',            
+            "color":    '#888',
+            
+            "dataProvider": data,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                "position": "left"
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "alphaField": "alpha",
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "dashLengthField": "dashLengthColumn",
+                "fillAlphas": 1,
+                "title": "Income",
+                "type": "column",
+                "valueField": "serie1"
+            }, {
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "bullet": "round",
+                "dashLengthField": "dashLengthLine",
+                "lineThickness": 3,
+                "bulletSize": 7,
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true,
+                "bulletBorderThickness": 3,
+                "fillAlphas": 0,
+                "lineAlpha": 1,
+                "title": "Expenses",
+                "valueField": "expenses"
+            }],
+            "categoryField": "date",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "tickLength": 0
+            }
+        });
+ 
+        //jQuery('#chart_99').closest('.portlet').find('.fullscreen').click(function() {
+          //  chart.invalidateSize();
+       // });  
+    
+    }   
+    
+    
+    
+  $(document).ready(function(){
+  $.ajax({
+                url: "{{path('grafico')}}",
+                data: "model=" + 'TrackAltinv' +
+                      "&track_field=" + 4,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (chartData) {
+                    //debugger;
+                    //initialize graph in successs
+                    
+                    
+                    
+                    data=JSON.stringify(chartData).replace(/&quot;/g, '"')
+                    console.log(JSON.stringify(chartData));
+                    initChartSample99(chartData)
+                    
+                },
+                error: function (xhr,status,error) {
+                    alert(status);
+                }
+            });
+  
+
+ gridster = $(".gridster ul").gridster({
+          widget_base_dimensions: [100, 120],
+          widget_margins: [5, 5],
+         
+        }).data('gridster');
+});
+  
+  
+  
+  
+   </script>    
+{% endblock %}

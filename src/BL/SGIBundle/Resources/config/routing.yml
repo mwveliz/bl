@@ -34,6 +34,10 @@ chat:
     path:     /chat
     defaults: { _controller: SGIBundle:Default:chat}
 
+admin_charts:
+    path:     /admin_charts
+    defaults: { _controller: SGIBundle:Default:admin_charts}
+
 grafic:
     path:     /grafic
     defaults: { _controller: SGIBundle:Default:grafic}

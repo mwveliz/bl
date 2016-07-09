@@ -190,4 +190,15 @@ class DefaultController extends Controller
         //return new JsonResponse(($object));
     }
     
+      /**
+     *Admin charts position thru drag n drop
+    */
+    
+      public function admin_chartsAction(Request $request)
+    {
+       
+       return $this->render('SGIBundle:Default:admin_charts.html.twig');
+        //return new JsonResponse(($object));
+    }
+    
 }
