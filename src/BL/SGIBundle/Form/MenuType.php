@@ -15,8 +15,16 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('pos')
+            ->add('description','entity_typeahead', array(
+                'label' => 'Dashboard Account',
+                'class' => 'SGIBundle:Bl',
+                'render' => 'description',
+                'route' => 'ajax_blaccounts',
+                'attr' => array(
+                    'class' => 'form-control '
+                ),
+            ))
+            //->add('pos')
         ;
     }
     

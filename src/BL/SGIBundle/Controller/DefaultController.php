@@ -14,6 +14,9 @@ use BL\SGIBundle\Entity\Bl;
 use BL\SGIBundle\Entity\Altinv;
 use BL\SGIBundle\Entity\TrackAltinv;
 use BL\SGIBundle\Entity\State;
+use BL\SGIBundle\Entity\Menu;
+
+use BL\SGIBundle\Form\MenuType;
 
 
 class DefaultController extends Controller
@@ -196,8 +199,14 @@ class DefaultController extends Controller
     
       public function admin_chartsAction(Request $request)
     {
-       
-       return $this->render('SGIBundle:Default:admin_charts.html.twig');
+         $menu= new Menu(); 
+        $form = $this->createForm('BL\SGIBundle\Form\MenuType', $menu);
+        
+        
+       return $this->render('SGIBundle:Default:admin_charts.html.twig', array(
+            'menu' => $menu,
+            'form' => $form->createView(),
+        ));
         //return new JsonResponse(($object));
     }
     

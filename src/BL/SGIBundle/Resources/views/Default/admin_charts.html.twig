@@ -9,13 +9,7 @@
 
 {% block header %}
     
-<!-- BEGIN : HIGHCHARTS 
-BAR vert AND LINE id="chart_1"
-BAR vert AND GLOBE id="chart_1"
-LINE AND AREA id="chart_3"
-BAR hor AND LINE id="chart_4"
-PIE id="chart_6"
-STOCK id="chart_12"-->
+
                     <h3 class="page-title"> Admin Charts
                         <small>Drag n Drop</small>
                     </h3>
@@ -26,8 +20,28 @@ STOCK id="chart_12"-->
          
  {% block body %}              
                         <div class="gridster">
-                        <ul>
-                            <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <div class="container"> 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                      {{ form_start(form) }}
+                                                {{ form_widget(form) }}
+                 
+                                      {{ form_end(form) }}
+                                    </div>
+                                    <div class="col-md-2"><label>Type of Chart</label>
+                                        <select id="typeofchart" class="form-control">
+                                            <option value="1" selected>Bar</option>
+                                            <option value="2">Line</option>
+                                            <option value="3">Bar-Line</option>
+                                            <option value="4">Pie</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-1"><br><span class="glyphicon glyphicon-plus-sign" style="font-size: 3em; vertical-align: bottom;  cursor: pointer;"></span></div>
+                                </div>    
+                            </div>    
+                                    <br>
+                            <ul style="list-style-type: none;">
+                            <li id="1" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
                             <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption">
@@ -49,7 +63,7 @@ STOCK id="chart_12"-->
                     
                         
                  
-                        <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                        <li id="2" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
                             <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption">
@@ -69,7 +83,7 @@ STOCK id="chart_12"-->
                                     </div>
                         </li>
                            
-                         <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                         <li id="3" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
                             <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption">
@@ -88,7 +102,7 @@ STOCK id="chart_12"-->
                                         </div>
                                     </div>
                         </li>
-                        <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                        <li id="4" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
                              <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption">
@@ -110,31 +124,7 @@ STOCK id="chart_12"-->
                     
                    </ul>     
                    </div>
-                    <!--div class="col-md-12">
-                            <div class="portlet light portlet-fit bordered">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class=" icon-layers font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">Stock</span>
-                                    </div>
-                                    <div class="actions">
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                            <i class="icon-cloud-upload"></i>
-                                        </a>
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                            <i class="icon-wrench"></i>
-                                        </a>
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                            <i class="icon-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <div id="highchart_12" style="height:500px;"></div>
-                                </div>
-                            </div>
-                        </div-->
-                    <!-- END : HIGHCHARTS -->
+                    
 {% endblock %}
 
 
@@ -152,7 +142,7 @@ STOCK id="chart_12"-->
           <script src="{{ asset('ducksboard-gridster/jquery.gridster.extras.js') }}" ></script>    
 <script>
 
-   function initChartBar(data, tipo,objetivo) {
+   function initChartBarAndLine(data, tipo,objetivo) {
         var chart = AmCharts.makeChart(objetivo, {
             "type": tipo,
             "theme": "light",
@@ -252,7 +242,7 @@ STOCK id="chart_12"-->
        // });  
     
     } //fin linea 
-  function initChartBarAndLine(data, tipo,objetivo) {
+  function initChartBar(data, tipo,objetivo) {
         var chart = AmCharts.makeChart(objetivo, {
             "type": tipo,
             "theme": "light",
@@ -312,7 +302,8 @@ STOCK id="chart_12"-->
         "titleField"  : "date",
         "valueField"  : "serie1",
         "dataProvider"  : data,
-        "graphs": [{"balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+        "graphs": [{
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
                 "bullet": "round",
                 "dashLengthField": "dashLengthLine",
                 "lineThickness": 3,
@@ -341,16 +332,32 @@ STOCK id="chart_12"-->
                     initChartLine(chartDataSerial,"serial", "chart_3")
                     initChartBarAndLine(chartDataSerial,"serial", "chart_4")
                     initChartPie(chartDataPie,"pie", "chart_6")
+                      
+
+
                     
- gridster = $(".gridster ul").gridster({
+        gridster = $(".gridster ul").gridster({
           widget_base_dimensions: [100, 120],
           widget_margins: [5, 5],
          
         }).data('gridster');
+        
+                $('.glyphicon-plus-sign').click(function(){
+                var id=parseInt($('select#typeofchart option:selected').val());
+                var contenido=$('li#'+id).html();
+                console.log(contenido)
+                gridster.add_widget('<li class="chart">'+contenido+'</li>', 2, 1)
+                  
+
+                
+        }); 
+        
+        
+       
+  
 });//fin document ready
   
-  
-  
+    
   
    </script>    
 {% endblock %}
