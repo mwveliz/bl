@@ -1,5 +1,12 @@
 {%extends '::base.html.twig'%}
 
+
+ {% block stylesheets_extra %} 
+ <link href="{{ asset('ducksboard-gridster/jquery.gridster.css') }}" rel="stylesheet" id="style_components" type="text/css" />
+       
+ {% endblock %}
+
+
 {% block header %}
     
 <!-- BEGIN : HIGHCHARTS 
@@ -35,7 +42,7 @@ STOCK id="chart_12"-->
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div id="chart_99" class="chart" style="height: 400px;"> </div>
+                                            <div id="chart_99" class="chart" style="height: 100px;"> </div>
                                         </div>
                                     </div>
                         </li>    
@@ -48,7 +55,7 @@ STOCK id="chart_12"-->
                                             <div class="caption">
                                                 <i class="icon-bar-chart font-green-haze"></i>
                                                 <span class="caption-subject bold uppercase font-green-haze"> Line</span>
-                                                <span class="caption-helper">Line Hor</span>
+                                                <span class="caption-helper">Hor Line </span>
                                             </div>
                                             <div class="tools">
                                                 <a href="javascript:;" class="collapse"> </a>
@@ -57,7 +64,7 @@ STOCK id="chart_12"-->
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div id="chart_3" class="chart" style="height: 400px;"> </div>
+                                            <div id="chart_3" class="chart" style="height: 100px;"> </div>
                                         </div>
                                     </div>
                         </li>
@@ -67,8 +74,8 @@ STOCK id="chart_12"-->
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class="icon-bar-chart font-green-haze"></i>
-                                                <span class="caption-subject bold uppercase font-green-haze"> Bar and Line</span>
-                                                <span class="caption-helper">Bar Hor and Line</span>
+                                                <span class="caption-subject bold uppercase font-green-haze">Bar-Line</span>
+                                                <span class="caption-helper"></span>
                                             </div>
                                             <div class="tools">
                                                 <a href="javascript:;" class="collapse"> </a>
@@ -77,7 +84,7 @@ STOCK id="chart_12"-->
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div id="chart_4" class="chart" style="height: 400px;"> </div>
+                                            <div id="chart_4" class="chart" style="height: 100px;"> </div>
                                         </div>
                                     </div>
                         </li>
@@ -96,7 +103,7 @@ STOCK id="chart_12"-->
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div id="chart_6" class="chart" style="height: 400px;"> </div>
+                                            <div id="chart_6" class="chart" style="height: 100px;"> </div>
                                         </div>
                                     </div>
                         </li>
@@ -145,9 +152,109 @@ STOCK id="chart_12"-->
           <script src="{{ asset('ducksboard-gridster/jquery.gridster.extras.js') }}" ></script>    
 <script>
 
-   function initChartSample99(data) {
-        var chart = AmCharts.makeChart("chart_99", {
-            "type": "serial",
+   function initChartBar(data, tipo,objetivo) {
+        var chart = AmCharts.makeChart(objetivo, {
+            "type": tipo,
+            "theme": "light",
+            "pathToImages":  "amcharts/amcharts/images/",
+            "autoMargins": false,
+            "marginLeft": 30,
+            "marginRight": 8,
+            "marginTop": 10,
+            "marginBottom": 26,
+
+            "fontFamily": 'Open Sans',            
+            "color":    '#888',
+            
+            "dataProvider": data,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                "position": "left"
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "alphaField": "alpha",
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "dashLengthField": "dashLengthColumn",
+                "fillAlphas": 1,
+                "title": "Income",
+                "type": "column",
+                "valueField": "serie1"
+            }, {
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "bullet": "round",
+                "dashLengthField": "dashLengthLine",
+                "lineThickness": 3,
+                "bulletSize": 7,
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true,
+                "bulletBorderThickness": 3,
+                "fillAlphas": 0,
+                "lineAlpha": 1,
+                "titleField"  : "date",
+                "valueField": "serie1"
+            }],
+            "categoryField": "date",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "tickLength": 0
+            }
+        });
+ }
+ 
+ 
+ function initChartLine(data, tipo,objetivo) {
+        var chart = AmCharts.makeChart(objetivo, {
+            "type": tipo,
+            "theme": "light",
+            "pathToImages":  "amcharts/amcharts/images/",
+            "autoMargins": false,
+            "marginLeft": 30,
+            "marginRight": 8,
+            "marginTop": 10,
+            "marginBottom": 26,
+
+            "fontFamily": 'Open Sans',            
+            "color":    '#888',
+            
+            "dataProvider": data,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                "position": "left"
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "bullet": "round",
+                "dashLengthField": "dashLengthLine",
+                "lineThickness": 3,
+                "bulletSize": 7,
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true,
+                "bulletBorderThickness": 3,
+                "fillAlphas": 0,
+                "lineAlpha": 1,
+                "titleField"  : "date",
+                "valueField": "serie1"
+            }],
+            "categoryField": "date",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "tickLength": 0
+            }
+        });
+        //jQuery('#chart_99').closest('.portlet').find('.fullscreen').click(function() {
+          //  chart.invalidateSize();
+       // });  
+    
+    } //fin linea 
+  function initChartBarAndLine(data, tipo,objetivo) {
+        var chart = AmCharts.makeChart(objetivo, {
+            "type": tipo,
             "theme": "light",
             "pathToImages":  "amcharts/amcharts/images/",
             "autoMargins": false,
@@ -195,45 +302,52 @@ STOCK id="chart_12"-->
                 "tickLength": 0
             }
         });
- 
-        //jQuery('#chart_99').closest('.portlet').find('.fullscreen').click(function() {
-          //  chart.invalidateSize();
-       // });  
+ }//fin linea y barra  
     
-    }   
     
+    
+     function initChartPie(data, tipo,objetivo) {
+         var chart = AmCharts.makeChart(objetivo,{
+        "type"    : tipo,
+        "titleField"  : "date",
+        "valueField"  : "serie1",
+        "dataProvider"  : data,
+        "graphs": [{"balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>",
+                "bullet": "round",
+                "dashLengthField": "dashLengthLine",
+                "lineThickness": 3,
+                "bulletSize": 7,
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true,
+                "bulletBorderThickness": 3,
+                "fillAlphas": 0,
+                "lineAlpha": 1
+                
+        }]
+         });
+       }//fin pie
     
     
   $(document).ready(function(){
-  $.ajax({
-                url: "{{path('grafico')}}",
-                data: "model=" + 'TrackAltinv' +
-                      "&track_field=" + 4,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (chartData) {
-                    //debugger;
-                    //initialize graph in successs
+    var chartDataSerial= [{"date":"2016-01","serie1":0},{"date":"2016-02","serie1":0},{"date":"2016-03","serie1":0},{"date":"2016-04","serie1":15.11},{"date":"2016-05","serie1":1},{"date":"2016-06","serie1":1.7}];
+    var chartDataPie=[{"date": "Venezuela","serie1": 8},{"date": "Panama","serie1": 6},{"date": "USA","serie1": 2}];                
+                    //data=JSON.stringify(chartData).replace(/&quot;/g, '"')
+                    console.log(JSON.stringify(chartDataSerial));
+                    console.log(JSON.stringify(chartDataPie));
+                   
+        
+                    initChartBar(chartDataSerial,"serial", "chart_99")
+                    initChartLine(chartDataSerial,"serial", "chart_3")
+                    initChartBarAndLine(chartDataSerial,"serial", "chart_4")
+                    initChartPie(chartDataPie,"pie", "chart_6")
                     
-                    
-                    
-                    data=JSON.stringify(chartData).replace(/&quot;/g, '"')
-                    console.log(JSON.stringify(chartData));
-                    initChartSample99(chartData)
-                    
-                },
-                error: function (xhr,status,error) {
-                    alert(status);
-                }
-            });
-  
-
  gridster = $(".gridster ul").gridster({
           widget_base_dimensions: [100, 120],
           widget_margins: [5, 5],
          
         }).data('gridster');
-});
+});//fin document ready
   
   
   
