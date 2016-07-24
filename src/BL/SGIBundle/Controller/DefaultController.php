@@ -210,4 +210,21 @@ class DefaultController extends Controller
         //return new JsonResponse(($object));
     }
     
+    
+     /**
+     *Admin headings position thru drag n drop
+    */
+    public function admin_headingsAction(Request $request)
+    {
+         $menu= new Menu(); 
+        $form = $this->createForm('BL\SGIBundle\Form\MenuType', $menu);
+        
+        
+       return $this->render('SGIBundle:Default:admin_headings.html.twig', array(
+            'menu' => $menu,
+            'form' => $form->createView(),
+        ));
+        //return new JsonResponse(($object));
+    }
+    
 }

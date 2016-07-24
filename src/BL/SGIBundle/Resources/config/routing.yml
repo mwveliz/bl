@@ -38,9 +38,14 @@ admin_charts:
     path:     /admin_charts
     defaults: { _controller: SGIBundle:Default:admin_charts}
 
+admin_headings:
+    path:     /admin_headings
+    defaults: { _controller: SGIBundle:Default:admin_headings}        
+
 grafic:
     path:     /grafic
     defaults: { _controller: SGIBundle:Default:grafic}
+    
 
 grafico:
     path:     /ajax_graph

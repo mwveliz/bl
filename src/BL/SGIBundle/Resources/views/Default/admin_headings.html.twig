@@ -1,0 +1,174 @@
+{%extends '::base.html.twig'%}
+
+
+ {% block stylesheets_extra %} 
+ <link href="{{ asset('ducksboard-gridster/jquery.gridster.css') }}" rel="stylesheet" id="style_components" type="text/css" />
+       
+ {% endblock %}
+
+
+{% block header %}
+    
+
+                    <h3 class="page-title"> Admin Headings
+                        <small>Drag n Drop</small>
+                    </h3>
+{% endblock %}
+ 
+ 
+                    
+         
+ {% block body %}              
+                        <div class="gridster">
+                            <div class="container"> 
+                                <div class="row">
+                                    <div class="col-md-3">
+                                      {{ form_start(form) }}
+                                                {{ form_widget(form) }}
+                 
+                                      {{ form_end(form) }}
+                                    </div>
+                                    <div class="col-md-2"><label>Financial row</label>
+                                        <select id="typeofstats" class="form-control">
+                                            <option value="1" selected>Income</option>
+                                            <option value="2">Outcome</option>
+                                            <option value="3">Accounts</option>
+                                            <option value="4">Clients</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-2"><label>Background image</label>
+                                    <br>
+                                    <center><button class="btn btn-default" role="iconpicker" ></button></center>
+                                    </div>
+                                    <div class="col-md-1"><label>Color</label>
+                                                 <div class="modal-body" style="padding-top: 0px">
+                                                     <select name="colorpicker-modal-picker">
+                                                       <option value="#7bd148">Green</option>
+                                                       <option value="#5484ed">Bold blue</option>
+                                                       <option value="#a4bdfc">Blue</option>
+                                                       <option value="#46d6db">Turquoise</option>
+                                                       <option value="#7ae7bf">Light green</option>
+                                                       <option value="#51b749">Bold green</option>
+                                                       <option value="#fbd75b">Yellow</option>
+                                                       <option value="#ffb878">Orange</option>
+                                                       <option value="#ff887c">Red</option>
+                                                       <option value="#dc2127">Bold red</option>
+                                                       <option value="#dbadff">Purple</option>
+                                                       <option value="#e1e1e1">Gray</option>
+                                                     </select>
+                                                   </div>
+                                    </div>
+                                    
+                                    <div class="col-md-1"><br><span class="glyphicon glyphicon-plus-sign" style="font-size: 3em; vertical-align: bottom;  cursor: pointer;"></span></div>
+                                </div>    
+                        
+                                    <br>
+                            <ul style="list-style-type: none;">
+                            <li id="1" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-comments"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="1349">1349</span>
+                                    </div>
+                                    <div class="desc"> Income </div>
+                                </div>
+                            </a>
+                        </li>    
+                    
+                        
+                 
+                        <li id="2" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-bar-chart-o"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="12,5">12,5</span>M$ </div>
+                                    <div class="desc"> Outcome</div>
+                                </div>
+                            </a>
+                        </li>
+                           
+                         <li id="3" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="549">549</span>
+                                    </div>
+                                    <div class="desc"> Accounts</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="4" data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+                            <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                                <div class="visual">
+                                    <i class="fa fa-globe"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number"> +
+                                        <span data-counter="counterup" data-value="89">89</span>% </div>
+                                    <div class="desc"> Clients</div>
+                                </div>
+                            </a>
+                       
+                        </li>
+                    
+                   </ul>     
+                   </div>
+                   </div>  
+{% endblock %}
+
+
+{% block javascripts_extra %} 
+            <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>                
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/amcharts.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/serial.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/pie.js') }}" ></script>
+        <script src="{{ asset('metronic/global/plugins/amcharts/amcharts/radar.js') }}" ></script>   
+        <script src="{{ asset('ducksboard-gridster/utils.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.collision.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.coords.js') }}" ></script>    
+        <script src="{{ asset('ducksboard-gridster/jquery.draggable.js') }}" ></script>    
+          <script src="{{ asset('ducksboard-gridster/jquery.gridster.js') }}" ></script>
+          <script src="{{ asset('ducksboard-gridster/jquery.gridster.extras.js') }}" ></script>    
+<script>
+ 
+
+   
+    
+    
+  $(document).ready(function(){
+    $('select[name="colorpicker-modal-picker"]').simplecolorpicker({picker: true});
+  
+        gridster = $(".gridster ul").gridster({
+          widget_base_dimensions: [100, 60],
+          widget_margins: [5, 5],
+         
+        }).data('gridster');
+        
+                $('.glyphicon-plus-sign').click(function(){
+                var id=parseInt($('select#typeofstats option:selected').val());
+                var contenido=$('li#'+id).html();
+                console.log(contenido)
+                gridster.add_widget('<li class="stats">'+contenido+'</li>', 2, 1)
+                  
+
+                
+        }); 
+        
+        
+       
+  
+});//fin document ready
+  
+    
+  
+   </script>    
+{% endblock %}
