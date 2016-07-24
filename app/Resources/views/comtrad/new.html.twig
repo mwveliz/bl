@@ -1,102 +1,128 @@
-{% extends 'base.html.twig' %}
-
-{% block page_title %}
-   Commodities Trading
-{% endblock %} 
-
-{% block page_description %}
-   Commodities Trading  - New Account
-{% endblock %} 
-
-{% block body %}
-    <div class="row">
-        <div class="col-md-6 ">
-            <!-- BEGIN SAMPLE FORM PORTLET-->
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-red-sunglo">
-                        <i class="fa fa-plus" style="color:#E26A6A;"></i>
-                        <span class="caption-subject bold uppercase"> New Register</span>
-                    </div>
-                </div>
-                <div class="portlet-body form">
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <br>
-                    <a id= "a_addfield" class="btn btn-success pull-right" href="#" ><span>Add Field</span></a>
-                    <br><br>
-                    <button type="button" class="btn default"  id="clear">Clear</button>
-                    <a href="{{ path('comtrad_index') }}" class="btn red" role="button">Cancel</a>
-                    <button type="submit" class="btn blue">Submit</button>
-                    {{ form_end(form) }}
-                    <br>
-                    <div class="form-actions">
-                    </div>
-                </div>
-            </div>
-            <!-- END SAMPLE FORM PORTLET-->
-        </div>
-        <div class="col-md-6"  id="add">
-
-
-
-        </div>
+<div class="page-header">
+      <h1 id="validator">Declaración Jurada de Origen <small>Perfil del Producto</small></h1>
     </div>
- {% endblock %}           
 
- {% block stylesheets_extra %} 
-         <link href="{{ asset('/css/form.css') }}" rel="stylesheet" type="text/css" />
- {% endblock %}
- 
- {% block javascripts_extra %}
+    <h2 id="validator-examples">Datos Generales de la Empresa</h2>
+    <p>P-1</p>
+    
+    <div class="well">
 
-     <script>
-         $( document ).ready(function() {
-             $('#clear').click(function() {
-                 $('form[name="{{ form.vars.name }}"]').trigger("reset");
-                 $('span').removeClass("checked");
-             });
+	<div class="row">
+      <form data-toggle="validator" role="form">
 
-             $('#comtrad_idClient_text').attr('placeholder','Find Client');
-             $('#comtrad_idClient_text').attr('widget_addon', 'type:"append"');
-             $('#comtrad_idState_text').attr('placeholder','Find State');
-             $('#comtrad_idState_text').attr('widget_addon', 'type:"append"');
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Nombre o Razón Social</label>
+          <input type="text" placeholder="Ingrese denominación" name="empresa_nombre" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el nombre detenidamente</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Número de RIF</label>
+          <input type="text" placeholder="Ingrese RIF" name="empresa_rif" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los guiones</div>
+        </div>
 
-         });
-     </script>
-     <script type='text/javascript'>
-         $( document ).ready(function() {
-             $(".numeric").numeric({ decimal : ".",  negative : false, scale: 4 });
-             $(".currency").maskMoney();
+	</div>
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Dirección Administrativa</label>
+          <input type="textarea" placeholder="Ingrese dirección" name="empresa_direccionadmin" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la dirección administrativa</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Código Postal</label>
+          <input type="text" placeholder="Ingrese Código Postal" name="empresa_zipcodeadmin" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+	</div>
+	
+	
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Código de Área</label>
+          <input type="number" placeholder="Ingrese dirección" name="empresa_areaadmin" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Teléfonos</label>
+          <input type="nimber" placeholder="Ingrese Números de Teléfono" name="empresa_telfsadmin" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los números ingresados</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Fax</label>
+          <input type="number" placeholder="Ingrese número de fax" name="empresa_faxadmin" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el número</div>
+        </div>
+	</div>
 
-             $('<a id= "a_addtype"  class="btn btn-success pull-right" href="#"><span>Add Opportunity</span></a><br>').insertAfter( $('#comtrad_IdTypeComtrad').closest("div") );
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Página Web</label>
+          <input type="text" placeholder="Ingrese p{agina web" name="empresa_website" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Email</label>
+          <input type="text" placeholder="Ingrese Correo Electrónico" name="empresa_email" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los números ingresados</div>
+        </div>
+      
+        
+	</div>
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-9">
+          <label class="control-label" for="remoteValidator">Dirección Planta</label>
+          <input type="textarea" placeholder="Ingrese dirección" name="empresa_direccionplanta" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique la dirección de planta</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Código Postal</label>
+          <input type="text" placeholder="Ingrese Código Postal" name="empresa_zipcodeplanta" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+	</div>
+	<div class="row">
+      <form data-toggle="validator" role="form">
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Código de Área</label>
+          <input type="number" placeholder="Ingrese dirección" name="empresa_areaplanta" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el código</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label" for="remoteValidator">Teléfonos</label>
+          <input type="nimber" placeholder="Ingrese Números de Teléfono" name="empresa_telfsplanta" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique los números ingresados</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="control-label" for="remoteValidator">Fax</label>
+          <input type="number" placeholder="Ingrese número de fax" name="empresa_faxplanta" id="remoteValidator" class="form-control" data-remote="/validate">
+           <div class="help-block with-errors">Verifique el número</div>
+        </div>
+        
+	</div>
+	
+	
 
-             $('#a_addtype').on('click',function(e) {
-                 e.preventDefault();
-                 $('#add').load("{{ path('typecomtrad_new') }}");
-             });
-
-             $('#a_addfield').on('click',function(e) {
-                 e.preventDefault();
-                 $('#add').load("{{ path('fieldscomtrad_new') }}");
-             });
-
-             $('<a id= "a_addclient"  class="btn btn-success pull-right" href="#"><span>Add Client</span></a><br>').insertAfter( $('#comtrad_idClient_text').closest("div") );
-             $('#a_addclient').on('click',function(e) {
-                 e.preventDefault();
-                 $('#add').load("{{ path('client_new') }}");
-             });
-             
-             
-             
-         });
-     </script>
-
-
-
- {% endblock %}
-
-
-
-
-
+  <div class="row">
+  
+      <div class="form-group col-md-10">
+		</div>	
+      <div class="form-group col-md-2">
+          <button type="submit" class="btn btn-primary">Siguiente</button>
+        </div>
+      </form>
+    </div>
+    
+    
+ <script>
+    $("button").click(function(){
+			$("div.bs-docs-section").empty();
+			$("div.bs-docs-section").load("2.html");
+			
+			
+			
+		 });
+</script>

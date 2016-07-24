@@ -89,7 +89,7 @@ class BlSellerController extends Controller
             $em->flush();
             //falta agregar registo de blseller
             $id = $usuario->getId(); //obtengo el id del vendedor para asociarle las accounts
-            //agrego le seller a la tabla de grupo y arreglo el rol
+            //agrego el seller a la tabla de grupo y arreglo el rol
             $userManager = $this->container->get('fos_user.user_manager');
             $usuario->addRole('ROLE_SELLER');
             $userManager->updateUser($usuario);

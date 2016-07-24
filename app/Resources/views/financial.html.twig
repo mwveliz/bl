@@ -1,0 +1,157 @@
+
+{% block stylesheets_extra %} 
+            <link href="{{ asset('/firecalc/ethercalc/static/socialcalc.css') }}" rel="stylesheet" type="text/css" />
+             <script src="{{ asset('/firecalc/ethercalc/static/firebase.js') }}" type="text/javascript"></script>
+         <script src="{{ asset('/firecalc/ethercalc/static/jquery.js') }}" type="text/javascript"></script>
+         <script src="{{ asset('/firecalc/ethercalc/static/ethercalc.js') }}" type="text/javascript"></script>
+         <script src="{{ asset('/firecalc/lib/utils.js') }}" type="text/javascript"></script>
+         
+         <script src="{{ asset('firecalc/examples/firecalc.js') }}" type="text/javascript"></script>
+    
+{% endblock %}
+
+
+<div class="row">
+    <div class="col-lg-12">
+       <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="fa fa-wrench" style="color:#E26A6A;"></i>
+                        <span class="caption-subject bold uppercase"> ToolBox</span>
+                        
+                    </div>
+                    <div class="tools"> </div>
+                
+                 <div class="col-lg-1">    
+                    <select id="currency_symbol" class="form-control">
+                       <option value="$">$</option>
+                       <option value="Bs">Bs</option>
+                       <option value="£">£</option>
+                   </select>
+                       </div>
+            
+                    {{ form_start(form) }}
+                  <div class="col-lg-3">        
+                    {{ form_widget(form.description) }}
+                    </div>
+                  <div class="col-lg-3">        
+                    {{ form_widget(form.wiget) }}
+                    
+                    </div>
+                    <div class="col-lg-1">      
+                    <select id="credordeb" class="form-control">
+                       <option value="C">+ Creditor </option>
+                       <option value="D">- Debitor </option>
+                   </select>
+                        </div>
+                    <div class="col-lg-1">      
+                    <button id="btn_addfield" type="submit" class="btn blue">Add Financial Row</button>
+                 </div">      
+                    {{ form_end(form) }}
+            </div>
+   
+    </div>
+    
+            <!-- END SAMPLE FORM PORTLET-->
+            
+</div>
+<div class="row">
+    
+
+    </div>                    
+
+</div>
+<div class="row">
+    <div id="table1" class="table-responsive col-lg-10">
+         <div id="firecalc"></div> 
+    </div>
+ </div>   
+
+
+<script>
+    function getExampleRef() {
+  // Get hash from end of URL or generate a random one.
+
+  var ref = new Firebase('blul-57cb4.firebaseio.com');
+  
+    
+    var hash = window.location.hash.replace(/#/g, '');
+
+    
+  if (hash) {
+    ref = ref.child(hash);
+  } else {
+    ref = ref.push(); // generate unique location.
+    window.location = window.location + '#' + ref.name(); // add it as a hash to the URL.
+  }
+
+  if (typeof console !== 'undefined')
+    console.log('Firebase data: ', ref.toString());
+    
+  return ref;
+}
+</script>      
+         
+    <script>
+    //// Initialize Firebase.
+    var firecalcRef = getExampleRef();
+      // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB_rbR4qKyEzJweG0ttPFeJPNomvcXEAPQ",
+    authDomain: "blul-57cb4.firebaseapp.com",
+    databaseURL: "https://blul-57cb4.firebaseio.com",
+    storageBucket: "",
+  };
+   //  var firecalcRef  = new Firebase('blul-57cb4.firebaseio.com');
+    // TODO: Replace above line with:
+    // var firecalcRef = new Firebase('<YOUR FIREBASE URL>');
+
+    //// Create firecalc (with rich text toolbar and shortcuts enabled).
+    var firecalc = Firecalc(firecalcRef, document.getElementById('firecalc'), {});
+ 
+    //// Initialize contents.
+    firecalc.on('ready', function() {
+    });
+    
+    
+    
+    $(document).ready(function(){
+            var raiz= $("img.logo-default").attr("src").split("/images");
+        
+       $("div#SocialCalc-edittools img").each(function () {
+            var ruta= $(this).attr("src");
+            nueva_ruta=raiz[0]+"/firecalc/examples/"+ruta;
+            $(this).attr("src", nueva_ruta);
+        }); 
+
+       $("img#SocialCalc-formulafunctions").each(function () {
+            var ruta= $(this).attr("src");
+            nueva_ruta=raiz[0]+"/firecalc/examples/"+ruta;
+            $(this).attr("src", nueva_ruta);
+        }); 
+
+    $("img#SocialCalc-multilineinput").each(function () {
+            var ruta= $(this).attr("src");
+            nueva_ruta=raiz[0]+"/firecalc/examples/"+ruta;
+            $(this).attr("src", nueva_ruta);
+        }); 
+    $("img#SocialCalc-link").each(function () {
+            var ruta= $(this).attr("src");
+            nueva_ruta=raiz[0]+"/firecalc/examples/"+ruta;
+            $(this).attr("src", nueva_ruta);
+        }); 
+        $("img#SocialCalc-sum").each(function () {
+            var ruta= $(this).attr("src");
+            nueva_ruta=raiz[0]+"/firecalc/examples/"+ruta;
+            $(this).attr("src", nueva_ruta);
+        }); 
+        
+        
+        $("div#SocialCalc-edittools").css("padding-top","0px")
+        
+        
+    })
+    
+  </script>
+    
