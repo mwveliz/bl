@@ -3,6 +3,7 @@
 namespace BL\SGIBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -59,6 +60,43 @@ class DashboardController extends Controller
         ));
     }
 
+    
+    
+    
+    /**
+     *save headings position thru drag n drop on stop event
+    */
+    public function ajax_headings_saveAction(Request $request)
+    {
+        $data = $request->get('data');
+        $col = $request->get('col');
+        $row = $request->get('row');   
+        $em = $this->getDoctrine()->getManager();
+        
+        $dashboard_item= $em->getReference('BL\SGIBundle\Entity\DashboardItem', 2); 
+        $dashboard_position= $em->getReference('BL\SGIBundle\Entity\DashboardPosition', $fil.'F'.$col.'C'); 
+        
+        
+         
+        $menu=new Menu();
+        
+        
+        $em->persist($menu);
+       $em->flush();
+         $id_menu= $em->getReference('BL\SGIBundle\Entity\Menu', $menu->getId()); 
+      
+        
+        $dashboard= new Dashboard();
+       $dashboard->setIdPosition($dashboard_position);
+       $dashboard->setIdItem($dashboard_item);
+       $dashboard->setIdMenu($id_menu);
+       $em->persist($dashboard);
+       $em->flush();
+        return new Response('ok');
+    }
+    
+    
+    
     /**
      * Finds and displays a Dashboard entity.
      *

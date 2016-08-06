@@ -211,6 +211,9 @@ class DefaultController extends Controller
     }
     
     
+    
+    
+    
      /**
      *Admin headings position thru drag n drop
     */
@@ -226,5 +229,9 @@ class DefaultController extends Controller
         ));
         //return new JsonResponse(($object));
     }
+    
+    
+    
+    
     
 }
